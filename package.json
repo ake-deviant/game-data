@@ -6,6 +6,10 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
+  "private": true,
+  "files": [
+    "commanders.json"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }
