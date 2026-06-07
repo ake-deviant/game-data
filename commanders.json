@@ -6,11 +6,11 @@
     "icon": "shield",
     "baseStats": {
       "pawnMax": 48,
-      "health": 33,
+      "health": 100,
       "maxDefenseLevel": 2,
       "defensePowerPerLevel": 6,
       "attackPowerByColor": {
-        "red": 18,
+        "red": 13,
         "blue": 10,
         "green": 7
       },
@@ -20,14 +20,19 @@
         "green": 1
       },
       "nonePowerByColor": {
-        "red": 2,
-        "blue": 3,
-        "green": 2
+        "red": 3,
+        "blue": 2,
+        "green": 1
       },
       "pawnTypeByColor": {
         "red": "melee",
         "blue": "melee",
         "green": "ranged"
+      },
+      "pawnVisualKeyByColor": {
+        "red": "pawn_default_melee_red",
+        "blue": "pawn_default_melee_blue",
+        "green": "pawn_default_ranged_green"
       },
       "commanderPawn": {
         "color": "blue",
@@ -67,7 +72,7 @@
     "icon": "sword",
     "baseStats": {
       "pawnMax": 44,
-      "health": 30,
+      "health": 100,
       "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
       "attackPowerByColor": {
@@ -82,13 +87,18 @@
       },
       "nonePowerByColor": {
         "red": 2,
-        "blue": 4,
+        "blue": 3,
         "green": 3
       },
       "pawnTypeByColor": {
         "red": "melee",
         "blue": "melee",
         "green": "ranged"
+      },
+      "pawnVisualKeyByColor": {
+        "red": "pawn_default_melee_red",
+        "blue": "pawn_default_melee_blue",
+        "green": "pawn_default_ranged_green"
       },
       "commanderPawn": {
         "color": "red",
@@ -128,28 +138,33 @@
     "icon": "tower",
     "baseStats": {
       "pawnMax": 46,
-      "health": 36,
-      "maxDefenseLevel": 3,
+      "health": 100,
+      "maxDefenseLevel": 2,
       "defensePowerPerLevel": 6,
       "attackPowerByColor": {
-        "red": 12,
-        "blue": 12,
-        "green": 9
+        "red": 8,
+        "blue": 10,
+        "green": 12
       },
       "attackTurnCountByColor": {
-        "red": 3,
+        "red": 2,
         "blue": 2,
         "green": 3
       },
       "nonePowerByColor": {
-        "red": 3,
+        "red": 2,
         "blue": 3,
-        "green": 2
+        "green": 3
       },
       "pawnTypeByColor": {
         "red": "melee",
         "blue": "ranged",
         "green": "ranged"
+      },
+      "pawnVisualKeyByColor": {
+        "red": "pawn_default_melee_red",
+        "blue": "pawn_default_ranged_blue",
+        "green": "pawn_default_ranged_green"
       },
       "commanderPawn": {
         "color": "blue",
@@ -174,7 +189,7 @@
           "color": "green",
           "type": "ranged",
           "turnCount": 4,
-          "power": 48,
+          "power": 40,
           "countPawns": 3,
           "visualKey": "officer_ballista"
         }
@@ -189,35 +204,40 @@
     "icon": "bolt",
     "baseStats": {
       "pawnMax": 45,
-      "health": 31,
-      "maxDefenseLevel": 2,
+      "health": 100,
+      "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
       "attackPowerByColor": {
         "red": 14,
-        "blue": 9,
-        "green": 10
+        "blue": 8,
+        "green": 7
       },
       "attackTurnCountByColor": {
-        "red": 2,
+        "red": 3,
         "blue": 2,
         "green": 1
       },
       "nonePowerByColor": {
         "red": 2,
-        "blue": 3,
-        "green": 4
+        "blue": 2,
+        "green": 1
       },
       "pawnTypeByColor": {
-        "red": "melee",
+        "red": "ranged",
         "blue": "ranged",
-        "green": "ranged"
+        "green": "ùelee"
+      },
+      "pawnVisualKeyByColor": {
+        "red": "pawn_default_melee_red",
+        "blue": "pawn_default_ranged_blue",
+        "green": "pawn_default_ranged_green"
       },
       "commanderPawn": {
         "color": "green",
         "type": "melee",
         "turnCount": 5,
-        "power": 95,
-        "countPawns": 5,
+        "power": 90,
+        "countPawns": 4,
         "visualKey": "commander_storm"
       },
       "officerPawns": [
@@ -240,129 +260,7 @@
           "visualKey": "officer_oracle"
         }
       ],
-      "movementsPerTurn": 4
-    }
-  },
-  {
-    "id": "scenario-1",
-    "name": "Test Commander 1",
-    "description": "Commander fixe pour les scénarios de test (player 1)",
-    "icon": "test",
-    "baseStats": {
-      "pawnMax": 50,
-      "health": 100,
-      "maxDefenseLevel": 2,
-      "defensePowerPerLevel": 6,
-      "attackPowerByColor": {
-        "red": 1,
-        "blue": 1,
-        "green": 1
-      },
-      "attackTurnCountByColor": {
-        "red": 2,
-        "blue": 1,
-        "green": 2
-      },
-      "nonePowerByColor": {
-        "red": 1,
-        "blue": 1,
-        "green": 1
-      },
-      "pawnTypeByColor": {
-        "red": "melee",
-        "blue": "melee",
-        "green": "ranged"
-      },
-      "commanderPawn": {
-        "color": "red",
-        "type": "ranged",
-        "turnCount": 2,
-        "power": 60,
-        "countPawns": 5,
-        "visualKey": "commander_default"
-      },
-      "officerPawns": [
-        {
-          "id": "scenario-1-guard-officer",
-          "color": "blue",
-          "type": "melee",
-          "turnCount": 2,
-          "power": 20,
-          "countPawns": 2,
-          "visualKey": "officer_default"
-        },
-        {
-          "id": "scenario-1-ranged-officer",
-          "color": "green",
-          "type": "ranged",
-          "turnCount": 2,
-          "power": 20,
-          "countPawns": 2,
-          "visualKey": "officer_default"
-        }
-      ],
-      "movementsPerTurn": 2
-    }
-  },
-  {
-    "id": "scenario-2",
-    "name": "Test Commander 2",
-    "description": "Commander fixe pour les scénarios de test (player 2)",
-    "icon": "test",
-    "baseStats": {
-      "pawnMax": 50,
-      "health": 100,
-      "maxDefenseLevel": 2,
-      "defensePowerPerLevel": 6,
-      "attackPowerByColor": {
-        "red": 1,
-        "blue": 1,
-        "green": 1
-      },
-      "attackTurnCountByColor": {
-        "red": 2,
-        "blue": 1,
-        "green": 2
-      },
-      "nonePowerByColor": {
-        "red": 1,
-        "blue": 1,
-        "green": 1
-      },
-      "pawnTypeByColor": {
-        "red": "melee",
-        "blue": "melee",
-        "green": "ranged"
-      },
-      "commanderPawn": {
-        "color": "red",
-        "type": "ranged",
-        "turnCount": 2,
-        "power": 60,
-        "countPawns": 5,
-        "visualKey": "commander_default"
-      },
-      "officerPawns": [
-        {
-          "id": "scenario-2-guard-officer",
-          "color": "blue",
-          "type": "melee",
-          "turnCount": 2,
-          "power": 20,
-          "countPawns": 2,
-          "visualKey": "officer_default"
-        },
-        {
-          "id": "scenario-2-ranged-officer",
-          "color": "green",
-          "type": "ranged",
-          "turnCount": 2,
-          "power": 20,
-          "countPawns": 2,
-          "visualKey": "officer_default"
-        }
-      ],
-      "movementsPerTurn": 2
+      "movementsPerTurn": 3
     }
   }
 ]
