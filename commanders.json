@@ -225,12 +225,12 @@
       "pawnTypeByColor": {
         "red": "ranged",
         "blue": "ranged",
-        "green": "ùelee"
+        "green": "melee"
       },
       "pawnVisualKeyByColor": {
-        "red": "pawn_default_melee_red",
+        "red": "pawn_default_ranged_red",
         "blue": "pawn_default_ranged_blue",
-        "green": "pawn_default_ranged_green"
+        "green": "pawn_default_melee_green"
       },
       "commanderPawn": {
         "color": "green",
