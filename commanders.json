@@ -40,7 +40,7 @@
         "turnCount": 6,
         "power": 110,
         "countPawns": 5,
-        "visualKey": "commander_melee",
+        "visualKey": "commander_melee_blue",
         "moveCount": 4
       },
       "officerPawns": [
@@ -109,7 +109,7 @@
         "turnCount": 5,
         "power": 80,
         "countPawns": 4,
-        "visualKey": "commander_default",
+        "visualKey": "commander_ranged_red",
         "moveCount": 4
       },
       "officerPawns": [
@@ -170,7 +170,7 @@
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_ranged_blue",
-        "green": "pawn_default_ranged_green"
+        "green": "pawn_default_melee_green"
       },
       "commanderPawn": {
         "color": "blue",
@@ -178,7 +178,7 @@
         "turnCount": 6,
         "power": 95,
         "countPawns": 5,
-        "visualKey": "commander_strategist",
+        "visualKey": "commander_ranged_blue",
         "moveCount": 4
       },
       "officerPawns": [
@@ -247,7 +247,7 @@
         "turnCount": 5,
         "power": 96,
         "countPawns": 5,
-        "visualKey": "commander_storm",
+        "visualKey": "commander_melee_green",
         "moveCount": 4
       },
       "officerPawns": [
