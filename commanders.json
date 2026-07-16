@@ -34,15 +34,28 @@
         "blue": "pawn_default_melee_blue",
         "green": "pawn_default_ranged_green"
       },
-      "commanderPawn": {
-        "color": "blue",
-        "type": "melee",
-        "turnCount": 6,
-        "power": 110,
-        "countPawns": 5,
-        "visualKey": "commander_melee_blue",
-        "moveCount": 4
-      },
+      "commanderPawn": [
+        {
+          "id": "commander-1-1",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 6,
+          "power": 110,
+          "countPawns": 5,
+          "visualKey": "commander_melee_blue",
+          "moveCount": 4
+        },
+        {
+          "id": "commander-1-2",
+          "color": "red",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 60,
+          "countPawns": 4,
+          "visualKey": "commander_melee_red",
+          "moveCount": 3
+        }
+      ],
       "officerPawns": [
         {
           "id": "sentinel-guard-officer",
@@ -103,15 +116,26 @@
         "blue": "pawn_default_melee_blue",
         "green": "pawn_default_ranged_green"
       },
-      "commanderPawn": {
-        "color": "red",
-        "type": "ranged",
-        "turnCount": 5,
-        "power": 80,
-        "countPawns": 4,
-        "visualKey": "commander_ranged_red",
-        "moveCount": 4
-      },
+      "commanderPawn": [
+        {
+          "color": "red",
+          "type": "ranged",
+          "turnCount": 5,
+          "power": 80,
+          "countPawns": 4,
+          "visualKey": "commander_ranged_red",
+          "moveCount": 4
+        },
+        {
+          "color": "green",
+          "type": "melee",
+          "turnCount": 5,
+          "power": 60,
+          "countPawns": 4,
+          "visualKey": "commander_melee_green",
+          "moveCount": 3
+        }
+      ],
       "officerPawns": [
         {
           "id": "blitz-vanguard-officer",
@@ -172,15 +196,26 @@
         "blue": "pawn_default_ranged_blue",
         "green": "pawn_default_melee_green"
       },
-      "commanderPawn": {
-        "color": "blue",
-        "type": "ranged",
-        "turnCount": 6,
-        "power": 95,
-        "countPawns": 5,
-        "visualKey": "commander_ranged_blue",
-        "moveCount": 4
-      },
+      "commanderPawn": [
+        {
+          "color": "blue",
+          "type": "ranged",
+          "turnCount": 6,
+          "power": 95,
+          "countPawns": 5,
+          "visualKey": "commander_ranged_blue",
+          "moveCount": 4
+        },
+        {
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 3,
+          "power": 40,
+          "countPawns": 3,
+          "visualKey": "commander_melee_blue",
+          "moveCount": 3
+        }
+      ],
       "officerPawns": [
         {
           "id": "iron-bastion-officer",
@@ -241,7 +276,8 @@
         "blue": "pawn_default_ranged_blue",
         "green": "pawn_default_ranged_green"
       },
-      "commanderPawn": {
+      "commanderPawn": [
+        {
         "color": "green",
         "type": "melee",
         "turnCount": 5,
@@ -250,6 +286,16 @@
         "visualKey": "commander_melee_green",
         "moveCount": 4
       },
+      {
+        "color": "blue",
+        "type": "ranged",
+        "turnCount": 4,
+        "power": 50,
+        "countPawns": 4,
+        "visualKey": "commander_ranged_blue",
+        "moveCount": 3
+      }
+    ],
       "officerPawns": [
         {
           "id": "storm-lancer-officer",
