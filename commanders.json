@@ -34,7 +34,7 @@
         "blue": "pawn_default_melee_blue",
         "green": "pawn_default_ranged_green"
       },
-      "commanderPawn": [
+      "commanderPawns": [
         {
           "id": "commander-1-1",
           "color": "blue",
@@ -116,7 +116,7 @@
         "blue": "pawn_default_melee_blue",
         "green": "pawn_default_ranged_green"
       },
-      "commanderPawn": [
+      "commanderPawns": [
         {
           "color": "red",
           "type": "ranged",
@@ -196,7 +196,7 @@
         "blue": "pawn_default_ranged_blue",
         "green": "pawn_default_melee_green"
       },
-      "commanderPawn": [
+      "commanderPawns": [
         {
           "color": "blue",
           "type": "ranged",
@@ -276,7 +276,7 @@
         "blue": "pawn_default_ranged_blue",
         "green": "pawn_default_ranged_green"
       },
-      "commanderPawn": [
+      "commanderPawns": [
         {
         "color": "green",
         "type": "melee",
