@@ -25,7 +25,7 @@
         "green": 1
       },
       "pawnTypeByColor": {
-        "red": "melee",
+        "red": "sapper",
         "blue": "melee",
         "green": "ranged"
       },
