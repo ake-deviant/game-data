@@ -15,7 +15,7 @@
         "green": 7
       },
       "attackTurnCountByColor": {
-        "red": 3,
+        "red": 2,
         "blue": 2,
         "green": 1
       },
@@ -98,7 +98,7 @@
       },
       "attackTurnCountByColor": {
         "red": 2,
-        "blue": 3,
+        "blue": 2,
         "green": 3
       },
       "nonePowerByColor": {
@@ -107,7 +107,7 @@
         "green": 2
       },
       "pawnTypeByColor": {
-        "red": "ranged",
+        "red": "sapper",
         "blue": "melee",
         "green": "ranged"
       },
