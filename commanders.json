@@ -10,8 +10,8 @@
       "maxDefenseLevel": 2,
       "defensePowerPerLevel": 6,
       "attackPowerByColor": {
-        "red": 13,
-        "blue": 10,
+        "red": 8,
+        "blue": 11,
         "green": 7
       },
       "attackTurnCountByColor": {
@@ -20,7 +20,7 @@
         "green": 1
       },
       "nonePowerByColor": {
-        "red": 3,
+        "red": 2,
         "blue": 2,
         "green": 1
       },
@@ -92,9 +92,9 @@
       "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
       "attackPowerByColor": {
-        "red": 9,
-        "blue": 13,
-        "green": 11
+        "red": 8,
+        "blue": 10,
+        "green": 12
       },
       "attackTurnCountByColor": {
         "red": 2,
