@@ -5,7 +5,8 @@
     "description": "DÃ©fenseur polyvalent, spÃ©cialisÃ© dans la tenue de ligne.",
     "icon": "shield",
     "baseStats": {
-      "skills": ["destroy-defense-pawns"],
+      "skills": ["destroy-defense-pawns", "free-recruit-troops"],
+      "freeRecruitThreshold": 20,
       "pawnMax": 45,
       "health": 100,
       "maxDefenseLevel": 2,
@@ -88,7 +89,8 @@
     "description": "Offensif, mise sur des frappes rapides.",
     "icon": "sword",
     "baseStats": {
-      "skills": ["destroy-defense-pawns"],
+      "skills": ["destroy-defense-pawns", "free-recruit-troops"],
+      "freeRecruitThreshold": 20,
       "pawnMax": 48,
       "health": 100,
       "maxDefenseLevel": 3,
@@ -169,7 +171,8 @@
     "description": "Controle le rythme avec des attaques lourdes et des defenses solides.",
     "icon": "tower",
     "baseStats": {
-      "skills": ["destroy-defense-pawns"],
+      "skills": ["destroy-defense-pawns", "free-recruit-troops"],
+      "freeRecruitThreshold": 20,
       "pawnMax": 45,
       "health": 95,
       "maxDefenseLevel": 2,
@@ -250,7 +253,8 @@
     "description": "Equilibre pression melee et soutien ranged avec plus de marge de manoeuvre.",
     "icon": "bolt",
     "baseStats": {
-      "skills": ["destroy-defense-pawns"],
+      "skills": ["destroy-defense-pawns", "free-recruit-troops"],
+      "freeRecruitThreshold": 20,
       "pawnMax": 45,
       "health": 100,
       "maxDefenseLevel": 3,
