@@ -1,0 +1,8 @@
+[
+  {
+    "skillKey": "destroy-defense-pawns",
+    "skillType": "player",
+    "skillPointCost": 5,
+    "freeWallMoves": 4
+  }
+]
