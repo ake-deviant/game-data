@@ -2,6 +2,7 @@
   {
     "skillKey": "destroy-defense-pawns",
     "skillType": "player",
+    "activation": "manual",
     "skillPointCost": 5,
     "skillDelay": 3,
     "freeWallMoves": 4
@@ -9,6 +10,7 @@
   {
     "skillKey": "free-recruit-troops",
     "skillType": "player",
+    "activation": "passive",
     "skillPointCost": 0,
     "skillDelay": null
   }
