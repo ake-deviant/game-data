@@ -77,7 +77,9 @@
           "power": 18,
           "countPawns": 2,
           "visualKey": "officer_longbow",
-          "moveCount": 2
+          "moveCount": 2,
+          "skills": ["power-growth"],
+          "powerBonusPerDecrement": 2
         }
       ],
       "movementsPerTurn": 3

@@ -13,5 +13,12 @@
     "activation": "passive",
     "skillPointCost": 0,
     "skillDelay": null
+  },
+  {
+    "skillKey": "power-growth",
+    "skillType": "pawn",
+    "activation": "passive",
+    "skillPointCost": 0,
+    "skillDelay": null
   }
 ]
