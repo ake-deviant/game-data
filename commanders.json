@@ -42,10 +42,12 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 6,
-          "power": 110,
+          "power": 60,
           "countPawns": 5,
           "visualKey": "commander_melee_blue",
-          "moveCount": 4
+          "moveCount": 4,
+          "skills": ["power-growth"],
+          "powerBonusPerDecrement": 10
         },
         {
           "id": "commander-1-2",
@@ -64,22 +66,24 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 3,
-          "power": 30,
+          "power": 20,
           "countPawns": 3,
           "visualKey": "officer_guard",
-          "moveCount": 3
+          "moveCount": 3,
+          "skills": ["power-growth"],
+          "powerBonusPerDecrement": 4
         },
         {
           "id": "sentinel-longbow-officer",
           "color": "green",
           "type": "ranged",
           "turnCount": 2,
-          "power": 18,
+          "power": 10,
           "countPawns": 2,
           "visualKey": "officer_longbow",
           "moveCount": 2,
           "skills": ["power-growth"],
-          "powerBonusPerDecrement": 2
+          "powerBonusPerDecrement": 6
         }
       ],
       "movementsPerTurn": 3
