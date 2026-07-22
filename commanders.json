@@ -7,6 +7,12 @@
     "baseStats": {
       "skills": ["destroy-defense-pawns", "free-recruit-troops"],
       "freeRecruitThreshold": 20,
+      "skillsByColor": {
+        "green": ["power-growth"]
+      },
+      "powerBonusPerDecrementByColor": {
+        "green": 2
+      },
       "pawnMax": 45,
       "health": 100,
       "maxDefenseLevel": 2,
