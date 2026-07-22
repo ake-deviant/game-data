@@ -63,7 +63,8 @@
           "power": 60,
           "countPawns": 4,
           "visualKey": "commander_melee_red",
-          "moveCount": 3
+          "moveCount": 3,
+          "skills":["charge-30"]
         }
       ],
       "officerPawns": [
@@ -102,8 +103,16 @@
     "icon": "sword",
     "baseStats": {
       "skills": ["destroy-defense-pawns", "free-recruit-troops"],
+      "skillsByColor":{
+        "green":["charge-10","power-growth"],
+        "red":["charge-10"]
+
+      },
+      "powerBonusPerDecrementByColor":{
+        "green": 2
+      },
       "freeRecruitThreshold": 20,
-      "pawnMax": 48,
+      "pawnMax": 45,
       "health": 100,
       "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
@@ -123,9 +132,9 @@
         "green": 2
       },
       "pawnTypeByColor": {
-        "red": "sapper",
+        "red": "melee",
         "blue": "melee",
-        "green": "ranged"
+        "green": "melee"
       },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
@@ -137,7 +146,7 @@
           "color": "red",
           "type": "ranged",
           "turnCount": 5,
-          "power": 80,
+          "power": 60,
           "countPawns": 4,
           "visualKey": "commander_ranged_red",
           "moveCount": 4
@@ -145,11 +154,12 @@
         {
           "color": "green",
           "type": "melee",
-          "turnCount": 5,
+          "turnCount": 4,
           "power": 60,
           "countPawns": 4,
           "visualKey": "commander_melee_green",
-          "moveCount": 3
+          "moveCount": 3,
+          "skills":["charge-50"]
         }
       ],
       "officerPawns": [
@@ -161,17 +171,20 @@
           "power": 26,
           "countPawns": 3,
           "visualKey": "officer_vanguard",
-          "moveCount": 3
+          "moveCount": 3,
+          "skills":["charge-30"]
         },
         {
           "id": "blitz-skirmisher-officer",
           "color": "green",
           "type": "ranged",
           "turnCount": 3,
-          "power": 20,
+          "power": 16,
           "countPawns": 3,
           "visualKey": "officer_skirmisher",
-          "moveCount": 2
+          "moveCount": 2,
+          "skills":["power-growth"],
+          "powerBonusPerDecrement":4
         }
       ],
       "movementsPerTurn": 3

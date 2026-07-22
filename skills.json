@@ -20,5 +20,37 @@
     "activation": "passive",
     "skillPointCost": 0,
     "skillDelay": null
+  },
+  {
+    "skillKey": "charge-10",
+    "skillType": "pawn",
+    "activation": "passive",
+    "skillPointCost": 0,
+    "skillDelay": null,
+    "chargeBonusPercent": 10
+  },
+  {
+    "skillKey": "charge-20",
+    "skillType": "pawn",
+    "activation": "passive",
+    "skillPointCost": 0,
+    "skillDelay": null,
+    "chargeBonusPercent": 20
+  },
+  {
+    "skillKey": "charge-30",
+    "skillType": "pawn",
+    "activation": "passive",
+    "skillPointCost": 0,
+    "skillDelay": null,
+    "chargeBonusPercent": 30
+  },
+  {
+    "skillKey": "charge-50",
+    "skillType": "pawn",
+    "activation": "passive",
+    "skillPointCost": 0,
+    "skillDelay": null,
+    "chargeBonusPercent": 50
   }
 ]
