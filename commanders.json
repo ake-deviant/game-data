@@ -33,7 +33,7 @@
         "green": 1
       },
       "pawnTypeByColor": {
-        "red": "sapper",
+        "red": "melee",
         "blue": "melee",
         "green": "ranged"
       },
@@ -109,7 +109,8 @@
 
       },
       "powerBonusPerDecrementByColor":{
-        "green": 2
+        "green": 2,
+        "red": 2
       },
       "freeRecruitThreshold": 20,
       "pawnMax": 45,
@@ -139,7 +140,7 @@
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_melee_blue",
-        "green": "pawn_default_ranged_green"
+        "green": "pawn_default_melee_green"
       },
       "commanderPawns": [
         {
