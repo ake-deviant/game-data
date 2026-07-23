@@ -52,5 +52,14 @@
     "skillPointCost": 0,
     "skillDelay": null,
     "chargeBonusPercent": 50
+  },
+  {
+    "skillKey": "tactical-demolition",
+    "skillType": "player",
+    "activation": "manual",
+    "skillPointCost": 10,
+    "skillDelay": null,
+    "delayIllimited": true,
+    "movementCost": 2
   }
 ]

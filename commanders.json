@@ -93,7 +93,10 @@
           "powerBonusPerDecrement": 6
         }
       ],
-      "movementsPerTurn": 3
+      "movementsPerTurn": 3,
+      "movementBonusStrategies": {
+        "remove": "1-match-1-move"
+      }
     }
   },
   {
@@ -144,6 +147,7 @@
       },
       "commanderPawns": [
         {
+          "id": "commander-2-1",
           "color": "red",
           "type": "ranged",
           "turnCount": 5,
@@ -153,6 +157,7 @@
           "moveCount": 4
         },
         {
+          "id": "commander-2-2",
           "color": "green",
           "type": "melee",
           "turnCount": 4,
