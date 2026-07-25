@@ -1,7 +1,7 @@
 [
   {
     "id": "destroy-defense-pawns",
-    "visualKey": "skill_destroy_defense",
+    "visualKey": "icone-default",
     "skillType": "player",
     "activation": "manual",
     "skillPointCost": 5,
@@ -10,7 +10,7 @@
   },
   {
     "id": "free-recruit-troops",
-    "visualKey": "skill_free_recruit",
+    "visualKey": "icone-default",
     "skillType": "player",
     "activation": "passive",
     "skillPointCost": 0,
@@ -18,7 +18,7 @@
   },
   {
     "id": "power-growth",
-    "visualKey": "skill_power_growth",
+    "visualKey": "icone-default",
     "skillType": "pawn",
     "activation": "passive",
     "skillPointCost": 0,
@@ -26,7 +26,7 @@
   },
   {
     "id": "charge-10",
-    "visualKey": "skill_charge_10",
+    "visualKey": "icone-default",
     "skillType": "pawn",
     "activation": "passive",
     "skillPointCost": 0,
@@ -35,7 +35,7 @@
   },
   {
     "id": "charge-20",
-    "visualKey": "skill_charge_20",
+    "visualKey": "icone-default",
     "skillType": "pawn",
     "activation": "passive",
     "skillPointCost": 0,
@@ -44,7 +44,7 @@
   },
   {
     "id": "charge-30",
-    "visualKey": "skill_charge_30",
+    "visualKey": "icone-default",
     "skillType": "pawn",
     "activation": "passive",
     "skillPointCost": 0,
@@ -53,7 +53,7 @@
   },
   {
     "id": "charge-50",
-    "visualKey": "skill_charge_50",
+    "visualKey": "icone-default",
     "skillType": "pawn",
     "activation": "passive",
     "skillPointCost": 0,
@@ -62,7 +62,7 @@
   },
   {
     "id": "tactical-demolition",
-    "visualKey": "skill_tactical_demolition",
+    "visualKey": "icone-default",
     "skillType": "player",
     "activation": "manual",
     "skillPointCost": 10,
