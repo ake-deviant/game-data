@@ -235,6 +235,7 @@
       },
       "commanderPawns": [
         {
+          "id": "commander-3-1",
           "color": "blue",
           "type": "ranged",
           "turnCount": 6,
@@ -244,6 +245,7 @@
           "moveCount": 4
         },
         {
+          "id": "commander-3-2",
           "color": "blue",
           "type": "melee",
           "turnCount": 3,
@@ -317,24 +319,26 @@
       },
       "commanderPawns": [
         {
-        "color": "green",
-        "type": "melee",
-        "turnCount": 5,
-        "power": 96,
-        "countPawns": 5,
-        "visualKey": "commander_melee_green",
-        "moveCount": 4
-      },
-      {
-        "color": "blue",
-        "type": "ranged",
-        "turnCount": 4,
-        "power": 50,
-        "countPawns": 4,
-        "visualKey": "commander_ranged_blue",
-        "moveCount": 3
-      }
-    ],
+          "id": "commander-4-1",
+          "color": "green",
+          "type": "melee",
+          "turnCount": 5,
+          "power": 96,
+          "countPawns": 5,
+          "visualKey": "commander_melee_green",
+          "moveCount": 4
+        },
+        {
+          "id": "commander-4-2",
+          "color": "blue",
+          "type": "ranged",
+          "turnCount": 4,
+          "power": 50,
+          "countPawns": 4,
+          "visualKey": "commander_ranged_blue",
+          "moveCount": 3
+        }
+      ],
       "officerPawns": [
         {
           "id": "storm-lancer-officer",
