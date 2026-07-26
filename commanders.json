@@ -48,11 +48,11 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 6,
-          "power": 60,
+          "power": 40,
           "countPawns": 5,
           "visualKey": "commander_melee_blue",
           "moveCount": 4,
-          "skills": ["power-growth"],
+          "skills": ["power-growth, sp-growth"],
           "powerBonusPerDecrement": 10
         },
         {

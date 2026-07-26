@@ -61,6 +61,14 @@
     "chargeBonusPercent": 50
   },
   {
+    "id": "sp-growth",
+    "visualKey": "icone-default",
+    "skillType": "pawn",
+    "activation": "passive",
+    "skillPointCost": 0,
+    "skillDelay": null
+  },
+  {
     "id": "tactical-demolition",
     "visualKey": "icone-default",
     "skillType": "player",
