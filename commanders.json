@@ -52,7 +52,7 @@
           "countPawns": 5,
           "visualKey": "commander_melee_blue",
           "moveCount": 4,
-          "skills": ["power-growth, sp-growth"],
+          "skills": ["power-growth", "sp-growth"],
           "powerBonusPerDecrement": 10
         },
         {
