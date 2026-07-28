@@ -1,15 +1,16 @@
 {
   "passivePawnSkills": [
-    { "id": "power-growth", "visualKey": "icone-default" },
-    { "id": "charge-10",    "visualKey": "icone-default", "chargeBonusPercent": 10 },
-    { "id": "charge-20",    "visualKey": "icone-default", "chargeBonusPercent": 20 },
-    { "id": "charge-30",    "visualKey": "icone-default", "chargeBonusPercent": 30 },
-    { "id": "charge-50",    "visualKey": "icone-default", "chargeBonusPercent": 50 },
-    { "id": "sp-growth",    "visualKey": "icone-default" }
+    { "id": "power-growth", "displayName": "Croissance de Puissance", "visualKey": "icone-default" },
+    { "id": "charge-10",    "displayName": "Charge 10%",              "visualKey": "icone-default", "chargeBonusPercent": 10 },
+    { "id": "charge-20",    "displayName": "Charge 20%",              "visualKey": "icone-default", "chargeBonusPercent": 20 },
+    { "id": "charge-30",    "displayName": "Charge 30%",              "visualKey": "icone-default", "chargeBonusPercent": 30 },
+    { "id": "charge-50",    "displayName": "Charge 50%",              "visualKey": "icone-default", "chargeBonusPercent": 50 },
+    { "id": "sp-growth",    "displayName": "Gain de Compétence",      "visualKey": "icone-default" }
   ],
   "activablePlayerSkills": [
     {
       "id": "free-recruits",
+      "displayName": "Renforts Gratuits",
       "visualKey": "icone-default",
       "skillPointCost": 3,
       "skillDelay": null,
@@ -18,6 +19,7 @@
     },
     {
       "id": "destroy-defense-pawns",
+      "displayName": "Destruction de Défenses",
       "visualKey": "icone-default",
       "skillPointCost": 5,
       "skillDelay": 3,
@@ -26,6 +28,7 @@
     },
     {
       "id": "tactical-demolition",
+      "displayName": "Démolition Tactique",
       "visualKey": "icone-default",
       "skillPointCost": 10,
       "skillDelay": null,

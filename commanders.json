@@ -17,26 +17,10 @@
       "health": 100,
       "maxDefenseLevel": 2,
       "defensePowerPerLevel": 6,
-      "attackPowerByColor": {
-        "red": 8,
-        "blue": 11,
-        "green": 7
-      },
-      "attackTurnCountByColor": {
-        "red": 2,
-        "blue": 3,
-        "green": 2
-      },
-      "nonePowerByColor": {
-        "red": 2,
-        "blue": 3,
-        "green": 2
-      },
-      "pawnTypeByColor": {
-        "red": "melee",
-        "blue": "melee",
-        "green": "ranged"
-      },
+      "attackPowerByColor": { "red": 8, "blue": 11, "green": 7 },
+      "attackTurnCountByColor": { "red": 2, "blue": 3, "green": 2 },
+      "nonePowerByColor": { "red": 2, "blue": 3, "green": 2 },
+      "pawnTypeByColor": { "red": "melee", "blue": "melee", "green": "ranged" },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_melee_blue",
@@ -45,6 +29,7 @@
       "commanderPawns": [
         {
           "id": "commander-1-1",
+          "displayName": "Commandant Bleu",
           "color": "blue",
           "type": "melee",
           "turnCount": 6,
@@ -58,6 +43,7 @@
         },
         {
           "id": "commander-1-2",
+          "displayName": "Lancier Rouge",
           "color": "red",
           "type": "melee",
           "turnCount": 4,
@@ -72,6 +58,7 @@
       "officerPawns": [
         {
           "id": "sentinel-guard-officer",
+          "displayName": "Garde d'Élite",
           "color": "blue",
           "type": "melee",
           "turnCount": 3,
@@ -85,6 +72,7 @@
         },
         {
           "id": "sentinel-longbow-officer",
+          "displayName": "Longbow",
           "color": "green",
           "type": "ranged",
           "turnCount": 2,
@@ -123,26 +111,10 @@
       "health": 100,
       "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
-      "attackPowerByColor": {
-        "red": 8,
-        "blue": 10,
-        "green": 12
-      },
-      "attackTurnCountByColor": {
-        "red": 2,
-        "blue": 2,
-        "green": 3
-      },
-      "nonePowerByColor": {
-        "red": 2,
-        "blue": 3,
-        "green": 2
-      },
-      "pawnTypeByColor": {
-        "red": "melee",
-        "blue": "melee",
-        "green": "melee"
-      },
+      "attackPowerByColor": { "red": 8, "blue": 10, "green": 12 },
+      "attackTurnCountByColor": { "red": 2, "blue": 2, "green": 3 },
+      "nonePowerByColor": { "red": 2, "blue": 3, "green": 2 },
+      "pawnTypeByColor": { "red": "melee", "blue": "melee", "green": "melee" },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_melee_blue",
@@ -151,6 +123,7 @@
       "commanderPawns": [
         {
           "id": "commander-2-1",
+          "displayName": "Tireur Rouge",
           "color": "red",
           "type": "ranged",
           "turnCount": 5,
@@ -162,6 +135,7 @@
         },
         {
           "id": "commander-2-2",
+          "displayName": "Assaut Vert",
           "color": "green",
           "type": "melee",
           "turnCount": 4,
@@ -176,6 +150,7 @@
       "officerPawns": [
         {
           "id": "blitz-vanguard-officer",
+          "displayName": "Avant-Garde",
           "color": "red",
           "type": "melee",
           "turnCount": 3,
@@ -188,6 +163,7 @@
         },
         {
           "id": "blitz-skirmisher-officer",
+          "displayName": "Éclaireur",
           "color": "green",
           "type": "ranged",
           "turnCount": 3,
@@ -215,26 +191,10 @@
       "health": 95,
       "maxDefenseLevel": 2,
       "defensePowerPerLevel": 7,
-      "attackPowerByColor": {
-        "red": 8,
-        "blue": 10,
-        "green": 13
-      },
-      "attackTurnCountByColor": {
-        "red": 1,
-        "blue": 2,
-        "green": 3
-      },
-      "nonePowerByColor": {
-        "red": 1,
-        "blue": 2,
-        "green": 3
-      },
-      "pawnTypeByColor": {
-        "red": "melee",
-        "blue": "ranged",
-        "green": "melee"
-      },
+      "attackPowerByColor": { "red": 8, "blue": 10, "green": 13 },
+      "attackTurnCountByColor": { "red": 1, "blue": 2, "green": 3 },
+      "nonePowerByColor": { "red": 1, "blue": 2, "green": 3 },
+      "pawnTypeByColor": { "red": "melee", "blue": "ranged", "green": "melee" },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_ranged_blue",
@@ -243,6 +203,7 @@
       "commanderPawns": [
         {
           "id": "commander-3-1",
+          "displayName": "Arbalétrier Bleu",
           "color": "blue",
           "type": "ranged",
           "turnCount": 6,
@@ -254,6 +215,7 @@
         },
         {
           "id": "commander-3-2",
+          "displayName": "Garde Bleu",
           "color": "blue",
           "type": "melee",
           "turnCount": 3,
@@ -267,6 +229,7 @@
       "officerPawns": [
         {
           "id": "iron-bastion-officer",
+          "displayName": "Bastion",
           "color": "blue",
           "type": "melee",
           "turnCount": 4,
@@ -278,6 +241,7 @@
         },
         {
           "id": "iron-ballista-officer",
+          "displayName": "Baliste",
           "color": "green",
           "type": "ranged",
           "turnCount": 2,
@@ -303,26 +267,10 @@
       "health": 100,
       "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
-      "attackPowerByColor": {
-        "red": 14,
-        "blue": 9,
-        "green": 10
-      },
-      "attackTurnCountByColor": {
-        "red": 3,
-        "blue": 2,
-        "green": 2
-      },
-      "nonePowerByColor": {
-        "red": 3,
-        "blue": 2,
-        "green": 1
-      },
-      "pawnTypeByColor": {
-        "red": "melee",
-        "blue": "ranged",
-        "green": "ranged"
-      },
+      "attackPowerByColor": { "red": 14, "blue": 9, "green": 10 },
+      "attackTurnCountByColor": { "red": 3, "blue": 2, "green": 2 },
+      "nonePowerByColor": { "red": 3, "blue": 2, "green": 1 },
+      "pawnTypeByColor": { "red": "melee", "blue": "ranged", "green": "ranged" },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_ranged_blue",
@@ -331,6 +279,7 @@
       "commanderPawns": [
         {
           "id": "commander-4-1",
+          "displayName": "Champion Vert",
           "color": "green",
           "type": "melee",
           "turnCount": 5,
@@ -342,6 +291,7 @@
         },
         {
           "id": "commander-4-2",
+          "displayName": "Éclaireur Bleu",
           "color": "blue",
           "type": "ranged",
           "turnCount": 4,
@@ -355,6 +305,7 @@
       "officerPawns": [
         {
           "id": "storm-lancer-officer",
+          "displayName": "Lancier",
           "color": "red",
           "type": "melee",
           "turnCount": 3,
@@ -366,6 +317,7 @@
         },
         {
           "id": "storm-oracle-officer",
+          "displayName": "Oracle",
           "color": "green",
           "type": "ranged",
           "turnCount": 3,
