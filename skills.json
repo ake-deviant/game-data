@@ -9,11 +9,20 @@
   ],
   "activablePlayerSkills": [
     {
+      "id": "free-recruits",
+      "visualKey": "icone-default",
+      "skillPointCost": 3,
+      "skillDelay": null,
+      "delayIllimited": true,
+      "requiredInfluencePoints": 10
+    },
+    {
       "id": "destroy-defense-pawns",
       "visualKey": "icone-default",
       "skillPointCost": 5,
       "skillDelay": 3,
-      "freeWallMoves": 4
+      "freeWallMoves": 4,
+      "requiredInfluencePoints": 5
     },
     {
       "id": "tactical-demolition",
@@ -21,7 +30,8 @@
       "skillPointCost": 10,
       "skillDelay": null,
       "delayIllimited": true,
-      "movementCost": 2
+      "movementCost": 2,
+      "requiredInfluencePoints": 15
     }
   ]
 }
