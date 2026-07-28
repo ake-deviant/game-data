@@ -24,13 +24,13 @@
       },
       "attackTurnCountByColor": {
         "red": 2,
-        "blue": 2,
-        "green": 1
+        "blue": 3,
+        "green": 2
       },
       "nonePowerByColor": {
         "red": 2,
-        "blue": 2,
-        "green": 1
+        "blue": 3,
+        "green": 2
       },
       "pawnTypeByColor": {
         "red": "melee",
@@ -52,7 +52,7 @@
           "countPawns": 5,
           "visualKey": "commander_melee_blue",
           "moveCount": 4,
-          "skills": ["power-growth", "sp-growth"],
+          "skills": ["power-growth"],
           "powerBonusPerDecrement": 10
         },
         {
@@ -77,7 +77,7 @@
           "countPawns": 3,
           "visualKey": "officer_guard",
           "moveCount": 3,
-          "skills": ["power-growth"],
+          "skills": ["power-growth", "sp-growth"],
           "powerBonusPerDecrement": 4
         },
         {
@@ -178,7 +178,7 @@
           "countPawns": 3,
           "visualKey": "officer_vanguard",
           "moveCount": 3,
-          "skills":["charge-30"]
+          "skills": ["sp-growth"]
         },
         {
           "id": "blitz-skirmisher-officer",
