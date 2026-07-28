@@ -5,22 +5,42 @@
     "description": "DÃ©fenseur polyvalent, spÃ©cialisÃ© dans la tenue de ligne.",
     "icon": "shield",
     "baseStats": {
-      "skills": ["destroy-defense-pawns"],
+      "skills": [
+        "destroy-defense-pawns"
+      ],
       "freeRecruitThreshold": 20,
       "skillsByColor": {
-        "green": ["power-growth"]
+        "green": [
+          "power-growth"
+        ]
       },
       "powerBonusPerDecrementByColor": {
         "green": 2
       },
-      "pawnMax": 45,
+      "pawnMax": 42,
       "health": 100,
       "maxDefenseLevel": 2,
       "defensePowerPerLevel": 6,
-      "attackPowerByColor": { "red": 8, "blue": 11, "green": 7 },
-      "attackTurnCountByColor": { "red": 2, "blue": 3, "green": 2 },
-      "nonePowerByColor": { "red": 2, "blue": 3, "green": 2 },
-      "pawnTypeByColor": { "red": "melee", "blue": "melee", "green": "ranged" },
+      "attackPowerByColor": {
+        "red": 8,
+        "blue": 11,
+        "green": 7
+      },
+      "attackTurnCountByColor": {
+        "red": 2,
+        "blue": 3,
+        "green": 2
+      },
+      "nonePowerByColor": {
+        "red": 2,
+        "blue": 3,
+        "green": 2
+      },
+      "pawnTypeByColor": {
+        "red": "melee",
+        "blue": "melee",
+        "green": "ranged"
+      },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_melee_blue",
@@ -32,13 +52,15 @@
           "displayName": "Commandant Bleu",
           "color": "blue",
           "type": "melee",
-          "turnCount": 6,
+          "turnCount": 7,
           "power": 40,
           "countPawns": 5,
           "visualKey": "commander_melee_blue",
           "moveCount": 4,
-          "requiredInfluencePoints": 5,
-          "skills": ["power-growth"],
+          "requiredInfluencePoints": 10,
+          "skills": [
+            "power-growth"
+          ],
           "powerBonusPerDecrement": 10
         },
         {
@@ -47,12 +69,27 @@
           "color": "red",
           "type": "melee",
           "turnCount": 4,
-          "power": 60,
+          "power": 40,
           "countPawns": 4,
           "visualKey": "commander_melee_red",
           "moveCount": 3,
           "requiredInfluencePoints": 5,
-          "skills": ["charge-30"]
+          "skills": [
+            "charge-30"
+          ]
+        },
+        {
+          "id": "commander-1-3",
+          "displayName": "Archer vert",
+          "color": "green",
+          "type": "ranged",
+          "turnCount": 4,
+          "power": 30,
+          "countPawns": 3,
+          "visualKey": "commander_ranged_green",
+          "moveCount": 2,
+          "requiredInfluencePoints": 4,
+          "skills": []
         }
       ],
       "officerPawns": [
@@ -67,7 +104,9 @@
           "visualKey": "officer_guard",
           "moveCount": 3,
           "requiredInfluencePoints": 0,
-          "skills": ["power-growth", "sp-growth"],
+          "skills": [
+            "power-growth"
+          ],
           "powerBonusPerDecrement": 4
         },
         {
@@ -81,8 +120,37 @@
           "visualKey": "officer_longbow",
           "moveCount": 2,
           "requiredInfluencePoints": 0,
-          "skills": ["power-growth"],
+          "skills": [
+            "power-growth"
+          ],
           "powerBonusPerDecrement": 6
+        },
+        {
+          "id": "officer-1-3",
+          "displayName": "Hercule",
+          "color": "red",
+          "type": "melee",
+          "turnCount": 3,
+          "power": 22,
+          "countPawns": 2,
+          "visualKey": "officer_longbow",
+          "moveCount": 2,
+          "requiredInfluencePoints": 5,
+          "skills": [],
+          "powerBonusPerDecrement": 6
+        },
+        {
+          "id": "officer-1-3",
+          "displayName": "Robin des bois",
+          "color": "red",
+          "type": "ranged",
+          "turnCount": 3,
+          "power": 20,
+          "countPawns": 2,
+          "visualKey": "officer_longbow",
+          "moveCount": 1,
+          "requiredInfluencePoints": 0,
+          "skills": []
         }
       ],
       "movementsPerTurn": 3,
@@ -97,10 +165,19 @@
     "description": "Offensif, mise sur des frappes rapides.",
     "icon": "sword",
     "baseStats": {
-      "skills": ["destroy-defense-pawns", "tactical-demolition", "free-recruits"],
+      "skills": [
+        "destroy-defense-pawns",
+        "tactical-demolition",
+        "free-recruits"
+      ],
       "skillsByColor": {
-        "green": ["charge-10", "power-growth"],
-        "red": ["charge-10"]
+        "green": [
+          "charge-10",
+          "power-growth"
+        ],
+        "red": [
+          "charge-20"
+        ]
       },
       "powerBonusPerDecrementByColor": {
         "green": 2,
@@ -111,12 +188,28 @@
       "health": 100,
       "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
-      "attackPowerByColor": { "red": 8, "blue": 10, "green": 12 },
-      "attackTurnCountByColor": { "red": 2, "blue": 2, "green": 3 },
-      "nonePowerByColor": { "red": 2, "blue": 3, "green": 2 },
-      "pawnTypeByColor": { "red": "melee", "blue": "melee", "green": "melee" },
+      "attackPowerByColor": {
+        "red": 8,
+        "blue": 7,
+        "green": 12
+      },
+      "attackTurnCountByColor": {
+        "red": 2,
+        "blue": 1,
+        "green": 2
+      },
+      "nonePowerByColor": {
+        "red": 2,
+        "blue": 1,
+        "green": 2
+      },
+      "pawnTypeByColor": {
+        "red": "ranged",
+        "blue": "melee",
+        "green": "melee"
+      },
       "pawnVisualKeyByColor": {
-        "red": "pawn_default_melee_red",
+        "red": "pawn_default_ranged_red",
         "blue": "pawn_default_melee_blue",
         "green": "pawn_default_melee_green"
       },
@@ -128,10 +221,10 @@
           "type": "ranged",
           "turnCount": 5,
           "power": 60,
-          "countPawns": 4,
+          "countPawns": 3,
           "visualKey": "commander_ranged_red",
           "moveCount": 4,
-          "requiredInfluencePoints": 5
+          "requiredInfluencePoints": 8
         },
         {
           "id": "commander-2-2",
@@ -139,12 +232,30 @@
           "color": "green",
           "type": "melee",
           "turnCount": 4,
-          "power": 60,
-          "countPawns": 4,
+          "power": 50,
+          "countPawns": 3,
           "visualKey": "commander_melee_green",
           "moveCount": 3,
           "requiredInfluencePoints": 5,
-          "skills": ["charge-50"]
+          "skills": [
+            "charge-50"
+          ]
+        },
+        {
+          "id": "commander-2-3",
+          "displayName": "Assaut bleu",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 6,
+          "power": 50,
+          "countPawns": 4,
+          "visualKey": "commander_melee_blue",
+          "moveCount": 4,
+          "requiredInfluencePoints": 8,
+          "skills": [
+            "power-growth"
+          ],
+          "powerBonusPerDecrement":5
         }
       ],
       "officerPawns": [
@@ -158,8 +269,10 @@
           "countPawns": 3,
           "visualKey": "officer_vanguard",
           "moveCount": 3,
-          "requiredInfluencePoints": 0,
-          "skills": ["sp-growth"]
+          "requiredInfluencePoints": 5,
+          "skills": [
+            "sp-growth"
+          ]
         },
         {
           "id": "blitz-skirmisher-officer",
@@ -172,8 +285,42 @@
           "visualKey": "officer_skirmisher",
           "moveCount": 2,
           "requiredInfluencePoints": 0,
-          "skills": ["power-growth"],
+          "skills": [
+            "power-growth",
+            "sp-growth"
+          ],
           "powerBonusPerDecrement": 4
+        },
+        {
+          "id": "officer-2-3",
+          "displayName": "savant",
+          "color": "green",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 20,
+          "countPawns": 2,
+          "visualKey": "officer_skirmisher",
+          "moveCount": 1,
+          "requiredInfluencePoints": 0,
+          "skills": [
+            "sp-growth"
+          ]
+        },
+                {
+          "id": "officer-2-4",
+          "displayName": "chargeur",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 20,
+          "countPawns": 3,
+          "visualKey": "officer_skirmisher",
+          "moveCount": 2,
+          "requiredInfluencePoints": 8,
+          "skills": [
+            "power-growth"
+          ],
+          "powerBonusPerDecrement": 10
         }
       ],
       "movementsPerTurn": 3
@@ -185,16 +332,35 @@
     "description": "Controle le rythme avec des attaques lourdes et des defenses solides.",
     "icon": "tower",
     "baseStats": {
-      "skills": ["destroy-defense-pawns", "tactical-demolition"],
+      "skills": [
+        "destroy-defense-pawns",
+        "tactical-demolition"
+      ],
       "freeRecruitThreshold": 20,
       "pawnMax": 45,
       "health": 95,
       "maxDefenseLevel": 2,
       "defensePowerPerLevel": 7,
-      "attackPowerByColor": { "red": 8, "blue": 10, "green": 13 },
-      "attackTurnCountByColor": { "red": 1, "blue": 2, "green": 3 },
-      "nonePowerByColor": { "red": 1, "blue": 2, "green": 3 },
-      "pawnTypeByColor": { "red": "melee", "blue": "ranged", "green": "melee" },
+      "attackPowerByColor": {
+        "red": 8,
+        "blue": 10,
+        "green": 13
+      },
+      "attackTurnCountByColor": {
+        "red": 1,
+        "blue": 2,
+        "green": 3
+      },
+      "nonePowerByColor": {
+        "red": 1,
+        "blue": 2,
+        "green": 3
+      },
+      "pawnTypeByColor": {
+        "red": "melee",
+        "blue": "ranged",
+        "green": "melee"
+      },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_ranged_blue",
@@ -261,16 +427,35 @@
     "description": "Equilibre pression melee et soutien ranged avec plus de marge de manoeuvre.",
     "icon": "bolt",
     "baseStats": {
-      "skills": ["destroy-defense-pawns", "tactical-demolition"],
+      "skills": [
+        "destroy-defense-pawns",
+        "tactical-demolition"
+      ],
       "freeRecruitThreshold": 20,
       "pawnMax": 45,
       "health": 100,
       "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
-      "attackPowerByColor": { "red": 14, "blue": 9, "green": 10 },
-      "attackTurnCountByColor": { "red": 3, "blue": 2, "green": 2 },
-      "nonePowerByColor": { "red": 3, "blue": 2, "green": 1 },
-      "pawnTypeByColor": { "red": "melee", "blue": "ranged", "green": "ranged" },
+      "attackPowerByColor": {
+        "red": 14,
+        "blue": 9,
+        "green": 10
+      },
+      "attackTurnCountByColor": {
+        "red": 3,
+        "blue": 2,
+        "green": 2
+      },
+      "nonePowerByColor": {
+        "red": 3,
+        "blue": 2,
+        "green": 1
+      },
+      "pawnTypeByColor": {
+        "red": "melee",
+        "blue": "ranged",
+        "green": "ranged"
+      },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
         "blue": "pawn_default_ranged_blue",
