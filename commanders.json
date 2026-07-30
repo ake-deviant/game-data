@@ -156,172 +156,167 @@
   }
 },
   {
-    "id": "2",
-    "name": "Blitz Vanguard",
-    "description": "Offensif, mise sur des frappes rapides.",
-    "icon": "sword",
-    "baseStats": {
-      "skills": [
-        "destroy-defense-pawns",
-        "tactical-demolition",
-        "free-recruits"
-      ],
-      "skillsByColor": {
-        "green": [
-          "charge-10",
-          "power-growth"
-        ],
-        "red": [
+  "id": "2",
+  "name": "Copernic",
+  "description": "Offensif, mise sur des frappes rapides.",
+  "icon": "sword",
+  "baseStats": {
+    "pawnMax": 42,
+    "health": 100,
+    "maxDefenseLevel": 3,
+    "defensePowerPerLevel": 5,
+    "attackPowerByColor": {
+      "red": 8,
+      "blue": 7,
+      "green": 12
+    },
+    "attackTurnCountByColor": {
+      "red": 2,
+      "blue": 1,
+      "green": 2
+    },
+    "nonePowerByColor": {
+      "red": 2,
+      "blue": 1,
+      "green": 2
+    },
+    "pawnTypeByColor": {
+      "red": "ranged",
+      "blue": "melee",
+      "green": "melee"
+    },
+    "pawnVisualKeyByColor": {
+      "red": "pawn_default_ranged_red",
+      "blue": "pawn_default_melee_blue",
+      "green": "pawn_default_melee_green"
+    },
+    "commanderPawns": [
+      {
+        "id": "commander-2-1",
+        "displayName": "Tireur Rouge",
+        "color": "red",
+        "type": "ranged",
+        "turnCount": 5,
+        "power": 79,
+        "countPawns": 3,
+        "moveCount": 4,
+        "visualKey": "commander_ranged_red",
+        "requiredInfluencePoints": 8
+      },
+      {
+        "id": "commander-2-2",
+        "displayName": "Assaut Vert",
+        "color": "green",
+        "type": "melee",
+        "turnCount": 4,
+        "power": 50,
+        "countPawns": 3,
+        "moveCount": 3,
+        "visualKey": "commander_melee_green",
+        "requiredInfluencePoints": 5,
+        "skills": [
+          "charge-50"
+        ]
+      },
+      {
+        "id": "commander-2-3",
+        "displayName": "Assaut bleu",
+        "color": "blue",
+        "type": "melee",
+        "turnCount": 6,
+        "power": 50,
+        "countPawns": 4,
+        "moveCount": 4,
+        "visualKey": "commander_melee_blue",
+        "requiredInfluencePoints": 8,
+        "powerBonusPerDecrement": 5
+      }
+    ],
+    "officerPawns": [
+      {
+        "id": "blitz-vanguard-officer",
+        "displayName": "Avant-Garde",
+        "color": "red",
+        "type": "melee",
+        "turnCount": 3,
+        "power": 26,
+        "countPawns": 3,
+        "moveCount": 3,
+        "visualKey": "officer-melee-red",
+        "requiredInfluencePoints": 5,
+        "skills": [
           "charge-20"
         ]
       },
-      "powerBonusPerDecrementByColor": {
-        "green": 2,
-        "red": 2
+      {
+        "id": "blitz-skirmisher-officer",
+        "displayName": "Éclaireur",
+        "color": "green",
+        "type": "ranged",
+        "turnCount": 3,
+        "power": 14,
+        "countPawns": 2,
+        "moveCount": 2,
+        "visualKey": "officer-ranged-green",
+        "requiredInfluencePoints": 2,
+        "skills": [
+          "sp-growth"
+        ],
+        "powerBonusPerDecrement": 4
       },
-      "freeRecruitThreshold": 20,
-      "pawnMax": 45,
-      "health": 100,
-      "maxDefenseLevel": 3,
-      "defensePowerPerLevel": 5,
-      "attackPowerByColor": {
-        "red": 8,
-        "blue": 7,
-        "green": 12
+      {
+        "id": "officer-2-3",
+        "displayName": "savant",
+        "color": "blue",
+        "type": "melee",
+        "turnCount": 4,
+        "power": 20,
+        "countPawns": 2,
+        "moveCount": 1,
+        "visualKey": "officer-learned-blue",
+        "requiredInfluencePoints": 0,
+        "skills": [
+          "sp-growth"
+        ]
       },
-      "attackTurnCountByColor": {
-        "red": 2,
-        "blue": 1,
-        "green": 2
-      },
-      "nonePowerByColor": {
-        "red": 2,
-        "blue": 1,
-        "green": 2
-      },
-      "pawnTypeByColor": {
-        "red": "ranged",
-        "blue": "melee",
-        "green": "melee"
-      },
-      "pawnVisualKeyByColor": {
-        "red": "pawn_default_ranged_red",
-        "blue": "pawn_default_melee_blue",
-        "green": "pawn_default_melee_green"
-      },
-      "commanderPawns": [
-        {
-          "id": "commander-2-1",
-          "displayName": "Tireur Rouge",
-          "color": "red",
-          "type": "ranged",
-          "turnCount": 5,
-          "power": 60,
-          "countPawns": 3,
-          "visualKey": "commander_ranged_red",
-          "moveCount": 4,
-          "requiredInfluencePoints": 8
-        },
-        {
-          "id": "commander-2-2",
-          "displayName": "Assaut Vert",
-          "color": "green",
-          "type": "melee",
-          "turnCount": 4,
-          "power": 50,
-          "countPawns": 3,
-          "visualKey": "commander_melee_green",
-          "moveCount": 3,
-          "requiredInfluencePoints": 5,
-          "skills": [
-            "charge-50"
-          ]
-        },
-        {
-          "id": "commander-2-3",
-          "displayName": "Assaut bleu",
-          "color": "blue",
-          "type": "melee",
-          "turnCount": 6,
-          "power": 50,
-          "countPawns": 4,
-          "visualKey": "commander_melee_blue",
-          "moveCount": 4,
-          "requiredInfluencePoints": 8,
-          "skills": [
-            "power-growth"
-          ],
-          "powerBonusPerDecrement": 5
-        }
+      {
+        "id": "officer-2-4",
+        "displayName": "chargeur",
+        "color": "blue",
+        "type": "melee",
+        "turnCount": 4,
+        "power": 20,
+        "countPawns": 3,
+        "moveCount": 2,
+        "visualKey": "officer-melee-blue",
+        "requiredInfluencePoints": 8,
+        "skills": [
+          "charge-50"
+        ],
+        "powerBonusPerDecrement": 10
+      }
+    ],
+    "movementsPerTurn": 3,
+    "skills": [
+      "destroy-defense-pawns",
+      "tactical-demolition",
+      "free-recruits"
+    ],
+    "freeRecruitThreshold": 20,
+    "skillsByColor": {
+      "red": [
+        "charge-20"
       ],
-      "officerPawns": [
-        {
-          "id": "blitz-vanguard-officer",
-          "displayName": "Avant-Garde",
-          "color": "red",
-          "type": "melee",
-          "turnCount": 3,
-          "power": 26,
-          "countPawns": 3,
-          "visualKey": "officer_vanguard",
-          "moveCount": 3,
-          "requiredInfluencePoints": 5,
-          "skills": [
-            "sp-growth"
-          ]
-        },
-        {
-          "id": "blitz-skirmisher-officer",
-          "displayName": "Éclaireur",
-          "color": "green",
-          "type": "ranged",
-          "turnCount": 3,
-          "power": 16,
-          "countPawns": 3,
-          "visualKey": "officer_skirmisher",
-          "moveCount": 2,
-          "requiredInfluencePoints": 0,
-          "skills": [
-            "power-growth",
-            "sp-growth"
-          ],
-          "powerBonusPerDecrement": 4
-        },
-        {
-          "id": "officer-2-3",
-          "displayName": "savant",
-          "color": "green",
-          "type": "melee",
-          "turnCount": 4,
-          "power": 20,
-          "countPawns": 2,
-          "visualKey": "officer_skirmisher",
-          "moveCount": 1,
-          "requiredInfluencePoints": 0,
-          "skills": [
-            "sp-growth"
-          ]
-        },
-        {
-          "id": "officer-2-4",
-          "displayName": "chargeur",
-          "color": "blue",
-          "type": "melee",
-          "turnCount": 4,
-          "power": 20,
-          "countPawns": 3,
-          "visualKey": "officer_skirmisher",
-          "moveCount": 2,
-          "requiredInfluencePoints": 8,
-          "skills": [
-            "power-growth"
-          ],
-          "powerBonusPerDecrement": 10
-        }
-      ],
-      "movementsPerTurn": 3
+      "green": [
+        "charge-10"
+      ]
+    },
+    "powerBonusPerDecrementByColor": {
+      "red": 0,
+      "green": 1
     }
-  },
+  }
+},
   {
     "id": "3",
     "name": "Iron Strategist",
