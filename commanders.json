@@ -86,7 +86,7 @@
         "power": 20,
         "countPawns": 3,
         "moveCount": 2,
-        "visualKey": "officer_guard",
+        "visualKey": "officer-melee-blue",
         "requiredInfluencePoints": 2,
         "powerBonusPerDecrement": 5
       },
@@ -99,7 +99,7 @@
         "power": 10,
         "countPawns": 2,
         "moveCount": 2,
-        "visualKey": "officer_longbow",
+        "visualKey": "officer-ranged-green",
         "requiredInfluencePoints": 0,
         "powerBonusPerDecrement": 6
       },
@@ -112,7 +112,7 @@
         "power": 40,
         "countPawns": 2,
         "moveCount": 2,
-        "visualKey": "officer_longbow",
+        "visualKey": "officer-melee-red",
         "requiredInfluencePoints": 5,
         "skills": [
           "charge-50"
@@ -128,7 +128,7 @@
         "power": 20,
         "countPawns": 2,
         "moveCount": 1,
-        "visualKey": "officer_longbow",
+        "visualKey": "officer-ranged-red",
         "requiredInfluencePoints": 0
       }
     ],
