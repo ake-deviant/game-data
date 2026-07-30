@@ -9,11 +9,6 @@
         "destroy-defense-pawns"
       ],
       "freeRecruitThreshold": 20,
-      "skillsByColor": {
-        "green": [
-          "power-growth"
-        ]
-      },
       "powerBonusPerDecrementByColor": {
         "green": 2
       },
@@ -58,9 +53,6 @@
           "visualKey": "commander_melee_blue",
           "moveCount": 4,
           "requiredInfluencePoints": 10,
-          "skills": [
-            "power-growth"
-          ],
           "powerBonusPerDecrement": 10
         },
         {
@@ -104,9 +96,6 @@
           "visualKey": "officer_guard",
           "moveCount": 3,
           "requiredInfluencePoints": 0,
-          "skills": [
-            "power-growth"
-          ],
           "powerBonusPerDecrement": 4
         },
         {
@@ -120,9 +109,6 @@
           "visualKey": "officer_longbow",
           "moveCount": 2,
           "requiredInfluencePoints": 0,
-          "skills": [
-            "power-growth"
-          ],
           "powerBonusPerDecrement": 6
         },
         {
@@ -154,9 +140,9 @@
         }
       ],
       "movementsPerTurn": 3,
-      "movementBonusStrategies": {
-        "remove": "1-match-1-move"
-      }
+      "innateSkills": [
+        "tactical-demolition"
+      ]
     }
   },
   {
@@ -172,8 +158,7 @@
       ],
       "skillsByColor": {
         "green": [
-          "charge-10",
-          "power-growth"
+          "charge-10"
         ],
         "red": [
           "charge-20"
@@ -252,9 +237,6 @@
           "visualKey": "commander_melee_blue",
           "moveCount": 4,
           "requiredInfluencePoints": 8,
-          "skills": [
-            "power-growth"
-          ],
           "powerBonusPerDecrement":5
         }
       ],
@@ -286,7 +268,6 @@
           "moveCount": 2,
           "requiredInfluencePoints": 0,
           "skills": [
-            "power-growth",
             "sp-growth"
           ],
           "powerBonusPerDecrement": 4
@@ -317,9 +298,6 @@
           "visualKey": "officer_skirmisher",
           "moveCount": 2,
           "requiredInfluencePoints": 8,
-          "skills": [
-            "power-growth"
-          ],
           "powerBonusPerDecrement": 10
         }
       ],

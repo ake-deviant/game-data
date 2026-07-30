@@ -37,7 +37,6 @@ const colorMeta: Record<PawnColor, { label: string; dot: string; tint: string }>
 };
 
 const sections = [
-  ['import', 'Charger un JSON'],
   ['identity', 'Identité'],
   ['base-stats', 'Statistiques'],
   ['colors', 'Pions standards'],
@@ -97,7 +96,6 @@ function Icon({ name, className = 'size-5' }: { name: IconName; className?: stri
 }
 
 const sectionIcons: Record<(typeof sections)[number][0], IconName> = {
-  import: 'terminal',
   identity: 'identity',
   'base-stats': 'stats',
   colors: 'colors',
@@ -188,23 +186,31 @@ function Section({
 function SkillPicker({
   skills,
   selected,
+  unavailable = [],
+  compact = false,
   onChange,
 }: {
   skills: SkillDefinition[];
   selected: string[];
+  unavailable?: string[];
+  compact?: boolean;
   onChange: (skills: string[]) => void;
 }) {
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className={`grid gap-2 ${compact ? 'grid-cols-1' : 'grid-cols-2'}`}>
       {skills.map((skill) => {
         const active = selected.includes(skill.id);
+        const disabled = unavailable.includes(skill.id);
         return (
           <button
             className={`flex items-center gap-3 rounded-xl border px-3 py-3 text-left transition ${
               active
                 ? 'border-amber-400/35 bg-amber-400/10 text-amber-100'
+                : disabled
+                  ? 'cursor-not-allowed border-white/[0.04] bg-slate-950/20 text-slate-600 opacity-55'
                 : 'border-white/[0.07] bg-slate-950/45 text-slate-400 hover:border-white/[0.14] hover:text-slate-200'
             }`}
+            disabled={disabled}
             key={skill.id}
             onClick={() =>
               onChange(
@@ -225,6 +231,64 @@ function SkillPicker({
           </button>
         );
       })}
+    </div>
+  );
+}
+
+function PassiveSkillPicker({
+  skills,
+  selected,
+  compact = false,
+  onChange,
+}: {
+  skills: SkillDefinition[];
+  selected: string[];
+  compact?: boolean;
+  onChange: (skills: string[]) => void;
+}) {
+  const selectableSkills = skills.filter((skill) => skill.id !== 'power-growth');
+  const chargeSkills = selectableSkills.filter((skill) => /^charge-\d+$/.test(skill.id));
+  const otherSkills = selectableSkills.filter((skill) => !/^charge-\d+$/.test(skill.id));
+  const selectedCharge = selected.find((skill) => /^charge-\d+$/.test(skill)) ?? '';
+  const selectedOthers = selected.filter((skill) => !/^charge-\d+$/.test(skill));
+
+  return (
+    <div className="space-y-3">
+      {otherSkills.length > 0 && (
+        <SkillPicker
+          compact={compact}
+          onChange={(nextSkills) =>
+            onChange(selectedCharge ? [...nextSkills, selectedCharge] : nextSkills)
+          }
+          selected={selectedOthers}
+          skills={otherSkills}
+        />
+      )}
+      {chargeSkills.length > 0 && (
+        <Field label="Charge">
+          <select
+            className={inputClass}
+            onChange={(event) =>
+              onChange(
+                event.target.value
+                  ? [...selectedOthers, event.target.value]
+                  : selectedOthers,
+              )
+            }
+            value={selectedCharge}
+          >
+            <option value="">Aucune charge</option>
+            {chargeSkills.map((skill) => (
+              <option key={skill.id} value={skill.id}>
+                {skill.displayName} · {skill.id}
+              </option>
+            ))}
+          </select>
+        </Field>
+      )}
+      <p className="rounded-lg border border-violet-400/10 bg-violet-400/[0.04] px-3 py-2 text-[10px] leading-4 text-violet-200/60">
+        Power Growth est accordée automatiquement lorsque le bonus par décrément est supérieur à 0.
+      </p>
     </div>
   );
 }
@@ -327,7 +391,7 @@ function PawnCard({
           </div>
           <div className="mt-5 border-t border-white/[0.06] pt-5">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400">Compétences passives</p>
-            <SkillPicker onChange={(value) => update('skills', value)} selected={pawn.skills} skills={passiveSkills} />
+            <PassiveSkillPicker onChange={(value) => update('skills', value)} selected={pawn.skills} skills={passiveSkills} />
           </div>
         </div>
       )}
@@ -387,15 +451,34 @@ function JsonPanel({
   json,
   errors,
   copied,
+  activeTab,
+  importJson,
+  importError,
+  importSuccess,
   onCopy,
+  onClose,
+  onImportJsonChange,
+  onLoadCommander,
+  onTabChange,
 }: {
   json: string;
   errors: string[];
   copied: boolean;
+  activeTab: 'import' | 'output';
+  importJson: string;
+  importError: string;
+  importSuccess: string;
   onCopy: () => void;
+  onClose: () => void;
+  onImportJsonChange: (value: string) => void;
+  onLoadCommander: () => void;
+  onTabChange: (tab: 'import' | 'output') => void;
 }) {
   return (
-    <aside className="sticky top-6 h-[calc(100vh-3rem)] min-w-0 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#080c16] shadow-2xl shadow-black/30">
+    <aside
+      aria-label="Sortie JSON"
+      className="fixed inset-y-0 right-0 z-50 w-[520px] min-w-0 overflow-hidden border-l border-white/[0.1] bg-[#080c16] shadow-[-24px_0_80px_rgba(0,0,0,0.45)]"
+    >
       <div className="flex items-center justify-between border-b border-white/[0.07] px-4 py-3.5">
         <div className="flex items-center gap-2.5">
           <span className="grid size-8 place-items-center rounded-lg bg-emerald-400/10 text-emerald-400"><Icon className="size-4" name="terminal" /></span>
@@ -404,18 +487,87 @@ function JsonPanel({
             <p className="text-[10px] text-slate-500">Un seul Commander</p>
           </div>
         </div>
+        <div className="flex items-center gap-2">
+          {activeTab === 'output' && <button
+            className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] px-2.5 py-2 text-xs font-medium text-slate-400 transition enabled:hover:border-white/[0.15] enabled:hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+            disabled={!json}
+            onClick={onCopy}
+            type="button"
+          >
+            <Icon className="size-3.5" name={copied ? 'check' : 'copy'} />
+            {copied ? 'Copié' : 'Copier'}
+          </button>}
+          <button
+            aria-label="Fermer la sortie JSON"
+            className="grid size-8 place-items-center rounded-lg text-slate-500 transition hover:bg-white/[0.06] hover:text-white"
+            onClick={onClose}
+            type="button"
+          >
+            <svg className="size-4" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M6 6l12 12M18 6 6 18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 border-b border-white/[0.07] bg-slate-950/35 p-1.5">
         <button
-          className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] px-2.5 py-2 text-xs font-medium text-slate-400 transition enabled:hover:border-white/[0.15] enabled:hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
-          disabled={!json}
-          onClick={onCopy}
+          className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${activeTab === 'import' ? 'bg-white/[0.08] text-white shadow-sm' : 'text-slate-500 hover:text-slate-300'}`}
+          onClick={() => onTabChange('import')}
           type="button"
         >
-          <Icon className="size-3.5" name={copied ? 'check' : 'copy'} />
-          {copied ? 'Copié' : 'Copier'}
+          Importer
+        </button>
+        <button
+          className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${activeTab === 'output' ? 'bg-white/[0.08] text-white shadow-sm' : 'text-slate-500 hover:text-slate-300'}`}
+          onClick={() => onTabChange('output')}
+          type="button"
+        >
+          Sortie JSON
         </button>
       </div>
-      <div className="h-[calc(100%-61px)] overflow-auto">
-        {errors.length > 0 ? (
+      <div className="h-[calc(100%-106px)] overflow-auto">
+        {activeTab === 'import' ? (
+          <div className="p-5">
+            <div className="mb-5">
+              <p className="text-sm font-semibold text-slate-200">Charger un commandant</p>
+              <p className="mt-1.5 text-xs leading-5 text-slate-500">
+                Collez un seul objet Commander pour préremplir le formulaire.
+              </p>
+            </div>
+            <Field label="Objet Commander JSON">
+              <textarea
+                className={`${inputClass} min-h-[420px] resize-y font-mono text-xs leading-5`}
+                onChange={(event) => onImportJsonChange(event.target.value)}
+                placeholder={'{\n  "id": "5",\n  "name": "Crimson Warden",\n  "baseStats": { ... }\n}'}
+                spellCheck={false}
+                value={importJson}
+              />
+            </Field>
+            {importError && (
+              <p className="mt-3 flex items-start gap-2 rounded-xl border border-rose-400/15 bg-rose-500/[0.06] p-3 text-xs leading-5 text-rose-300">
+                <Icon className="mt-0.5 size-4 shrink-0" name="warning" />
+                {importError}
+              </p>
+            )}
+            {importSuccess && (
+              <p className="mt-3 flex items-center gap-2 rounded-xl border border-emerald-400/15 bg-emerald-400/[0.06] p-3 text-xs text-emerald-300">
+                <Icon className="size-4 shrink-0" name="check" />
+                {importSuccess}
+              </p>
+            )}
+            <button
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-sky-400 px-4 py-3 text-sm font-bold text-slate-950 transition hover:bg-sky-300"
+              onClick={onLoadCommander}
+              type="button"
+            >
+              <Icon className="size-4" name="terminal" />
+              Charger dans le formulaire
+            </button>
+            <p className="mt-3 text-center text-[11px] leading-5 text-slate-600">
+              Le formulaire actuel ne sera remplacé que si le JSON est valide.
+            </p>
+          </div>
+        ) : errors.length > 0 ? (
           <div className="m-4 rounded-xl border border-rose-400/20 bg-rose-500/[0.07] p-4">
             <div className="flex items-center gap-2 text-sm font-semibold text-rose-300">
               <Icon className="size-4" name="warning" />
@@ -451,6 +603,8 @@ export default function App() {
   const [json, setJson] = useState('');
   const [errors, setErrors] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
+  const [jsonPanelOpen, setJsonPanelOpen] = useState(false);
+  const [panelTab, setPanelTab] = useState<'import' | 'output'>('import');
   const formRef = useRef<HTMLFormElement>(null);
 
   const allExistingSkills = useMemo(
@@ -479,6 +633,8 @@ export default function App() {
     const validationErrors = validateCommander(form);
     setErrors(validationErrors);
     setCopied(false);
+    setJsonPanelOpen(true);
+    setPanelTab('output');
     if (validationErrors.length > 0) {
       setJson('');
       return;
@@ -509,6 +665,7 @@ export default function App() {
       setErrors([]);
       setCopied(false);
       setImportSuccess(`« ${loadedForm.name} » a été chargé dans le formulaire.`);
+      setJsonPanelOpen(false);
       window.setTimeout(() => {
         document.getElementById('identity')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
@@ -529,6 +686,7 @@ export default function App() {
     setImportSuccess('');
     setJson('');
     setErrors([]);
+    setJsonPanelOpen(false);
   };
 
   return (
@@ -552,6 +710,18 @@ export default function App() {
             </span>
             <button className="rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-400 transition hover:bg-white/5 hover:text-white" onClick={resetForm} type="button">Réinitialiser</button>
             <button
+              className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${
+                jsonPanelOpen
+                  ? 'border-sky-400/30 bg-sky-400/10 text-sky-200'
+                  : 'border-white/[0.08] text-slate-400 hover:border-white/[0.16] hover:text-white'
+              }`}
+              onClick={() => setJsonPanelOpen((open) => !open)}
+              type="button"
+            >
+              <Icon className="size-4" name="terminal" />
+              Importer / JSON
+            </button>
+            <button
               className="flex items-center gap-2 rounded-xl bg-amber-400 px-4 py-2.5 text-sm font-bold text-slate-950 shadow-lg shadow-amber-500/15 transition hover:bg-amber-300 active:translate-y-px"
               onClick={() => formRef.current?.requestSubmit()}
               type="button"
@@ -563,7 +733,7 @@ export default function App() {
         </div>
       </header>
 
-      <div className="relative mx-auto grid max-w-[1720px] grid-cols-[190px_minmax(650px,1fr)_430px] gap-6 px-7 py-6">
+      <div className="relative mx-auto grid max-w-[1480px] grid-cols-[190px_minmax(650px,1fr)] gap-6 px-7 py-6">
         <nav className="sticky top-6 h-fit py-2">
           <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600">Configuration</p>
           <div className="space-y-1">
@@ -584,51 +754,6 @@ export default function App() {
         </nav>
 
         <form className="min-w-0 space-y-5" onSubmit={handleSubmit} ref={formRef}>
-          <Section description="Collez un objet Commander existant pour préremplir l'intégralité du formulaire et poursuivre son édition." eyebrow="Import" icon="terminal" id="import" title="Charger un commandant">
-            <Field label="Objet Commander JSON" hint="Le JSON doit représenter un seul commandant, et non le tableau complet de commanders.json.">
-              <textarea
-                className={`${inputClass} min-h-48 resize-y font-mono text-xs leading-5`}
-                onChange={(event) => {
-                  setImportJson(event.target.value);
-                  setImportError('');
-                  setImportSuccess('');
-                }}
-                placeholder={'{\n  "id": "5",\n  "name": "Crimson Warden",\n  "baseStats": { ... }\n}'}
-                spellCheck={false}
-                value={importJson}
-              />
-            </Field>
-            <div className="mt-4 flex items-center justify-between gap-4">
-              <div className="min-w-0">
-                {importError && (
-                  <p className="flex items-start gap-2 text-xs leading-5 text-rose-300">
-                    <Icon className="mt-0.5 size-4 shrink-0" name="warning" />
-                    {importError}
-                  </p>
-                )}
-                {importSuccess && (
-                  <p className="flex items-center gap-2 text-xs text-emerald-300">
-                    <Icon className="size-4 shrink-0" name="check" />
-                    {importSuccess}
-                  </p>
-                )}
-                {!importError && !importSuccess && (
-                  <p className="text-xs text-slate-500">
-                    Le formulaire actuel ne sera remplacé que si le JSON est valide.
-                  </p>
-                )}
-              </div>
-              <button
-                className="flex shrink-0 items-center gap-2 rounded-xl border border-sky-400/25 bg-sky-400/[0.08] px-4 py-2.5 text-sm font-semibold text-sky-200 transition hover:border-sky-400/40 hover:bg-sky-400/[0.13]"
-                onClick={loadCommander}
-                type="button"
-              >
-                <Icon className="size-4" name="terminal" />
-                Charger dans le formulaire
-              </button>
-            </div>
-          </Section>
-
           <Section description="Les informations qui identifient le commandant dans le jeu et dans les données partagées." eyebrow="Profil" icon="identity" id="identity" title="Identité du commandant">
             <div className="grid grid-cols-2 gap-5">
               <Field label="Identifiant" hint="Doit être unique dans commanders.json" required>
@@ -689,10 +814,32 @@ export default function App() {
             </div>
           </Section>
 
-          <Section description="Sélectionnez les capacités disponibles et leurs variantes propres à chaque couleur." eyebrow="Capacités" icon="skills" id="skills" title="Compétences">
-            <div>
-              <p className="mb-3 text-xs font-semibold text-slate-300">Compétences activables du commandant</p>
-              <SkillPicker onChange={(value) => setField('skills', value)} selected={form.skills} skills={typedSkills.activablePlayerSkills} />
+          <Section description="Distinguez les capacités activables manuellement de celles appliquées automatiquement dès la création du joueur." eyebrow="Capacités" icon="skills" id="skills" title="Compétences">
+            <div className="grid grid-cols-2 gap-5">
+              <div className="rounded-2xl border border-white/[0.07] bg-slate-950/25 p-4">
+                <div className="mb-4">
+                  <p className="text-xs font-semibold text-slate-200">Compétences activables</p>
+                  <p className="mt-1 text-[11px] leading-5 text-slate-500">Déclenchées manuellement contre des points de compétence.</p>
+                </div>
+                <SkillPicker
+                  onChange={(value) => setField('skills', value)}
+                  selected={form.skills}
+                  skills={typedSkills.activablePlayerSkills}
+                  unavailable={form.innateSkills}
+                />
+              </div>
+              <div className="rounded-2xl border border-violet-400/10 bg-violet-400/[0.035] p-4">
+                <div className="mb-4">
+                  <p className="text-xs font-semibold text-violet-200">Compétences innées</p>
+                  <p className="mt-1 text-[11px] leading-5 text-slate-500">Actives dès le début et impossibles à déclencher manuellement.</p>
+                </div>
+                <SkillPicker
+                  onChange={(value) => setField('innateSkills', value)}
+                  selected={form.innateSkills}
+                  skills={typedSkills.activablePlayerSkills}
+                  unavailable={form.skills}
+                />
+              </div>
             </div>
             <div className="mt-6 border-t border-white/[0.06] pt-6">
               <p className="mb-4 text-xs font-semibold text-slate-300">Compétences passives et bonus par couleur</p>
@@ -702,17 +849,12 @@ export default function App() {
                     <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-slate-200">
                       <span className={`size-2.5 rounded-full ${colorMeta[color].dot}`} />{colorMeta[color].label}
                     </div>
-                    <div className="space-y-2">
-                      {typedSkills.passivePawnSkills.map((skill) => {
-                        const selected = form.skillsByColor[color].includes(skill.id);
-                        return (
-                          <button className={`flex w-full items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-xs transition ${selected ? 'border-amber-400/30 bg-amber-400/10 text-amber-200' : 'border-white/[0.06] bg-black/10 text-slate-500 hover:text-slate-300'}`} key={skill.id} onClick={() => setColorField('skillsByColor', color, selected ? form.skillsByColor[color].filter((id) => id !== skill.id) : [...form.skillsByColor[color], skill.id])} type="button">
-                            <span className={`size-1.5 rounded-full ${selected ? 'bg-amber-400' : 'bg-slate-700'}`} />
-                            <span className="truncate">{skill.displayName}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                    <PassiveSkillPicker
+                      compact
+                      onChange={(value) => setColorField('skillsByColor', color, value)}
+                      selected={form.skillsByColor[color]}
+                      skills={typedSkills.passivePawnSkills}
+                    />
                     <Field className="mt-4" label="Bonus par décrément">
                       <NumberInput onChange={(value) => setColorField('powerBonusPerDecrementByColor', color, value)} value={form.powerBonusPerDecrementByColor[color]} />
                     </Field>
@@ -755,8 +897,36 @@ export default function App() {
           </div>
         </form>
 
-        <JsonPanel copied={copied} errors={errors} json={json} onCopy={copyJson} />
       </div>
+
+      {jsonPanelOpen && (
+        <>
+          <button
+            aria-label="Fermer la sortie JSON"
+            className="fixed inset-0 z-40 cursor-default bg-black/35 backdrop-blur-[2px]"
+            onClick={() => setJsonPanelOpen(false)}
+            type="button"
+          />
+          <JsonPanel
+            activeTab={panelTab}
+            copied={copied}
+            errors={errors}
+            importError={importError}
+            importJson={importJson}
+            importSuccess={importSuccess}
+            json={json}
+            onClose={() => setJsonPanelOpen(false)}
+            onCopy={copyJson}
+            onImportJsonChange={(value) => {
+              setImportJson(value);
+              setImportError('');
+              setImportSuccess('');
+            }}
+            onLoadCommander={loadCommander}
+            onTabChange={setPanelTab}
+          />
+        </>
+      )}
     </div>
   );
 }

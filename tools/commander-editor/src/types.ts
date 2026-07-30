@@ -48,6 +48,7 @@ export interface CommanderStats {
   officerPawns: PawnStats[];
   movementsPerTurn: number;
   skills?: string[];
+  innateSkills?: string[];
   freeRecruitThreshold?: number;
   skillsByColor?: Partial<Record<PawnColor, string[]>>;
   powerBonusPerDecrementByColor?: Partial<Record<PawnColor, number>>;
@@ -99,6 +100,7 @@ export interface CommanderFormState {
   commanderPawns: PawnFormState[];
   officerPawns: PawnFormState[];
   skills: string[];
+  innateSkills: string[];
   freeRecruitThreshold: number | '';
   skillsByColor: Record<PawnColor, string[]>;
   powerBonusPerDecrementByColor: Record<PawnColor, number | ''>;

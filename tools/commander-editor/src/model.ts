@@ -55,6 +55,7 @@ export function createInitialState(): CommanderFormState {
     commanderPawns: [],
     officerPawns: [],
     skills: [],
+    innateSkills: [],
     freeRecruitThreshold: '',
     skillsByColor: { red: [], blue: [], green: [] },
     powerBonusPerDecrementByColor: { red: '', blue: '', green: '' },
@@ -97,6 +98,12 @@ function stringArray(value: unknown, label: string): string[] {
   if (value === undefined) return [];
   if (!Array.isArray(value) || value.some((item) => typeof item !== 'string')) {
     throw new Error(`${label} doit être un tableau de chaînes.`);
+  }
+  const chargeSkills = value.filter((item) => /^charge-\d+$/.test(item));
+  if (chargeSkills.length > 1) {
+    throw new Error(
+      `${label} ne peut contenir qu'une seule compétence de charge (${chargeSkills.join(', ')}).`,
+    );
   }
   return value;
 }
@@ -155,6 +162,18 @@ function optionalColorNumbers(
 
 function fromPawn(value: unknown, label: string): PawnFormState {
   assertRecord(value, label);
+  const powerBonusPerDecrement = optionalNumber(
+    value.powerBonusPerDecrement,
+    `${label}.powerBonusPerDecrement`,
+  );
+  const skills = stringArray(value.skills, `${label}.skills`).filter(
+    (skill) =>
+      !(
+        skill === 'power-growth' &&
+        powerBonusPerDecrement !== '' &&
+        powerBonusPerDecrement > 0
+      ),
+  );
   return {
     key: createPawn().key,
     id: requiredString(value.id, `${label}.id`),
@@ -170,11 +189,8 @@ function fromPawn(value: unknown, label: string): PawnFormState {
       value.requiredInfluencePoints,
       `${label}.requiredInfluencePoints`,
     ),
-    skills: stringArray(value.skills, `${label}.skills`),
-    powerBonusPerDecrement: optionalNumber(
-      value.powerBonusPerDecrement,
-      `${label}.powerBonusPerDecrement`,
-    ),
+    skills,
+    powerBonusPerDecrement,
   };
 }
 
@@ -226,6 +242,32 @@ export function parseCommanderJson(json: string): CommanderFormState {
     };
   }
 
+  const activatableSkills = stringArray(stats.skills, 'baseStats.skills');
+  const innateSkills = stringArray(
+    stats.innateSkills,
+    'baseStats.innateSkills',
+  );
+  const overlappingSkill = activatableSkills.find((skill) =>
+    innateSkills.includes(skill),
+  );
+  if (overlappingSkill) {
+    throw new Error(
+      `La compétence « ${overlappingSkill} » ne peut pas être à la fois activable et innée.`,
+    );
+  }
+  const powerBonusPerDecrementByColor = optionalColorNumbers(
+    stats.powerBonusPerDecrementByColor,
+  );
+  const skillsByColor = optionalColorSkills(stats.skillsByColor);
+  PAWN_COLORS.forEach((color) => {
+    const bonus = powerBonusPerDecrementByColor[color];
+    if (bonus !== '' && bonus > 0) {
+      skillsByColor[color] = skillsByColor[color].filter(
+        (skill) => skill !== 'power-growth',
+      );
+    }
+  });
+
   return {
     id: requiredString(value.id, 'id'),
     name: requiredString(value.name, 'name'),
@@ -276,15 +318,14 @@ export function parseCommanderJson(json: string): CommanderFormState {
       'baseStats.commanderPawns',
     ),
     officerPawns: pawnArray(stats.officerPawns, 'baseStats.officerPawns'),
-    skills: stringArray(stats.skills, 'baseStats.skills'),
+    skills: activatableSkills,
+    innateSkills,
     freeRecruitThreshold: optionalNumber(
       stats.freeRecruitThreshold,
       'baseStats.freeRecruitThreshold',
     ),
-    skillsByColor: optionalColorSkills(stats.skillsByColor),
-    powerBonusPerDecrementByColor: optionalColorNumbers(
-      stats.powerBonusPerDecrementByColor,
-    ),
+    skillsByColor,
+    powerBonusPerDecrementByColor,
     movementBonusStrategies,
   };
 }
@@ -295,6 +336,14 @@ function optionalText(value: string): string | undefined {
 }
 
 function toPawn(pawn: PawnFormState): PawnStats {
+  const skills = pawn.skills.filter(
+    (skill) =>
+      !(
+        skill === 'power-growth' &&
+        pawn.powerBonusPerDecrement !== '' &&
+        pawn.powerBonusPerDecrement > 0
+      ),
+  );
   return {
     id: pawn.id.trim(),
     ...(optionalText(pawn.displayName) && { displayName: pawn.displayName.trim() }),
@@ -308,7 +357,7 @@ function toPawn(pawn: PawnFormState): PawnStats {
     ...(pawn.requiredInfluencePoints !== '' && {
       requiredInfluencePoints: pawn.requiredInfluencePoints,
     }),
-    ...(pawn.skills.length > 0 && { skills: pawn.skills }),
+    ...(skills.length > 0 && { skills }),
     ...(pawn.powerBonusPerDecrement !== '' && {
       powerBonusPerDecrement: pawn.powerBonusPerDecrement,
     }),
@@ -317,10 +366,14 @@ function toPawn(pawn: PawnFormState): PawnStats {
 
 export function toCommander(state: CommanderFormState): Commander {
   const skillsByColor = Object.fromEntries(
-    PAWN_COLORS.filter((color) => state.skillsByColor[color].length > 0).map((color) => [
-      color,
-      state.skillsByColor[color],
-    ]),
+    PAWN_COLORS.map((color) => {
+      const bonus = state.powerBonusPerDecrementByColor[color];
+      const skills = state.skillsByColor[color].filter(
+        (skill) =>
+          !(skill === 'power-growth' && bonus !== '' && bonus > 0),
+      );
+      return [color, skills] as const;
+    }).filter(([, skills]) => skills.length > 0),
   );
   const bonusesByColor = Object.fromEntries(
     PAWN_COLORS.filter(
@@ -355,6 +408,7 @@ export function toCommander(state: CommanderFormState): Commander {
       officerPawns: state.officerPawns.map(toPawn),
       movementsPerTurn: state.movementsPerTurn,
       ...(state.skills.length > 0 && { skills: state.skills }),
+      ...(state.innateSkills.length > 0 && { innateSkills: state.innateSkills }),
       ...(state.freeRecruitThreshold !== '' && {
         freeRecruitThreshold: state.freeRecruitThreshold,
       }),
@@ -412,6 +466,45 @@ export function validateCommander(state: CommanderFormState): string[] {
   const ids = pawns.map((pawn) => pawn.id.trim()).filter(Boolean);
   const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
   duplicateIds.forEach((id) => errors.push(`L'identifiant de pion « ${id} » est dupliqué.`));
+
+  const duplicatedSkills = state.skills.filter((skill) =>
+    state.innateSkills.includes(skill),
+  );
+  duplicatedSkills.forEach((skill) =>
+    errors.push(
+      `La compétence « ${skill} » ne peut pas être à la fois activable et innée.`,
+    ),
+  );
+
+  const validateChargeSkills = (skills: string[], label: string) => {
+    const chargeSkills = skills.filter((skill) => /^charge-\d+$/.test(skill));
+    if (chargeSkills.length > 1) {
+      errors.push(
+        `${label} ne peut contenir qu'une seule compétence de charge.`,
+      );
+    }
+  };
+
+  validateChargeSkills(state.skills, 'Les compétences activables');
+  validateChargeSkills(state.innateSkills, 'Les compétences innées');
+  PAWN_COLORS.forEach((color) =>
+    validateChargeSkills(
+      state.skillsByColor[color],
+      `Les compétences de la couleur ${color}`,
+    ),
+  );
+  state.commanderPawns.forEach((pawn, index) =>
+    validateChargeSkills(
+      pawn.skills,
+      `Le pion commandant ${pawn.displayName || index + 1}`,
+    ),
+  );
+  state.officerPawns.forEach((pawn, index) =>
+    validateChargeSkills(
+      pawn.skills,
+      `Le pion officier ${pawn.displayName || index + 1}`,
+    ),
+  );
 
   return errors;
 }
