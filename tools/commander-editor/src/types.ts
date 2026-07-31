@@ -26,6 +26,7 @@ export interface PawnImplicitSkillParams {
   spBonusPerAttackPawn?: number;
   freeWallDestructsOnDecrement?: number;
   liaisonBonusPercent?: number;
+  spGrowthBonus?: number;
 }
 
 export interface PawnStats {
@@ -94,6 +95,7 @@ export interface PawnFormState {
   spBonusPerAttackPawn: number | '';
   freeWallDestructsOnDecrement: number | '';
   liaisonBonusPercent: number | '';
+  spGrowthBonus: number | '';
 }
 
 export interface CommanderFormState {

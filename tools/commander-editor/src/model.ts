@@ -16,8 +16,15 @@ import {
   PAWN_TYPES,
 } from './types';
 
-// Skills auto-dérivées depuis implicitSkillParams — exclues du picker, ajoutées par le serveur via buildPawnSkillsFromParams
-const IMPLICIT_SKILL_IDS = ['power-growth', 'gain-FWD-on-decrement', 'liaison-power-bonus'];
+const IMPLICIT_SKILL_IDS = [
+  'power-growth',
+  'increase-power-column-when-decrementing',
+  'increase-SP-by-attack-linked-when-preparing',
+  'increase-SP-by-attack-group-when-spawning',
+  'gain-FWD-on-decrement',
+  'liaison-power-bonus',
+  'sp-growth',
+];
 
 let sequence = 0;
 
@@ -42,6 +49,7 @@ export function createPawn(): PawnFormState {
     spBonusPerAttackPawn: '',
     freeWallDestructsOnDecrement: '',
     liaisonBonusPercent: '',
+    spGrowthBonus: '',
   };
 }
 
@@ -171,7 +179,7 @@ function optionalColorNumbers(
 
 function fromImplicitSkillParams(value: unknown, label: string): Pick<PawnFormState,
   'powerBonusPerDecrement' | 'columnPowerBonusPerDecrement' | 'spBonusPerLiaison' |
-  'spBonusPerAttackPawn' | 'freeWallDestructsOnDecrement' | 'liaisonBonusPercent'
+  'spBonusPerAttackPawn' | 'freeWallDestructsOnDecrement' | 'liaisonBonusPercent' | 'spGrowthBonus'
 > {
   if (value === undefined) {
     return {
@@ -181,6 +189,7 @@ function fromImplicitSkillParams(value: unknown, label: string): Pick<PawnFormSt
       spBonusPerAttackPawn: '',
       freeWallDestructsOnDecrement: '',
       liaisonBonusPercent: '',
+      spGrowthBonus: '',
     };
   }
   assertRecord(value, label);
@@ -191,6 +200,7 @@ function fromImplicitSkillParams(value: unknown, label: string): Pick<PawnFormSt
     spBonusPerAttackPawn: optionalNumber(value.spBonusPerAttackPawn, `${label}.spBonusPerAttackPawn`),
     freeWallDestructsOnDecrement: optionalNumber(value.freeWallDestructsOnDecrement, `${label}.freeWallDestructsOnDecrement`),
     liaisonBonusPercent: optionalNumber(value.liaisonBonusPercent, `${label}.liaisonBonusPercent`),
+    spGrowthBonus: optionalNumber(value.spGrowthBonus, `${label}.spGrowthBonus`),
   };
 }
 
@@ -369,6 +379,7 @@ function toImplicitSkillParams(pawn: PawnFormState): PawnImplicitSkillParams | u
   if (pawn.spBonusPerAttackPawn !== '') params.spBonusPerAttackPawn = pawn.spBonusPerAttackPawn;
   if (pawn.freeWallDestructsOnDecrement !== '') params.freeWallDestructsOnDecrement = pawn.freeWallDestructsOnDecrement;
   if (pawn.liaisonBonusPercent !== '') params.liaisonBonusPercent = pawn.liaisonBonusPercent;
+  if (pawn.spGrowthBonus !== '') params.spGrowthBonus = pawn.spGrowthBonus;
   return Object.keys(params).length > 0 ? params : undefined;
 }
 

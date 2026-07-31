@@ -40,6 +40,15 @@
       "delayIllimited": true,
       "movementCost": 2,
       "requiredInfluencePoints": 15
+    },
+    {
+      "id": "expand-pawn-capacity",
+      "displayName": "Renforts Supplémentaires",
+      "visualKey": "icone-default",
+      "skillPointCost": 20,
+      "skillDelay": 4,
+      "extraPawnSlots": 4,
+      "requiredInfluencePoints": 20
     }
   ]
 }

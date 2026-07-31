@@ -246,7 +246,15 @@ function PassiveSkillPicker({
   compact?: boolean;
   onChange: (skills: string[]) => void;
 }) {
-  const IMPLICIT_SKILL_IDS = ['power-growth', 'gain-FWD-on-decrement', 'liaison-power-bonus'];
+  const IMPLICIT_SKILL_IDS = [
+    'power-growth',
+    'increase-power-column-when-decrementing',
+    'increase-SP-by-attack-linked-when-preparing',
+    'increase-SP-by-attack-group-when-spawning',
+    'gain-FWD-on-decrement',
+    'liaison-power-bonus',
+    'sp-growth',
+  ];
   const selectableSkills = skills.filter((skill) => !IMPLICIT_SKILL_IDS.includes(skill.id));
   const chargeSkills = selectableSkills.filter((skill) => /^charge-\d+$/.test(skill.id));
   const otherSkills = selectableSkills.filter((skill) => !/^charge-\d+$/.test(skill.id));
@@ -288,7 +296,7 @@ function PassiveSkillPicker({
         </Field>
       )}
       <p className="rounded-lg border border-violet-400/10 bg-violet-400/[0.04] px-3 py-2 text-[10px] leading-4 text-violet-200/60">
-        Power Growth, Brèche Imminente et Synergie de Liaison sont accordées automatiquement via les paramètres implicites — ne les sélectionnez pas manuellement.
+        Les compétences liées aux paramètres implicites (bonus par décrément, SP, FWD, liaison…) sont accordées automatiquement si leur valeur est &gt; 0.
       </p>
     </div>
   );
@@ -386,7 +394,7 @@ function PawnCard({
             <Field label="Influence requise">
               <NumberInput onChange={(value) => update('requiredInfluencePoints', value)} value={pawn.requiredInfluencePoints} />
             </Field>
-            <Field label="Bonus par décrément">
+            <Field label="Puissance / décrément">
               <NumberInput onChange={(value) => update('powerBonusPerDecrement', value)} value={pawn.powerBonusPerDecrement} />
             </Field>
             <Field label="Bonus colonne / décrément">
@@ -403,6 +411,9 @@ function PawnCard({
             </Field>
             <Field label="% bonus liaison">
               <NumberInput onChange={(value) => update('liaisonBonusPercent', value)} value={pawn.liaisonBonusPercent} />
+            </Field>
+            <Field label="SP / décrément" hint="sp-growth — valeur ≥ 1 pour activer">
+              <NumberInput onChange={(value) => update('spGrowthBonus', value)} value={pawn.spGrowthBonus} />
             </Field>
           </div>
           <div className="mt-5 border-t border-white/[0.06] pt-5">
@@ -871,7 +882,7 @@ export default function App() {
                       selected={form.skillsByColor[color]}
                       skills={typedSkills.pawnSkillVisuals}
                     />
-                    <Field className="mt-4" label="Bonus par décrément">
+                    <Field className="mt-4" label="Puissance / décrément">
                       <NumberInput onChange={(value) => setColorField('powerBonusPerDecrementByColor', color, value)} value={form.powerBonusPerDecrementByColor[color]} />
                     </Field>
                   </div>
