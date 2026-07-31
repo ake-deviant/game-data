@@ -1,510 +1,508 @@
 [
   {
-  "id": "1",
-  "name": "Sentinel Aegis",
-  "description": "DÃ©fenseur polyvalent, spÃ©cialisÃ© dans la tenue de ligne.",
-  "icon": "shield",
-  "baseStats": {
-    "pawnMax": 38,
-    "health": 100,
-    "maxDefenseLevel": 2,
-    "defensePowerPerLevel": 6,
-    "attackPowerByColor": {
-      "red": 8,
-      "blue": 11,
-      "green": 7
-    },
-    "attackTurnCountByColor": {
-      "red": 2,
-      "blue": 3,
-      "green": 1
-    },
-    "nonePowerByColor": {
-      "red": 2,
-      "blue": 3,
-      "green": 2
-    },
-    "pawnTypeByColor": {
-      "red": "melee",
-      "blue": "melee",
-      "green": "ranged"
-    },
-    "pawnVisualKeyByColor": {
-      "red": "pawn_default_melee_red",
-      "blue": "pawn_default_melee_blue",
-      "green": "pawn_default_ranged_green"
-    },
-    "commanderPawns": [
-      {
-        "id": "commander-1-1",
-        "displayName": "Commandant Bleu",
-        "color": "blue",
-        "type": "melee",
-        "turnCount": 7,
-        "power": 40,
-        "countPawns": 5,
-        "moveCount": 4,
-        "visualKey": "commander_melee_blue",
-        "requiredInfluencePoints": 10,
-        "powerBonusPerDecrement": 10
-      },
-      {
-        "id": "commander-1-2",
-        "displayName": "Lancier Rouge",
-        "color": "red",
-        "type": "melee",
-        "turnCount": 4,
-        "power": 70,
-        "countPawns": 4,
-        "moveCount": 3,
-        "visualKey": "commander_melee_red",
-        "requiredInfluencePoints": 5,
-        "skills": [
-          "charge-30"
-        ]
-      },
-      {
-        "id": "commander-1-3",
-        "displayName": "Archer vert",
-        "color": "green",
-        "type": "ranged",
-        "turnCount": 3,
-        "power": 50,
-        "countPawns": 2,
-        "moveCount": 2,
-        "visualKey": "commander_ranged_green",
-        "requiredInfluencePoints": 4
-      }
-    ],
-    "officerPawns": [
-      {
-        "id": "sentinel-guard-officer",
-        "displayName": "Garde d'Élite",
-        "color": "blue",
-        "type": "melee",
-        "turnCount": 3,
-        "power": 20,
-        "countPawns": 3,
-        "moveCount": 2,
-        "visualKey": "officer-melee-blue",
-        "requiredInfluencePoints": 2,
-        "powerBonusPerDecrement": 5
-      },
-      {
-        "id": "sentinel-longbow-officer",
-        "displayName": "Longbow",
-        "color": "green",
-        "type": "ranged",
-        "turnCount": 2,
-        "power": 10,
-        "countPawns": 2,
-        "moveCount": 2,
-        "visualKey": "officer-ranged-green",
-        "requiredInfluencePoints": 0,
-        "powerBonusPerDecrement": 6
-      },
-      {
-        "id": "officer-1-4",
-        "displayName": "Hercule",
-        "color": "red",
-        "type": "melee",
-        "turnCount": 4,
-        "power": 40,
-        "countPawns": 2,
-        "moveCount": 2,
-        "visualKey": "officer-melee-red",
-        "requiredInfluencePoints": 5,
-        "skills": [
-          "charge-50"
-        ],
-        "powerBonusPerDecrement": 0
-      },
-      {
-        "id": "officer-1-3",
-        "displayName": "Robin des bois",
-        "color": "red",
-        "type": "ranged",
-        "turnCount": 3,
-        "power": 20,
-        "countPawns": 2,
-        "moveCount": 1,
-        "visualKey": "officer-ranged-red",
-        "requiredInfluencePoints": 0
-      }
-    ],
-    "movementsPerTurn": 3,
-    "skills": [
-      "destroy-defense-pawns"
-    ],
-    "innateSkills": [
-      "tactical-demolition"
-    ],
-    "freeRecruitThreshold": 20,
-    "skillsByColor": {
-      "red": [
-        "charge-20"
-      ]
-    },
-    "powerBonusPerDecrementByColor": {
-      "red": 0,
-      "blue": 1,
-      "green": 0
-    },
-    "movementBonusStrategies": {
-      "remove": "1-match-1-move"
-    }
-  }
-},
-  {
-  "id": "2",
-  "name": "Copernic",
-  "description": "Offensif, mise sur des frappes rapides.",
-  "icon": "sword",
-  "baseStats": {
-    "pawnMax": 42,
-    "health": 100,
-    "maxDefenseLevel": 3,
-    "defensePowerPerLevel": 5,
-    "attackPowerByColor": {
-      "red": 8,
-      "blue": 7,
-      "green": 12
-    },
-    "attackTurnCountByColor": {
-      "red": 2,
-      "blue": 1,
-      "green": 2
-    },
-    "nonePowerByColor": {
-      "red": 2,
-      "blue": 1,
-      "green": 2
-    },
-    "pawnTypeByColor": {
-      "red": "ranged",
-      "blue": "melee",
-      "green": "melee"
-    },
-    "pawnVisualKeyByColor": {
-      "red": "pawn_default_ranged_red",
-      "blue": "pawn_default_melee_blue",
-      "green": "pawn_default_melee_green"
-    },
-    "commanderPawns": [
-      {
-        "id": "commander-2-1",
-        "displayName": "Tireur Rouge",
-        "color": "red",
-        "type": "ranged",
-        "turnCount": 5,
-        "power": 79,
-        "countPawns": 3,
-        "moveCount": 4,
-        "visualKey": "commander_ranged_red",
-        "requiredInfluencePoints": 8
-      },
-      {
-        "id": "commander-2-2",
-        "displayName": "Assaut Vert",
-        "color": "green",
-        "type": "melee",
-        "turnCount": 4,
-        "power": 50,
-        "countPawns": 3,
-        "moveCount": 3,
-        "visualKey": "commander_melee_green",
-        "requiredInfluencePoints": 5,
-        "skills": [
-          "charge-50"
-        ]
-      },
-      {
-        "id": "commander-2-3",
-        "displayName": "Assaut bleu",
-        "color": "blue",
-        "type": "melee",
-        "turnCount": 6,
-        "power": 50,
-        "countPawns": 4,
-        "moveCount": 4,
-        "visualKey": "commander_melee_blue",
-        "requiredInfluencePoints": 8,
-        "powerBonusPerDecrement": 5
-      }
-    ],
-    "officerPawns": [
-      {
-        "id": "blitz-vanguard-officer",
-        "displayName": "Avant-Garde",
-        "color": "red",
-        "type": "melee",
-        "turnCount": 3,
-        "power": 26,
-        "countPawns": 3,
-        "moveCount": 3,
-        "visualKey": "officer-melee-red",
-        "requiredInfluencePoints": 5,
-        "skills": [
-          "charge-20"
-        ]
-      },
-      {
-        "id": "blitz-skirmisher-officer",
-        "displayName": "Éclaireur",
-        "color": "green",
-        "type": "ranged",
-        "turnCount": 3,
-        "power": 14,
-        "countPawns": 2,
-        "moveCount": 2,
-        "visualKey": "officer-ranged-green",
-        "requiredInfluencePoints": 2,
-        "skills": [
-          "sp-growth"
-        ],
-        "powerBonusPerDecrement": 4
-      },
-      {
-        "id": "officer-2-3",
-        "displayName": "savant",
-        "color": "blue",
-        "type": "melee",
-        "turnCount": 4,
-        "power": 20,
-        "countPawns": 2,
-        "moveCount": 1,
-        "visualKey": "officer-learned-blue",
-        "requiredInfluencePoints": 0,
-        "skills": [
-          "sp-growth"
-        ]
-      },
-      {
-        "id": "officer-2-4",
-        "displayName": "chargeur",
-        "color": "blue",
-        "type": "melee",
-        "turnCount": 4,
-        "power": 20,
-        "countPawns": 3,
-        "moveCount": 2,
-        "visualKey": "officer-melee-blue",
-        "requiredInfluencePoints": 8,
-        "skills": [
-          "charge-50"
-        ],
-        "powerBonusPerDecrement": 10
-      }
-    ],
-    "movementsPerTurn": 3,
-    "skills": [
-      "destroy-defense-pawns",
-      "tactical-demolition",
-      "free-recruits"
-    ],
-    "freeRecruitThreshold": 20,
-    "skillsByColor": {
-      "red": [
-        "charge-20"
-      ],
-      "green": [
-        "charge-10"
-      ]
-    },
-    "powerBonusPerDecrementByColor": {
-      "red": 0,
-      "green": 1
-    }
-  }
-},
-  {
-    "id": "3",
-    "name": "Iron Strategist",
-    "description": "Controle le rythme avec des attaques lourdes et des defenses solides.",
-    "icon": "tower",
+    "id": "1",
+    "name": "Sentinel Aegis",
+    "description": "DÃ©fenseur polyvalent, spÃ©cialisÃ© dans la tenue de ligne.",
+    "icon": "shield",
     "baseStats": {
-      "skills": [
-        "destroy-defense-pawns",
-        "tactical-demolition"
-      ],
-      "freeRecruitThreshold": 20,
-      "pawnMax": 45,
-      "health": 95,
+      "pawnMax": 38,
+      "health": 100,
       "maxDefenseLevel": 2,
-      "defensePowerPerLevel": 7,
+      "defensePowerPerLevel": 6,
       "attackPowerByColor": {
         "red": 8,
-        "blue": 10,
-        "green": 13
+        "blue": 11,
+        "green": 7
       },
       "attackTurnCountByColor": {
-        "red": 1,
-        "blue": 2,
-        "green": 3
+        "red": 2,
+        "blue": 3,
+        "green": 1
       },
       "nonePowerByColor": {
-        "red": 1,
-        "blue": 2,
-        "green": 3
+        "red": 2,
+        "blue": 3,
+        "green": 2
       },
       "pawnTypeByColor": {
         "red": "melee",
-        "blue": "ranged",
-        "green": "melee"
+        "blue": "melee",
+        "green": "ranged"
       },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
-        "blue": "pawn_default_ranged_blue",
-        "green": "pawn_default_melee_green"
+        "blue": "pawn_default_melee_blue",
+        "green": "pawn_default_ranged_green"
       },
       "commanderPawns": [
         {
-          "id": "commander-3-1",
-          "displayName": "Arbalétrier Bleu",
-          "color": "blue",
-          "type": "ranged",
-          "turnCount": 6,
-          "power": 95,
-          "countPawns": 5,
-          "visualKey": "commander_ranged_blue",
-          "moveCount": 4,
-          "requiredInfluencePoints": 5
-        },
-        {
-          "id": "commander-3-2",
-          "displayName": "Garde Bleu",
+          "id": "commander-1-1",
+          "displayName": "Commandant Bleu",
           "color": "blue",
           "type": "melee",
-          "turnCount": 3,
+          "turnCount": 7,
           "power": 40,
-          "countPawns": 3,
+          "countPawns": 5,
+          "moveCount": 4,
           "visualKey": "commander_melee_blue",
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "columnPowerBonusPerDecrement": 6,
+            "spBonusPerLiaison": 1
+          }
+        },
+        {
+          "id": "commander-1-2",
+          "displayName": "Lancier Rouge",
+          "color": "red",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 70,
+          "countPawns": 4,
           "moveCount": 3,
-          "requiredInfluencePoints": 5
+          "visualKey": "commander_melee_red",
+          "requiredInfluencePoints": 5,
+          "skills": [
+            "charge-30"
+          ]
+        },
+        {
+          "id": "commander-1-3",
+          "displayName": "Archer vert",
+          "color": "green",
+          "type": "ranged",
+          "turnCount": 3,
+          "power": 50,
+          "countPawns": 2,
+          "moveCount": 2,
+          "visualKey": "commander_ranged_green",
+          "requiredInfluencePoints": 4,
+          "implicitSkillParams": {
+            "spBonusPerAttackPawn": 2
+          }
         }
       ],
       "officerPawns": [
         {
-          "id": "iron-bastion-officer",
-          "displayName": "Bastion",
+          "id": "sentinel-guard-officer",
+          "displayName": "Garde d'Élite",
           "color": "blue",
           "type": "melee",
-          "turnCount": 4,
-          "power": 38,
+          "turnCount": 3,
+          "power": 20,
           "countPawns": 3,
-          "visualKey": "officer_bastion",
-          "moveCount": 3,
-          "requiredInfluencePoints": 0
+          "moveCount": 2,
+          "visualKey": "officer-melee-blue",
+          "requiredInfluencePoints": 2,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 5,
+            "spBonusPerLiaison": 2
+          }
         },
         {
-          "id": "iron-ballista-officer",
-          "displayName": "Baliste",
+          "id": "sentinel-longbow-officer",
+          "displayName": "Longbow",
           "color": "green",
           "type": "ranged",
           "turnCount": 2,
-          "power": 18,
+          "power": 10,
           "countPawns": 2,
-          "visualKey": "officer_ballista",
           "moveCount": 2,
-          "requiredInfluencePoints": 0
+          "visualKey": "officer-ranged-green",
+          "requiredInfluencePoints": 0,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 6
+          }
+        },
+        {
+          "id": "officer-1-4",
+          "displayName": "Hercule",
+          "color": "red",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 40,
+          "countPawns": 2,
+          "moveCount": 2,
+          "visualKey": "officer-melee-red",
+          "requiredInfluencePoints": 5,
+          "skills": [
+            "charge-50"
+          ]
+        },
+        {
+          "id": "officer-1-3",
+          "displayName": "Robin des bois",
+          "color": "red",
+          "type": "ranged",
+          "turnCount": 3,
+          "power": 20,
+          "countPawns": 2,
+          "moveCount": 1,
+          "visualKey": "officer-ranged-red",
+          "requiredInfluencePoints": 0,
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 5,
+            "spBonusPerAttackPawn": 1
+          }
         }
       ],
-      "movementsPerTurn": 3
-    }
-  },
-  {
-    "id": "4",
-    "name": "Storm Marshal",
-    "description": "Equilibre pression melee et soutien ranged avec plus de marge de manoeuvre.",
-    "icon": "bolt",
-    "baseStats": {
+      "movementsPerTurn": 3,
       "skills": [
-        "destroy-defense-pawns",
+        "destroy-defense-pawns"
+      ],
+      "innateSkills": [
         "tactical-demolition"
       ],
       "freeRecruitThreshold": 20,
-      "pawnMax": 45,
+      "skillsByColor": {
+        "red": [
+          "charge-20"
+        ]
+      },
+      "powerBonusPerDecrementByColor": {
+        "red": 0,
+        "blue": 1,
+        "green": 0
+      },
+      "movementBonusStrategies": {
+        "remove": "1-match-1-move"
+      }
+    }
+  },
+  {
+    "id": "2",
+    "name": "Copernic",
+    "description": "Offensif, mise sur des frappes rapides.",
+    "icon": "sword",
+    "baseStats": {
+      "pawnMax": 42,
       "health": 100,
       "maxDefenseLevel": 3,
       "defensePowerPerLevel": 5,
       "attackPowerByColor": {
-        "red": 14,
-        "blue": 9,
-        "green": 10
+        "red": 8,
+        "blue": 7,
+        "green": 12
       },
       "attackTurnCountByColor": {
-        "red": 3,
-        "blue": 2,
+        "red": 2,
+        "blue": 1,
         "green": 2
       },
       "nonePowerByColor": {
-        "red": 3,
+        "red": 2,
+        "blue": 1,
+        "green": 2
+      },
+      "pawnTypeByColor": {
+        "red": "ranged",
+        "blue": "melee",
+        "green": "melee"
+      },
+      "pawnVisualKeyByColor": {
+        "red": "pawn_default_ranged_red",
+        "blue": "pawn_default_melee_blue",
+        "green": "pawn_default_melee_green"
+      },
+      "commanderPawns": [
+        {
+          "id": "commander-2-1",
+          "displayName": "Tireur Rouge",
+          "color": "red",
+          "type": "ranged",
+          "turnCount": 5,
+          "power": 79,
+          "countPawns": 3,
+          "moveCount": 4,
+          "visualKey": "commander_ranged_red",
+          "requiredInfluencePoints": 8,
+          "implicitSkillParams": {
+            "spBonusPerAttackPawn": 3
+          }
+        },
+        {
+          "id": "commander-2-2",
+          "displayName": "Assaut Vert",
+          "color": "green",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 50,
+          "countPawns": 3,
+          "moveCount": 3,
+          "visualKey": "commander_melee_green",
+          "requiredInfluencePoints": 5,
+          "skills": [
+            "charge-50"
+          ]
+        },
+        {
+          "id": "commander-2-3",
+          "displayName": "Assaut bleu",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 6,
+          "power": 50,
+          "countPawns": 4,
+          "moveCount": 4,
+          "visualKey": "commander_melee_blue",
+          "requiredInfluencePoints": 8,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 5,
+            "columnPowerBonusPerDecrement": 8
+          }
+        }
+      ],
+      "officerPawns": [
+        {
+          "id": "blitz-vanguard-officer",
+          "displayName": "Avant-Garde",
+          "color": "red",
+          "type": "melee",
+          "turnCount": 3,
+          "power": 26,
+          "countPawns": 3,
+          "moveCount": 3,
+          "visualKey": "officer-melee-red",
+          "requiredInfluencePoints": 5,
+          "skills": [
+            "charge-20"
+          ]
+        },
+        {
+          "id": "blitz-skirmisher-officer",
+          "displayName": "Éclaireur",
+          "color": "green",
+          "type": "ranged",
+          "turnCount": 3,
+          "power": 14,
+          "countPawns": 2,
+          "moveCount": 2,
+          "visualKey": "officer-ranged-green",
+          "requiredInfluencePoints": 2,
+          "skills": [
+            "sp-growth"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 4,
+            "spBonusPerLiaison": 2
+          }
+        },
+        {
+          "id": "officer-2-3",
+          "displayName": "savant",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 20,
+          "countPawns": 2,
+          "moveCount": 1,
+          "visualKey": "officer-learned-blue",
+          "requiredInfluencePoints": 0,
+          "skills": [
+            "sp-growth"
+          ],
+          "implicitSkillParams": {
+            "spBonusPerLiaison": 3,
+            "spBonusPerAttackPawn": 2
+          }
+        },
+        {
+          "id": "officer-2-4",
+          "displayName": "chargeur",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 20,
+          "countPawns": 3,
+          "moveCount": 2,
+          "visualKey": "officer-melee-blue",
+          "requiredInfluencePoints": 8,
+          "skills": [
+            "charge-50"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10
+          }
+        }
+      ],
+      "movementsPerTurn": 3,
+      "skills": [
+        "destroy-defense-pawns",
+        "tactical-demolition",
+        "free-recruits"
+      ],
+      "freeRecruitThreshold": 20,
+      "skillsByColor": {
+        "red": [
+          "charge-20"
+        ],
+        "green": [
+          "charge-10"
+        ]
+      },
+      "powerBonusPerDecrementByColor": {
+        "red": 0,
+        "green": 1
+      }
+    }
+  },
+  {
+    "id": "5",
+    "name": "Aria Nexus",
+    "description": "Architecte de liaisons, tire sa force de la coordination des unités. Plus ses troupes agissent en groupe, plus elles dévastent les défenses adverses.",
+    "icon": "nexus",
+    "baseStats": {
+      "pawnMax": 40,
+      "health": 95,
+      "maxDefenseLevel": 2,
+      "defensePowerPerLevel": 5,
+      "movementsPerTurn": 4,
+      "attackPowerByColor": {
+        "red": 7,
+        "blue": 10,
+        "green": 9
+      },
+      "attackTurnCountByColor": {
+        "red": 2,
+        "blue": 3,
+        "green": 2
+      },
+      "nonePowerByColor": {
+        "red": 2,
         "blue": 2,
         "green": 1
       },
       "pawnTypeByColor": {
         "red": "melee",
-        "blue": "ranged",
+        "blue": "melee",
         "green": "ranged"
       },
       "pawnVisualKeyByColor": {
         "red": "pawn_default_melee_red",
-        "blue": "pawn_default_ranged_blue",
+        "blue": "pawn_default_melee_blue",
         "green": "pawn_default_ranged_green"
       },
       "commanderPawns": [
         {
-          "id": "commander-4-1",
-          "displayName": "Champion Vert",
-          "color": "green",
+          "id": "commander-5-1",
+          "displayName": "Synapse Bleu",
+          "color": "blue",
           "type": "melee",
           "turnCount": 5,
-          "power": 96,
-          "countPawns": 5,
-          "visualKey": "commander_melee_green",
+          "power": 60,
+          "countPawns": 4,
           "moveCount": 4,
-          "requiredInfluencePoints": 5
+          "visualKey": "commander_melee_blue",
+          "requiredInfluencePoints": 8,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 8,
+            "spBonusPerLiaison": 2,
+            "liaisonBonusPercent": 10
+          }
         },
         {
-          "id": "commander-4-2",
-          "displayName": "Éclaireur Bleu",
-          "color": "blue",
+          "id": "commander-5-2",
+          "displayName": "Briseur Vert",
+          "color": "green",
           "type": "ranged",
-          "turnCount": 4,
-          "power": 50,
-          "countPawns": 4,
-          "visualKey": "commander_ranged_blue",
+          "turnCount": 3,
+          "power": 45,
+          "countPawns": 3,
           "moveCount": 3,
-          "requiredInfluencePoints": 5
+          "visualKey": "commander_ranged_green",
+          "requiredInfluencePoints": 5,
+          "implicitSkillParams": {
+            "freeWallDestructsOnDecrement": 1,
+            "spBonusPerAttackPawn": 2
+          }
+        },
+        {
+          "id": "commander-5-3",
+          "displayName": "Lame Rouge",
+          "color": "red",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 55,
+          "countPawns": 3,
+          "moveCount": 3,
+          "visualKey": "commander_melee_red",
+          "requiredInfluencePoints": 6,
+          "skills": [
+            "charge-30"
+          ]
         }
       ],
       "officerPawns": [
         {
-          "id": "storm-lancer-officer",
-          "displayName": "Lancier",
+          "id": "nexus-relay-officer",
+          "displayName": "Relais Bleu",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 3,
+          "power": 18,
+          "countPawns": 2,
+          "moveCount": 2,
+          "visualKey": "officer-melee-blue",
+          "requiredInfluencePoints": 2,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 4,
+            "spBonusPerLiaison": 3
+          }
+        },
+        {
+          "id": "nexus-breacher-officer",
+          "displayName": "Perceur Vert",
+          "color": "green",
+          "type": "ranged",
+          "turnCount": 2,
+          "power": 12,
+          "countPawns": 2,
+          "moveCount": 2,
+          "visualKey": "officer-ranged-green",
+          "requiredInfluencePoints": 0,
+          "implicitSkillParams": {
+            "freeWallDestructsOnDecrement": 1
+          }
+        },
+        {
+          "id": "nexus-berserker-officer",
+          "displayName": "Berserk Rouge",
           "color": "red",
           "type": "melee",
           "turnCount": 3,
-          "power": 38,
-          "countPawns": 3,
-          "visualKey": "officer_lancer",
-          "moveCount": 3,
-          "requiredInfluencePoints": 0
-        },
-        {
-          "id": "storm-oracle-officer",
-          "displayName": "Oracle",
-          "color": "green",
-          "type": "ranged",
-          "turnCount": 3,
-          "power": 24,
+          "power": 22,
           "countPawns": 2,
-          "visualKey": "officer_oracle",
-          "moveCount": 2,
-          "requiredInfluencePoints": 0
+          "moveCount": 3,
+          "visualKey": "officer-melee-red",
+          "requiredInfluencePoints": 3,
+          "skills": [
+            "charge-20"
+          ],
+          "implicitSkillParams": {
+            "spBonusPerAttackPawn": 1
+          }
         }
       ],
-      "movementsPerTurn": 3
+      "skills": [
+        "destroy-defense-pawns",
+        "free-recruits"
+      ],
+      "innateSkills": [
+        "tactical-demolition"
+      ],
+      "freeRecruitThreshold": 20,
+      "skillsByColor": {
+        "blue": [
+          "charge-20"
+        ]
+      },
+      "powerBonusPerDecrementByColor": {
+        "blue": 1
+      },
+      "movementBonusStrategies": {
+        "place": "after-first-match"
+      }
     }
   }
 ]

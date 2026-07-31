@@ -15,8 +15,17 @@ export interface SkillDefinition {
 }
 
 export interface SkillsData {
-  passivePawnSkills: SkillDefinition[];
+  pawnSkillVisuals: SkillDefinition[];
   activablePlayerSkills: SkillDefinition[];
+}
+
+export interface PawnImplicitSkillParams {
+  powerBonusPerDecrement?: number;
+  columnPowerBonusPerDecrement?: number;
+  spBonusPerLiaison?: number;
+  spBonusPerAttackPawn?: number;
+  freeWallDestructsOnDecrement?: number;
+  liaisonBonusPercent?: number;
 }
 
 export interface PawnStats {
@@ -31,7 +40,7 @@ export interface PawnStats {
   visualKey: string;
   requiredInfluencePoints?: number;
   skills?: string[];
-  powerBonusPerDecrement?: number;
+  implicitSkillParams?: PawnImplicitSkillParams;
 }
 
 export interface CommanderStats {
@@ -80,6 +89,11 @@ export interface PawnFormState {
   requiredInfluencePoints: number | '';
   skills: string[];
   powerBonusPerDecrement: number | '';
+  columnPowerBonusPerDecrement: number | '';
+  spBonusPerLiaison: number | '';
+  spBonusPerAttackPawn: number | '';
+  freeWallDestructsOnDecrement: number | '';
+  liaisonBonusPercent: number | '';
 }
 
 export interface CommanderFormState {

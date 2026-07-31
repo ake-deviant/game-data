@@ -5,6 +5,7 @@ import type {
   MovementStrategy,
   PawnColor,
   PawnFormState,
+  PawnImplicitSkillParams,
   PawnStats,
   PawnType,
 } from './types';
@@ -14,6 +15,9 @@ import {
   PAWN_COLORS,
   PAWN_TYPES,
 } from './types';
+
+// Skills auto-dérivées depuis implicitSkillParams — exclues du picker, ajoutées par le serveur via buildPawnSkillsFromParams
+const IMPLICIT_SKILL_IDS = ['power-growth', 'gain-FWD-on-decrement', 'liaison-power-bonus'];
 
 let sequence = 0;
 
@@ -33,6 +37,11 @@ export function createPawn(): PawnFormState {
     requiredInfluencePoints: '',
     skills: [],
     powerBonusPerDecrement: '',
+    columnPowerBonusPerDecrement: '',
+    spBonusPerLiaison: '',
+    spBonusPerAttackPawn: '',
+    freeWallDestructsOnDecrement: '',
+    liaisonBonusPercent: '',
   };
 }
 
@@ -160,19 +169,36 @@ function optionalColorNumbers(
   ) as Record<PawnColor, number | ''>;
 }
 
+function fromImplicitSkillParams(value: unknown, label: string): Pick<PawnFormState,
+  'powerBonusPerDecrement' | 'columnPowerBonusPerDecrement' | 'spBonusPerLiaison' |
+  'spBonusPerAttackPawn' | 'freeWallDestructsOnDecrement' | 'liaisonBonusPercent'
+> {
+  if (value === undefined) {
+    return {
+      powerBonusPerDecrement: '',
+      columnPowerBonusPerDecrement: '',
+      spBonusPerLiaison: '',
+      spBonusPerAttackPawn: '',
+      freeWallDestructsOnDecrement: '',
+      liaisonBonusPercent: '',
+    };
+  }
+  assertRecord(value, label);
+  return {
+    powerBonusPerDecrement: optionalNumber(value.powerBonusPerDecrement, `${label}.powerBonusPerDecrement`),
+    columnPowerBonusPerDecrement: optionalNumber(value.columnPowerBonusPerDecrement, `${label}.columnPowerBonusPerDecrement`),
+    spBonusPerLiaison: optionalNumber(value.spBonusPerLiaison, `${label}.spBonusPerLiaison`),
+    spBonusPerAttackPawn: optionalNumber(value.spBonusPerAttackPawn, `${label}.spBonusPerAttackPawn`),
+    freeWallDestructsOnDecrement: optionalNumber(value.freeWallDestructsOnDecrement, `${label}.freeWallDestructsOnDecrement`),
+    liaisonBonusPercent: optionalNumber(value.liaisonBonusPercent, `${label}.liaisonBonusPercent`),
+  };
+}
+
 function fromPawn(value: unknown, label: string): PawnFormState {
   assertRecord(value, label);
-  const powerBonusPerDecrement = optionalNumber(
-    value.powerBonusPerDecrement,
-    `${label}.powerBonusPerDecrement`,
-  );
+  const implicitParams = fromImplicitSkillParams(value.implicitSkillParams, `${label}.implicitSkillParams`);
   const skills = stringArray(value.skills, `${label}.skills`).filter(
-    (skill) =>
-      !(
-        skill === 'power-growth' &&
-        powerBonusPerDecrement !== '' &&
-        powerBonusPerDecrement > 0
-      ),
+    (skill) => !IMPLICIT_SKILL_IDS.includes(skill),
   );
   return {
     key: createPawn().key,
@@ -190,7 +216,7 @@ function fromPawn(value: unknown, label: string): PawnFormState {
       `${label}.requiredInfluencePoints`,
     ),
     skills,
-    powerBonusPerDecrement,
+    ...implicitParams,
   };
 }
 
@@ -335,15 +361,22 @@ function optionalText(value: string): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
+function toImplicitSkillParams(pawn: PawnFormState): PawnImplicitSkillParams | undefined {
+  const params: PawnImplicitSkillParams = {};
+  if (pawn.powerBonusPerDecrement !== '') params.powerBonusPerDecrement = pawn.powerBonusPerDecrement;
+  if (pawn.columnPowerBonusPerDecrement !== '') params.columnPowerBonusPerDecrement = pawn.columnPowerBonusPerDecrement;
+  if (pawn.spBonusPerLiaison !== '') params.spBonusPerLiaison = pawn.spBonusPerLiaison;
+  if (pawn.spBonusPerAttackPawn !== '') params.spBonusPerAttackPawn = pawn.spBonusPerAttackPawn;
+  if (pawn.freeWallDestructsOnDecrement !== '') params.freeWallDestructsOnDecrement = pawn.freeWallDestructsOnDecrement;
+  if (pawn.liaisonBonusPercent !== '') params.liaisonBonusPercent = pawn.liaisonBonusPercent;
+  return Object.keys(params).length > 0 ? params : undefined;
+}
+
 function toPawn(pawn: PawnFormState): PawnStats {
   const skills = pawn.skills.filter(
-    (skill) =>
-      !(
-        skill === 'power-growth' &&
-        pawn.powerBonusPerDecrement !== '' &&
-        pawn.powerBonusPerDecrement > 0
-      ),
+    (skill) => !IMPLICIT_SKILL_IDS.includes(skill),
   );
+  const implicitSkillParams = toImplicitSkillParams(pawn);
   return {
     id: pawn.id.trim(),
     ...(optionalText(pawn.displayName) && { displayName: pawn.displayName.trim() }),
@@ -358,9 +391,7 @@ function toPawn(pawn: PawnFormState): PawnStats {
       requiredInfluencePoints: pawn.requiredInfluencePoints,
     }),
     ...(skills.length > 0 && { skills }),
-    ...(pawn.powerBonusPerDecrement !== '' && {
-      powerBonusPerDecrement: pawn.powerBonusPerDecrement,
-    }),
+    ...(implicitSkillParams && { implicitSkillParams }),
   };
 }
 

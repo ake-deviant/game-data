@@ -246,7 +246,8 @@ function PassiveSkillPicker({
   compact?: boolean;
   onChange: (skills: string[]) => void;
 }) {
-  const selectableSkills = skills.filter((skill) => skill.id !== 'power-growth');
+  const IMPLICIT_SKILL_IDS = ['power-growth', 'gain-FWD-on-decrement', 'liaison-power-bonus'];
+  const selectableSkills = skills.filter((skill) => !IMPLICIT_SKILL_IDS.includes(skill.id));
   const chargeSkills = selectableSkills.filter((skill) => /^charge-\d+$/.test(skill.id));
   const otherSkills = selectableSkills.filter((skill) => !/^charge-\d+$/.test(skill.id));
   const selectedCharge = selected.find((skill) => /^charge-\d+$/.test(skill)) ?? '';
@@ -287,7 +288,7 @@ function PassiveSkillPicker({
         </Field>
       )}
       <p className="rounded-lg border border-violet-400/10 bg-violet-400/[0.04] px-3 py-2 text-[10px] leading-4 text-violet-200/60">
-        Power Growth est accordée automatiquement lorsque le bonus par décrément est supérieur à 0.
+        Power Growth, Brèche Imminente et Synergie de Liaison sont accordées automatiquement via les paramètres implicites — ne les sélectionnez pas manuellement.
       </p>
     </div>
   );
@@ -387,6 +388,21 @@ function PawnCard({
             </Field>
             <Field label="Bonus par décrément">
               <NumberInput onChange={(value) => update('powerBonusPerDecrement', value)} value={pawn.powerBonusPerDecrement} />
+            </Field>
+            <Field label="Bonus colonne / décrément">
+              <NumberInput onChange={(value) => update('columnPowerBonusPerDecrement', value)} value={pawn.columnPowerBonusPerDecrement} />
+            </Field>
+            <Field label="SP / liaison">
+              <NumberInput onChange={(value) => update('spBonusPerLiaison', value)} value={pawn.spBonusPerLiaison} />
+            </Field>
+            <Field label="SP / capitaine (pose)">
+              <NumberInput onChange={(value) => update('spBonusPerAttackPawn', value)} value={pawn.spBonusPerAttackPawn} />
+            </Field>
+            <Field label="FWD / décrément">
+              <NumberInput onChange={(value) => update('freeWallDestructsOnDecrement', value)} value={pawn.freeWallDestructsOnDecrement} />
+            </Field>
+            <Field label="% bonus liaison">
+              <NumberInput onChange={(value) => update('liaisonBonusPercent', value)} value={pawn.liaisonBonusPercent} />
             </Field>
           </div>
           <div className="mt-5 border-t border-white/[0.06] pt-5">
@@ -608,7 +624,7 @@ export default function App() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const allExistingSkills = useMemo(
-    () => [...typedSkills.activablePlayerSkills, ...typedSkills.passivePawnSkills],
+    () => [...typedSkills.activablePlayerSkills, ...typedSkills.pawnSkillVisuals],
     [],
   );
 
@@ -853,7 +869,7 @@ export default function App() {
                       compact
                       onChange={(value) => setColorField('skillsByColor', color, value)}
                       selected={form.skillsByColor[color]}
-                      skills={typedSkills.passivePawnSkills}
+                      skills={typedSkills.pawnSkillVisuals}
                     />
                     <Field className="mt-4" label="Bonus par décrément">
                       <NumberInput onChange={(value) => setColorField('powerBonusPerDecrementByColor', color, value)} value={form.powerBonusPerDecrementByColor[color]} />
@@ -866,11 +882,11 @@ export default function App() {
           </Section>
 
           <Section description="Unités spéciales directement rattachées à ce commandant." eyebrow="Unités majeures" icon="crown" id="commanders" title="Pions commandants">
-            <PawnList kind="Commandant" onChange={(value) => setField('commanderPawns', value)} passiveSkills={typedSkills.passivePawnSkills} pawns={form.commanderPawns} />
+            <PawnList kind="Commandant" onChange={(value) => setField('commanderPawns', value)} passiveSkills={typedSkills.pawnSkillVisuals} pawns={form.commanderPawns} />
           </Section>
 
           <Section description="Unités de soutien disponibles dans la composition de ce commandant." eyebrow="Unités de soutien" icon="shield" id="officers" title="Pions officiers">
-            <PawnList kind="Officier" onChange={(value) => setField('officerPawns', value)} passiveSkills={typedSkills.passivePawnSkills} pawns={form.officerPawns} />
+            <PawnList kind="Officier" onChange={(value) => setField('officerPawns', value)} passiveSkills={typedSkills.pawnSkillVisuals} pawns={form.officerPawns} />
           </Section>
 
           <Section description="Définissez quand les mouvements bonus sont attribués lors du placement et du retrait." eyebrow="Stratégies" icon="movement" id="movement" title="Bonus de mouvement">
