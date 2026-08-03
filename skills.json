@@ -6,10 +6,10 @@
     { "id": "charge-30",                                   "displayName": "Charge 30%",                 "visualKey": "icone-default", "chargeBonusPercent": 30 },
     { "id": "charge-50",                                   "displayName": "Charge 50%",                 "visualKey": "icone-default", "chargeBonusPercent": 50 },
     { "id": "sp-growth",                                   "displayName": "Gain de Compétence",         "visualKey": "sp-growth" },
-    { "id": "increase-power-column-when-decrementing",     "displayName": "Puissance de Colonne",       "visualKey": "icone-default" },
-    { "id": "increase-SP-by-attack-linked-when-preparing", "displayName": "Gain SP par Liaison",        "visualKey": "icone-default" },
+    { "id": "increase-power-column-when-decrementing",     "displayName": "Puissance de Colonne",       "visualKey": "increase-power-column-when-decrementing" },
+    { "id": "increase-SP-by-attack-linked-when-preparing", "displayName": "Gain SP par Liaison",        "visualKey": "increase-SP-by-attack-linked-when-preparing" },
     { "id": "increase-SP-by-attack-group-when-spawning",   "displayName": "Gain SP par Capitaine",      "visualKey": "increase-SP-by-attack-group-when-spawning" },
-    { "id": "gain-FWD-on-decrement",                       "displayName": "Brèche Imminente",           "visualKey": "increase-SP-by-attack-group-when-spawning" },
+    { "id": "gain-FWD-on-decrement",                       "displayName": "Brèche Imminente",           "visualKey": "icone-default" },
     { "id": "liaison-power-bonus",                         "displayName": "Synergie de Liaison",        "visualKey": "icone-default" }
   ],
   "activablePlayerSkills": [

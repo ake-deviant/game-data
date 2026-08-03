@@ -299,12 +299,11 @@
           "moveCount": 1,
           "visualKey": "officer-learned-blue",
           "requiredInfluencePoints": 0,
-          "skills": [
-            "sp-growth"
-          ],
+          "skills": [],
           "implicitSkillParams": {
             "spBonusPerLiaison": 3,
-            "spBonusPerAttackPawn": 2
+            "spBonusPerAttackPawn": 2,
+            "spGrowthBonus": 2
           }
         },
         {
