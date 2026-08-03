@@ -150,7 +150,9 @@
       ],
       "movementsPerTurn": 3,
       "skills": [
-        "destroy-defense-pawns"
+        "destroy-defense-pawns",
+        "expand-pawn-capacity",
+        "free-recruits"
       ],
       "innateSkills": [
         "tactical-demolition"
@@ -329,7 +331,8 @@
       "skills": [
         "destroy-defense-pawns",
         "tactical-demolition",
-        "free-recruits"
+        "free-recruits",
+        "expand-pawn-capacity"
       ],
       "freeRecruitThreshold": 20,
       "skillsByColor": {
