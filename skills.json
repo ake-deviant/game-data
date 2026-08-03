@@ -5,7 +5,7 @@
     { "id": "charge-20",                                   "displayName": "Charge 20%",                 "visualKey": "icone-default", "chargeBonusPercent": 20 },
     { "id": "charge-30",                                   "displayName": "Charge 30%",                 "visualKey": "icone-default", "chargeBonusPercent": 30 },
     { "id": "charge-50",                                   "displayName": "Charge 50%",                 "visualKey": "icone-default", "chargeBonusPercent": 50 },
-    { "id": "sp-growth",                                   "displayName": "Gain de Compétence",         "visualKey": "icone-default" },
+    { "id": "sp-growth",                                   "displayName": "Gain de Compétence",         "visualKey": "sp-growth" },
     { "id": "increase-power-column-when-decrementing",     "displayName": "Puissance de Colonne",       "visualKey": "icone-default" },
     { "id": "increase-SP-by-attack-linked-when-preparing", "displayName": "Gain SP par Liaison",        "visualKey": "icone-default" },
     { "id": "increase-SP-by-attack-group-when-spawning",   "displayName": "Gain SP par Capitaine",      "visualKey": "increase-SP-by-attack-group-when-spawning" },
