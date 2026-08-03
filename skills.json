@@ -9,7 +9,7 @@
     { "id": "increase-power-column-when-decrementing",     "displayName": "Puissance de Colonne",       "visualKey": "icone-default" },
     { "id": "increase-SP-by-attack-linked-when-preparing", "displayName": "Gain SP par Liaison",        "visualKey": "icone-default" },
     { "id": "increase-SP-by-attack-group-when-spawning",   "displayName": "Gain SP par Capitaine",      "visualKey": "icone-default" },
-    { "id": "gain-FWD-on-decrement",                       "displayName": "Brèche Imminente",           "visualKey": "icone-default" },
+    { "id": "gain-FWD-on-decrement",                       "displayName": "Brèche Imminente",           "visualKey": "increase-SP-by-attack-group-when-spawning" },
     { "id": "liaison-power-bonus",                         "displayName": "Synergie de Liaison",        "visualKey": "icone-default" }
   ],
   "activablePlayerSkills": [
