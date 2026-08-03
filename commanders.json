@@ -112,7 +112,8 @@
           "visualKey": "officer-ranged-green",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 6
+            "powerBonusPerDecrement": 6,
+            "spGrowthBonus": 3
           }
         },
         {
@@ -280,12 +281,11 @@
           "moveCount": 2,
           "visualKey": "officer-ranged-green",
           "requiredInfluencePoints": 2,
-          "skills": [
-            "sp-growth"
-          ],
+          "skills": [],
           "implicitSkillParams": {
             "powerBonusPerDecrement": 4,
-            "spBonusPerLiaison": 2
+            "spBonusPerLiaison": 2,
+            "spGrowthBonus": 3
           }
         },
         {
