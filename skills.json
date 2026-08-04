@@ -14,7 +14,7 @@
     {
       "id": "free-recruits",
       "displayName": "Renforts Gratuits",
-      "visualKey": "icone-default",
+      "visualKey": "free-recruits",
       "skillPointCost": 3,
       "skillDelay": null,
       "delayIllimited": true,
@@ -23,7 +23,7 @@
     {
       "id": "destroy-defense-pawns",
       "displayName": "Destruction de Défenses",
-      "visualKey": "icone-default",
+      "visualKey": "destroy-defense-pawns",
       "skillPointCost": 5,
       "skillDelay": 3,
       "freeWallDestructs": 4,
@@ -32,7 +32,7 @@
     {
       "id": "tactical-demolition",
       "displayName": "Démolition Tactique",
-      "visualKey": "icone-default",
+      "visualKey": "tactical-demolition",
       "skillPointCost": 10,
       "skillDelay": null,
       "delayIllimited": true,
@@ -42,7 +42,7 @@
     {
       "id": "expand-pawn-capacity",
       "displayName": "Renforts Supplémentaires",
-      "visualKey": "icone-default",
+      "visualKey": "expand-pawn-capacity",
       "skillPointCost": 20,
       "skillDelay": 4,
       "extraPawnSlots": 4,
