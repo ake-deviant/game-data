@@ -78,6 +78,9 @@
           "moveCount": 2,
           "visualKey": "commander_ranged_green",
           "requiredInfluencePoints": 4,
+          "skills": [
+            "liaison-power-bonus"
+          ],
           "implicitSkillParams": {
             "spBonusPerAttackPawn": 2
           }
@@ -128,7 +131,9 @@
           "visualKey": "officer-melee-red",
           "requiredInfluencePoints": 5,
           "skills": [
-            "charge-50"
+            "charge-50",
+            "gain-FWD-on-decrement",
+            "liaison-power-bonus"
           ]
         },
         {
@@ -160,7 +165,7 @@
       "freeRecruitThreshold": 20,
       "skillsByColor": {
         "red": [
-          "charge-20"
+          "charge-30"
         ]
       },
       "powerBonusPerDecrementByColor": {
@@ -236,7 +241,8 @@
           "visualKey": "commander_melee_green",
           "requiredInfluencePoints": 5,
           "skills": [
-            "charge-50"
+            "charge-50",
+            "liaison-power-bonus"
           ]
         },
         {
@@ -269,7 +275,8 @@
           "visualKey": "officer-melee-red",
           "requiredInfluencePoints": 5,
           "skills": [
-            "charge-20"
+            "charge-30",
+            "gain-FWD-on-decrement"
           ]
         },
         {
@@ -337,10 +344,7 @@
       "freeRecruitThreshold": 20,
       "skillsByColor": {
         "red": [
-          "charge-20"
-        ],
-        "green": [
-          "charge-10"
+          "charge-30"
         ]
       },
       "powerBonusPerDecrementByColor": {
@@ -479,7 +483,7 @@
           "visualKey": "officer-melee-red",
           "requiredInfluencePoints": 3,
           "skills": [
-            "charge-20"
+            "charge-30"
           ],
           "implicitSkillParams": {
             "spBonusPerAttackPawn": 1
@@ -496,7 +500,7 @@
       "freeRecruitThreshold": 20,
       "skillsByColor": {
         "blue": [
-          "charge-20"
+          "charge-30"
         ]
       },
       "powerBonusPerDecrementByColor": {
