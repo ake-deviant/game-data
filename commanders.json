@@ -65,7 +65,10 @@
           "requiredInfluencePoints": 5,
           "skills": [
             "charge-30"
-          ]
+          ],
+          "implicitSkillParams":{
+            "liaisonBonusPercent": 10
+          }
         },
         {
           "id": "commander-1-3",
@@ -78,11 +81,10 @@
           "moveCount": 2,
           "visualKey": "commander_ranged_green",
           "requiredInfluencePoints": 4,
-          "skills": [
-            "liaison-power-bonus"
-          ],
+          "skills": [],
           "implicitSkillParams": {
-            "spBonusPerAttackPawn": 2
+            "spBonusPerAttackPawn": 2,
+            "liaisonBonusPercent": 10
           }
         }
       ],
@@ -130,11 +132,10 @@
           "moveCount": 2,
           "visualKey": "officer-melee-red",
           "requiredInfluencePoints": 5,
-          "skills": [
-            "charge-50",
-            "gain-FWD-on-decrement",
-            "liaison-power-bonus"
-          ]
+          "skills": ["charge-50"],
+          "implicitSkillParams": {
+            "liaisonBonusPercent": 10
+          }
         },
         {
           "id": "officer-1-3",
@@ -241,9 +242,11 @@
           "visualKey": "commander_melee_green",
           "requiredInfluencePoints": 5,
           "skills": [
-            "charge-50",
-            "liaison-power-bonus"
-          ]
+            "charge-50"
+          ],
+          "implicitSkillParams": {
+            "liaisonBonusPercent": 10
+          }
         },
         {
           "id": "commander-2-3",
@@ -274,10 +277,11 @@
           "moveCount": 3,
           "visualKey": "officer-melee-red",
           "requiredInfluencePoints": 5,
-          "skills": [
-            "charge-30",
-            "gain-FWD-on-decrement"
-          ]
+          "skills": ["charge-30"],
+          "implicitSkillParams": {
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 10
+          }
         },
         {
           "id": "blitz-skirmisher-officer",
@@ -626,7 +630,7 @@
           ],
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
-            "freeWallDestructsOnDecrement": 0
+            "freeWallDestructsOnDecrement": 1
           }
         },
         {
