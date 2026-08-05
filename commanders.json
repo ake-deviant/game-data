@@ -98,7 +98,7 @@
           "power": 20,
           "countPawns": 3,
           "moveCount": 2,
-          "visualKey": "officer-melee-blue",
+          "visualKey": "V2_officer_melee_blue",
           "requiredInfluencePoints": 2,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 5,
@@ -114,7 +114,7 @@
           "power": 10,
           "countPawns": 2,
           "moveCount": 2,
-          "visualKey": "officer-ranged-green",
+          "visualKey": "V2_officer_ranged_green",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 6,
@@ -130,7 +130,7 @@
           "power": 40,
           "countPawns": 2,
           "moveCount": 2,
-          "visualKey": "officer-melee-red",
+          "visualKey": "V2_officer_melee_red",
           "requiredInfluencePoints": 5,
           "skills": ["charge-50"],
           "implicitSkillParams": {
@@ -146,7 +146,7 @@
           "power": 20,
           "countPawns": 2,
           "moveCount": 1,
-          "visualKey": "officer-ranged-red",
+          "visualKey": "V2_officer_ranged_red",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 5,
