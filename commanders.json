@@ -5,7 +5,7 @@
     "description": "DÃ©fenseur polyvalent, spÃ©cialisÃ© dans la tenue de ligne.",
     "icon": "shield",
     "baseStats": {
-      "pawnMax": 38,
+      "pawnMax": 40,
       "health": 100,
       "maxDefenseLevel": 2,
       "defensePowerPerLevel": 6,
@@ -37,7 +37,7 @@
       "commanderPawns": [
         {
           "id": "commander-1-1",
-          "displayName": "Commandant Bleu",
+          "displayName": "Berseker Bleu",
           "color": "blue",
           "type": "melee",
           "turnCount": 7,
@@ -72,8 +72,8 @@
         },
         {
           "id": "commander-1-3",
-          "displayName": "Archer vert",
-          "color": "green",
+          "displayName": "Archer bleu",
+          "color": "blue",
           "type": "ranged",
           "turnCount": 3,
           "power": 50,
@@ -144,13 +144,15 @@
           "type": "ranged",
           "turnCount": 3,
           "power": 20,
-          "countPawns": 2,
-          "moveCount": 1,
+          "countPawns": 0,
+          "moveCount": 0,
           "visualKey": "V2_officer_ranged_red",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 5,
-            "spBonusPerAttackPawn": 1
+            "spBonusPerAttackPawn": 1,
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 100
           }
         }
       ],
@@ -221,7 +223,7 @@
           "color": "red",
           "type": "ranged",
           "turnCount": 5,
-          "power": 79,
+          "power": 60,
           "countPawns": 3,
           "moveCount": 4,
           "visualKey": "commander_ranged_red",
