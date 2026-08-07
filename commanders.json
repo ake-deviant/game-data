@@ -252,18 +252,18 @@
         },
         {
           "id": "commander-2-3",
-          "displayName": "Assaut bleu",
+          "displayName": "Berseker Bleu",
           "color": "blue",
           "type": "melee",
           "turnCount": 6,
-          "power": 50,
+          "power": 30,
           "countPawns": 4,
           "moveCount": 4,
           "visualKey": "commander_melee_blue",
           "requiredInfluencePoints": 8,
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 5,
-            "columnPowerBonusPerDecrement": 8
+            "powerBonusPerDecrement": 10,
+            "columnPowerBonusPerDecrement": 6
           }
         }
       ],
