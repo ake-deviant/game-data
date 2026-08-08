@@ -79,7 +79,7 @@
           "power": 50,
           "countPawns": 2,
           "moveCount": 2,
-          "visualKey": "commander_ranged_green",
+          "visualKey": "commander_ranged_blue",
           "requiredInfluencePoints": 4,
           "skills": [],
           "implicitSkillParams": {
