@@ -8,6 +8,8 @@ export type PawnType = (typeof PAWN_TYPES)[number];
 export type DefaultPawnType = (typeof DEFAULT_PAWN_TYPES)[number];
 export type MovementStrategy = (typeof MOVEMENT_STRATEGIES)[number];
 
+export type WeaponKeysData = Record<PawnType, string[]>;
+
 export interface SkillDefinition {
   id: string;
   displayName: string;
@@ -39,6 +41,7 @@ export interface PawnStats {
   countPawns: number;
   moveCount: number;
   visualKey: string;
+  weaponKey: string;
   requiredInfluencePoints?: number;
   skills?: string[];
   implicitSkillParams?: PawnImplicitSkillParams;
@@ -54,6 +57,7 @@ export interface CommanderStats {
   nonePowerByColor: Record<PawnColor, number>;
   pawnTypeByColor: Record<PawnColor, DefaultPawnType>;
   pawnVisualKeyByColor: Record<PawnColor, string>;
+  pawnWeaponKeyByColor: Record<PawnColor, string>;
   commanderPawns: PawnStats[];
   officerPawns: PawnStats[];
   movementsPerTurn: number;
@@ -87,6 +91,7 @@ export interface PawnFormState {
   countPawns: number;
   moveCount: number;
   visualKey: string;
+  weaponKey: string;
   requiredInfluencePoints: number | '';
   skills: string[];
   powerBonusPerDecrement: number | '';
@@ -113,6 +118,7 @@ export interface CommanderFormState {
   nonePowerByColor: Record<PawnColor, number>;
   pawnTypeByColor: Record<PawnColor, DefaultPawnType>;
   pawnVisualKeyByColor: Record<PawnColor, string>;
+  pawnWeaponKeyByColor: Record<PawnColor, string>;
   commanderPawns: PawnFormState[];
   officerPawns: PawnFormState[];
   skills: string[];

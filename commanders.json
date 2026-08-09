@@ -34,6 +34,11 @@
         "blue": "pawn_default_melee_blue",
         "green": "pawn_default_ranged_green"
       },
+      "pawnWeaponKeyByColor": {
+        "red": "sword",
+        "blue": "sword",
+        "green": "arrow"
+      },
       "commanderPawns": [
         {
           "id": "commander-1-1",
@@ -45,6 +50,7 @@
           "countPawns": 5,
           "moveCount": 4,
           "visualKey": "commander_melee_blue",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
@@ -62,6 +68,7 @@
           "countPawns": 4,
           "moveCount": 3,
           "visualKey": "commander_melee_red",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 5,
           "skills": [
             "charge-30"
@@ -80,6 +87,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "commander_ranged_blue",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 4,
           "skills": [],
           "implicitSkillParams": {
@@ -99,6 +107,7 @@
           "countPawns": 3,
           "moveCount": 2,
           "visualKey": "V2_officer_melee_blue",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 2,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 5,
@@ -115,6 +124,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "V2_officer_ranged_green",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 6,
@@ -131,6 +141,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "V2_officer_melee_red",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 5,
           "skills": ["charge-50"],
           "implicitSkillParams": {
@@ -147,6 +158,7 @@
           "countPawns": 0,
           "moveCount": 0,
           "visualKey": "V2_officer_ranged_red",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 5,
@@ -216,6 +228,11 @@
         "blue": "pawn_default_melee_blue",
         "green": "pawn_default_melee_green"
       },
+      "pawnWeaponKeyByColor": {
+        "red": "arrow",
+        "blue": "sword",
+        "green": "sword"
+      },
       "commanderPawns": [
         {
           "id": "commander-2-1",
@@ -227,6 +244,7 @@
           "countPawns": 3,
           "moveCount": 4,
           "visualKey": "commander_ranged_red",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 8,
           "implicitSkillParams": {
             "spBonusPerAttackPawn": 3
@@ -242,6 +260,7 @@
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "commander_melee_green",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 5,
           "skills": [
             "charge-50"
@@ -260,6 +279,7 @@
           "countPawns": 4,
           "moveCount": 4,
           "visualKey": "commander_melee_blue",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 8,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
@@ -278,6 +298,7 @@
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "officer-melee-red",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 5,
           "skills": ["charge-30"],
           "implicitSkillParams": {
@@ -295,6 +316,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "officer-ranged-green",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 2,
           "skills": [],
           "implicitSkillParams": {
@@ -313,6 +335,7 @@
           "countPawns": 2,
           "moveCount": 1,
           "visualKey": "officer-learned-blue",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 0,
           "skills": [],
           "implicitSkillParams": {
@@ -331,6 +354,7 @@
           "countPawns": 3,
           "moveCount": 2,
           "visualKey": "officer-melee-blue",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 8,
           "skills": [
             "charge-50"
@@ -395,6 +419,11 @@
         "blue": "pawn_default_melee_blue",
         "green": "pawn_default_ranged_green"
       },
+      "pawnWeaponKeyByColor": {
+        "red": "sword",
+        "blue": "sword",
+        "green": "arrow"
+      },
       "commanderPawns": [
         {
           "id": "commander-5-1",
@@ -406,6 +435,7 @@
           "countPawns": 4,
           "moveCount": 4,
           "visualKey": "commander_melee_blue",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 8,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 8,
@@ -423,6 +453,7 @@
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "commander_ranged_green",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 5,
           "implicitSkillParams": {
             "freeWallDestructsOnDecrement": 1,
@@ -439,6 +470,7 @@
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "commander_melee_red",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 6,
           "skills": [
             "charge-30"
@@ -456,6 +488,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "officer-melee-blue",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 2,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 4,
@@ -472,6 +505,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "officer-ranged-green",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
             "freeWallDestructsOnDecrement": 1
@@ -487,6 +521,7 @@
           "countPawns": 2,
           "moveCount": 3,
           "visualKey": "officer-melee-red",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 3,
           "skills": [
             "charge-30"
@@ -552,6 +587,11 @@
         "blue": "pawn_melee_blue",
         "green": "pawn_melee_red"
       },
+      "pawnWeaponKeyByColor": {
+        "red": "arrow",
+        "blue": "sword",
+        "green": "sword"
+      },
       "commanderPawns": [
         {
           "id": "commander-muten-1",
@@ -563,6 +603,7 @@
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "commander_melee_red",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 10,
           "skills": [
             "charge-50"
@@ -578,6 +619,7 @@
           "countPawns": 4,
           "moveCount": 4,
           "visualKey": "commander_ranged_green",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 18,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
@@ -594,6 +636,7 @@
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "commander-ranged-blue",
+          "weaponKey": "arrow",
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 5,
             "spBonusPerLiaison": 2
@@ -611,6 +654,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "officer-learned-blue",
+          "weaponKey": "arrow",
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 3,
             "spBonusPerAttackPawn": 3
@@ -626,6 +670,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "officer-melee-blue",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 6,
           "skills": [
             "charge-30"
@@ -645,6 +690,7 @@
           "countPawns": 2,
           "moveCount": 1,
           "visualKey": "officer-ranged-green",
+          "weaponKey": "arrow",
           "requiredInfluencePoints": 8,
           "implicitSkillParams": {
             "freeWallDestructsOnDecrement": 1
@@ -660,6 +706,7 @@
           "countPawns": 3,
           "moveCount": 2,
           "visualKey": "officer-melee-green",
+          "weaponKey": "sword",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "spBonusPerAttackPawn": 3

@@ -8,7 +8,9 @@ import type {
   PawnImplicitSkillParams,
   PawnStats,
   PawnType,
+  WeaponKeysData,
 } from './types';
+import weaponKeysData from '../../../weaponKeys.json';
 import {
   DEFAULT_PAWN_TYPES,
   MOVEMENT_STRATEGIES,
@@ -26,6 +28,16 @@ const IMPLICIT_SKILL_IDS = [
   'sp-growth',
 ];
 
+const WEAPON_KEYS = weaponKeysData as WeaponKeysData;
+
+function requiredWeaponKey(value: unknown, type: PawnType, label: string): string {
+  const key = requiredString(value, label);
+  if (!WEAPON_KEYS[type].includes(key)) {
+    throw new Error(`${label} doit être une arme disponible pour le type ${type}.`);
+  }
+  return key;
+}
+
 let sequence = 0;
 
 export function createPawn(): PawnFormState {
@@ -41,6 +53,7 @@ export function createPawn(): PawnFormState {
     countPawns: 1,
     moveCount: 1,
     visualKey: '',
+    weaponKey: '',
     requiredInfluencePoints: '',
     skills: [],
     powerBonusPerDecrement: '',
@@ -69,6 +82,7 @@ export function createInitialState(): CommanderFormState {
     nonePowerByColor: { red: 0, blue: 0, green: 0 },
     pawnTypeByColor: { red: 'melee', blue: 'melee', green: 'melee' },
     pawnVisualKeyByColor: { red: '', blue: '', green: '' },
+    pawnWeaponKeyByColor: { red: '', blue: '', green: '' },
     commanderPawns: [],
     officerPawns: [],
     skills: [],
@@ -210,17 +224,19 @@ function fromPawn(value: unknown, label: string): PawnFormState {
   const skills = stringArray(value.skills, `${label}.skills`).filter(
     (skill) => !IMPLICIT_SKILL_IDS.includes(skill),
   );
+  const type = enumValue(value.type, PAWN_TYPES, `${label}.type`) as PawnType;
   return {
     key: createPawn().key,
     id: requiredString(value.id, `${label}.id`),
     displayName: optionalString(value.displayName, `${label}.displayName`),
     color: enumValue(value.color, PAWN_COLORS, `${label}.color`),
-    type: enumValue(value.type, PAWN_TYPES, `${label}.type`) as PawnType,
+    type,
     turnCount: requiredNumber(value.turnCount, `${label}.turnCount`),
     power: requiredNumber(value.power, `${label}.power`),
     countPawns: requiredNumber(value.countPawns, `${label}.countPawns`),
     moveCount: requiredNumber(value.moveCount, `${label}.moveCount`),
     visualKey: requiredString(value.visualKey, `${label}.visualKey`),
+    weaponKey: requiredWeaponKey(value.weaponKey, type, `${label}.weaponKey`),
     requiredInfluencePoints: optionalNumber(
       value.requiredInfluencePoints,
       `${label}.requiredInfluencePoints`,
@@ -304,6 +320,13 @@ export function parseCommanderJson(json: string): CommanderFormState {
     }
   });
 
+  const pawnTypeByColor = colorRecord(
+    stats.pawnTypeByColor,
+    'baseStats.pawnTypeByColor',
+    (entry, label) =>
+      enumValue(entry, DEFAULT_PAWN_TYPES, label) as DefaultPawnType,
+  );
+
   return {
     id: requiredString(value.id, 'id'),
     name: requiredString(value.name, 'name'),
@@ -338,16 +361,23 @@ export function parseCommanderJson(json: string): CommanderFormState {
       'baseStats.nonePowerByColor',
       requiredNumber,
     ),
-    pawnTypeByColor: colorRecord(
-      stats.pawnTypeByColor,
-      'baseStats.pawnTypeByColor',
-      (entry, label) =>
-        enumValue(entry, DEFAULT_PAWN_TYPES, label) as DefaultPawnType,
-    ),
+    pawnTypeByColor,
     pawnVisualKeyByColor: colorRecord(
       stats.pawnVisualKeyByColor,
       'baseStats.pawnVisualKeyByColor',
       requiredString,
+    ),
+    pawnWeaponKeyByColor: colorRecord(
+      stats.pawnWeaponKeyByColor,
+      'baseStats.pawnWeaponKeyByColor',
+      (entry, label) => {
+        const color = PAWN_COLORS.find((candidate) => label.endsWith(`.${candidate}`));
+        const type = color && pawnTypeByColor[color];
+        if (type !== 'melee' && type !== 'ranged') {
+          throw new Error(`${label} ne peut pas référencer d'arme pour le type ${type}.`);
+        }
+        return requiredWeaponKey(entry, type, label);
+      },
     ),
     commanderPawns: pawnArray(
       stats.commanderPawns,
@@ -398,6 +428,7 @@ function toPawn(pawn: PawnFormState): PawnStats {
     countPawns: pawn.countPawns,
     moveCount: pawn.moveCount,
     visualKey: pawn.visualKey.trim(),
+    weaponKey: pawn.weaponKey.trim(),
     ...(pawn.requiredInfluencePoints !== '' && {
       requiredInfluencePoints: pawn.requiredInfluencePoints,
     }),
@@ -446,6 +477,12 @@ export function toCommander(state: CommanderFormState): Commander {
           state.pawnVisualKeyByColor[color].trim(),
         ]),
       ) as Commander['baseStats']['pawnVisualKeyByColor'],
+      pawnWeaponKeyByColor: Object.fromEntries(
+        PAWN_COLORS.map((color) => [
+          color,
+          state.pawnWeaponKeyByColor[color].trim(),
+        ]),
+      ) as Commander['baseStats']['pawnWeaponKeyByColor'],
       commanderPawns: state.commanderPawns.map(toPawn),
       officerPawns: state.officerPawns.map(toPawn),
       movementsPerTurn: state.movementsPerTurn,
@@ -487,6 +524,18 @@ export function validateCommander(state: CommanderFormState): string[] {
     if (!state.pawnVisualKeyByColor[color].trim()) {
       errors.push(`La clé visuelle du pion ${color} est obligatoire.`);
     }
+    if (!state.pawnWeaponKeyByColor[color].trim()) {
+      errors.push(`La clé d'arme du pion ${color} est obligatoire.`);
+    } else {
+      const type = state.pawnTypeByColor[color];
+      if (type === 'melee' || type === 'ranged') {
+        if (!WEAPON_KEYS[type].includes(state.pawnWeaponKeyByColor[color])) {
+          errors.push(`La clé d'arme du pion ${color} n'est pas disponible pour le type ${type}.`);
+        }
+      } else {
+        errors.push(`Aucune clé d'arme n'est disponible pour le type ${type}.`);
+      }
+    }
   });
 
   const pawns = [...state.commanderPawns, ...state.officerPawns];
@@ -494,6 +543,10 @@ export function validateCommander(state: CommanderFormState): string[] {
     const label = pawn.displayName.trim() || `Pion ${index + 1}`;
     if (!pawn.id.trim()) errors.push(`${label} : l'identifiant est obligatoire.`);
     if (!pawn.visualKey.trim()) errors.push(`${label} : la clé visuelle est obligatoire.`);
+    if (!pawn.weaponKey.trim()) errors.push(`${label} : la clé d'arme est obligatoire.`);
+    else if (!WEAPON_KEYS[pawn.type].includes(pawn.weaponKey)) {
+      errors.push(`${label} : la clé d'arme n'est pas disponible pour le type ${pawn.type}.`);
+    }
     const values = [
       pawn.turnCount,
       pawn.power,

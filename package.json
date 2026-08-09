@@ -9,7 +9,8 @@
   "private": true,
   "files": [
     "commanders.json",
-    "skills.json"
+    "skills.json",
+    "weaponKeys.json"
   ],
   "scripts": {
     "editor": "vite --config tools/commander-editor/vite.config.ts",

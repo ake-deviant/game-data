@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react';
 import skillsData from '../../../skills.json';
+import weaponKeysData from '../../../weaponKeys.json';
 import {
   createInitialState,
   createPawn,
@@ -26,9 +27,11 @@ import {
   type PawnType,
   type SkillDefinition,
   type SkillsData,
+  type WeaponKeysData,
 } from './types';
 
 const typedSkills = skillsData as SkillsData;
+const weaponKeys = weaponKeysData as WeaponKeysData;
 
 const colorMeta: Record<PawnColor, { label: string; dot: string; tint: string }> = {
   red: { label: 'Rouge', dot: 'bg-rose-400', tint: 'from-rose-500/12' },
@@ -369,6 +372,12 @@ function PawnCard({
             <Field label="Clé visuelle" required>
               <input className={inputClass} onChange={(e) => update('visualKey', e.target.value)} placeholder="commander_melee_red" value={pawn.visualKey} />
             </Field>
+            <Field label="Clé d'arme" required>
+              <select className={inputClass} onChange={(e) => update('weaponKey', e.target.value)} value={pawn.weaponKey}>
+                <option value="">Sélectionner une arme</option>
+                {weaponKeys[pawn.type].map((weaponKey) => <option key={weaponKey} value={weaponKey}>{weaponKey}</option>)}
+              </select>
+            </Field>
             <Field label="Couleur" required>
               <select className={inputClass} onChange={(e) => update('color', e.target.value as PawnColor)} value={pawn.color}>
                 {PAWN_COLORS.map((color) => <option key={color} value={color}>{colorMeta[color].label}</option>)}
@@ -645,7 +654,7 @@ export default function App() {
   ) => setForm((current) => ({ ...current, [key]: value }));
 
   const setColorField = <
-    K extends 'attackPowerByColor' | 'attackTurnCountByColor' | 'nonePowerByColor' | 'pawnTypeByColor' | 'pawnVisualKeyByColor' | 'skillsByColor' | 'powerBonusPerDecrementByColor',
+    K extends 'attackPowerByColor' | 'attackTurnCountByColor' | 'nonePowerByColor' | 'pawnTypeByColor' | 'pawnVisualKeyByColor' | 'pawnWeaponKeyByColor' | 'skillsByColor' | 'powerBonusPerDecrementByColor',
   >(
     field: K,
     color: PawnColor,
@@ -821,11 +830,11 @@ export default function App() {
 
           <Section description="Configurez les caractéristiques du pion standard associé à chaque couleur." eyebrow="Par couleur" icon="colors" id="colors" title="Pions standards">
             <div className="overflow-hidden rounded-2xl border border-white/[0.07]">
-              <div className="grid grid-cols-[130px_repeat(5,minmax(100px,1fr))] bg-slate-950/50 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500">
-                <span>Couleur</span><span>Attaque</span><span>Tours</span><span>Puiss. neutre</span><span>Type</span><span>Clé visuelle</span>
+              <div className="grid grid-cols-[130px_repeat(6,minmax(100px,1fr))] bg-slate-950/50 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                <span>Couleur</span><span>Attaque</span><span>Tours</span><span>Puiss. neutre</span><span>Type</span><span>Clé visuelle</span><span>Clé d'arme</span>
               </div>
               {PAWN_COLORS.map((color) => (
-                <div className={`grid grid-cols-[130px_repeat(5,minmax(100px,1fr))] items-center gap-3 border-t border-white/[0.06] bg-gradient-to-r ${colorMeta[color].tint} to-transparent px-4 py-4`} key={color}>
+                <div className={`grid grid-cols-[130px_repeat(6,minmax(100px,1fr))] items-center gap-3 border-t border-white/[0.06] bg-gradient-to-r ${colorMeta[color].tint} to-transparent px-4 py-4`} key={color}>
                   <div className="flex items-center gap-2.5 text-sm font-semibold text-slate-200">
                     <span className={`size-2.5 rounded-full ${colorMeta[color].dot}`} />{colorMeta[color].label}
                   </div>
@@ -836,6 +845,10 @@ export default function App() {
                     {DEFAULT_PAWN_TYPES.map((type) => <option key={type} value={type}>{type}</option>)}
                   </select>
                   <input className={inputClass} onChange={(e) => setColorField('pawnVisualKeyByColor', color, e.target.value)} placeholder={`pawn_default_${color}`} value={form.pawnVisualKeyByColor[color]} />
+                  <select className={inputClass} onChange={(e) => setColorField('pawnWeaponKeyByColor', color, e.target.value)} value={form.pawnWeaponKeyByColor[color]}>
+                    <option value="">Sélectionner une arme</option>
+                    {(form.pawnTypeByColor[color] === 'melee' || form.pawnTypeByColor[color] === 'ranged') && weaponKeys[form.pawnTypeByColor[color]].map((weaponKey) => <option key={weaponKey} value={weaponKey}>{weaponKey}</option>)}
+                  </select>
                 </div>
               ))}
             </div>
