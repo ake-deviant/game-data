@@ -164,7 +164,7 @@
             "columnPowerBonusPerDecrement": 5,
             "spBonusPerAttackPawn": 1,
             "freeWallDestructsOnDecrement": 1,
-            "liaisonBonusPercent": 100
+            "liaisonBonusPercent": 10
           }
         }
       ],
