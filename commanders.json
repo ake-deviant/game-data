@@ -35,7 +35,7 @@
         "green": "pawn_default_ranged_green"
       },
       "pawnWeaponKeyByColor": {
-        "red": "sword",
+        "red": "spear",
         "blue": "sword",
         "green": "arrow"
       },
@@ -124,7 +124,7 @@
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "V2_officer_ranged_green",
-          "weaponKey": "arrow",
+          "weaponKey": "shuriken",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 6,
@@ -158,7 +158,7 @@
           "countPawns": 0,
           "moveCount": 0,
           "visualKey": "V2_officer_ranged_red",
-          "weaponKey": "arrow",
+          "weaponKey": "shuriken",
           "requiredInfluencePoints": 0,
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 5,
