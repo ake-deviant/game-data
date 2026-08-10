@@ -230,7 +230,7 @@
       },
       "pawnWeaponKeyByColor": {
         "red": "arrow",
-        "blue": "sword",
+        "blue": "spear",
         "green": "sword"
       },
       "commanderPawns": [
