@@ -15,10 +15,10 @@
       "id": "free-recruits",
       "displayName": "Renforts Gratuits",
       "visualKey": "free-recruits",
-      "skillPointCost": 3,
+      "skillPointCost": 15,
       "skillDelay": null,
       "delayIllimited": true,
-      "requiredInfluencePoints": 10
+      "requiredInfluencePoints": 25
     },
     {
       "id": "destroy-defense-pawns",
@@ -27,17 +27,17 @@
       "skillPointCost": 5,
       "skillDelay": 3,
       "freeWallDestructs": 4,
-      "requiredInfluencePoints": 5
+      "requiredInfluencePoints": 8
     },
     {
       "id": "tactical-demolition",
       "displayName": "Démolition Tactique",
       "visualKey": "tactical-demolition",
-      "skillPointCost": 10,
+      "skillPointCost": 25,
       "skillDelay": null,
       "delayIllimited": true,
       "movementCost": 2,
-      "requiredInfluencePoints": 15
+      "requiredInfluencePoints": 40
     },
     {
       "id": "expand-pawn-capacity",
@@ -46,7 +46,7 @@
       "skillPointCost": 20,
       "skillDelay": 4,
       "extraPawnSlots": 4,
-      "requiredInfluencePoints": 20
+      "requiredInfluencePoints": 50
     }
   ]
 }
