@@ -576,11 +576,11 @@
         }
       ],
       "movementsPerTurn": 3,
-      "innateSkills": [
-        "tactical-demolition",
-        "free-recruits",
+      "skills": [
         "destroy-defense-pawns",
-        "expand-pawn-capacity"
+        "expand-pawn-capacity",
+        "free-recruits",
+        "tactical-demolition"
       ],
       "freeRecruitThreshold": 20,
       "movementBonusStrategies": {
@@ -589,207 +589,207 @@
     }
   },
   {
-  "id": "1000",
-  "name": "Mu Ten",
-  "description": "rapide et contreur",
-  "icon": "shield",
-  "baseStats": {
-    "pawnMax": 40,
-    "health": 100,
-    "maxDefenseLevel": 3,
-    "defensePowerPerLevel": 6,
-    "attackPowerByColor": {
-      "red": 9,
-      "blue": 11,
-      "green": 8
-    },
-    "attackTurnCountByColor": {
-      "red": 2,
-      "blue": 2,
-      "green": 2
-    },
-    "nonePowerByColor": {
-      "red": 2,
-      "blue": 2,
-      "green": 1
-    },
-    "pawnTypeByColor": {
-      "red": "ranged",
-      "blue": "melee",
-      "green": "melee"
-    },
-    "pawnVisualKeyByColor": {
-      "red": "pawn_ranged_red",
-      "blue": "pawn_melee_blue",
-      "green": "pawn_melee_red"
-    },
-    "pawnWeaponKeyByColor": {
-      "red": "arrow",
-      "blue": "spear",
-      "green": "sword"
-    },
-    "commanderPawns": [
-      {
-        "id": "commander-muten-1",
-        "displayName": "chargeur rouge",
-        "color": "red",
-        "type": "melee",
-        "turnCount": 7,
-        "power": 70,
-        "countPawns": 4,
-        "moveCount": 4,
-        "visualKey": "commander_melee_red",
-        "weaponKey": "sword",
-        "requiredInfluencePoints": 18,
-        "skills": [
-          "charge-50"
-        ],
-        "implicitSkillParams": {
-          "columnPowerBonusPerDecrement": 5,
-          "spGrowthBonus": 1
-        }
+    "id": "1000",
+    "name": "Mu Ten",
+    "description": "rapide et contreur",
+    "icon": "shield",
+    "baseStats": {
+      "pawnMax": 40,
+      "health": 100,
+      "maxDefenseLevel": 3,
+      "defensePowerPerLevel": 6,
+      "attackPowerByColor": {
+        "red": 9,
+        "blue": 11,
+        "green": 8
       },
-      {
-        "id": "commander-muten-2",
-        "displayName": "Archer vert",
-        "color": "green",
-        "type": "ranged",
-        "turnCount": 6,
-        "power": 30,
-        "countPawns": 3,
-        "moveCount": 4,
-        "visualKey": "commander_ranged_green",
-        "weaponKey": "arrow",
-        "requiredInfluencePoints": 18,
-        "implicitSkillParams": {
-          "powerBonusPerDecrement": 10,
-          "spBonusPerLiaison": 1
-        }
+      "attackTurnCountByColor": {
+        "red": 2,
+        "blue": 2,
+        "green": 2
       },
-      {
-        "id": "commander-muten-3",
-        "displayName": "soutien bleu",
-        "color": "blue",
-        "type": "ranged",
-        "turnCount": 5,
-        "power": 20,
-        "countPawns": 3,
-        "moveCount": 2,
-        "visualKey": "commander-ranged-blue",
-        "weaponKey": "arrow",
-        "requiredInfluencePoints": 10,
-        "implicitSkillParams": {
-          "columnPowerBonusPerDecrement": 5,
-          "spBonusPerLiaison": 0,
-          "freeWallDestructsOnDecrement": 1,
-          "liaisonBonusPercent": 10,
-          "spGrowthBonus": 1
-        }
+      "nonePowerByColor": {
+        "red": 2,
+        "blue": 2,
+        "green": 1
       },
-      {
-        "id": "commander-muten-4",
-        "displayName": "blue knight",
-        "color": "blue",
-        "type": "melee",
-        "turnCount": 4,
-        "power": 70,
-        "countPawns": 3,
-        "moveCount": 2,
-        "visualKey": "V3_commander_melee_blue",
-        "weaponKey": "spear",
-        "requiredInfluencePoints": 10,
-        "skills": [
-          "charge-50"
-        ],
-        "implicitSkillParams": {
-          "spBonusPerAttackPawn": 1
+      "pawnTypeByColor": {
+        "red": "ranged",
+        "blue": "melee",
+        "green": "melee"
+      },
+      "pawnVisualKeyByColor": {
+        "red": "pawn_default_melee_red",
+        "blue": "pawn_default_melee_blue",
+        "green": "pawn_default_ranged_green"
+      },
+      "pawnWeaponKeyByColor": {
+        "red": "arrow",
+        "blue": "spear",
+        "green": "sword"
+      },
+      "commanderPawns": [
+        {
+          "id": "commander-muten-1",
+          "displayName": "chargeur rouge",
+          "color": "red",
+          "type": "melee",
+          "turnCount": 7,
+          "power": 70,
+          "countPawns": 4,
+          "moveCount": 4,
+          "visualKey": "commander_melee_red",
+          "weaponKey": "sword",
+          "requiredInfluencePoints": 18,
+          "skills": [
+            "charge-50"
+          ],
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 5,
+            "spGrowthBonus": 1
+          }
+        },
+        {
+          "id": "commander-muten-2",
+          "displayName": "Archer vert",
+          "color": "green",
+          "type": "ranged",
+          "turnCount": 6,
+          "power": 30,
+          "countPawns": 3,
+          "moveCount": 4,
+          "visualKey": "commander_ranged_green",
+          "weaponKey": "arrow",
+          "requiredInfluencePoints": 18,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "spBonusPerLiaison": 1
+          }
+        },
+        {
+          "id": "commander-muten-3",
+          "displayName": "soutien bleu",
+          "color": "blue",
+          "type": "ranged",
+          "turnCount": 5,
+          "power": 20,
+          "countPawns": 3,
+          "moveCount": 2,
+          "visualKey": "commander-ranged-blue",
+          "weaponKey": "arrow",
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 5,
+            "spBonusPerLiaison": 0,
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 10,
+            "spGrowthBonus": 1
+          }
+        },
+        {
+          "id": "commander-muten-4",
+          "displayName": "blue knight",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 70,
+          "countPawns": 3,
+          "moveCount": 2,
+          "visualKey": "V3_commander_melee_blue",
+          "weaponKey": "spear",
+          "requiredInfluencePoints": 10,
+          "skills": [
+            "charge-50"
+          ],
+          "implicitSkillParams": {
+            "spBonusPerAttackPawn": 1
+          }
         }
+      ],
+      "officerPawns": [
+        {
+          "id": "officer-muten-1",
+          "displayName": "savant bleu",
+          "color": "blue",
+          "type": "ranged",
+          "turnCount": 2,
+          "power": 16,
+          "countPawns": 2,
+          "moveCount": 1,
+          "visualKey": "officer-learned-blue",
+          "weaponKey": "arrow",
+          "requiredInfluencePoints": 6,
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "spBonusPerAttackPawn": 0,
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 10
+          }
+        },
+        {
+          "id": "officer-muten-2",
+          "displayName": "lancier bleu",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 32,
+          "countPawns": 2,
+          "moveCount": 2,
+          "visualKey": "officer-melee-blue",
+          "weaponKey": "sword",
+          "requiredInfluencePoints": 8,
+          "implicitSkillParams": {
+            "spBonusPerAttackPawn": 1,
+            "freeWallDestructsOnDecrement": 0,
+            "spGrowthBonus": 1
+          }
+        },
+        {
+          "id": "officer-muten-3",
+          "displayName": "archer vert",
+          "color": "red",
+          "type": "ranged",
+          "turnCount": 3,
+          "power": 12,
+          "countPawns": 2,
+          "moveCount": 1,
+          "visualKey": "officer-ranged-green",
+          "weaponKey": "arrow",
+          "requiredInfluencePoints": 8,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 8,
+            "freeWallDestructsOnDecrement": 0
+          }
+        },
+        {
+          "id": "officer-muten-4",
+          "displayName": "epeiste vert",
+          "color": "green",
+          "type": "melee",
+          "turnCount": 2,
+          "power": 26,
+          "countPawns": 3,
+          "moveCount": 2,
+          "visualKey": "officer-melee-green",
+          "weaponKey": "sword",
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "freeWallDestructsOnDecrement": 1,
+            "spGrowthBonus": 2
+          }
+        }
+      ],
+      "movementsPerTurn": 3,
+      "skills": [
+        "destroy-defense-pawns",
+        "expand-pawn-capacity",
+        "free-recruits",
+        "tactical-demolition"
+      ],
+      "freeRecruitThreshold": 20,
+      "movementBonusStrategies": {
+        "place": "1-match-1-move"
       }
-    ],
-    "officerPawns": [
-      {
-        "id": "officer-muten-1",
-        "displayName": "savant bleu",
-        "color": "blue",
-        "type": "ranged",
-        "turnCount": 2,
-        "power": 16,
-        "countPawns": 2,
-        "moveCount": 1,
-        "visualKey": "officer-learned-blue",
-        "weaponKey": "arrow",
-        "requiredInfluencePoints": 6,
-        "implicitSkillParams": {
-          "columnPowerBonusPerDecrement": 3,
-          "spBonusPerAttackPawn": 0,
-          "freeWallDestructsOnDecrement": 1,
-          "liaisonBonusPercent": 10
-        }
-      },
-      {
-        "id": "officer-muten-2",
-        "displayName": "lancier bleu",
-        "color": "blue",
-        "type": "melee",
-        "turnCount": 4,
-        "power": 32,
-        "countPawns": 2,
-        "moveCount": 2,
-        "visualKey": "officer-melee-blue",
-        "weaponKey": "sword",
-        "requiredInfluencePoints": 8,
-        "implicitSkillParams": {
-          "spBonusPerAttackPawn": 1,
-          "freeWallDestructsOnDecrement": 0,
-          "spGrowthBonus": 1
-        }
-      },
-      {
-        "id": "officer-muten-3",
-        "displayName": "archer vert",
-        "color": "red",
-        "type": "ranged",
-        "turnCount": 3,
-        "power": 12,
-        "countPawns": 2,
-        "moveCount": 1,
-        "visualKey": "officer-ranged-green",
-        "weaponKey": "arrow",
-        "requiredInfluencePoints": 8,
-        "implicitSkillParams": {
-          "powerBonusPerDecrement": 8,
-          "freeWallDestructsOnDecrement": 0
-        }
-      },
-      {
-        "id": "officer-muten-4",
-        "displayName": "epeiste vert",
-        "color": "green",
-        "type": "melee",
-        "turnCount": 2,
-        "power": 26,
-        "countPawns": 3,
-        "moveCount": 2,
-        "visualKey": "officer-melee-green",
-        "weaponKey": "sword",
-        "requiredInfluencePoints": 10,
-        "implicitSkillParams": {
-          "freeWallDestructsOnDecrement": 1,
-          "spGrowthBonus": 2
-        }
-      }
-    ],
-    "movementsPerTurn": 3,
-    "skills": [
-      "destroy-defense-pawns",
-      "expand-pawn-capacity",
-      "free-recruits",
-      "tactical-demolition"
-    ],
-    "freeRecruitThreshold": 20,
-    "movementBonusStrategies": {
-      "place": "1-match-1-move"
     }
   }
-}
 ]
