@@ -582,10 +582,7 @@
         "free-recruits",
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 20,
-      "movementBonusStrategies": {
-        "place": "1-match-1-move"
-      }
+      "freeRecruitThreshold": 20
     }
   },
   {
@@ -786,10 +783,7 @@
         "free-recruits",
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 20,
-      "movementBonusStrategies": {
-        "place": "1-match-1-move"
-      }
+      "freeRecruitThreshold": 20
     }
   }
 ]
