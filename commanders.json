@@ -418,9 +418,9 @@
         "green": "melee"
       },
       "pawnVisualKeyByColor": {
-        "red": "pawn_default_melee_red",
+        "red": "pawn_default_ranged_red",
         "blue": "pawn_default_melee_blue",
-        "green": "pawn_default_ranged_green"
+        "green": "pawn_default_melee_green"
       },
       "pawnWeaponKeyByColor": {
         "red": "arrow",

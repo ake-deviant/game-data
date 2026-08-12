@@ -16,8 +16,15 @@ export interface SkillDefinition {
   visualKey: string;
 }
 
+export const PAWN_SKILL_TRIGGER_PHASES = ['spawn', 'decrement', 'movePhase', 'attack'] as const;
+export type PawnSkillTriggerPhase = (typeof PAWN_SKILL_TRIGGER_PHASES)[number];
+
+export interface PawnSkillDefinition extends SkillDefinition {
+  triggerPhase: PawnSkillTriggerPhase;
+}
+
 export interface SkillsData {
-  pawnSkillVisuals: SkillDefinition[];
+  pawnSkillVisuals: PawnSkillDefinition[];
   activablePlayerSkills: SkillDefinition[];
 }
 
