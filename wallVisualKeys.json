@@ -1,0 +1,10 @@
+[
+  {
+    "id": "default",
+    "keyByLevel": {
+      "1": "default_wall_0",
+      "2": "default_wall_1",
+      "3": "default_wall_2"
+    }
+  }
+]

@@ -7,6 +7,7 @@ import {
 } from 'react';
 import skillsData from '../../../skills.json';
 import weaponKeysData from '../../../weaponKeys.json';
+import wallVisualKeysData from '../../../wallVisualKeys.json';
 import {
   createInitialState,
   createPawn,
@@ -28,10 +29,12 @@ import {
   type SkillDefinition,
   type SkillsData,
   type WeaponKeysData,
+  type WallVisualSetDefinition,
 } from './types';
 
 const typedSkills = skillsData as SkillsData;
 const weaponKeys = weaponKeysData as WeaponKeysData;
+const wallVisualSets = wallVisualKeysData as WallVisualSetDefinition[];
 
 const colorMeta: Record<PawnColor, { label: string; dot: string; tint: string }> = {
   red: { label: 'Rouge', dot: 'bg-rose-400', tint: 'from-rose-500/12' },
@@ -821,9 +824,16 @@ export default function App() {
                 </Field>
               ))}
             </div>
-            <div className="mt-5 max-w-[calc(20%-0.8rem)]">
+            <div className="mt-5 grid grid-cols-5 gap-4">
               <Field label="Seuil recrues gratuites" hint="Laisser vide pour désactiver">
                 <NumberInput onChange={(value) => setField('freeRecruitThreshold', value)} value={form.freeRecruitThreshold} />
+              </Field>
+              <Field label="Lot visuel de mur" required>
+                <select className={inputClass} onChange={(e) => setField('wallVisualSet', e.target.value)} value={form.wallVisualSet}>
+                  {wallVisualSets.map((set) => (
+                    <option key={set.id} value={set.id}>{set.id}</option>
+                  ))}
+                </select>
               </Field>
             </div>
           </Section>

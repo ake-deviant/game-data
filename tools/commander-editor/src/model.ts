@@ -9,8 +9,10 @@ import type {
   PawnStats,
   PawnType,
   WeaponKeysData,
+  WallVisualSetDefinition,
 } from './types';
 import weaponKeysData from '../../../weaponKeys.json';
+import wallVisualKeysData from '../../../wallVisualKeys.json';
 import {
   DEFAULT_PAWN_TYPES,
   MOVEMENT_STRATEGIES,
@@ -29,6 +31,7 @@ const IMPLICIT_SKILL_IDS = [
 ];
 
 const WEAPON_KEYS = weaponKeysData as WeaponKeysData;
+const WALL_VISUAL_SETS = (wallVisualKeysData as WallVisualSetDefinition[]).map((set) => set.id);
 
 function requiredWeaponKey(value: unknown, type: PawnType, label: string): string {
   const key = requiredString(value, label);
@@ -75,6 +78,7 @@ export function createInitialState(): CommanderFormState {
     pawnMax: 45,
     health: 100,
     maxDefenseLevel: 3,
+    wallVisualSet: WALL_VISUAL_SETS[0] ?? '',
     defensePowerPerLevel: 5,
     movementsPerTurn: 3,
     attackPowerByColor: { red: 0, blue: 0, green: 0 },
@@ -338,6 +342,7 @@ export function parseCommanderJson(json: string): CommanderFormState {
       stats.maxDefenseLevel,
       'baseStats.maxDefenseLevel',
     ),
+    wallVisualSet: requiredString(stats.wallVisualSet, 'baseStats.wallVisualSet'),
     defensePowerPerLevel: requiredNumber(
       stats.defensePowerPerLevel,
       'baseStats.defensePowerPerLevel',
@@ -466,6 +471,7 @@ export function toCommander(state: CommanderFormState): Commander {
       pawnMax: state.pawnMax,
       health: state.health,
       maxDefenseLevel: state.maxDefenseLevel,
+      wallVisualSet: state.wallVisualSet,
       defensePowerPerLevel: state.defensePowerPerLevel,
       attackPowerByColor: state.attackPowerByColor,
       attackTurnCountByColor: state.attackTurnCountByColor,
@@ -506,6 +512,9 @@ export function validateCommander(state: CommanderFormState): string[] {
   const errors: string[] = [];
   if (!state.id.trim()) errors.push("L'identifiant du commandant est obligatoire.");
   if (!state.name.trim()) errors.push('Le nom du commandant est obligatoire.');
+  if (!WALL_VISUAL_SETS.includes(state.wallVisualSet)) {
+    errors.push(`Le lot visuel de mur "${state.wallVisualSet}" n'existe pas dans wallVisualKeys.json.`);
+  }
 
   const requiredNumbers: Array<[string, number]> = [
     ['Maximum de pions', state.pawnMax],

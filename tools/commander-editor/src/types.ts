@@ -10,6 +10,11 @@ export type MovementStrategy = (typeof MOVEMENT_STRATEGIES)[number];
 
 export type WeaponKeysData = Record<PawnType, string[]>;
 
+export interface WallVisualSetDefinition {
+  id: string;
+  keyByLevel: Record<string, string>;
+}
+
 export interface SkillDefinition {
   id: string;
   displayName: string;
@@ -58,6 +63,7 @@ export interface CommanderStats {
   pawnMax: number;
   health: number;
   maxDefenseLevel: number;
+  wallVisualSet: string;
   defensePowerPerLevel: number;
   attackPowerByColor: Record<PawnColor, number>;
   attackTurnCountByColor: Record<PawnColor, number>;
@@ -118,6 +124,7 @@ export interface CommanderFormState {
   pawnMax: number;
   health: number;
   maxDefenseLevel: number;
+  wallVisualSet: string;
   defensePowerPerLevel: number;
   movementsPerTurn: number;
   attackPowerByColor: Record<PawnColor, number>;
