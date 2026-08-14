@@ -10,7 +10,8 @@
   "files": [
     "commanders.json",
     "skills.json",
-    "weaponKeys.json"
+    "weaponKeys.json",
+    "wallVisualKeys.json"
   ],
   "scripts": {
     "editor": "vite --config tools/commander-editor/vite.config.ts",
