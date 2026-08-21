@@ -228,9 +228,9 @@
         "green": "Aegis_soldier_melee_green"
       },
       "pawnWeaponKeyByColor": {
-        "red": "short_iron_katana",
+        "red": "arrow",
         "blue": "woodcutter_poleaxe",
-        "green": "arrow"
+        "green": "short_iron_katana"
       },
       "commanderPawns": [
         {
