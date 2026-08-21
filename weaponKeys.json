@@ -1,7 +1,10 @@
 {
   "melee": [
     "sword",
-    "spear"
+    "spear",
+    "wooden_spiked_club",
+    "woodcutter_poleaxe",
+    "short_iron_katana"
   ],
   "ranged": [
     "arrow",
