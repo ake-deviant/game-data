@@ -378,12 +378,14 @@
       "skills": [
         "destroy-defense-pawns",
         "expand-pawn-capacity",
-        "free-recruits",
+        "free-recruits"
+      ],
+      "innateSkills": [
         "tactical-demolition"
       ],
-      "innateSkills": [],
       "freeRecruitThreshold": 20,
       "movementBonusStrategies": {
+
       }
     }
   },
