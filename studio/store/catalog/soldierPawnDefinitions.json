@@ -1,0 +1,35 @@
+[
+  {
+    "id": "soldier-1-red",
+    "displayName": "Soldat rouge",
+    "color": "red",
+    "type": "melee",
+    "turnCount": 2,
+    "power": 8,
+    "nonePower": 2,
+    "visualKey": "pawn_default_melee_red",
+    "weaponKey": "spear"
+  },
+  {
+    "id": "soldier-1-blue",
+    "displayName": "Soldat bleu",
+    "color": "blue",
+    "type": "melee",
+    "turnCount": 3,
+    "power": 11,
+    "nonePower": 3,
+    "visualKey": "pawn_default_melee_blue",
+    "weaponKey": "sword"
+  },
+  {
+    "id": "soldier-1-green",
+    "displayName": "Soldat vert",
+    "color": "green",
+    "type": "ranged",
+    "turnCount": 1,
+    "power": 7,
+    "nonePower": 2,
+    "visualKey": "pawn_default_ranged_green",
+    "weaponKey": "arrow"
+  }
+]

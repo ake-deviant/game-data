@@ -1,11 +1,9 @@
 export const PAWN_COLORS = ['red', 'blue', 'green'] as const;
 export const PAWN_TYPES = ['melee', 'ranged'] as const;
-export const DEFAULT_PAWN_TYPES = ['melee', 'ranged', 'sapper'] as const;
 export const MOVEMENT_STRATEGIES = ['after-first-match', '1-match-1-move'] as const;
 
 export type PawnColor = (typeof PAWN_COLORS)[number];
 export type PawnType = (typeof PAWN_TYPES)[number];
-export type DefaultPawnType = (typeof DEFAULT_PAWN_TYPES)[number];
 export type MovementStrategy = (typeof MOVEMENT_STRATEGIES)[number];
 
 export type WeaponKeysData = Record<PawnType, string[]>;
@@ -68,7 +66,7 @@ export interface CommanderStats {
   attackPowerByColor: Record<PawnColor, number>;
   attackTurnCountByColor: Record<PawnColor, number>;
   nonePowerByColor: Record<PawnColor, number>;
-  pawnTypeByColor: Record<PawnColor, DefaultPawnType>;
+  pawnTypeByColor: Record<PawnColor, PawnType>;
   pawnVisualKeyByColor: Record<PawnColor, string>;
   pawnWeaponKeyByColor: Record<PawnColor, string>;
   commanderPawns: PawnStats[];
@@ -130,7 +128,7 @@ export interface CommanderFormState {
   attackPowerByColor: Record<PawnColor, number>;
   attackTurnCountByColor: Record<PawnColor, number>;
   nonePowerByColor: Record<PawnColor, number>;
-  pawnTypeByColor: Record<PawnColor, DefaultPawnType>;
+  pawnTypeByColor: Record<PawnColor, PawnType>;
   pawnVisualKeyByColor: Record<PawnColor, string>;
   pawnWeaponKeyByColor: Record<PawnColor, string>;
   commanderPawns: PawnFormState[];

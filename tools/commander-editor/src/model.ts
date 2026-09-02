@@ -1,7 +1,6 @@
 import type {
   Commander,
   CommanderFormState,
-  DefaultPawnType,
   MovementStrategy,
   PawnColor,
   PawnFormState,
@@ -11,10 +10,9 @@ import type {
   WeaponKeysData,
   WallVisualSetDefinition,
 } from './types';
-import weaponKeysData from '../../../weaponKeys.json';
-import wallVisualKeysData from '../../../wallVisualKeys.json';
+import weaponKeysData from '../../../data/weaponKeys.json';
+import wallVisualSetsData from '../../../data/wallVisualSets.json';
 import {
-  DEFAULT_PAWN_TYPES,
   MOVEMENT_STRATEGIES,
   PAWN_COLORS,
   PAWN_TYPES,
@@ -31,7 +29,7 @@ const IMPLICIT_SKILL_IDS = [
 ];
 
 const WEAPON_KEYS = weaponKeysData as WeaponKeysData;
-const WALL_VISUAL_SETS = (wallVisualKeysData as WallVisualSetDefinition[]).map((set) => set.id);
+const WALL_VISUAL_SETS = (wallVisualSetsData as WallVisualSetDefinition[]).map((set) => set.id);
 
 function requiredWeaponKey(value: unknown, type: PawnType, label: string): string {
   const key = requiredString(value, label);
@@ -328,7 +326,7 @@ export function parseCommanderJson(json: string): CommanderFormState {
     stats.pawnTypeByColor,
     'baseStats.pawnTypeByColor',
     (entry, label) =>
-      enumValue(entry, DEFAULT_PAWN_TYPES, label) as DefaultPawnType,
+      enumValue(entry, PAWN_TYPES, label) as PawnType,
   );
 
   return {
@@ -513,7 +511,7 @@ export function validateCommander(state: CommanderFormState): string[] {
   if (!state.id.trim()) errors.push("L'identifiant du commandant est obligatoire.");
   if (!state.name.trim()) errors.push('Le nom du commandant est obligatoire.');
   if (!WALL_VISUAL_SETS.includes(state.wallVisualSet)) {
-    errors.push(`Le lot visuel de mur "${state.wallVisualSet}" n'existe pas dans wallVisualKeys.json.`);
+    errors.push(`Le lot visuel de mur "${state.wallVisualSet}" n'existe pas dans wallVisualSets.json.`);
   }
 
   const requiredNumbers: Array<[string, number]> = [

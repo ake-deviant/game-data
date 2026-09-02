@@ -5,9 +5,9 @@ import {
   useRef,
   useState,
 } from 'react';
-import skillsData from '../../../skills.json';
-import weaponKeysData from '../../../weaponKeys.json';
-import wallVisualKeysData from '../../../wallVisualKeys.json';
+import skillsData from '../../../data/skills.json';
+import weaponKeysData from '../../../data/weaponKeys.json';
+import wallVisualSetsData from '../../../data/wallVisualSets.json';
 import {
   createInitialState,
   createPawn,
@@ -16,12 +16,10 @@ import {
   validateCommander,
 } from './model';
 import {
-  DEFAULT_PAWN_TYPES,
   MOVEMENT_STRATEGIES,
   PAWN_COLORS,
   PAWN_TYPES,
   type CommanderFormState,
-  type DefaultPawnType,
   type MovementStrategy,
   type PawnColor,
   type PawnFormState,
@@ -34,7 +32,7 @@ import {
 
 const typedSkills = skillsData as SkillsData;
 const weaponKeys = weaponKeysData as WeaponKeysData;
-const wallVisualSets = wallVisualKeysData as WallVisualSetDefinition[];
+const wallVisualSets = wallVisualSetsData as WallVisualSetDefinition[];
 
 const colorMeta: Record<PawnColor, { label: string; dot: string; tint: string }> = {
   red: { label: 'Rouge', dot: 'bg-rose-400', tint: 'from-rose-500/12' },
@@ -851,8 +849,8 @@ export default function App() {
                   <NumberInput onChange={(value) => setColorField('attackPowerByColor', color, value === '' ? 0 : value)} value={form.attackPowerByColor[color]} />
                   <NumberInput onChange={(value) => setColorField('attackTurnCountByColor', color, value === '' ? 0 : value)} value={form.attackTurnCountByColor[color]} />
                   <NumberInput onChange={(value) => setColorField('nonePowerByColor', color, value === '' ? 0 : value)} value={form.nonePowerByColor[color]} />
-                  <select className={inputClass} onChange={(e) => setColorField('pawnTypeByColor', color, e.target.value as DefaultPawnType)} value={form.pawnTypeByColor[color]}>
-                    {DEFAULT_PAWN_TYPES.map((type) => <option key={type} value={type}>{type}</option>)}
+                  <select className={inputClass} onChange={(e) => setColorField('pawnTypeByColor', color, e.target.value as PawnType)} value={form.pawnTypeByColor[color]}>
+                    {PAWN_TYPES.map((type) => <option key={type} value={type}>{type}</option>)}
                   </select>
                   <input className={inputClass} onChange={(e) => setColorField('pawnVisualKeyByColor', color, e.target.value)} placeholder={`pawn_default_${color}`} value={form.pawnVisualKeyByColor[color]} />
                   <select className={inputClass} onChange={(e) => setColorField('pawnWeaponKeyByColor', color, e.target.value)} value={form.pawnWeaponKeyByColor[color]}>

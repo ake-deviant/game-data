@@ -1,0 +1,9 @@
+{
+  "name": "@game-data/application",
+  "private": true,
+  "type": "module",
+  "exports": "./index.ts",
+  "dependencies": {
+    "@game-data/domain": "*"
+  }
+}

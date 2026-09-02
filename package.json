@@ -8,10 +8,10 @@
   "main": "index.js",
   "private": true,
   "files": [
-    "commanders.json",
-    "skills.json",
-    "weaponKeys.json",
-    "wallVisualKeys.json"
+    "data/commanders.json",
+    "data/skills.json",
+    "data/weaponKeys.json",
+    "data/wallVisualSets.json"
   ],
   "scripts": {
     "editor": "vite --config tools/commander-editor/vite.config.ts",
