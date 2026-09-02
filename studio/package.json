@@ -1,0 +1,24 @@
+{
+  "name": "game-data-studio",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "src/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @game-data/web-react",
+    "build": "npm run build --workspace @game-data/web-react",
+    "typecheck": "tsc --noEmit -p apps/web-react/tsconfig.json && tsc --noEmit -p tests/tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5",
+    "vitest": "^4.0.18"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@game-data/infrastructure",
+  "private": true,
+  "type": "module",
+  "exports": "./index.ts",
+  "dependencies": {
+    "@game-data/application": "*",
+    "@game-data/domain": "*",
+    "zod": "^4.1.5"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "@game-data/domain",
+  "private": true,
+  "type": "module",
+  "exports": "./index.ts"
+}

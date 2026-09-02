@@ -1,0 +1,29 @@
+[
+  {
+    "id": "12",
+    "name": "comm hir",
+    "description": "aucune",
+    "icon": "aucune",
+    "baseStats": {
+      "pawnMax": 40,
+      "health": 100,
+      "maxDefenseLevel": 2,
+      "wallVisualSet": "default",
+      "defensePowerPerLevel": 6,
+      "pawnDefinitionIdByColor": {
+        "red": "soldier-1-red",
+        "blue": "soldier-1-blue",
+        "green": "soldier-1-green"
+      },
+      "commanderPawnDefinitionIds": [
+        "commander-1-1"
+      ],
+      "officerPawnDefinitionIds": [
+        "Aegis_officer_1",
+        "Aegis_officer_2",
+        "Aegis_officer_3"
+      ],
+      "movementsPerTurn": 3
+    }
+  }
+]

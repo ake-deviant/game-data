@@ -1,0 +1,20 @@
+[
+  {
+    "id": "commander-1-1",
+    "displayName": "Berseker Bleu",
+    "color": "blue",
+    "type": "melee",
+    "turnCount": 7,
+    "power": 40,
+    "countPawns": 5,
+    "moveCount": 4,
+    "visualKey": "commander_melee_blue",
+    "weaponKey": "spear",
+    "requiredInfluencePoints": 10,
+    "implicitSkillParams": {
+      "powerBonusPerDecrement": 10,
+      "columnPowerBonusPerDecrement": 6,
+      "spBonusPerLiaison": 1
+    }
+  }
+]
