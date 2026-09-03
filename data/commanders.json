@@ -1,49 +1,46 @@
 [
   {
     "id": "12",
-    "name": "comm hir",
+    "name": "Aegis",
     "description": "aucune",
     "icon": "aucune",
     "baseStats": {
-      "pawnMax": 40,
-      "health": 100,
+      "pawnMax": 45,
+      "health": 99,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
-      "defensePowerPerLevel": 6,
+      "defensePowerPerLevel": 8,
       "movementsPerTurn": 3,
       "soldierPawns": [
         {
-          "id": "soldier-1-red",
-          "displayName": "Soldat rouge",
+          "id": "Aegis-soldier-melee-red",
           "color": "red",
-          "type": "melee",
+          "type": "ranged",
           "turnCount": 2,
           "power": 8,
           "nonePower": 2,
-          "visualKey": "pawn_default_melee_red",
-          "weaponKey": "spear"
+          "visualKey": "Aegis_soldier_melee_red",
+          "weaponKey": "short_iron_katana"
         },
         {
-          "id": "soldier-1-blue",
-          "displayName": "Soldat bleu",
+          "id": "Aegis-soldier-melee-blue",
           "color": "blue",
           "type": "melee",
-          "turnCount": 3,
-          "power": 11,
-          "nonePower": 3,
-          "visualKey": "pawn_default_melee_blue",
-          "weaponKey": "sword"
+          "turnCount": 2,
+          "power": 10,
+          "nonePower": 2,
+          "visualKey": "Aegis_soldier_melee_blue",
+          "weaponKey": "short_iron_katana"
         },
         {
-          "id": "soldier-1-green",
-          "displayName": "Soldat vert",
+          "id": "Aegis-soldier-melee-green",
           "color": "green",
-          "type": "ranged",
-          "turnCount": 1,
-          "power": 7,
+          "type": "melee",
+          "turnCount": 2,
+          "power": 10,
           "nonePower": 2,
-          "visualKey": "pawn_default_ranged_green",
-          "weaponKey": "arrow"
+          "visualKey": "Aegis_soldier_melee_green",
+          "weaponKey": "wooden_spiked_club"
         }
       ],
       "commanderPawns": [
@@ -117,7 +114,16 @@
             "spBonusPerLiaison": 1
           }
         }
-      ]
+      ],
+      "skills": [
+        "free-recruits",
+        "destroy-defense-pawns",
+        "expand-pawn-capacity"
+      ],
+      "innateSkills": [
+        "tactical-demolition"
+      ],
+      "freeRecruitThreshold": 20
     }
   }
 ]
