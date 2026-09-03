@@ -175,7 +175,8 @@
       ],
       "innateSkills": [
         "tactical-demolition"
-      ]
+      ],
+      "freeRecruitThreshold": 21
     }
   },
   {
@@ -354,7 +355,8 @@
       ],
       "innateSkills": [
         "tactical-demolition"
-      ]
+      ],
+      "freeRecruitThreshold": 21
     }
   }
 ]
