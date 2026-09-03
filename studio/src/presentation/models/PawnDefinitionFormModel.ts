@@ -10,7 +10,6 @@ export interface PawnDefinitionFormModel {
   readonly displayName: string;
   readonly power: number;
   readonly turnCount: number;
-  readonly nonePower: number;
   readonly countPawns: number;
   readonly moveCount: number;
   readonly visualKey: string;
@@ -37,7 +36,6 @@ export function createEmptyPawnDefinitionForm(): PawnDefinitionFormModel {
     displayName: '',
     power: 5,
     turnCount: 2,
-    nonePower: 1,
     countPawns: 3,
     moveCount: 1,
     visualKey: '',

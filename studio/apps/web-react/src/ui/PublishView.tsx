@@ -39,10 +39,14 @@ export function PublishView() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ commanderIds: Array.from(selected) }),
       });
-      const body = await response.json() as { published?: { id: string; name: string }[]; error?: string };
+      const body = await response.json() as {
+        published?: { id: string; name: string }[];
+        error?: string;
+        errors?: string[];
+      };
       if (!response.ok) {
         setStatus('error');
-        setMessage(body.error ?? `Erreur ${response.status}`);
+        setMessage(body.errors?.join('\n') ?? body.error ?? `Erreur ${response.status}`);
       } else {
         setStatus('success');
         setMessage(`${(body.published ?? []).length} commander(s) publié(s) avec succès.`);
@@ -118,7 +122,7 @@ export function PublishView() {
             {status === 'success' && (
               <div className="mb-4 flex items-center gap-2 rounded-xl border border-emerald-400/15 bg-emerald-400/[0.06] p-3 text-xs text-emerald-300">
                 <Icon className="size-4 shrink-0" name="check" />
-                {message}
+                <span className="whitespace-pre-line">{message}</span>
               </div>
             )}
             {status === 'error' && (

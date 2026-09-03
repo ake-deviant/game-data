@@ -2,12 +2,22 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
-import { CreateCommander, UpdateCommander, ListCommanders } from '@game-data/application';
+import {
+  CreateCommander,
+  GenerateProductionGameData,
+  ListCommanders,
+  ProductionGameDataValidator,
+  UpdateCommander,
+} from '@game-data/application';
 import { JsonCommanderCatalogRepository } from '@game-data/infrastructure';
 import {
   JsonCommanderPawnDefinitionRepository,
   JsonOfficerPawnDefinitionRepository,
   JsonSoldierPawnDefinitionRepository,
+  JsonProductionCommanderCatalogRepository,
+  JsonSkillCatalogRepository,
+  JsonWallVisualSetCatalogRepository,
+  JsonWeaponKeyCatalogRepository,
 } from '@game-data/infrastructure';
 import { CommanderCatalogApiHandler } from './vite/CommanderCatalogApiHandler.ts';
 import { PawnCatalogApiHandler } from './vite/PawnCatalogApiHandler.ts';
@@ -44,13 +54,21 @@ const pawnHandler = new PawnCatalogApiHandler([
   { role: 'commander', repository: commanderPawnRepo },
 ]);
 const pawnApiHandler = new PawnApiHandler(soldierRepo, officerPawnRepo, commanderPawnRepo);
-const publishHandler = new PublishApiHandler(
-  new ListCommanders(repository),
+const productionCommanderCatalogPath = fileURLToPath(
+  new URL('../../../data/commanders.json', import.meta.url),
+);
+const generateProductionGameData = new GenerateProductionGameData(
+  repository,
   soldierRepo,
   commanderPawnRepo,
   officerPawnRepo,
-  fileURLToPath(new URL('../../../data/commanders.json', import.meta.url)),
+  new JsonProductionCommanderCatalogRepository(productionCommanderCatalogPath),
+  new JsonSkillCatalogRepository(fileURLToPath(new URL('../../../data/skills.json', import.meta.url))),
+  new JsonWeaponKeyCatalogRepository(fileURLToPath(new URL('../../../data/weaponKeys.json', import.meta.url))),
+  new JsonWallVisualSetCatalogRepository(fileURLToPath(new URL('../../../data/wallVisualSets.json', import.meta.url))),
+  new ProductionGameDataValidator(),
 );
+const publishHandler = new PublishApiHandler(generateProductionGameData, productionCommanderCatalogPath);
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler)],

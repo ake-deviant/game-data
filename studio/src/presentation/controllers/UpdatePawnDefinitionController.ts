@@ -34,9 +34,7 @@ export class UpdatePawnDefinitionController {
       displayName: form.displayName || undefined,
       power: form.power,
       turnCount: form.turnCount,
-      ...(isSoldier
-        ? { nonePower: form.nonePower }
-        : {
+      ...(!isSoldier && {
             countPawns: form.countPawns,
             moveCount: form.moveCount,
             requiredInfluencePoints: form.requiredInfluencePoints > 0 ? form.requiredInfluencePoints : undefined,

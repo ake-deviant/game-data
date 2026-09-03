@@ -37,8 +37,8 @@ export class UpdatePawnDefinition {
 
   private toEntity(request: CreatePawnDefinitionRequest, id: PawnDefinitionId): PawnDefinition {
     const identity = new PawnIdentity(id, request.color, request.type, request.displayName || undefined);
-    const stats = request.nonePower !== undefined
-      ? new SoldierPawnStats(request.power, request.turnCount, request.nonePower)
+    const stats = request.role === 'soldier'
+      ? new SoldierPawnStats(request.power, request.turnCount)
       : new PawnStats(request.turnCount, request.power, request.countPawns ?? 1, request.moveCount ?? 1);
     const visual = new PawnVisual(request.visualKey, new WeaponKey(request.weaponKey));
     const skills = request.skills?.map((s) => new SkillId(s));

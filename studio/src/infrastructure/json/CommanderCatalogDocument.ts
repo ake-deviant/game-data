@@ -18,11 +18,6 @@ const optionalNumbersByColorSchema = z.object({
   green: z.number().optional(),
 }).optional();
 
-const movementStrategySchema = z.enum([
-  'after-first-match',
-  '1-match-1-move',
-]);
-
 export const commanderCatalogItemSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
@@ -43,10 +38,6 @@ export const commanderCatalogItemSchema = z.object({
     freeRecruitThreshold: z.number().optional(),
     skillsByColor: optionalSkillsByColorSchema,
     powerBonusPerDecrementByColor: optionalNumbersByColorSchema,
-    movementBonusStrategies: z.object({
-      place: movementStrategySchema.optional(),
-      remove: movementStrategySchema.optional(),
-    }).optional(),
   }),
 });
 

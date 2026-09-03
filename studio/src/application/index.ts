@@ -4,6 +4,14 @@ export type { PawnDefinitionRepository } from './ports/PawnDefinitionRepository.
 export type { SoldierPawnDefinitionRepository } from './ports/SoldierPawnDefinitionRepository.ts';
 export type { OfficerPawnDefinitionRepository } from './ports/OfficerPawnDefinitionRepository.ts';
 export type { CommanderPawnDefinitionRepository } from './ports/CommanderPawnDefinitionRepository.ts';
+export type { SkillCatalogRepository } from './ports/SkillCatalogRepository.ts';
+export type { WeaponKeyCatalogRepository } from './ports/WeaponKeyCatalogRepository.ts';
+export type { WallVisualSetCatalogRepository } from './ports/WallVisualSetCatalogRepository.ts';
+export type { ProductionCommanderCatalogRepository } from './ports/ProductionCommanderCatalogRepository.ts';
+export type {
+  ProductionCommanderDocument,
+  ProductionPawnDocument,
+} from './models/ProductionCommanderDocument.ts';
 export type {
   CreateCommanderRequest,
   CreateCommanderResult,
@@ -32,3 +40,11 @@ export {
   PawnDefinitionNotFoundError,
   UpdatePawnDefinition,
 } from './use-cases/UpdatePawnDefinition.ts';
+export type {
+  GenerateProductionGameDataRequest,
+} from './use-cases/GenerateProductionGameData.ts';
+export { GenerateProductionGameData } from './use-cases/GenerateProductionGameData.ts';
+export {
+  ProductionGameDataValidationError,
+  ProductionGameDataValidator,
+} from './services/ProductionGameDataValidator.ts';

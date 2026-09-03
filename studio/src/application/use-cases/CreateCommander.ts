@@ -28,10 +28,6 @@ export interface CreateCommanderRequest {
   readonly freeRecruitThreshold?: number;
   readonly skillsByColor?: Partial<Record<'red' | 'blue' | 'green', readonly string[]>>;
   readonly powerBonusPerDecrementByColor?: Partial<Record<'red' | 'blue' | 'green', number>>;
-  readonly movementBonusStrategies?: {
-    readonly place?: 'after-first-match' | '1-match-1-move';
-    readonly remove?: 'after-first-match' | '1-match-1-move';
-  };
 }
 
 export interface CreateCommanderResult {
@@ -100,7 +96,6 @@ export class CreateCommander {
             )
           : undefined,
         powerBonusPerDecrementByColor: request.powerBonusPerDecrementByColor,
-        movementBonusStrategies: request.movementBonusStrategies,
       },
     });
   }

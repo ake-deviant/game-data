@@ -33,7 +33,6 @@ interface PawnListItem {
   turnCount: number;
   visualKey: string;
   weaponKey: string;
-  nonePower?: number;
   countPawns?: number;
   moveCount?: number;
   requiredInfluencePoints?: number;
@@ -60,7 +59,6 @@ function itemToForm(item: PawnListItem): PawnDefinitionFormModel {
     displayName: item.displayName === item.id ? '' : item.displayName,
     power: item.power,
     turnCount: item.turnCount,
-    nonePower: item.nonePower ?? 0,
     countPawns: item.countPawns ?? 1,
     moveCount: item.moveCount ?? 1,
     visualKey: item.visualKey,
@@ -198,7 +196,7 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
           </Section>
 
           <Section icon="stats" eyebrow="Statistiques" title="Puissance & tour"
-            description={isSoldier ? 'Soldat individuel — nonePower = dégâts infligés au commandant adverse.' : 'Groupe de pions.'}>
+            description={isSoldier ? 'Soldat individuel — nonePower est automatiquement égal à la durée.' : 'Groupe de pions.'}>
             <div className="grid grid-cols-2 gap-4">
               <Field label="Puissance" required>
                 <input className={inputClass} type="number" min={0} value={form.power}
@@ -209,13 +207,8 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
                   onChange={(e) => setField('turnCount', Number(e.target.value))} />
               </Field>
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              {isSoldier ? (
-                <Field label="nonePower" hint="Dégâts infligés au commandant adverse.">
-                  <input className={inputClass} type="number" min={0} value={form.nonePower}
-                    onChange={(e) => setField('nonePower', Number(e.target.value))} />
-                </Field>
-              ) : (
+            {!isSoldier && (
+              <div className="mt-4 grid grid-cols-2 gap-4">
                 <>
                   <Field label="Nombre de pions (countPawns)" required>
                     <input className={inputClass} type="number" min={0} value={form.countPawns}
@@ -226,8 +219,8 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
                       onChange={(e) => setField('moveCount', Number(e.target.value))} />
                   </Field>
                 </>
-              )}
-            </div>
+              </div>
+            )}
           </Section>
 
           <Section icon="shield" eyebrow="Visuel" title="Clés visuelles" description="Référence au modèle 3D et à l'arme équipée.">

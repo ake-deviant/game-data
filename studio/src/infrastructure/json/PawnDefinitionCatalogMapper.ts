@@ -16,7 +16,6 @@ export class PawnDefinitionCatalogMapper {
       ? new SoldierPawnStats(
           document.power,
           document.turnCount,
-          document.nonePower,
         )
       : new PawnStats(
           document.turnCount,

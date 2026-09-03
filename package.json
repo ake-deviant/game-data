@@ -17,7 +17,8 @@
     "editor": "vite --config tools/commander-editor/vite.config.ts",
     "editor:build": "tsc -p tools/commander-editor/tsconfig.json && vite build --config tools/commander-editor/vite.config.ts",
     "editor:preview": "vite preview --config tools/commander-editor/vite.config.ts",
-    "test": "npm run editor:build"
+    "test": "npm run editor:build",
+    "validate:data": "npm run validate:data --prefix studio"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",

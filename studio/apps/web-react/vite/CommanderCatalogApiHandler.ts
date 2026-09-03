@@ -43,10 +43,6 @@ const commanderRequestSchema = z.object({
     blue: z.number().optional(),
     green: z.number().optional(),
   }).optional(),
-  movementBonusStrategies: z.object({
-    place: z.enum(['after-first-match', '1-match-1-move']).optional(),
-    remove: z.enum(['after-first-match', '1-match-1-move']).optional(),
-  }).optional(),
 });
 
 type CreateCommanderExecutor = Pick<CreateCommander, 'execute'>;

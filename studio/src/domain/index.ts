@@ -1,8 +1,6 @@
 export type {
   CommanderProps,
   CommanderStats,
-  MovementBonusStrategies,
-  MovementStrategy,
 } from './entities/Commander.ts';
 export type {
   PawnImplicitSkillParams,

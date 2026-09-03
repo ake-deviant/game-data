@@ -127,7 +127,7 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
         eyebrow="Statistiques"
         title="Puissance & tour"
         description={isSoldier
-          ? 'Soldat individuel — nonePower = dégâts infligés au commandant adverse.'
+          ? 'Soldat individuel — nonePower est automatiquement égal à la durée.'
           : 'Groupe de pions — countPawns × puissance placés sur le plateau.'}
       >
         <div className="grid grid-cols-2 gap-4">
@@ -141,13 +141,8 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
           </Field>
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-4">
-          {isSoldier ? (
-            <Field label="nonePower" hint="Dégâts infligés au commandant adverse.">
-              <input className={inputClass} type="number" min={0} value={form.nonePower}
-                onChange={(e) => setField('nonePower', Number(e.target.value))} />
-            </Field>
-          ) : (
+        {!isSoldier && (
+          <div className="mt-4 grid grid-cols-2 gap-4">
             <>
               <Field label="Nombre de pions (countPawns)" required>
                 <input className={inputClass} type="number" min={0} value={form.countPawns}
@@ -158,8 +153,8 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
                   onChange={(e) => setField('moveCount', Number(e.target.value))} />
               </Field>
             </>
-          )}
-        </div>
+          </div>
+        )}
       </Section>
 
       {/* Visual */}

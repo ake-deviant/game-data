@@ -20,14 +20,14 @@ describe('PawnStats', () => {
 
 describe('SoldierPawnStats', () => {
   it('contient uniquement les statistiques présentes pour un pion soldier', () => {
-    const stats = new SoldierPawnStats(8, 2, 3);
+    const stats = new SoldierPawnStats(8, 2);
 
-    expect(stats).toEqual({ power: 8, turnCount: 2, nonePower: 3 });
+    expect(stats).toEqual({ power: 8, turnCount: 2, nonePower: 2 });
     expect(stats).not.toHaveProperty('countPawns');
     expect(stats).not.toHaveProperty('moveCount');
   });
 
   it('refuse une valeur négative', () => {
-    expect(() => new SoldierPawnStats(8, 2, -1)).toThrow();
+    expect(() => new SoldierPawnStats(8, -1)).toThrow();
   });
 });

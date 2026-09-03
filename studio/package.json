@@ -10,7 +10,8 @@
     "dev": "npm run dev --workspace @game-data/web-react",
     "build": "npm run build --workspace @game-data/web-react",
     "typecheck": "tsc --noEmit -p apps/web-react/tsconfig.json && tsc --noEmit -p tests/tsconfig.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "validate:data": "vitest run tests/integration/ProductionGameDataFiles.test.ts"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",

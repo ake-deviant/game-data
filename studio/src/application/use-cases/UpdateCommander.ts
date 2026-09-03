@@ -69,7 +69,6 @@ export class UpdateCommander {
             )
           : undefined,
         powerBonusPerDecrementByColor: request.powerBonusPerDecrementByColor,
-        movementBonusStrategies: request.movementBonusStrategies,
       },
     });
   }

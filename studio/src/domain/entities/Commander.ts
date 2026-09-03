@@ -2,13 +2,6 @@ import type { PawnColor } from '../value-objects/PawnIdentity.ts';
 import { PawnDefinitionId } from '../value-objects/PawnDefinitionId.ts';
 import type { SkillId } from '../value-objects/SkillId.ts';
 
-export type MovementStrategy = 'after-first-match' | '1-match-1-move';
-
-export interface MovementBonusStrategies {
-  place?: MovementStrategy;
-  remove?: MovementStrategy;
-}
-
 export interface CommanderStats {
   pawnMax: number;
   health: number;
@@ -24,7 +17,6 @@ export interface CommanderStats {
   freeRecruitThreshold?: number;
   skillsByColor?: Partial<Record<PawnColor, readonly SkillId[]>>;
   powerBonusPerDecrementByColor?: Partial<Record<PawnColor, number>>;
-  movementBonusStrategies?: MovementBonusStrategies;
 }
 
 export interface CommanderProps {

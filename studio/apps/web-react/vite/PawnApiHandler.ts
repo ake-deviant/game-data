@@ -17,7 +17,6 @@ const pawnRequestSchema = z.object({
   displayName: z.string().optional(),
   power: z.number().nonnegative(),
   turnCount: z.number().nonnegative(),
-  nonePower: z.number().nonnegative().optional(),
   countPawns: z.number().nonnegative().optional(),
   moveCount: z.number().nonnegative().optional(),
   visualKey: z.string().min(1),

@@ -1,0 +1,45 @@
+name: Validate pull request
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            studio/package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install Studio dependencies
+        run: npm ci --prefix studio
+
+      - name: Validate production data
+        run: npm run validate:data
+
+      - name: Test Studio
+        run: npm test --prefix studio
+
+      - name: Typecheck Studio
+        run: npm run typecheck --prefix studio
+
+      - name: Build Studio
+        run: npm run build --prefix studio
+
+      - name: Build legacy editor
+        run: npm test

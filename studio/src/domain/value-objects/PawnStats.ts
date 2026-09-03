@@ -32,13 +32,12 @@ export class SoldierPawnStats {
   public readonly turnCount: number;
   public readonly nonePower: number;
 
-  public constructor(power: number, turnCount: number, nonePower: number) {
+  public constructor(power: number, turnCount: number) {
     SoldierPawnStats.assertNonNegative(power, 'power');
     SoldierPawnStats.assertNonNegative(turnCount, 'turnCount');
-    SoldierPawnStats.assertNonNegative(nonePower, 'nonePower');
     this.power = power;
     this.turnCount = turnCount;
-    this.nonePower = nonePower;
+    this.nonePower = turnCount;
   }
 
   private static assertNonNegative(value: number, field: string): void {
