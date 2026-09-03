@@ -8,8 +8,8 @@
     "power": 40,
     "countPawns": 5,
     "moveCount": 4,
-    "visualKey": "commander_melee_blue",
-    "weaponKey": "spear",
+    "visualKey": "Aegis_commander_melee_green",
+    "weaponKey": "wooden_spiked_club",
     "requiredInfluencePoints": 10,
     "implicitSkillParams": {
       "powerBonusPerDecrement": 10,
