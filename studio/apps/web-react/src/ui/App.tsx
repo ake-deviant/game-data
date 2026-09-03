@@ -30,7 +30,7 @@ const commandersModule: ModuleDef<CommanderView> = {
   views: [
     { id: 'create',  label: 'Créer',   icon: 'spark' },
     { id: 'edit',    label: 'Modifier', icon: 'identity' },
-    { id: 'publish', label: 'Publier',  icon: 'upload' },
+    { id: 'publish', label: 'Proposer en production', icon: 'upload' },
   ],
 };
 

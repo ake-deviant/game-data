@@ -6,3 +6,4 @@ export { JsonSkillCatalogRepository } from './json/JsonSkillCatalogRepository.ts
 export { JsonWeaponKeyCatalogRepository } from './json/JsonWeaponKeyCatalogRepository.ts';
 export { JsonWallVisualSetCatalogRepository } from './json/JsonWallVisualSetCatalogRepository.ts';
 export { JsonProductionCommanderCatalogRepository } from './json/JsonProductionCommanderCatalogRepository.ts';
+export { GitProductionGameDataProposalGateway } from './git/GitProductionGameDataProposalGateway.ts';

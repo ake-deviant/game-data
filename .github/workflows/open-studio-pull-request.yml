@@ -1,0 +1,26 @@
+name: Open Studio pull request
+
+on:
+  push:
+    branches:
+      - studio/publish-*
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  open-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          HEAD_BRANCH: ${{ github.ref_name }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "$HEAD_BRANCH" \
+            --title "feat(data): update production game data" \
+            --body "Proposition générée et validée depuis Game Data Studio."

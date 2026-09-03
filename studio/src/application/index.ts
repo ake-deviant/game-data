@@ -9,6 +9,10 @@ export type { WeaponKeyCatalogRepository } from './ports/WeaponKeyCatalogReposit
 export type { WallVisualSetCatalogRepository } from './ports/WallVisualSetCatalogRepository.ts';
 export type { ProductionCommanderCatalogRepository } from './ports/ProductionCommanderCatalogRepository.ts';
 export type {
+  ProductionGameDataProposal,
+  ProductionGameDataProposalGateway,
+} from './ports/ProductionGameDataProposalGateway.ts';
+export type {
   ProductionCommanderDocument,
   ProductionPawnDocument,
 } from './models/ProductionCommanderDocument.ts';
@@ -44,6 +48,8 @@ export type {
   GenerateProductionGameDataRequest,
 } from './use-cases/GenerateProductionGameData.ts';
 export { GenerateProductionGameData } from './use-cases/GenerateProductionGameData.ts';
+export type { CreateProductionGameDataProposalResult } from './use-cases/CreateProductionGameDataProposal.ts';
+export { CreateProductionGameDataProposal } from './use-cases/CreateProductionGameDataProposal.ts';
 export {
   ProductionGameDataValidationError,
   ProductionGameDataValidator,

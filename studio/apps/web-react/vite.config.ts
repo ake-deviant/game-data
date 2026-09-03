@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 import {
   CreateCommander,
+  CreateProductionGameDataProposal,
   GenerateProductionGameData,
   ListCommanders,
   ProductionGameDataValidator,
@@ -18,6 +19,7 @@ import {
   JsonSkillCatalogRepository,
   JsonWallVisualSetCatalogRepository,
   JsonWeaponKeyCatalogRepository,
+  GitProductionGameDataProposalGateway,
 } from '@game-data/infrastructure';
 import { CommanderCatalogApiHandler } from './vite/CommanderCatalogApiHandler.ts';
 import { PawnCatalogApiHandler } from './vite/PawnCatalogApiHandler.ts';
@@ -68,7 +70,13 @@ const generateProductionGameData = new GenerateProductionGameData(
   new JsonWallVisualSetCatalogRepository(fileURLToPath(new URL('../../../data/wallVisualSets.json', import.meta.url))),
   new ProductionGameDataValidator(),
 );
-const publishHandler = new PublishApiHandler(generateProductionGameData, productionCommanderCatalogPath);
+const repositoryPath = fileURLToPath(new URL('../../../', import.meta.url));
+const publishHandler = new PublishApiHandler(
+  new CreateProductionGameDataProposal(
+    generateProductionGameData,
+    new GitProductionGameDataProposalGateway(repositoryPath),
+  ),
+);
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler)],

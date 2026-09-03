@@ -19,7 +19,7 @@
           "turnCount": 2,
           "power": 8,
           "nonePower": 2,
-          "visualKey": "Aegis_soldier_melee_red",
+          "visualKey": "Aegis_soldier_ranged_red",
           "weaponKey": "short_iron_katana"
         },
         {
@@ -99,19 +99,21 @@
           }
         },
         {
-          "id": "Aegis_officer_3",
-          "displayName": "Archer vert",
-          "color": "green",
+          "id": "Aegis_officer_4",
+          "displayName": "savant rouge",
+          "color": "red",
           "type": "ranged",
           "turnCount": 3,
-          "power": 24,
-          "countPawns": 2,
+          "power": 12,
+          "countPawns": 1,
           "moveCount": 2,
-          "visualKey": "Aegis_officer_ranged_green",
-          "weaponKey": "arrow",
-          "requiredInfluencePoints": 8,
+          "visualKey": "Aegis_officer_ranged_red",
+          "weaponKey": "shuriken",
+          "requiredInfluencePoints": 10,
           "implicitSkillParams": {
-            "spBonusPerLiaison": 1
+            "columnPowerBonusPerDecrement": 6,
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 10
           }
         }
       ],
