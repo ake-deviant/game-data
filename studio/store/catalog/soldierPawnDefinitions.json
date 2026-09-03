@@ -6,8 +6,8 @@
     "turnCount": 2,
     "power": 10,
     "nonePower": 2,
-    "visualKey": "wooden_spiked_club",
-    "weaponKey": "sword"
+    "visualKey": "Aegis_soldier_melee_green",
+    "weaponKey": "wooden_spiked_club"
   },
   {
     "id": "Aegis-soldier-melee-red",
@@ -16,7 +16,7 @@
     "turnCount": 2,
     "power": 8,
     "nonePower": 2,
-    "visualKey": "arrow",
+    "visualKey": "Aegis_soldier_melee_red",
     "weaponKey": "short_iron_katana"
   },
   {
@@ -26,7 +26,7 @@
     "turnCount": 2,
     "power": 10,
     "nonePower": 2,
-    "visualKey": "short_iron_katana",
-    "weaponKey": "sword"
+    "visualKey": "Aegis_soldier_melee_blue",
+    "weaponKey": "short_iron_katana"
   }
 ]
