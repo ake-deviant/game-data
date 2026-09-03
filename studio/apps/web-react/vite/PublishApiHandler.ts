@@ -1,14 +1,8 @@
-import { mkdir, rename, rm, writeFile } from 'node:fs/promises';
-import { randomUUID } from 'node:crypto';
-import { dirname } from 'node:path';
 import {
   ProductionGameDataValidationError,
-  type GenerateProductionGameData,
+  type CreateProductionGameDataProposal,
+  type CreateProductionGameDataProposalResult,
 } from '@game-data/application';
-
-export interface PublishResult {
-  published: { id: string; name: string }[];
-}
 
 interface PublishError {
   readonly error: string;
@@ -16,20 +10,15 @@ interface PublishError {
 }
 
 export class PublishApiHandler {
-  private readonly generateProductionGameData: Pick<GenerateProductionGameData, 'execute'>;
-  private readonly productionCatalogPath: string;
+  private readonly createProposal: Pick<CreateProductionGameDataProposal, 'execute'>;
 
-  public constructor(
-    generateProductionGameData: Pick<GenerateProductionGameData, 'execute'>,
-    productionCatalogPath: string,
-  ) {
-    this.generateProductionGameData = generateProductionGameData;
-    this.productionCatalogPath = productionCatalogPath;
+  public constructor(createProposal: Pick<CreateProductionGameDataProposal, 'execute'>) {
+    this.createProposal = createProposal;
   }
 
   public async handle(input: unknown): Promise<{
     status: number;
-    body: PublishResult | PublishError;
+    body: CreateProductionGameDataProposalResult | PublishError;
   }> {
     const commanderIds = this.parseIds(input);
     if (!commanderIds) {
@@ -40,12 +29,9 @@ export class PublishApiHandler {
     }
 
     try {
-      const catalog = await this.generateProductionGameData.execute({ commanderIds });
-      await this.write(catalog);
-      const selected = catalog.filter(({ id }) => commanderIds.includes(id));
       return {
         status: 200,
-        body: { published: selected.map(({ id, name }) => ({ id, name })) },
+        body: await this.createProposal.execute({ commanderIds }),
       };
     } catch (error) {
       if (error instanceof ProductionGameDataValidationError) {
@@ -60,7 +46,7 @@ export class PublishApiHandler {
       if (error instanceof Error && /not found/.test(error.message)) {
         return { status: 404, body: { error: error.message } };
       }
-      return { status: 500, body: { error: 'La publication a échoué.' } };
+      return { status: 500, body: { error: 'La création de la proposition a échoué.' } };
     }
   }
 
@@ -70,17 +56,5 @@ export class PublishApiHandler {
     if (!Array.isArray(commanderIds) || commanderIds.length === 0) return null;
     if (commanderIds.some((id) => typeof id !== 'string' || id.trim().length === 0)) return null;
     return commanderIds as string[];
-  }
-
-  private async write(catalog: unknown): Promise<void> {
-    const temporaryPath = `${this.productionCatalogPath}.${randomUUID()}.tmp`;
-    await mkdir(dirname(this.productionCatalogPath), { recursive: true });
-    try {
-      await writeFile(temporaryPath, `${JSON.stringify(catalog, null, 2)}\n`, 'utf8');
-      await rename(temporaryPath, this.productionCatalogPath);
-    } catch (error) {
-      await rm(temporaryPath, { force: true });
-      throw error;
-    }
   }
 }

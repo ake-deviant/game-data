@@ -40,7 +40,8 @@ export function PublishView() {
         body: JSON.stringify({ commanderIds: Array.from(selected) }),
       });
       const body = await response.json() as {
-        published?: { id: string; name: string }[];
+        prepared?: { id: string; name: string }[];
+        branchName?: string;
         error?: string;
         errors?: string[];
       };
@@ -49,7 +50,9 @@ export function PublishView() {
         setMessage(body.errors?.join('\n') ?? body.error ?? `Erreur ${response.status}`);
       } else {
         setStatus('success');
-        setMessage(`${(body.published ?? []).length} commander(s) publié(s) avec succès.`);
+        setMessage(
+          `Proposition créée sur ${body.branchName ?? 'la branche distante'} pour ${(body.prepared ?? []).length} commander(s). La pull request va être ouverte automatiquement.`,
+        );
       }
     } catch {
       setStatus('error');
@@ -65,8 +68,8 @@ export function PublishView() {
         </div>
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-400/70">Export</p>
-          <h2 className="mt-0.5 text-lg font-semibold tracking-tight text-white">Publier des commandants</h2>
-          <p className="mt-1 text-sm leading-6 text-slate-400">Sélectionnez les commandants à exporter vers <code className="rounded bg-white/[0.05] px-1 py-0.5 text-xs text-amber-300">data/commanders.json</code>.</p>
+          <h2 className="mt-0.5 text-lg font-semibold tracking-tight text-white">Préparer une pull request</h2>
+          <p className="mt-1 text-sm leading-6 text-slate-400">Sélectionnez les commandants à proposer dans les données de production.</p>
         </div>
       </div>
 
@@ -139,7 +142,7 @@ export function PublishView() {
               type="button"
             >
               <Icon className="size-4" name="upload" />
-              {status === 'loading' ? 'Publication…' : `Publier ${selected.size > 0 ? `(${selected.size})` : ''}`}
+              {status === 'loading' ? 'Préparation…' : `Préparer la pull request ${selected.size > 0 ? `(${selected.size})` : ''}`}
             </button>
           </>
         )}

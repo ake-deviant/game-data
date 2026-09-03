@@ -1,4 +1,4 @@
-name: Create patch version
+name: Tag merged version
 
 on:
   push:
@@ -8,12 +8,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: release-main
+  group: tag-main
   cancel-in-progress: false
 
 jobs:
   release:
-    if: ${{ !contains(github.event.head_commit.message, 'chore(release)') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -51,9 +50,15 @@ jobs:
       - name: Build legacy editor
         run: npm test
 
-      - name: Create patch commit and tag
+      - name: Tag package version
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          npm version patch -m "chore(release): %s [skip ci]"
-          git push origin HEAD:main --follow-tags
+          VERSION="$(node -p "require('./package.json').version")"
+          TAG="v$VERSION"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "$TAG existe déjà, aucun nouveau tag nécessaire."
+            exit 0
+          fi
+          git tag -a "$TAG" -m "Release $TAG"
+          git push origin "$TAG"
