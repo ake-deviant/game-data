@@ -16,7 +16,10 @@
         "green": "Aegis-soldier-melee-green"
       },
       "commanderPawnDefinitionIds": [
-        "commander-1-1"
+        "commander-1-1",
+        "Aegis-commander-red",
+        "Aegis-commander-blue",
+        "Aegis-commander-ranged-blue"
       ],
       "officerPawnDefinitionIds": [
         "Aegis_officer_1",
@@ -31,8 +34,7 @@
       ],
       "innateSkills": [
         "tactical-demolition"
-      ],
-      "freeRecruitThreshold": 20
+      ]
     }
   },
   {
@@ -52,7 +54,10 @@
         "green": "Aegis-soldier-melee-green"
       },
       "commanderPawnDefinitionIds": [
-        "commander-1-1"
+        "commander-1-1",
+        "Aegis-commander-red",
+        "Aegis-commander-blue",
+        "Aegis-commander-ranged-blue"
       ],
       "officerPawnDefinitionIds": [
         "Aegis_officer_1",
@@ -63,10 +68,11 @@
       "skills": [
         "free-recruits",
         "destroy-defense-pawns",
-        "expand-pawn-capacity",
-        "tactical-demolition"
+        "expand-pawn-capacity"
       ],
-      "freeRecruitThreshold": 20
+      "innateSkills": [
+        "tactical-demolition"
+      ]
     }
   }
 ]
