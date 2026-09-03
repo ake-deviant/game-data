@@ -5,9 +5,12 @@ import {
   type UpdatePawnDefinitionController,
   type UpdatePawnDefinitionPresenter,
   type PawnRole,
+  type PawnType,
 } from '@game-data/presentation';
 import skillsData from '../../../../../data/skills.json';
 import { Icon, Field, inputClass, Section, SkillPicker } from './ui-kit';
+import { WeaponKeySelect } from './WeaponKeySelect';
+import { weaponKeyAfterTypeChange } from './weaponKeys';
 
 const pawnSkills = skillsData.pawnSkillVisuals as { id: string; displayName: string }[];
 
@@ -109,6 +112,13 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
   const setImplicit = (key: ImplicitKey, value: string) =>
     setForm((prev) => prev ? { ...prev, implicitSkillParams: { ...prev.implicitSkillParams, [key]: value } } : null);
 
+  const setType = (type: PawnType) =>
+    setForm((prev) => prev ? {
+      ...prev,
+      type,
+      weaponKey: weaponKeyAfterTypeChange(prev.weaponKey, type),
+    } : null);
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!form) return;
@@ -184,7 +194,7 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
                   {(['melee', 'ranged'] as const).map((t) => {
                     const active = form.type === t;
                     return (
-                      <button key={t} type="button" onClick={() => setField('type', t)}
+                      <button key={t} type="button" onClick={() => setType(t)}
                         className={`rounded-xl border px-3 py-2 text-sm font-semibold transition ${active ? 'border-amber-400/40 bg-amber-400/15 text-amber-200' : 'border-white/[0.07] bg-slate-950/40 text-slate-400 hover:border-white/[0.14] hover:text-slate-200'}`}>
                         {t === 'melee' ? 'Mêlée' : 'Distance'}
                       </button>
@@ -230,8 +240,7 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
                   onChange={(e) => setField('visualKey', e.target.value)} />
               </Field>
               <Field label="Weapon Key" required>
-                <input className={inputClass} value={form.weaponKey}
-                  onChange={(e) => setField('weaponKey', e.target.value)} />
+                <WeaponKeySelect type={form.type} value={form.weaponKey} onChange={(weaponKey) => setField('weaponKey', weaponKey)} />
               </Field>
             </div>
           </Section>

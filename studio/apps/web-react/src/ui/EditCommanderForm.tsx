@@ -1,5 +1,5 @@
 import { useEffect, useState, useSyncExternalStore, type FormEvent } from 'react';
-import { type CommanderFormModel, type UpdateCommanderController, type UpdateCommanderPresenter } from '@game-data/presentation';
+import { commanderListItemToForm, type CommanderFormModel, type UpdateCommanderController, type UpdateCommanderPresenter } from '@game-data/presentation';
 import type { CommanderListItem } from '@game-data/application';
 import skillsData from '../../../../../data/skills.json';
 import { Icon, Field, inputClass, Section, SkillPicker } from './ui-kit';
@@ -16,26 +16,6 @@ const colorMeta: Record<Color, { label: string; dot: string; tint: string }> = {
   blue:  { label: 'Bleu',  dot: 'bg-sky-400',     tint: 'from-sky-500/10' },
   green: { label: 'Vert',  dot: 'bg-emerald-400', tint: 'from-emerald-500/10' },
 };
-
-function itemToForm(item: CommanderListItem): CommanderFormModel {
-  return {
-    id: item.id,
-    name: item.name,
-    description: item.description ?? '',
-    icon: item.icon ?? '',
-    pawnMax: item.pawnMax,
-    health: item.health,
-    maxDefenseLevel: item.maxDefenseLevel,
-    wallVisualSet: item.wallVisualSet,
-    defensePowerPerLevel: item.defensePowerPerLevel,
-    pawnDefinitionIdByColor: item.pawnDefinitionIdByColor,
-    commanderPawnDefinitionIds: item.commanderPawnDefinitionIds,
-    officerPawnDefinitionIds: item.officerPawnDefinitionIds,
-    movementsPerTurn: item.movementsPerTurn,
-    skills: item.skills ?? [],
-    innateSkills: item.innateSkills ?? [],
-  };
-}
 
 interface Props {
   readonly controller: UpdateCommanderController;
@@ -59,7 +39,7 @@ export function EditCommanderForm({ controller, presenter }: Props) {
   const selectCommander = (id: string) => {
     setSelectedId(id);
     const item = commanders.find((c) => c.id === id);
-    setForm(item ? itemToForm(item) : null);
+    setForm(item ? commanderListItemToForm(item) : null);
   };
 
   const setField = <K extends keyof CommanderFormModel>(field: K, value: CommanderFormModel[K]) =>

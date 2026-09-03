@@ -1,3 +1,5 @@
+import type { CommanderListItem } from '@game-data/application';
+
 export interface CommanderFormModel {
   readonly id: string;
   readonly name: string;
@@ -19,6 +21,27 @@ export interface CommanderFormModel {
   readonly freeRecruitThreshold?: number;
   readonly skills?: readonly string[];
   readonly innateSkills?: readonly string[];
+}
+
+export function commanderListItemToForm(item: CommanderListItem): CommanderFormModel {
+  return {
+    id: item.id,
+    name: item.name,
+    description: item.description ?? '',
+    icon: item.icon ?? '',
+    pawnMax: item.pawnMax,
+    health: item.health,
+    maxDefenseLevel: item.maxDefenseLevel,
+    wallVisualSet: item.wallVisualSet,
+    defensePowerPerLevel: item.defensePowerPerLevel,
+    pawnDefinitionIdByColor: item.pawnDefinitionIdByColor,
+    commanderPawnDefinitionIds: item.commanderPawnDefinitionIds,
+    officerPawnDefinitionIds: item.officerPawnDefinitionIds,
+    movementsPerTurn: item.movementsPerTurn,
+    freeRecruitThreshold: item.freeRecruitThreshold,
+    skills: item.skills ?? [],
+    innateSkills: item.innateSkills ?? [],
+  };
 }
 
 export function createEmptyCommanderForm(): CommanderFormModel {

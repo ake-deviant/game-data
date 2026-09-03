@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Icon } from './ui-kit';
 
 interface CommanderItem { id: string; name: string; }
@@ -9,6 +9,8 @@ export function PublishView() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [status, setStatus] = useState<PublishStatus>('idle');
   const [message, setMessage] = useState('');
+  const [branchName, setBranchName] = useState('');
+  const submissionStarted = useRef(false);
 
   useEffect(() => {
     fetch('/api/catalog/commanders')
@@ -30,7 +32,8 @@ export function PublishView() {
   };
 
   const publish = async () => {
-    if (selected.size === 0) return;
+    if (selected.size === 0 || submissionStarted.current) return;
+    submissionStarted.current = true;
     setStatus('loading');
     setMessage('');
     try {
@@ -46,15 +49,18 @@ export function PublishView() {
         errors?: string[];
       };
       if (!response.ok) {
+        submissionStarted.current = false;
         setStatus('error');
         setMessage(body.errors?.join('\n') ?? body.error ?? `Erreur ${response.status}`);
       } else {
         setStatus('success');
+        setBranchName(body.branchName ?? '');
         setMessage(
           `Proposition créée sur ${body.branchName ?? 'la branche distante'} pour ${(body.prepared ?? []).length} commander(s). La pull request va être ouverte automatiquement.`,
         );
       }
     } catch {
+      submissionStarted.current = false;
       setStatus('error');
       setMessage('Erreur réseau.');
     }
@@ -123,9 +129,23 @@ export function PublishView() {
             </div>
 
             {status === 'success' && (
-              <div className="mb-4 flex items-center gap-2 rounded-xl border border-emerald-400/15 bg-emerald-400/[0.06] p-3 text-xs text-emerald-300">
+              <div className="mb-4 flex items-start gap-2 rounded-xl border border-emerald-400/15 bg-emerald-400/[0.06] p-3 text-xs text-emerald-300">
                 <Icon className="size-4 shrink-0" name="check" />
-                <span className="whitespace-pre-line">{message}</span>
+                <div className="min-w-0 flex-1">
+                  <span className="whitespace-pre-line">{message}</span>
+                  {branchName && (
+                    <div className="mt-2 flex items-center gap-2">
+                      <code className="select-all truncate rounded bg-black/20 px-2 py-1">{branchName}</code>
+                      <button
+                        className="rounded border border-emerald-300/20 px-2 py-1 font-semibold hover:bg-emerald-300/10"
+                        onClick={() => navigator.clipboard.writeText(branchName)}
+                        type="button"
+                      >
+                        Copier
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
             {status === 'error' && (
@@ -137,12 +157,16 @@ export function PublishView() {
 
             <button
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-amber-500/15 transition hover:bg-amber-300 active:translate-y-px disabled:opacity-50"
-              disabled={selected.size === 0 || status === 'loading'}
+              disabled={selected.size === 0 || status === 'loading' || status === 'success'}
               onClick={publish}
               type="button"
             >
               <Icon className="size-4" name="upload" />
-              {status === 'loading' ? 'Préparation…' : `Préparer la pull request ${selected.size > 0 ? `(${selected.size})` : ''}`}
+              {status === 'loading'
+                ? 'Préparation…'
+                : status === 'success'
+                  ? 'Proposition créée'
+                  : `Préparer la pull request ${selected.size > 0 ? `(${selected.size})` : ''}`}
             </button>
           </>
         )}

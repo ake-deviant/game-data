@@ -10,6 +10,8 @@ import {
 } from '@game-data/presentation';
 import skillsData from '../../../../../data/skills.json';
 import { Icon, Field, inputClass, Section, SkillPicker } from './ui-kit';
+import { WeaponKeySelect } from './WeaponKeySelect';
+import { weaponKeyAfterTypeChange } from './weaponKeys';
 
 const pawnSkills = skillsData.pawnSkillVisuals as { id: string; displayName: string }[];
 
@@ -58,6 +60,13 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
 
   const setImplicit = (key: ImplicitKey, value: string) =>
     setForm((prev) => ({ ...prev, implicitSkillParams: { ...prev.implicitSkillParams, [key]: value } }));
+
+  const setType = (type: PawnType) =>
+    setForm((prev) => ({
+      ...prev,
+      type,
+      weaponKey: weaponKeyAfterTypeChange(prev.weaponKey, type),
+    }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -112,7 +121,7 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
           <Field label="Type" required>
             <div className="flex gap-1.5">
               {types.map((t) => (
-                <button key={t.id} type="button" onClick={() => setField('type', t.id)} className={toggleClass(form.type === t.id)}>
+                <button key={t.id} type="button" onClick={() => setType(t.id)} className={toggleClass(form.type === t.id)}>
                   {t.label}
                 </button>
               ))}
@@ -170,8 +179,7 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
               onChange={(e) => setField('visualKey', e.target.value)} />
           </Field>
           <Field label="Weapon Key" required>
-            <input className={inputClass} placeholder="ex : woodcutter_poleaxe" value={form.weaponKey}
-              onChange={(e) => setField('weaponKey', e.target.value)} />
+            <WeaponKeySelect type={form.type} value={form.weaponKey} onChange={(weaponKey) => setField('weaponKey', weaponKey)} />
           </Field>
         </div>
       </Section>
