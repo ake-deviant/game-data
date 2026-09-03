@@ -127,5 +127,132 @@
       ],
       "freeRecruitThreshold": 20
     }
+  },
+  {
+    "id": "Erwan",
+    "name": "Erwan",
+    "description": "aucune",
+    "icon": "aucune",
+    "baseStats": {
+      "pawnMax": 45,
+      "health": 99,
+      "maxDefenseLevel": 2,
+      "wallVisualSet": "default",
+      "defensePowerPerLevel": 8,
+      "movementsPerTurn": 3,
+      "soldierPawns": [
+        {
+          "id": "Aegis-soldier-melee-red",
+          "color": "red",
+          "type": "ranged",
+          "turnCount": 2,
+          "power": 8,
+          "nonePower": 2,
+          "visualKey": "Aegis_soldier_ranged_red",
+          "weaponKey": "short_iron_katana"
+        },
+        {
+          "id": "Aegis-soldier-melee-blue",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 2,
+          "power": 10,
+          "nonePower": 2,
+          "visualKey": "Aegis_soldier_melee_blue",
+          "weaponKey": "short_iron_katana"
+        },
+        {
+          "id": "Aegis-soldier-melee-green",
+          "color": "green",
+          "type": "melee",
+          "turnCount": 2,
+          "power": 10,
+          "nonePower": 2,
+          "visualKey": "Aegis_soldier_melee_green",
+          "weaponKey": "wooden_spiked_club"
+        }
+      ],
+      "commanderPawns": [
+        {
+          "id": "commander-1-1",
+          "displayName": "Berseker Bleu",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 7,
+          "power": 40,
+          "countPawns": 5,
+          "moveCount": 4,
+          "visualKey": "commander_melee_blue",
+          "weaponKey": "spear",
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "columnPowerBonusPerDecrement": 6,
+            "spBonusPerLiaison": 1
+          }
+        }
+      ],
+      "officerPawns": [
+        {
+          "id": "Aegis_officer_1",
+          "displayName": "Porte étendart vert",
+          "color": "green",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 16,
+          "countPawns": 1,
+          "moveCount": 2,
+          "visualKey": "Aegis_officer_melee_green",
+          "weaponKey": "sword",
+          "requiredInfluencePoints": 2,
+          "implicitSkillParams": {
+            "spBonusPerLiaison": 1,
+            "spBonusPerAttackPawn": 1,
+            "liaisonBonusPercent": 10
+          }
+        },
+        {
+          "id": "Aegis_officer_2",
+          "displayName": "Archer bleu",
+          "color": "blue",
+          "type": "ranged",
+          "turnCount": 2,
+          "power": 8,
+          "countPawns": 1,
+          "moveCount": 2,
+          "visualKey": "Aegis_officer_ranged_blue",
+          "weaponKey": "arrow",
+          "requiredInfluencePoints": 4,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 6
+          }
+        },
+        {
+          "id": "Aegis_officer_4",
+          "displayName": "savant rouge",
+          "color": "red",
+          "type": "ranged",
+          "turnCount": 3,
+          "power": 12,
+          "countPawns": 1,
+          "moveCount": 2,
+          "visualKey": "Aegis_officer_ranged_red",
+          "weaponKey": "shuriken",
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 6,
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 10
+          }
+        }
+      ],
+      "skills": [
+        "free-recruits",
+        "destroy-defense-pawns",
+        "expand-pawn-capacity",
+        "tactical-demolition"
+      ],
+      "freeRecruitThreshold": 20
+    }
   }
 ]
