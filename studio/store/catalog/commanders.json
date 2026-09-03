@@ -24,7 +24,8 @@
       "officerPawnDefinitionIds": [
         "Aegis_officer_1",
         "Aegis_officer_2",
-        "Aegis_officer_4"
+        "Aegis_officer_4",
+        "Aegis_officer_3"
       ],
       "movementsPerTurn": 3,
       "skills": [
@@ -34,7 +35,8 @@
       ],
       "innateSkills": [
         "tactical-demolition"
-      ]
+      ],
+      "freeRecruitThreshold": 20
     }
   },
   {
@@ -62,7 +64,8 @@
       "officerPawnDefinitionIds": [
         "Aegis_officer_1",
         "Aegis_officer_2",
-        "Aegis_officer_4"
+        "Aegis_officer_4",
+        "Aegis_officer_3"
       ],
       "movementsPerTurn": 3,
       "skills": [
@@ -72,7 +75,8 @@
       ],
       "innateSkills": [
         "tactical-demolition"
-      ]
+      ],
+      "freeRecruitThreshold": 20
     }
   }
 ]
