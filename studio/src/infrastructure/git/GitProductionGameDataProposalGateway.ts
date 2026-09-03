@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process';
-import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { promisify } from 'node:util';
@@ -34,6 +34,13 @@ export class GitProductionGameDataProposalGateway implements ProductionGameDataP
       const catalogPath = join(worktreePath, 'data', 'commanders.json');
       await mkdir(dirname(catalogPath), { recursive: true });
       await writeFile(catalogPath, `${JSON.stringify(commanders, null, 2)}\n`, 'utf8');
+
+      const internalCatalogPath = 'studio/store/catalog';
+      await cp(
+        join(this.repositoryPath, internalCatalogPath),
+        join(worktreePath, internalCatalogPath),
+        { recursive: true },
+      );
       await this.npm(['version', 'patch', '--no-git-tag-version'], worktreePath);
       await this.git([
         '-C',
@@ -41,6 +48,7 @@ export class GitProductionGameDataProposalGateway implements ProductionGameDataP
         'add',
         '--',
         'data/commanders.json',
+        internalCatalogPath,
         'package.json',
         'package-lock.json',
       ]);
@@ -56,6 +64,7 @@ export class GitProductionGameDataProposalGateway implements ProductionGameDataP
         'feat(data): propose production commanders',
       ]);
       await this.git(['-C', worktreePath, 'push', '--set-upstream', 'origin', branchName]);
+      await this.git(['restore', '--source=HEAD', '--worktree', '--', internalCatalogPath]);
       return { branchName };
     } finally {
       if (worktreeCreated) {
