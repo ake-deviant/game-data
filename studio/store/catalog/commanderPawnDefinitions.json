@@ -59,7 +59,7 @@
     "power": 10,
     "countPawns": 2,
     "moveCount": 2,
-    "visualKey": "Aegis_commander_raged_blue",
+    "visualKey": "Aegis_commander_ranged_blue",
     "weaponKey": "arrow",
     "requiredInfluencePoints": 6,
     "implicitSkillParams": {

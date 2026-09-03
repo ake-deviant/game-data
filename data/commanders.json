@@ -104,7 +104,7 @@
           "power": 10,
           "countPawns": 2,
           "moveCount": 2,
-          "visualKey": "Aegis_commander_raged_blue",
+          "visualKey": "Aegis_commander_ranged_blue",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 6,
           "implicitSkillParams": {
@@ -166,22 +166,6 @@
             "freeWallDestructsOnDecrement": 1,
             "liaisonBonusPercent": 10
           }
-        },
-        {
-          "id": "Aegis_officer_3",
-          "displayName": "Archer vert",
-          "color": "green",
-          "type": "ranged",
-          "turnCount": 3,
-          "power": 24,
-          "countPawns": 2,
-          "moveCount": 2,
-          "visualKey": "Aegis_officer_ranged_green",
-          "weaponKey": "arrow",
-          "requiredInfluencePoints": 8,
-          "implicitSkillParams": {
-            "spBonusPerLiaison": 1
-          }
         }
       ],
       "skills": [
@@ -191,8 +175,7 @@
       ],
       "innateSkills": [
         "tactical-demolition"
-      ],
-      "freeRecruitThreshold": 20
+      ]
     }
   },
   {
@@ -300,7 +283,7 @@
           "power": 10,
           "countPawns": 2,
           "moveCount": 2,
-          "visualKey": "Aegis_commander_raged_blue",
+          "visualKey": "Aegis_commander_ranged_blue",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 6,
           "implicitSkillParams": {
@@ -362,22 +345,6 @@
             "freeWallDestructsOnDecrement": 1,
             "liaisonBonusPercent": 10
           }
-        },
-        {
-          "id": "Aegis_officer_3",
-          "displayName": "Archer vert",
-          "color": "green",
-          "type": "ranged",
-          "turnCount": 3,
-          "power": 24,
-          "countPawns": 2,
-          "moveCount": 2,
-          "visualKey": "Aegis_officer_ranged_green",
-          "weaponKey": "arrow",
-          "requiredInfluencePoints": 8,
-          "implicitSkillParams": {
-            "spBonusPerLiaison": 1
-          }
         }
       ],
       "skills": [
@@ -387,8 +354,7 @@
       ],
       "innateSkills": [
         "tactical-demolition"
-      ],
-      "freeRecruitThreshold": 20
+      ]
     }
   }
 ]
