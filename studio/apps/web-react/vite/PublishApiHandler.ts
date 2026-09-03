@@ -46,7 +46,11 @@ export class PublishApiHandler {
       if (error instanceof Error && /not found/.test(error.message)) {
         return { status: 404, body: { error: error.message } };
       }
-      return { status: 500, body: { error: 'La création de la proposition a échoué.' } };
+      const detail = error instanceof Error ? ` ${error.message}` : '';
+      return {
+        status: 500,
+        body: { error: `La création de la proposition a échoué.${detail}` },
+      };
     }
   }
 

@@ -34,5 +34,39 @@
       ],
       "freeRecruitThreshold": 20
     }
+  },
+  {
+    "id": "Erwan",
+    "name": "Erwan",
+    "description": "aucune",
+    "icon": "aucune",
+    "baseStats": {
+      "pawnMax": 45,
+      "health": 99,
+      "maxDefenseLevel": 2,
+      "wallVisualSet": "default",
+      "defensePowerPerLevel": 8,
+      "pawnDefinitionIdByColor": {
+        "red": "Aegis-soldier-melee-red",
+        "blue": "Aegis-soldier-melee-blue",
+        "green": "Aegis-soldier-melee-green"
+      },
+      "commanderPawnDefinitionIds": [
+        "commander-1-1"
+      ],
+      "officerPawnDefinitionIds": [
+        "Aegis_officer_1",
+        "Aegis_officer_2",
+        "Aegis_officer_4"
+      ],
+      "movementsPerTurn": 3,
+      "skills": [
+        "free-recruits",
+        "destroy-defense-pawns",
+        "expand-pawn-capacity",
+        "tactical-demolition"
+      ],
+      "freeRecruitThreshold": 20
+    }
   }
 ]

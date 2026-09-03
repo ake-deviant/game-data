@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process';
-import { cp, mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { promisify } from 'node:util';
@@ -41,7 +41,7 @@ export class GitProductionGameDataProposalGateway implements ProductionGameDataP
         join(worktreePath, internalCatalogPath),
         { recursive: true },
       );
-      await this.npm(['version', 'patch', '--no-git-tag-version'], worktreePath);
+      await this.bumpPatchVersion(worktreePath);
       await this.git([
         '-C',
         worktreePath,
@@ -78,8 +78,31 @@ export class GitProductionGameDataProposalGateway implements ProductionGameDataP
     await executeFile('git', args, { cwd: this.repositoryPath });
   }
 
-  private async npm(args: readonly string[], cwd: string): Promise<void> {
-    const executable = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-    await executeFile(executable, args, { cwd });
+  private async bumpPatchVersion(worktreePath: string): Promise<void> {
+    const packagePath = join(worktreePath, 'package.json');
+    const lockPath = join(worktreePath, 'package-lock.json');
+    const packageDocument = JSON.parse(await readFile(packagePath, 'utf8')) as {
+      version: string;
+    };
+    const lockDocument = JSON.parse(await readFile(lockPath, 'utf8')) as {
+      version: string;
+      packages: Record<string, { version?: string }>;
+    };
+    const versionParts = packageDocument.version.split('.').map(Number);
+    if (
+      versionParts.length !== 3
+      || versionParts.some((part) => !Number.isInteger(part) || part < 0)
+    ) {
+      throw new Error(`Unsupported package version '${packageDocument.version}'.`);
+    }
+    const nextVersion = `${versionParts[0]}.${versionParts[1]}.${versionParts[2] + 1}`;
+    packageDocument.version = nextVersion;
+    lockDocument.version = nextVersion;
+    lockDocument.packages[''] ??= {};
+    lockDocument.packages[''].version = nextVersion;
+    await Promise.all([
+      writeFile(packagePath, `${JSON.stringify(packageDocument, null, 2)}\n`, 'utf8'),
+      writeFile(lockPath, `${JSON.stringify(lockDocument, null, 2)}\n`, 'utf8'),
+    ]);
   }
 }
