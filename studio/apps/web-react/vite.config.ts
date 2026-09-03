@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 import { CreateCommander, UpdateCommander, ListCommanders } from '@game-data/application';
@@ -10,6 +11,7 @@ import {
 } from '@game-data/infrastructure';
 import { CommanderCatalogApiHandler } from './vite/CommanderCatalogApiHandler.ts';
 import { PawnCatalogApiHandler } from './vite/PawnCatalogApiHandler.ts';
+import { PawnApiHandler } from './vite/PawnApiHandler.ts';
 import { WallVisualSetApiHandler } from './vite/WallVisualSetApiHandler.ts';
 import { PublishApiHandler } from './vite/PublishApiHandler.ts';
 import { commanderCatalogApiPlugin } from './vite/commanderCatalogApiPlugin.ts';
@@ -41,6 +43,7 @@ const pawnHandler = new PawnCatalogApiHandler([
   { role: 'officer', repository: officerPawnRepo },
   { role: 'commander', repository: commanderPawnRepo },
 ]);
+const pawnApiHandler = new PawnApiHandler(soldierRepo, officerPawnRepo, commanderPawnRepo);
 const publishHandler = new PublishApiHandler(
   new ListCommanders(repository),
   soldierRepo,
@@ -50,6 +53,6 @@ const publishHandler = new PublishApiHandler(
 );
 
 export default defineConfig({
-  plugins: [react(), commanderCatalogApiPlugin(handler, pawnHandler, wallVisualSetHandler, publishHandler)],
+  plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler)],
   server: { host: '127.0.0.1', port: 5174 },
 });

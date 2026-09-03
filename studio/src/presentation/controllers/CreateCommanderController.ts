@@ -44,6 +44,9 @@ export class CreateCommanderController {
       commanderPawnDefinitionIds: form.commanderPawnDefinitionIds,
       officerPawnDefinitionIds: form.officerPawnDefinitionIds,
       movementsPerTurn: form.movementsPerTurn,
+      freeRecruitThreshold: form.freeRecruitThreshold,
+      skills: form.skills,
+      innateSkills: form.innateSkills,
     };
   }
 }

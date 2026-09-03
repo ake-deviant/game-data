@@ -1,35 +1,32 @@
 [
   {
-    "id": "soldier-1-red",
-    "displayName": "Soldat rouge",
-    "color": "red",
+    "id": "Aegis-soldier-melee-green",
+    "color": "green",
     "type": "melee",
     "turnCount": 2,
-    "power": 8,
+    "power": 10,
     "nonePower": 2,
-    "visualKey": "pawn_default_melee_red",
-    "weaponKey": "spear"
-  },
-  {
-    "id": "soldier-1-blue",
-    "displayName": "Soldat bleu",
-    "color": "blue",
-    "type": "melee",
-    "turnCount": 3,
-    "power": 11,
-    "nonePower": 3,
-    "visualKey": "pawn_default_melee_blue",
+    "visualKey": "wooden_spiked_club",
     "weaponKey": "sword"
   },
   {
-    "id": "soldier-1-green",
-    "displayName": "Soldat vert",
-    "color": "green",
+    "id": "Aegis-soldier-melee-red",
+    "color": "red",
     "type": "ranged",
-    "turnCount": 1,
-    "power": 7,
+    "turnCount": 2,
+    "power": 8,
     "nonePower": 2,
-    "visualKey": "pawn_default_ranged_green",
-    "weaponKey": "arrow"
+    "visualKey": "arrow",
+    "weaponKey": "short_iron_katana"
+  },
+  {
+    "id": "Aegis-soldier-melee-blue",
+    "color": "blue",
+    "type": "melee",
+    "turnCount": 2,
+    "power": 10,
+    "nonePower": 2,
+    "visualKey": "short_iron_katana",
+    "weaponKey": "sword"
   }
 ]

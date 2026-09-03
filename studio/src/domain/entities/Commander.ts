@@ -40,6 +40,7 @@ export class Commander {
 
   public constructor(props: CommanderProps) {
     Commander.assertSoldierColors(props.baseStats.pawnDefinitionIdByColor);
+    Commander.assertSkillsConstraints(props.baseStats);
     this.props = {
       ...props,
       baseStats: {
@@ -71,6 +72,33 @@ export class Commander {
       const soldier = soldiers[color];
       if (!(soldier instanceof PawnDefinitionId) || soldier.value.length === 0) {
         throw new Error(`Commander must define a ${color} soldier.`);
+      }
+    }
+  }
+
+  private static assertUniqueChargeSkill(skills: readonly SkillId[], label: string): void {
+    const charges = skills.filter((id) => /^charge-\d+$/.test(id.value));
+    if (charges.length > 1) {
+      throw new Error(`${label} cannot contain more than one charge skill.`);
+    }
+  }
+
+  private static assertSkillsConstraints(stats: CommanderStats): void {
+    const { skills, innateSkills, skillsByColor } = stats;
+
+    if (skills) Commander.assertUniqueChargeSkill(skills, 'Commander skills');
+    if (innateSkills) Commander.assertUniqueChargeSkill(innateSkills, 'Commander innate skills');
+
+    if (skills && innateSkills) {
+      const overlap = skills.find((s) => innateSkills.some((i) => i.equals(s)));
+      if (overlap) {
+        throw new Error(`Skill '${overlap.value}' cannot be both activable and innate.`);
+      }
+    }
+
+    if (skillsByColor) {
+      for (const [color, colorSkills] of Object.entries(skillsByColor)) {
+        if (colorSkills) Commander.assertUniqueChargeSkill(colorSkills, `Color '${color}' skills`);
       }
     }
   }

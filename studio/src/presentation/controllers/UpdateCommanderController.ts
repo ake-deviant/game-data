@@ -1,5 +1,4 @@
-import type { UpdateCommander, UpdateCommanderResult } from '@game-data/application';
-import type { CreateCommanderRequest } from '@game-data/application';
+import type { UpdateCommander, UpdateCommanderResult, CreateCommanderRequest } from '@game-data/application';
 import type { CommanderFormModel } from '../models/CommanderFormModel.ts';
 
 type UpdateCommanderExecutor = Pick<UpdateCommander, 'execute'>;
@@ -46,6 +45,9 @@ export class UpdateCommanderController {
       commanderPawnDefinitionIds: form.commanderPawnDefinitionIds,
       officerPawnDefinitionIds: form.officerPawnDefinitionIds,
       movementsPerTurn: form.movementsPerTurn,
+      freeRecruitThreshold: form.freeRecruitThreshold,
+      skills: form.skills,
+      innateSkills: form.innateSkills,
     };
   }
 }

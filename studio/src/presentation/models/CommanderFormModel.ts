@@ -16,6 +16,7 @@ export interface CommanderFormModel {
   readonly commanderPawnDefinitionIds: readonly string[];
   readonly officerPawnDefinitionIds: readonly string[];
   readonly movementsPerTurn: number;
+  readonly freeRecruitThreshold?: number;
   readonly skills?: readonly string[];
   readonly innateSkills?: readonly string[];
 }

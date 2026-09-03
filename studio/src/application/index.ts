@@ -19,3 +19,16 @@ export {
   CommanderNotFoundError,
   UpdateCommander,
 } from './use-cases/UpdateCommander.ts';
+export type {
+  CreatePawnDefinitionRequest,
+  CreatePawnDefinitionResult,
+} from './use-cases/CreatePawnDefinition.ts';
+export {
+  PawnDefinitionAlreadyExistsError,
+  CreatePawnDefinition,
+} from './use-cases/CreatePawnDefinition.ts';
+export type { UpdatePawnDefinitionResult } from './use-cases/UpdatePawnDefinition.ts';
+export {
+  PawnDefinitionNotFoundError,
+  UpdatePawnDefinition,
+} from './use-cases/UpdatePawnDefinition.ts';

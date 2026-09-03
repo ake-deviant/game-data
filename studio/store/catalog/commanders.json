@@ -1,19 +1,19 @@
 [
   {
     "id": "12",
-    "name": "comm hir",
+    "name": "Aegis",
     "description": "aucune",
     "icon": "aucune",
     "baseStats": {
-      "pawnMax": 40,
-      "health": 100,
+      "pawnMax": 45,
+      "health": 99,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
-      "defensePowerPerLevel": 6,
+      "defensePowerPerLevel": 8,
       "pawnDefinitionIdByColor": {
-        "red": "soldier-1-red",
-        "blue": "soldier-1-blue",
-        "green": "soldier-1-green"
+        "red": "Aegis-soldier-melee-red",
+        "blue": "Aegis-soldier-melee-blue",
+        "green": "Aegis-soldier-melee-green"
       },
       "commanderPawnDefinitionIds": [
         "commander-1-1"
@@ -23,7 +23,16 @@
         "Aegis_officer_2",
         "Aegis_officer_3"
       ],
-      "movementsPerTurn": 3
+      "movementsPerTurn": 3,
+      "skills": [
+        "free-recruits",
+        "destroy-defense-pawns",
+        "expand-pawn-capacity"
+      ],
+      "innateSkills": [
+        "tactical-demolition"
+      ],
+      "freeRecruitThreshold": 20
     }
   }
 ]
