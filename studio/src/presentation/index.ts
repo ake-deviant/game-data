@@ -15,6 +15,7 @@ export {
   type UpdateCommanderViewModel,
 } from './presenters/UpdateCommanderPresenter.ts';
 export {
+  commanderListItemToForm,
   createEmptyCommanderForm,
   type CommanderFormModel,
 } from './models/CommanderFormModel.ts';
