@@ -46,8 +46,8 @@
       "commanderPawns": [
         {
           "id": "commander-1-1",
-          "displayName": "Berseker Bleu",
-          "color": "blue",
+          "displayName": "Berseker Vert",
+          "color": "green",
           "type": "melee",
           "turnCount": 7,
           "power": 40,
@@ -175,8 +175,8 @@
       "commanderPawns": [
         {
           "id": "commander-1-1",
-          "displayName": "Berseker Bleu",
-          "color": "blue",
+          "displayName": "Berseker Vert",
+          "color": "green",
           "type": "melee",
           "turnCount": 7,
           "power": 40,
