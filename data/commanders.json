@@ -20,7 +20,7 @@
           "power": 8,
           "nonePower": 2,
           "visualKey": "Aegis_soldier_ranged_red",
-          "weaponKey": "arrow"
+          "weaponKey": "short_iron_katana"
         },
         {
           "id": "Aegis-soldier-melee-blue",
@@ -58,8 +58,8 @@
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
-            "columnPowerBonusPerDecrement": 6,
-            "spBonusPerLiaison": 1
+            "columnPowerBonusPerDecrement": 0,
+            "spBonusPerLiaison": 0
           }
         },
         {
@@ -72,7 +72,7 @@
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "Aegis_commander_melee_red",
-          "weaponKey": "sword",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 3,
@@ -110,7 +110,7 @@
           "implicitSkillParams": {
             "spBonusPerLiaison": 1,
             "liaisonBonusPercent": 10,
-            "spGrowthBonus": 10
+            "spGrowthBonus": 1
           }
         }
       ],
@@ -200,7 +200,7 @@
           "power": 8,
           "nonePower": 2,
           "visualKey": "Aegis_soldier_ranged_red",
-          "weaponKey": "arrow"
+          "weaponKey": "short_iron_katana"
         },
         {
           "id": "Aegis-soldier-melee-blue",
@@ -238,8 +238,8 @@
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
-            "columnPowerBonusPerDecrement": 6,
-            "spBonusPerLiaison": 1
+            "columnPowerBonusPerDecrement": 0,
+            "spBonusPerLiaison": 0
           }
         },
         {
@@ -252,7 +252,7 @@
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "Aegis_commander_melee_red",
-          "weaponKey": "sword",
+          "weaponKey": "spear",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 3,
@@ -290,7 +290,7 @@
           "implicitSkillParams": {
             "spBonusPerLiaison": 1,
             "liaisonBonusPercent": 10,
-            "spGrowthBonus": 10
+            "spGrowthBonus": 1
           }
         }
       ],
