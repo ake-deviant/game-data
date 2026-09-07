@@ -3,6 +3,7 @@ export type PawnColor = 'red' | 'blue' | 'green';
 export type PawnType = 'melee' | 'ranged';
 
 export interface PawnDefinitionFormModel {
+  readonly previousId?: string;
   readonly id: string;
   readonly role: PawnRole;
   readonly color: PawnColor;

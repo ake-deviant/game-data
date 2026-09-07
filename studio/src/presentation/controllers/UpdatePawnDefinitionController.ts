@@ -27,6 +27,7 @@ export class UpdatePawnDefinitionController {
   private toRequest(form: PawnDefinitionFormModel): CreatePawnDefinitionRequest {
     const isSoldier = form.role === 'soldier';
     return {
+      previousId: form.previousId,
       role: form.role,
       id: form.id,
       color: form.color,

@@ -51,6 +51,19 @@ export class JsonPawnDefinitionRepository implements PawnDefinitionRepository {
     return write;
   }
 
+  public async replace(previousId: PawnDefinitionId, pawnDefinition: PawnDefinition): Promise<void> {
+    const write = this.writeQueue.then(async () => {
+      const documents = await this.readCatalog();
+      const index = documents.findIndex(({ id }) => id === previousId.value);
+      if (index === -1) throw new Error(`PawnDefinition '${previousId.value}' was not found.`);
+      documents[index] = this.mapper.toDocument(pawnDefinition);
+      await this.writeCatalog(documents);
+    });
+
+    this.writeQueue = write.catch(() => undefined);
+    return write;
+  }
+
   private async readCatalog(): Promise<PawnDefinitionCatalogDocument> {
     try {
       const content = await readFile(this.catalogPath, 'utf8');

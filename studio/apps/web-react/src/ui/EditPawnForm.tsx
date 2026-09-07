@@ -55,6 +55,7 @@ function itemToForm(item: PawnListItem): PawnDefinitionFormModel {
   const toStr = (v: number | undefined) => v !== undefined ? String(v) : '';
   const ip = item.implicitSkillParams;
   return {
+    previousId: item.id,
     id: item.id,
     role: item.role,
     color: item.color,
@@ -123,6 +124,14 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
     e.preventDefault();
     if (!form) return;
     await controller.submit(form);
+    if (presenter.getViewModel().status === 'success') {
+      const response = await fetch('/api/catalog/pawns');
+      const updated = await response.json() as PawnListItem[];
+      setAllPawns(updated);
+      setSelectedId(form.id);
+      const item = updated.find((pawn) => pawn.role === role && pawn.id === form.id);
+      setForm(item ? itemToForm(item) : null);
+    }
   };
 
   const isSoldier = role === 'soldier';
@@ -165,7 +174,8 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
           <Section icon="identity" eyebrow="Identité" title="Informations de base" description="L'identifiant est fixe. Modifiez le nom affiché, la couleur et le type.">
             <div className="grid grid-cols-2 gap-4">
               <Field label="Identifiant">
-                <input className={`${inputClass} opacity-40`} disabled value={form.id} />
+                <input className={inputClass} value={form.id}
+                  onChange={(e) => setField('id', e.target.value)} />
               </Field>
               <Field label="Nom affiché">
                 <input className={inputClass} value={form.displayName} placeholder={form.id}

@@ -149,6 +149,7 @@ class InMemoryPawnDefinitionRepository implements PawnDefinitionRepository {
   }
 
   public async save(): Promise<void> {}
+  public async replace(): Promise<void> {}
 }
 
 class InMemoryProductionCommanderCatalogRepository implements ProductionCommanderCatalogRepository {

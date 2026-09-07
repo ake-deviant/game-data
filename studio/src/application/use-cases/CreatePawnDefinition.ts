@@ -11,6 +11,7 @@ import {
 import type { PawnDefinitionRepository } from '../ports/PawnDefinitionRepository.ts';
 
 export interface CreatePawnDefinitionRequest {
+  readonly previousId?: string;
   readonly role: 'soldier' | 'officer' | 'commander';
   readonly id: string;
   readonly color: 'red' | 'blue' | 'green';

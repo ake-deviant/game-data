@@ -30,8 +30,15 @@ export class UpdatePawnDefinition {
   }
 
   public async execute(request: CreatePawnDefinitionRequest): Promise<UpdatePawnDefinitionResult> {
+    const previousId = new PawnDefinitionId(request.previousId ?? request.id);
+    const existing = await this.repository.findById(previousId);
+    if (!existing) throw new PawnDefinitionNotFoundError(previousId.value);
+
     const id = new PawnDefinitionId(request.id);
-    await this.repository.save(this.toEntity(request, id));
+    if (!id.equals(previousId) && await this.repository.findById(id)) {
+      throw new Error(`PawnDefinition '${id.value}' already exists in this catalog.`);
+    }
+    await this.repository.replace(previousId, this.toEntity(request, id));
     return { id: request.id };
   }
 

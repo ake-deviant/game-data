@@ -10,6 +10,7 @@ import type { PawnDefinitionRepository } from '@game-data/application';
 import { z } from 'zod';
 
 const pawnRequestSchema = z.object({
+  previousId: z.string().min(1).optional(),
   role: z.enum(['soldier', 'officer', 'commander']),
   id: z.string().min(1),
   color: z.enum(['red', 'blue', 'green']),

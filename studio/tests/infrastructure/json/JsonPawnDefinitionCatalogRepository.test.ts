@@ -25,6 +25,17 @@ describe('JsonPawnDefinitionCatalogRepository', () => {
     expect(restored?.stats).toBeInstanceOf(SoldierPawnStats);
   });
 
+  it('remplace un pion quand son identifiant change', async () => {
+    const repository = new JsonSoldierPawnDefinitionRepository(await createCatalogPath());
+    await repository.save(PawnDefinitionMother.soldier());
+    const renamed = PawnDefinitionMother.soldier('pawn-soldier-renamed');
+
+    await repository.replace(new PawnDefinitionId('pawn-soldier'), renamed);
+
+    await expect(repository.findById(new PawnDefinitionId('pawn-soldier'))).resolves.toBeNull();
+    await expect(repository.findById(new PawnDefinitionId('pawn-soldier-renamed'))).resolves.not.toBeNull();
+  });
+
   it('sépare les catalogues soldier et officer', async () => {
     const soldierRepository = new JsonSoldierPawnDefinitionRepository(await createCatalogPath());
     const officerRepository = new JsonOfficerPawnDefinitionRepository(await createCatalogPath());
