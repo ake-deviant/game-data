@@ -17,7 +17,7 @@
     "power": 8,
     "nonePower": 2,
     "visualKey": "Aegis_soldier_ranged_red",
-    "weaponKey": "arrow"
+    "weaponKey": "short_iron_katana"
   },
   {
     "id": "Aegis-soldier-melee-blue",
@@ -28,5 +28,15 @@
     "nonePower": 2,
     "visualKey": "Aegis_soldier_melee_blue",
     "weaponKey": "short_iron_katana"
+  },
+  {
+    "id": "Aegis-soldier-ranged-red",
+    "color": "red",
+    "type": "ranged",
+    "turnCount": 2,
+    "power": 8,
+    "nonePower": 2,
+    "visualKey": "Aegis_soldier_ranged_red",
+    "weaponKey": "arrow"
   }
 ]
