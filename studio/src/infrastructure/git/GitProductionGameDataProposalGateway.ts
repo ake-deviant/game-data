@@ -64,7 +64,6 @@ export class GitProductionGameDataProposalGateway implements ProductionGameDataP
         'feat(data): propose production commanders',
       ]);
       await this.git(['-C', worktreePath, 'push', '--set-upstream', 'origin', branchName]);
-      await this.git(['restore', '--source=HEAD', '--worktree', '--', internalCatalogPath]);
       return { branchName };
     } finally {
       if (worktreeCreated) {
