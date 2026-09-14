@@ -20,6 +20,7 @@ import {
   JsonWallVisualSetCatalogRepository,
   JsonWeaponKeyCatalogRepository,
   GitProductionGameDataProposalGateway,
+  JsonSavedGridRepository,
 } from '@game-data/infrastructure';
 import { CommanderCatalogApiHandler } from './vite/CommanderCatalogApiHandler.ts';
 import { PawnCatalogApiHandler } from './vite/PawnCatalogApiHandler.ts';
@@ -27,6 +28,7 @@ import { PawnApiHandler } from './vite/PawnApiHandler.ts';
 import { WallVisualSetApiHandler } from './vite/WallVisualSetApiHandler.ts';
 import { PublishApiHandler } from './vite/PublishApiHandler.ts';
 import { commanderCatalogApiPlugin } from './vite/commanderCatalogApiPlugin.ts';
+import { SavedGridApiHandler } from './vite/SavedGridApiHandler.ts';
 
 const catalogPath = fileURLToPath(
   new URL('../../store/catalog/commanders.json', import.meta.url),
@@ -77,8 +79,9 @@ const publishHandler = new PublishApiHandler(
     new GitProductionGameDataProposalGateway(repositoryPath),
   ),
 );
+const savedGridHandler = new SavedGridApiHandler(new JsonSavedGridRepository(fileURLToPath(new URL('../../store/grids.json', import.meta.url))));
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler)],
+  plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler, savedGridHandler)],
   server: { host: '127.0.0.1', port: 5174 },
 });

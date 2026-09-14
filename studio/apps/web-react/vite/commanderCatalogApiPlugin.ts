@@ -5,6 +5,7 @@ import type { PawnCatalogApiHandler } from './PawnCatalogApiHandler.ts';
 import type { PawnApiHandler } from './PawnApiHandler.ts';
 import type { WallVisualSetApiHandler } from './WallVisualSetApiHandler.ts';
 import type { PublishApiHandler } from './PublishApiHandler.ts';
+import type { SavedGridApiHandler } from './SavedGridApiHandler.ts';
 
 const ENDPOINT = '/api/catalog/commanders';
 const PAWNS_ENDPOINT = '/api/catalog/pawns';
@@ -17,6 +18,7 @@ export function commanderCatalogApiPlugin(
   pawnApiHandler: PawnApiHandler,
   wallVisualSetHandler: WallVisualSetApiHandler,
   publishHandler: PublishApiHandler,
+  savedGridHandler: SavedGridApiHandler,
 ): Plugin {
   const middleware = async (
     request: IncomingMessage,
@@ -36,6 +38,15 @@ export function commanderCatalogApiPlugin(
         response.end(JSON.stringify({ error: 'Invalid JSON body.' }));
       }
       return;
+    }
+    if (request.url === '/api/grids' && request.method === 'GET') {
+      const result = await savedGridHandler.handleList(); response.statusCode = result.status; response.setHeader('content-type', 'application/json; charset=utf-8'); response.end(JSON.stringify(result.body)); return;
+    }
+    if (request.url === '/api/grids' && request.method === 'POST') {
+      try { const result = await savedGridHandler.handleSave(JSON.parse(await readBody(request))); response.statusCode = result.status; response.setHeader('content-type', 'application/json; charset=utf-8'); response.end(result.body ? JSON.stringify(result.body) : ''); } catch { response.statusCode = 400; response.end(JSON.stringify({ error: 'Invalid JSON body.' })); } return;
+    }
+    if (request.url?.startsWith('/api/grids/') && request.method === 'DELETE') {
+      const result = await savedGridHandler.handleDelete(decodeURIComponent(request.url.slice('/api/grids/'.length))); response.statusCode = result.status; response.end(); return;
     }
     if (request.url === PAWNS_ENDPOINT && request.method === 'GET') {
       response.statusCode = 200;

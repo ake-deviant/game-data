@@ -1,0 +1,613 @@
+[
+  {
+    "id": "0f4c19cb-068d-4e1a-a2de-8960ef445871",
+    "description": "essai",
+    "commanderId": "12",
+    "grid": {
+      "rows": 7,
+      "cols": 9,
+      "pawns": [
+        {
+          "id": "6e6750d3-88ed-4bd4-9fd8-fa0570370f82",
+          "templateId": "Aegis_officer_2",
+          "color": "blue",
+          "type": "ranged",
+          "status": "attack",
+          "rank": "officer",
+          "x": 2,
+          "y": 5,
+          "power": 8,
+          "turnCount": 2,
+          "visualKey": "Aegis_officer_ranged_blue",
+          "weaponKey": "arrow",
+          "footprint": "1x2",
+          "occupiedCells": [
+            {
+              "col": 2,
+              "row": 5
+            },
+            {
+              "col": 2,
+              "row": 6
+            }
+          ],
+          "countPawns": 1,
+          "moveCount": 2,
+          "skills": [
+            "power-growth",
+            "power-growth"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 6
+          }
+        },
+        {
+          "id": "5d122823-60b3-488e-823e-d974969aed22",
+          "templateId": "commander-1-1",
+          "color": "green",
+          "type": "melee",
+          "status": "attack",
+          "rank": "commander",
+          "x": 5,
+          "y": 4,
+          "power": 40,
+          "turnCount": 7,
+          "visualKey": "Aegis_commander_melee_green",
+          "weaponKey": "wooden_spiked_club",
+          "footprint": "2x2",
+          "occupiedCells": [
+            {
+              "col": 5,
+              "row": 4
+            },
+            {
+              "col": 5,
+              "row": 5
+            },
+            {
+              "col": 6,
+              "row": 4
+            },
+            {
+              "col": 6,
+              "row": 5
+            }
+          ],
+          "countPawns": 5,
+          "moveCount": 4,
+          "skills": [
+            "power-growth",
+            "power-growth"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "columnPowerBonusPerDecrement": 0,
+            "spBonusPerLiaison": 0
+          }
+        },
+        {
+          "id": "89d5a62e-cf1a-4d1d-848b-9c1c84837d83",
+          "templateId": "Aegis-commander-ranged-blue",
+          "color": "blue",
+          "type": "ranged",
+          "status": "attack",
+          "rank": "commander",
+          "x": 3,
+          "y": 2,
+          "power": 10,
+          "turnCount": 4,
+          "visualKey": "Aegis_commander_ranged_blue",
+          "weaponKey": "arrow",
+          "footprint": "2x2",
+          "occupiedCells": [
+            {
+              "col": 3,
+              "row": 2
+            },
+            {
+              "col": 3,
+              "row": 3
+            },
+            {
+              "col": 4,
+              "row": 2
+            },
+            {
+              "col": 4,
+              "row": 3
+            }
+          ],
+          "countPawns": 2,
+          "moveCount": 2,
+          "skills": [
+            "power-growth",
+            "increase-SP-by-attack-linked-when-preparing",
+            "liaison-power-bonus",
+            "sp-growth",
+            "power-growth",
+            "increase-SP-by-attack-linked-when-preparing",
+            "liaison-power-bonus",
+            "sp-growth"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "spBonusPerLiaison": 1,
+            "liaisonBonusPercent": 10,
+            "spGrowthBonus": 1
+          }
+        }
+      ]
+    },
+    "updatedAt": "2026-09-14T11:24:15.085Z"
+  },
+  {
+    "id": "9c540cf3-3f5a-4378-8ee3-48117f3d6f95",
+    "description": "mokctttt",
+    "commanderId": "Erwan",
+    "grid": {
+      "rows": 7,
+      "cols": 9,
+      "pawns": [
+        {
+          "id": "8f194915-aee6-48c1-9cd8-6f41c9352a21",
+          "templateId": "Aegis-soldier-melee-blue",
+          "color": "blue",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 2,
+          "y": 6,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_blue",
+          "weaponKey": "short_iron_katana"
+        },
+        {
+          "id": "5d5f2e3f-0587-462c-9bad-dd6be8a06bd3",
+          "templateId": "Aegis_officer_1",
+          "color": "green",
+          "type": "melee",
+          "status": "attack",
+          "rank": "officer",
+          "x": 4,
+          "y": 3,
+          "power": 16,
+          "turnCount": 4,
+          "visualKey": "Aegis_officer_melee_green",
+          "weaponKey": "sword",
+          "footprint": "1x2",
+          "occupiedCells": [
+            {
+              "col": 4,
+              "row": 3
+            },
+            {
+              "col": 4,
+              "row": 4
+            }
+          ],
+          "countPawns": 1,
+          "moveCount": 2,
+          "skills": [
+            "increase-SP-by-attack-linked-when-preparing",
+            "increase-SP-by-attack-group-when-spawning",
+            "liaison-power-bonus"
+          ],
+          "implicitSkillParams": {
+            "spBonusPerLiaison": 1,
+            "spBonusPerAttackPawn": 1,
+            "liaisonBonusPercent": 10
+          }
+        },
+        {
+          "id": "76e1dec2-287c-44ee-b852-b27198fc5d6c",
+          "templateId": "Aegis-soldier-melee-blue",
+          "color": "blue",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 6,
+          "y": 3,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_blue",
+          "weaponKey": "short_iron_katana"
+        },
+        {
+          "id": "ee3b340c-2a07-4945-aa06-4ade072a88c3",
+          "templateId": "Aegis_officer_4",
+          "color": "red",
+          "type": "ranged",
+          "status": "attack",
+          "rank": "officer",
+          "x": 6,
+          "y": 4,
+          "power": 12,
+          "turnCount": 3,
+          "visualKey": "Aegis_officer_ranged_red",
+          "weaponKey": "shuriken",
+          "footprint": "1x2",
+          "occupiedCells": [
+            {
+              "col": 6,
+              "row": 4
+            },
+            {
+              "col": 6,
+              "row": 5
+            }
+          ],
+          "countPawns": 1,
+          "moveCount": 2,
+          "skills": [
+            "increase-power-column-when-decrementing",
+            "gain-FWD-on-decrement",
+            "liaison-power-bonus"
+          ],
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 6,
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 10
+          }
+        },
+        {
+          "id": "64782fff-52a7-46c1-a228-d7ab06942019",
+          "templateId": "commander-1-1",
+          "color": "green",
+          "type": "melee",
+          "status": "attack",
+          "rank": "commander",
+          "x": 4,
+          "y": 5,
+          "power": 40,
+          "turnCount": 7,
+          "visualKey": "Aegis_commander_melee_green",
+          "weaponKey": "wooden_spiked_club",
+          "footprint": "2x2",
+          "occupiedCells": [
+            {
+              "col": 4,
+              "row": 5
+            },
+            {
+              "col": 4,
+              "row": 6
+            },
+            {
+              "col": 5,
+              "row": 5
+            },
+            {
+              "col": 5,
+              "row": 6
+            }
+          ],
+          "countPawns": 5,
+          "moveCount": 4,
+          "skills": [
+            "power-growth"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "columnPowerBonusPerDecrement": 0,
+            "spBonusPerLiaison": 0
+          }
+        },
+        {
+          "id": "13a12e51-5eed-4057-a497-9a511326e408",
+          "templateId": "Aegis-soldier-melee-green",
+          "color": "green",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 0,
+          "y": 6,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_green",
+          "weaponKey": "wooden_spiked_club"
+        },
+        {
+          "id": "5daf0291-8236-4086-a51c-008ad6536fc1",
+          "templateId": "Aegis-soldier-melee-green",
+          "color": "green",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 0,
+          "y": 5,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_green",
+          "weaponKey": "wooden_spiked_club"
+        },
+        {
+          "id": "d2ee4c0e-9496-44d2-9e9c-ea8d9a737a1f",
+          "templateId": "Aegis-commander-blue",
+          "color": "blue",
+          "type": "melee",
+          "status": "attack",
+          "rank": "commander",
+          "x": 7,
+          "y": 5,
+          "power": 45,
+          "turnCount": 4,
+          "visualKey": "Aegis_commander_melee_blue",
+          "weaponKey": "spear",
+          "footprint": "2x2",
+          "occupiedCells": [
+            {
+              "col": 7,
+              "row": 5
+            },
+            {
+              "col": 7,
+              "row": 6
+            },
+            {
+              "col": 8,
+              "row": 5
+            },
+            {
+              "col": 8,
+              "row": 6
+            }
+          ],
+          "countPawns": 2,
+          "moveCount": 3,
+          "skills": [
+            "charge-50"
+          ]
+        }
+      ]
+    },
+    "updatedAt": "2026-09-14T11:39:47.244Z"
+  },
+  {
+    "id": "f186bbfd-6a40-4d8e-aa99-ea7dbadad3fa",
+    "description": "mollo",
+    "commanderId": "Erwan",
+    "grid": {
+      "rows": 7,
+      "cols": 9,
+      "pawns": [
+        {
+          "id": "a3a99369-9131-4dbb-877e-18942eabbe8c",
+          "templateId": "Aegis_officer_2",
+          "color": "blue",
+          "type": "ranged",
+          "status": "attack",
+          "rank": "officer",
+          "x": 1,
+          "y": 5,
+          "power": 8,
+          "turnCount": 2,
+          "visualKey": "Aegis_officer_ranged_blue",
+          "weaponKey": "arrow",
+          "footprint": "1x2",
+          "occupiedCells": [
+            {
+              "col": 1,
+              "row": 5
+            },
+            {
+              "col": 1,
+              "row": 6
+            }
+          ],
+          "countPawns": 1,
+          "moveCount": 2,
+          "skills": [
+            "power-growth"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 6
+          }
+        },
+        {
+          "id": "41cf996c-cddf-4c3f-912a-9e640eacc9a6",
+          "templateId": "Aegis-commander-blue",
+          "color": "blue",
+          "type": "melee",
+          "status": "attack",
+          "rank": "commander",
+          "x": 5,
+          "y": 5,
+          "power": 45,
+          "turnCount": 4,
+          "visualKey": "Aegis_commander_melee_blue",
+          "weaponKey": "spear",
+          "footprint": "2x2",
+          "occupiedCells": [
+            {
+              "col": 5,
+              "row": 5
+            },
+            {
+              "col": 5,
+              "row": 6
+            },
+            {
+              "col": 6,
+              "row": 5
+            },
+            {
+              "col": 6,
+              "row": 6
+            }
+          ],
+          "countPawns": 2,
+          "moveCount": 3,
+          "skills": [
+            "charge-50"
+          ]
+        },
+        {
+          "id": "3a381a68-585a-44bb-9a56-68dfd0e63d47",
+          "templateId": "Aegis_officer_4",
+          "color": "red",
+          "type": "ranged",
+          "status": "attack",
+          "rank": "officer",
+          "x": 3,
+          "y": 3,
+          "power": 12,
+          "turnCount": 3,
+          "visualKey": "Aegis_officer_ranged_red",
+          "weaponKey": "shuriken",
+          "footprint": "1x2",
+          "occupiedCells": [
+            {
+              "col": 3,
+              "row": 3
+            },
+            {
+              "col": 3,
+              "row": 4
+            }
+          ],
+          "countPawns": 1,
+          "moveCount": 2,
+          "skills": [
+            "increase-power-column-when-decrementing",
+            "gain-FWD-on-decrement",
+            "liaison-power-bonus"
+          ],
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 6,
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 10
+          }
+        },
+        {
+          "id": "8894b634-5124-4b72-83fc-3e0d107aa2b0",
+          "templateId": "commander-1-1",
+          "color": "green",
+          "type": "melee",
+          "status": "attack",
+          "rank": "commander",
+          "x": 3,
+          "y": 5,
+          "power": 40,
+          "turnCount": 7,
+          "visualKey": "Aegis_commander_melee_green",
+          "weaponKey": "wooden_spiked_club",
+          "footprint": "2x2",
+          "occupiedCells": [
+            {
+              "col": 3,
+              "row": 5
+            },
+            {
+              "col": 3,
+              "row": 6
+            },
+            {
+              "col": 4,
+              "row": 5
+            },
+            {
+              "col": 4,
+              "row": 6
+            }
+          ],
+          "countPawns": 5,
+          "moveCount": 4,
+          "skills": [
+            "power-growth"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "columnPowerBonusPerDecrement": 0,
+            "spBonusPerLiaison": 0
+          }
+        },
+        {
+          "id": "363bfcd6-c534-4f19-bd7f-eaba8b386856",
+          "templateId": "Aegis-soldier-melee-green",
+          "color": "green",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 7,
+          "y": 3,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_green",
+          "weaponKey": "wooden_spiked_club"
+        },
+        {
+          "id": "76ad2769-07b7-4881-92e9-074273d89373",
+          "templateId": "Aegis-soldier-melee-green",
+          "color": "green",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 5,
+          "y": 2,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_green",
+          "weaponKey": "wooden_spiked_club"
+        },
+        {
+          "id": "5f540bf4-f8eb-49f3-8f36-1b8d69b2da45",
+          "templateId": "Aegis-soldier-melee-green",
+          "color": "green",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 6,
+          "y": 2,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_green",
+          "weaponKey": "wooden_spiked_club"
+        },
+        {
+          "id": "3bc48a15-3534-4e1f-8339-097ddcdee73b",
+          "templateId": "Aegis-soldier-melee-red",
+          "color": "red",
+          "type": "ranged",
+          "status": "none",
+          "rank": "troop",
+          "x": 1,
+          "y": 2,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_ranged_red",
+          "weaponKey": "arrow"
+        },
+        {
+          "id": "d380b98b-6e03-46ce-b6cc-94e3a29b18f5",
+          "templateId": "Aegis-soldier-melee-blue",
+          "color": "blue",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 2,
+          "y": 2,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_blue",
+          "weaponKey": "short_iron_katana"
+        },
+        {
+          "id": "fbdf4fb5-02b2-4363-9da2-ea9ed7fcf6ee",
+          "templateId": "Aegis-soldier-melee-blue",
+          "color": "blue",
+          "type": "melee",
+          "status": "none",
+          "rank": "troop",
+          "x": 2,
+          "y": 3,
+          "power": 2,
+          "turnCount": null,
+          "visualKey": "Aegis_soldier_melee_blue",
+          "weaponKey": "short_iron_katana"
+        }
+      ]
+    },
+    "updatedAt": "2026-09-14T12:08:44.721Z"
+  }
+]
