@@ -1,0 +1,503 @@
+{
+  "id": "local-1787209362982",
+  "name": "melee",
+  "savedAt": "2026-08-20T07:09:09.181Z",
+  "state": {
+    "gameId": "local-1787209362982",
+    "rows": 7,
+    "cols": 9,
+    "turnCount": 4,
+    "player1": {
+      "playerId": "1",
+      "commanderId": "1",
+      "grid": {
+        "rows": 7,
+        "cols": 9,
+        "pawns": [
+          {
+            "id": "1-1003",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 0,
+            "x": 6,
+            "y": 0,
+            "pawnRole": "third",
+            "attackGroupId": "1-1017",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_red",
+            "weaponKey": "spear"
+          },
+          {
+            "id": "1-1035",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 0,
+            "x": 6,
+            "y": 1,
+            "pawnRole": "second",
+            "attackGroupId": "1-1017",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_red",
+            "weaponKey": "spear"
+          },
+          {
+            "id": "1-1017",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 8,
+            "x": 6,
+            "y": 2,
+            "pawnRole": "captain",
+            "attackGroupId": "1-1017",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_red",
+            "weaponKey": "spear"
+          },
+          {
+            "id": "1-officer-sentinel-guard-officer-a08d537a-f564-4d92-9e9b-3fa5cc42c4a3",
+            "color": "blue",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 30,
+            "countPawns": 3,
+            "moveCount": 2,
+            "x": 6,
+            "y": 3,
+            "occupiedCells": [
+              {
+                "col": 6,
+                "row": 3
+              },
+              {
+                "col": 6,
+                "row": 4
+              }
+            ],
+            "rank": "officer",
+            "footprint": "1x2",
+            "visualKey": "V2_officer_melee_blue",
+            "weaponKey": "sword",
+            "templateId": "sentinel-guard-officer",
+            "skills": [
+              "power-growth",
+              "increase-SP-by-attack-linked-when-preparing"
+            ],
+            "implicitSkillParams": {
+              "powerBonusPerDecrement": 5,
+              "spBonusPerLiaison": 2
+            }
+          },
+          {
+            "id": "1-officer-officer-1-4-1d385f60-e4d1-4df7-93b8-5771d00cbbad",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 40,
+            "countPawns": 2,
+            "moveCount": 2,
+            "x": 6,
+            "y": 5,
+            "occupiedCells": [
+              {
+                "col": 6,
+                "row": 5
+              },
+              {
+                "col": 6,
+                "row": 6
+              }
+            ],
+            "rank": "officer",
+            "footprint": "1x2",
+            "visualKey": "V2_officer_melee_red",
+            "weaponKey": "sword",
+            "templateId": "officer-1-4",
+            "skills": [
+              "charge-50",
+              "liaison-power-bonus"
+            ],
+            "implicitSkillParams": {
+              "liaisonBonusPercent": 10
+            }
+          },
+
+          
+          {
+            "id": "1-1003",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 0,
+            "x": 0,
+            "y": 0,
+            "pawnRole": "third",
+            "attackGroupId": "1-1017",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_red",
+            "weaponKey": "spear"
+          },
+          {
+            "id": "1-1035",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 0,
+            "x": 0,
+            "y": 1,
+            "pawnRole": "second",
+            "attackGroupId": "1-1017",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_red",
+            "weaponKey": "spear"
+          },
+          {
+            "id": "1-1017",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 8,
+            "x": 0,
+            "y": 2,
+            "pawnRole": "captain",
+            "attackGroupId": "1-1017",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_red",
+            "weaponKey": "spear"
+          },
+          {
+            "id": "1-officer-sentinel-guard-officer-a08d537a-f564-4d92-9e9b-3fa5cc42c4a3",
+            "color": "blue",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 30,
+            "countPawns": 3,
+            "moveCount": 2,
+            "x": 0,
+            "y": 3,
+            "occupiedCells": [
+              {
+                "col": 6,
+                "row": 3
+              },
+              {
+                "col": 6,
+                "row": 4
+              }
+            ],
+            "rank": "officer",
+            "footprint": "1x2",
+            "visualKey": "V2_officer_melee_blue",
+            "weaponKey": "sword",
+            "templateId": "sentinel-guard-officer",
+            "skills": [
+              "power-growth",
+              "increase-SP-by-attack-linked-when-preparing"
+            ],
+            "implicitSkillParams": {
+              "powerBonusPerDecrement": 5,
+              "spBonusPerLiaison": 2
+            }
+          },
+          {
+            "id": "1-officer-officer-1-4-1d385f60-e4d1-4df7-93b8-5771d00cbbad",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 40,
+            "countPawns": 2,
+            "moveCount": 2,
+            "x": 0,
+            "y": 5,
+            "occupiedCells": [
+              {
+                "col": 6,
+                "row": 5
+              },
+              {
+                "col": 6,
+                "row": 6
+              }
+            ],
+            "rank": "officer",
+            "footprint": "1x2",
+            "visualKey": "V2_officer_melee_red",
+            "weaponKey": "sword",
+            "templateId": "officer-1-4",
+            "skills": [
+              "charge-50",
+              "liaison-power-bonus"
+            ],
+            "implicitSkillParams": {
+              "liaisonBonusPercent": 10
+            }
+          }
+        
+        ]
+      },
+      "healthPoints": 79,
+      "skillPoints": 5,
+      "influencePoints": 39,
+      "movementsRemaining": 3,
+      "movementsPerTurn": 3,
+      "nextPawnId": 1040,
+      "freeWallDestructs": 0,
+      "pendingFreeWallDestructs": 0,
+      "skillCooldowns": {},
+      "firstBloodScored": true,
+      "registeredPawnSkills": [
+        {
+          "skillId": "increase-SP-by-attack-linked-when-preparing",
+          "triggerMoment": "onLiaisonFormed",
+          "params": {
+            "spBonusPerLiaison": 2
+          },
+          "sourcePawnId": "1-officer-sentinel-guard-officer-a08d537a-f564-4d92-9e9b-3fa5cc42c4a3"
+        }
+      ],
+      "metricsProgress": {
+        "phase": "movement",
+        "phaseCumulativeDeltas": {
+          "healthPoints": 0,
+          "movementsRemaining": 0,
+          "skillPoints": 0,
+          "influencePoints": 0,
+          "freeWallDestructs": 0,
+          "pendingFreeWallDestructs": 0
+        },
+        "turnCumulativeDeltas": {
+          "healthPoints": 0,
+          "movementsRemaining": 0,
+          "skillPoints": 0,
+          "influencePoints": 0,
+          "freeWallDestructs": 0,
+          "pendingFreeWallDestructs": 0
+        }
+      }
+    },
+    "player2": {
+      "playerId": "local-player-2",
+      "commanderId": "2",
+      "grid": {
+        "rows": 7,
+        "cols": 9,
+        "pawns": [
+          {
+            "id": "local-player-2-1068",
+            "color": "green",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 0,
+            "x": 6,
+            "y": 0,
+            "pawnRole": "third",
+            "attackGroupId": "local-player-2-1028",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_green",
+            "weaponKey": "sword"
+          },
+          {
+            "id": "local-player-2-1045",
+            "color": "green",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 0,
+            "x": 6,
+            "y": 1,
+            "pawnRole": "second",
+            "attackGroupId": "local-player-2-1028",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_green",
+            "weaponKey": "sword"
+          },
+          {
+            "id": "local-player-2-1028",
+            "color": "green",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 12,
+            "x": 6,
+            "y": 2,
+            "pawnRole": "captain",
+            "attackGroupId": "local-player-2-1028",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_green",
+            "weaponKey": "sword",
+            "implicitSkillParams": {
+              "powerBonusPerDecrement": 1
+            }
+          },
+          {
+            "id": "local-player-2-officer-blitz-vanguard-officer-1aa02c44-87d2-4281-95b8-88efe99de383",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 26,
+            "countPawns": 3,
+            "moveCount": 3,
+            "x": 6,
+            "y": 3,
+            "occupiedCells": [
+              {
+                "col": 6,
+                "row": 3
+              },
+              {
+                "col": 6,
+                "row": 4
+              }
+            ],
+            "rank": "officer",
+            "footprint": "1x2",
+            "visualKey": "officer-melee-red",
+            "weaponKey": "sword",
+            "templateId": "blitz-vanguard-officer",
+            "skills": [
+              "charge-30",
+              "gain-FWD-on-decrement",
+              "liaison-power-bonus"
+            ],
+            "implicitSkillParams": {
+              "freeWallDestructsOnDecrement": 1,
+              "liaisonBonusPercent": 10
+            }
+          },
+
+
+          
+          {
+            "id": "local-player-2-1068",
+            "color": "green",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 0,
+            "x": 0,
+            "y": 0,
+            "pawnRole": "third",
+            "attackGroupId": "local-player-2-1028",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_green",
+            "weaponKey": "sword"
+          },
+          {
+            "id": "local-player-2-1045",
+            "color": "green",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 0,
+            "x": 0,
+            "y": 1,
+            "pawnRole": "second",
+            "attackGroupId": "local-player-2-1028",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_green",
+            "weaponKey": "sword"
+          },
+          {
+            "id": "local-player-2-1028",
+            "color": "green",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 12,
+            "x": 0,
+            "y": 2,
+            "pawnRole": "captain",
+            "attackGroupId": "local-player-2-1028",
+            "rank": "troop",
+            "visualKey": "pawn_default_melee_green",
+            "weaponKey": "sword",
+            "implicitSkillParams": {
+              "powerBonusPerDecrement": 1
+            }
+          },
+          {
+            "id": "local-player-2-officer-blitz-vanguard-officer-1aa02c44-87d2-4281-95b4-88efe99de383",
+            "color": "red",
+            "status": "attack",
+            "type": "melee",
+            "turnCount": 1,
+            "power": 26,
+            "countPawns": 3,
+            "moveCount": 3,
+            "x": 0,
+            "y": 3,
+            "occupiedCells": [
+              {
+                "col": 0,
+                "row": 3
+              },
+              {
+                "col": 0,
+                "row": 4
+              }
+            ],
+            "rank": "officer",
+            "footprint": "1x2",
+            "visualKey": "officer-melee-red",
+            "weaponKey": "sword",
+            "templateId": "blitz-vanguard-officer",
+            "skills": [
+              "charge-30",
+              "gain-FWD-on-decrement",
+              "liaison-power-bonus"
+            ],
+            "implicitSkillParams": {
+              "freeWallDestructsOnDecrement": 1,
+              "liaisonBonusPercent": 10
+            }
+          }
+        
+        ]
+      },
+      "healthPoints": 94,
+      "skillPoints": 0,
+      "influencePoints": 36,
+      "movementsRemaining": 3,
+      "movementsPerTurn": 3,
+      "nextPawnId": 1073,
+      "freeWallDestructs": 1,
+      "pendingFreeWallDestructs": 0,
+      "skillCooldowns": {},
+      "firstBloodScored": true,
+      "registeredPawnSkills": [],
+      "metricsProgress": {
+        "phase": "movement",
+        "phaseCumulativeDeltas": {
+          "healthPoints": 0,
+          "movementsRemaining": 0,
+          "skillPoints": 0,
+          "influencePoints": 0,
+          "freeWallDestructs": 0,
+          "pendingFreeWallDestructs": 0
+        },
+        "turnCumulativeDeltas": {
+          "healthPoints": 0,
+          "movementsRemaining": 0,
+          "skillPoints": 0,
+          "influencePoints": 0,
+          "freeWallDestructs": 0,
+          "pendingFreeWallDestructs": 0
+        }
+      }
+    }
+  }
+}

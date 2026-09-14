@@ -7,3 +7,5 @@ export { JsonWeaponKeyCatalogRepository } from './json/JsonWeaponKeyCatalogRepos
 export { JsonWallVisualSetCatalogRepository } from './json/JsonWallVisualSetCatalogRepository.ts';
 export { JsonProductionCommanderCatalogRepository } from './json/JsonProductionCommanderCatalogRepository.ts';
 export { GitProductionGameDataProposalGateway } from './git/GitProductionGameDataProposalGateway.ts';
+export { CryptoPlacementIdGenerator } from './browser/CryptoPlacementIdGenerator.ts';
+export { JsonSavedGridRepository } from './json/JsonSavedGridRepository.ts';

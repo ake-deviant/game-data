@@ -9,12 +9,15 @@ import { CreatePawnForm } from './CreatePawnForm';
 import { EditPawnForm } from './EditPawnForm';
 import { PawnList } from './PawnList';
 import { PublishView } from './PublishView';
+import { GridStudioView } from './GridStudioView';
+import { gridCatalogComposition } from '../composition/gridCatalogComposition';
 import { Icon, type IconName } from './ui-kit';
 import type { PawnRole } from '@game-data/presentation';
 
-type Module = 'commanders' | 'pawns';
+type Module = 'commanders' | 'pawns' | 'grids';
 type CommanderView = 'create' | 'edit' | 'publish';
 type PawnView = 'catalog' | 'create' | 'edit';
+type GridView = 'new' | 'load';
 
 interface ModuleDef<V extends string> {
   id: Module;
@@ -73,38 +76,36 @@ export function App() {
   const [editComposition] = useState(updateCommanderComposition);
   const [pawnComposition] = useState(createPawnComposition);
   const [editPawnComposition] = useState(updatePawnComposition);
+  const [gridComposition] = useState(gridCatalogComposition);
   const [activeModule, setActiveModule] = useState<Module>('commanders');
   const [commanderView, setCommanderView] = useState<CommanderView>('create');
   const [pawnView, setPawnView] = useState<PawnView>('catalog');
   const [pawnRole, setPawnRole] = useState<PawnRole>('soldier');
+  const [gridView, setGridView] = useState<GridView>('new');
 
-  const modules = [commandersModule, pawnsModule] as const;
+  const modules = [commandersModule, pawnsModule, { id: 'grids', label: 'Grilles', icon: 'grid' }] as const;
   const showRoleNav = activeModule === 'pawns' && (pawnView === 'create' || pawnView === 'edit');
 
   return (
     <div className="min-h-screen bg-[#090d18] text-slate-200">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(245,158,11,0.08),transparent_28%),radial-gradient(circle_at_90%_20%,rgba(56,189,248,0.05),transparent_24%)]" />
 
-      {/* Header */}
-      <header className="relative z-10 border-b border-white/[0.06] bg-[#090d18]/80 backdrop-blur-xl">
-        <div className="flex h-16 items-center gap-4 px-6">
-          <div className="flex items-center gap-3">
-            <div className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-amber-300 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/20">
-              <Icon name="spark" className="size-4" />
+      {/* Top navbar */}
+      <header className="sticky top-0 z-20 border-b border-white/[0.06] bg-[#090d18]/90 backdrop-blur-xl">
+        <div className="flex h-14 items-center gap-6 px-6">
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-amber-300 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/20">
+              <Icon name="spark" className="size-3.5" />
             </div>
             <div>
-              <h1 className="text-sm font-bold tracking-tight text-white">Game Data Studio</h1>
-              <p className="text-[10px] text-slate-500">Outil local · données de jeu</p>
+              <h1 className="text-sm font-bold tracking-tight text-white leading-none">Game Data Studio</h1>
+              <p className="text-[10px] text-slate-500 leading-none mt-0.5">Outil local · données de jeu</p>
             </div>
           </div>
-        </div>
-      </header>
 
-      <div className="relative flex">
-        {/* Sidebar */}
-        <aside className="sticky top-0 h-screen w-44 shrink-0 border-r border-white/[0.06] bg-[#090d18]/60 backdrop-blur-xl">
-          <nav className="flex flex-col gap-1 p-3 pt-6">
-            <p className="mb-2 px-3 text-[9px] font-bold uppercase tracking-[0.2em] text-slate-600">Modules</p>
+          <div className="h-5 w-px bg-white/[0.08] shrink-0" />
+
+          <nav className="flex items-center gap-1">
             {modules.map((mod) => {
               const isActive = activeModule === mod.id;
               return (
@@ -112,7 +113,8 @@ export function App() {
                   key={mod.id}
                   type="button"
                   onClick={() => setActiveModule(mod.id)}
-                  className={`flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-semibold transition text-left ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-semibold transition ${
                     isActive
                       ? 'bg-amber-400/[0.12] text-amber-300 border border-amber-400/20'
                       : 'text-slate-400 hover:bg-white/[0.04] hover:text-slate-200 border border-transparent'
@@ -124,27 +126,31 @@ export function App() {
               );
             })}
           </nav>
-        </aside>
+        </div>
 
-        {/* Main area */}
-        <div className="flex-1 min-w-0">
-
-          {/* Sub-nav */}
-          <div className="sticky top-0 z-10 bg-[#090d18]/70 backdrop-blur-md">
-            {/* Primary views */}
-            <div className="flex items-center gap-1 border-b border-white/[0.05] px-6 py-2">
+        {/* Sub-nav */}
+        <div className="bg-[#05080f] border-t border-white/[0.04]">
+          <div className="flex items-center gap-0 px-6">
+              {activeModule === 'grids' && (
+                <>
+                  <button type="button" onClick={() => { setGridView('new'); gridComposition.controller.select(''); }} className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${gridView === 'new' ? 'border-amber-400 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}>
+                    <Icon name="spark" className="size-3" /> Nouvelle
+                  </button>
+                  <button type="button" onClick={() => setGridView('load')} className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${gridView === 'load' ? 'border-amber-400 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}>
+                    <Icon name="upload" className="size-3" /> Charger
+                  </button>
+                </>
+              )}
               {activeModule === 'commanders' && commandersModule.views.map((v) => (
                 <button
                   key={v.id}
                   type="button"
                   onClick={() => setCommanderView(v.id)}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
-                    commanderView === v.id
-                      ? 'bg-amber-400 text-slate-950 shadow shadow-amber-500/20'
-                      : 'text-slate-400 hover:bg-white/[0.05] hover:text-white'
+                  className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${
+                    commanderView === v.id ? 'border-amber-400 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'
                   }`}
                 >
-                  <Icon name={v.icon} className="size-3.5" />
+                  <Icon name={v.icon} className="size-3" />
                   {v.label}
                 </button>
               ))}
@@ -153,20 +159,18 @@ export function App() {
                   key={v.id}
                   type="button"
                   onClick={() => setPawnView(v.id)}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
+                  className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${
                     v.soon
-                      ? pawnView === v.id
-                        ? 'bg-white/[0.06] text-slate-300'
-                        : 'text-slate-600 hover:bg-white/[0.03] hover:text-slate-500'
+                      ? 'border-transparent text-slate-600 cursor-default'
                       : pawnView === v.id
-                        ? 'bg-amber-400 text-slate-950 shadow shadow-amber-500/20'
-                        : 'text-slate-400 hover:bg-white/[0.05] hover:text-white'
+                        ? 'border-amber-400 text-white'
+                        : 'border-transparent text-slate-500 hover:text-slate-300'
                   }`}
                 >
-                  <Icon name={v.icon} className="size-3.5" />
+                  <Icon name={v.icon} className="size-3" />
                   {v.label}
                   {v.soon && (
-                    <span className="ml-1 rounded-full bg-slate-700/60 px-1.5 py-px text-[9px] font-bold uppercase tracking-wide text-slate-500">
+                    <span className="ml-1 rounded-full bg-slate-800 px-1.5 py-px text-[9px] font-bold uppercase tracking-wide text-slate-600">
                       bientôt
                     </span>
                   )}
@@ -196,25 +200,26 @@ export function App() {
             )}
           </div>
 
-          {/* Content */}
-          <main className="px-6 py-8 max-w-4xl">
-            {activeModule === 'commanders' && (
-              <>
-                {commanderView === 'create'  && <CommanderForm {...createComposition} />}
-                {commanderView === 'edit'    && <EditCommanderForm {...editComposition} />}
-                {commanderView === 'publish' && <PublishView />}
-              </>
-            )}
-            {activeModule === 'pawns' && (
-              <>
-                {pawnView === 'catalog' && <PawnList />}
-                {pawnView === 'create'  && <CreatePawnForm key={pawnRole} role={pawnRole} {...pawnComposition} />}
-                {pawnView === 'edit'    && <EditPawnForm key={pawnRole} role={pawnRole} {...editPawnComposition} />}
-              </>
-            )}
-          </main>
-        </div>
-      </div>
+      </header>
+
+      {/* Content */}
+      <main className={`px-6 py-8 ${activeModule === 'grids' ? 'w-full' : 'max-w-4xl'}`}>
+        {activeModule === 'grids' && <GridStudioView {...gridComposition} view={gridView} />}
+        {activeModule === 'commanders' && (
+          <>
+            {commanderView === 'create'  && <CommanderForm {...createComposition} />}
+            {commanderView === 'edit'    && <EditCommanderForm {...editComposition} />}
+            {commanderView === 'publish' && <PublishView />}
+          </>
+        )}
+        {activeModule === 'pawns' && (
+          <>
+            {pawnView === 'catalog' && <PawnList />}
+            {pawnView === 'create'  && <CreatePawnForm key={pawnRole} role={pawnRole} {...pawnComposition} />}
+            {pawnView === 'edit'    && <EditPawnForm key={pawnRole} role={pawnRole} {...editPawnComposition} />}
+          </>
+        )}
+      </main>
     </div>
   );
 }

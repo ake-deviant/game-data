@@ -1,6 +1,11 @@
 export {
   CreateCommanderController,
 } from './controllers/CreateCommanderController.ts';
+export { GridCatalogController } from './controllers/GridCatalogController.ts';
+export { GridCatalogPresenter, type GridCatalogViewModel } from './presenters/GridCatalogPresenter.ts';
+export { GridEditorController, type GridEditorUseCases } from './controllers/GridEditorController.ts';
+export { GridEditorPresenter } from './presenters/GridEditorPresenter.ts';
+export type { GridEditorViewModel } from './models/GridEditorViewModel.ts';
 export {
   CreateCommanderPresenter,
   type CreateCommanderStatus,

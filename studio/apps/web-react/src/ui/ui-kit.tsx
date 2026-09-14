@@ -2,10 +2,11 @@ import type { ReactNode } from 'react';
 
 export type IconName =
   | 'spark' | 'identity' | 'stats' | 'colors' | 'skills'
-  | 'crown' | 'shield' | 'upload' | 'plus' | 'trash' | 'check' | 'warning';
+  | 'crown' | 'shield' | 'upload' | 'plus' | 'trash' | 'check' | 'warning' | 'grid';
 
 export function Icon({ name, className = 'size-5' }: { name: IconName; className?: string }) {
   const paths: Record<IconName, ReactNode> = {
+    grid:     <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 3v18M15 3v18M3 9h18M3 15h18" /></>,
     spark:    <path d="m12 3-1.7 5.3L5 10l5.3 1.7L12 17l1.7-5.3L19 10l-5.3-1.7L12 3Z" />,
     identity: <><circle cx="12" cy="8" r="3" /><path d="M5.5 20a6.5 6.5 0 0 1 13 0" /></>,
     stats:    <path d="M4 19V9m6 10V5m6 14v-7m4 7H2" />,
