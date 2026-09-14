@@ -19,6 +19,7 @@ export interface GridEditorUseCases {
 
 export class GridEditorController {
   private grid?: Grid;
+  private readonly sessions = new Map<string, Grid>();
   private templates: readonly GridPawnTemplate[] = [];
   private source?: GridPlacementSource;
   private selectedId?: string;
@@ -35,6 +36,7 @@ export class GridEditorController {
   public constructor(private readonly useCases: GridEditorUseCases, private readonly presenter: GridEditorPresenter) {}
 
   public open(commander: GridCommanderItem | undefined, templates: readonly GridPawnTemplate[]): void {
+    if (this.activeCommander && this.grid) this.sessions.set(this.activeCommander.id, this.grid);
     this.grid = undefined;
     this.templates = templates;
     this.source = undefined;
@@ -47,7 +49,7 @@ export class GridEditorController {
     this.powerInput = '';
     this.turnCountInput = '';
     if (commander) {
-      this.grid = this.useCases.create.execute({ commanders: [commander], pawns: templates }, commander.id);
+      this.grid = this.sessions.get(commander.id) ?? this.useCases.create.execute({ commanders: [commander], pawns: templates }, commander.id);
     }
     this.publish();
     void this.refreshSaved();

@@ -609,5 +609,177 @@
       ]
     },
     "updatedAt": "2026-09-14T12:08:44.721Z"
+  },
+  {
+    "id": "4a473e59-dedd-4787-84c6-2508e71aee5d",
+    "description": "dsq dcz",
+    "commanderId": "Erwan",
+    "grid": {
+      "rows": 7,
+      "cols": 9,
+      "pawns": [
+        {
+          "id": "71060cd8-dbbe-45de-8b5f-378e86a52f6f",
+          "templateId": "Aegis_officer_1",
+          "color": "green",
+          "type": "melee",
+          "status": "attack",
+          "rank": "officer",
+          "x": 1,
+          "y": 5,
+          "power": 16,
+          "turnCount": 4,
+          "visualKey": "Aegis_officer_melee_green",
+          "weaponKey": "sword",
+          "footprint": "1x2",
+          "occupiedCells": [
+            {
+              "col": 1,
+              "row": 5
+            },
+            {
+              "col": 1,
+              "row": 6
+            }
+          ],
+          "countPawns": 1,
+          "moveCount": 2,
+          "skills": [
+            "increase-SP-by-attack-linked-when-preparing",
+            "increase-SP-by-attack-group-when-spawning",
+            "liaison-power-bonus"
+          ],
+          "implicitSkillParams": {
+            "spBonusPerLiaison": 1,
+            "spBonusPerAttackPawn": 1,
+            "liaisonBonusPercent": 10
+          }
+        },
+        {
+          "id": "62834ba3-7d69-464a-91a7-ee8a453958ed",
+          "templateId": "Aegis-commander-red",
+          "color": "red",
+          "type": "melee",
+          "status": "attack",
+          "rank": "commander",
+          "x": 4,
+          "y": 5,
+          "power": 70,
+          "turnCount": 5,
+          "visualKey": "Aegis_commander_melee_red",
+          "weaponKey": "spear",
+          "footprint": "2x2",
+          "occupiedCells": [
+            {
+              "col": 4,
+              "row": 5
+            },
+            {
+              "col": 4,
+              "row": 6
+            },
+            {
+              "col": 5,
+              "row": 5
+            },
+            {
+              "col": 5,
+              "row": 6
+            }
+          ],
+          "countPawns": 3,
+          "moveCount": 3,
+          "skills": [
+            "increase-power-column-when-decrementing",
+            "gain-FWD-on-decrement"
+          ],
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 1
+          }
+        },
+        {
+          "id": "157498ea-26c7-4728-b763-ed783fc48395",
+          "templateId": "Aegis_officer_4",
+          "color": "red",
+          "type": "ranged",
+          "status": "attack",
+          "rank": "officer",
+          "x": 4,
+          "y": 3,
+          "power": 12,
+          "turnCount": 3,
+          "visualKey": "Aegis_officer_ranged_red",
+          "weaponKey": "shuriken",
+          "footprint": "1x2",
+          "occupiedCells": [
+            {
+              "col": 4,
+              "row": 3
+            },
+            {
+              "col": 4,
+              "row": 4
+            }
+          ],
+          "countPawns": 1,
+          "moveCount": 2,
+          "skills": [
+            "increase-power-column-when-decrementing",
+            "gain-FWD-on-decrement",
+            "liaison-power-bonus"
+          ],
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 6,
+            "freeWallDestructsOnDecrement": 1,
+            "liaisonBonusPercent": 10
+          }
+        },
+        {
+          "id": "504e5f01-fc06-445f-8663-b714713f8b8a",
+          "templateId": "commander-1-1",
+          "color": "green",
+          "type": "melee",
+          "status": "attack",
+          "rank": "commander",
+          "x": 2,
+          "y": 5,
+          "power": 40,
+          "turnCount": 7,
+          "visualKey": "Aegis_commander_melee_green",
+          "weaponKey": "wooden_spiked_club",
+          "footprint": "2x2",
+          "occupiedCells": [
+            {
+              "col": 2,
+              "row": 5
+            },
+            {
+              "col": 2,
+              "row": 6
+            },
+            {
+              "col": 3,
+              "row": 5
+            },
+            {
+              "col": 3,
+              "row": 6
+            }
+          ],
+          "countPawns": 5,
+          "moveCount": 4,
+          "skills": [
+            "power-growth"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "columnPowerBonusPerDecrement": 0,
+            "spBonusPerLiaison": 0
+          }
+        }
+      ]
+    },
+    "updatedAt": "2026-09-14T13:25:16.825Z"
   }
 ]
