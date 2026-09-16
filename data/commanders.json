@@ -164,7 +164,7 @@
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 6,
-            "freeWallDestructsOnDecrement": 1,
+            "freeWallDestructsOnDecrement": 0,
             "liaisonBonusPercent": 10
           }
         },
@@ -294,21 +294,19 @@
           ]
         },
         {
-          "id": "Aegis-commander-ranged-blue",
-          "displayName": "Arrow blue",
-          "color": "blue",
+          "id": "arrow-red-girl",
+          "displayName": "Archer rouge",
+          "color": "red",
           "type": "ranged",
-          "turnCount": 4,
+          "turnCount": 5,
           "power": 10,
-          "countPawns": 2,
-          "moveCount": 2,
-          "visualKey": "Aegis_commander_ranged_blue",
+          "countPawns": 3,
+          "moveCount": 3,
+          "visualKey": "arrow_red_girl",
           "weaponKey": "arrow",
-          "requiredInfluencePoints": 6,
+          "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
-            "spBonusPerLiaison": 1,
-            "liaisonBonusPercent": 10,
             "spGrowthBonus": 1
           }
         }
@@ -362,7 +360,7 @@
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 6,
-            "freeWallDestructsOnDecrement": 1,
+            "freeWallDestructsOnDecrement": 0,
             "liaisonBonusPercent": 10
           }
         },
