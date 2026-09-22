@@ -6,7 +6,8 @@ export interface GridCellDocument {
 export interface GridPawnDocument {
   readonly id: string;
   readonly color: string;
-  readonly status: 'none' | 'attack';
+  readonly status: 'none' | 'attack' | 'defense';
+  readonly defenseLevel?: number;
   readonly type: string;
   readonly turnCount: number | null;
   readonly power: number;

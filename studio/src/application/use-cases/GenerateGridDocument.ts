@@ -12,11 +12,17 @@ export class GenerateGridDocument {
   private toPawnDocument(pawn: PlacedPawn): GridPawnDocument {
     const derived = buildPawnSkillsFromParams(pawn.implicitSkillParams);
     const skills = pawn.rank === 'troop' ? undefined : [...(pawn.skills ?? []), ...derived];
+    const isDefense = pawn.status === 'defense';
     return {
       id: pawn.id, templateId: pawn.templateId, color: pawn.color, type: pawn.type, status: pawn.status,
       rank: pawn.rank, x: pawn.position.col, y: pawn.position.row, power: pawn.power, turnCount: pawn.turnCount,
       visualKey: pawn.visualKey, weaponKey: pawn.weaponKey,
-      ...(pawn.rank === 'troop' ? {} : {
+      ...(isDefense ? {
+        defenseLevel: pawn.defenseLevel,
+        footprint: pawn.footprint.value,
+        occupiedCells: pawn.occupiedCells.map((cell) => ({ col: cell.col, row: cell.row })),
+        countPawns: pawn.countPawns,
+      } : pawn.rank === 'troop' ? {} : {
         footprint: pawn.footprint.value,
         occupiedCells: pawn.occupiedCells.map((cell) => ({ col: cell.col, row: cell.row })),
         countPawns: pawn.countPawns, moveCount: pawn.moveCount,

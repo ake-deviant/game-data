@@ -1,6 +1,6 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import type { gridCatalogComposition } from '../composition/gridCatalogComposition';
-import { Field, inputClass } from './ui-kit';
+import { Field, inputClass, Icon } from './ui-kit';
 import { GridBoard } from './GridBoard';
 import { GridPawnProperties } from './GridPawnProperties';
 import { GridSavePanel } from './GridSavePanel';
@@ -109,14 +109,25 @@ export function GridStudioView({ controller, presenter, editor, editorPresenter,
                 <p className="mt-0.5 text-xs text-slate-400">{commanderName(saved.commanderId)}</p>
                 <p className="mt-0.5 text-[10px] text-slate-500">{new Date(saved.updatedAt).toLocaleDateString('fr-FR')}</p>
               </div>
-              <button
-                type="button"
-                disabled={model.status !== 'ready'}
-                onClick={() => restoreSavedGrid(saved.id)}
-                className="shrink-0 rounded-lg bg-amber-400 px-3 py-1.5 text-xs font-semibold text-slate-950 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Charger
-              </button>
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  disabled={model.status !== 'ready'}
+                  onClick={() => restoreSavedGrid(saved.id)}
+                  className="rounded-lg bg-amber-400 px-3 py-1.5 text-xs font-semibold text-slate-950 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Charger
+                </button>
+                <button
+                  type="button"
+                  disabled={model.status !== 'ready'}
+                  onClick={() => void editor.deleteSaved(saved.id)}
+                  aria-label="Supprimer la grille"
+                  className="rounded-lg border border-rose-500/30 p-1.5 text-rose-400 hover:border-rose-400/60 hover:bg-rose-500/10 disabled:cursor-not-allowed disabled:opacity-40 transition-colors"
+                >
+                  <Icon name="trash" className="size-3.5" />
+                </button>
+              </div>
             </li>
           ))}
         </ul>

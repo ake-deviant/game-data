@@ -1,4 +1,4 @@
-import { LoadGridCatalog, SelectGridCommander, CreateGrid, PlaceGridPawn, MoveGridPawn, RemoveGridPawn, UpdateGridPawn, PreviewGridPlacement, GenerateGridDocument, SaveGrid, ListSavedGrids, RestoreGrid } from '@game-data/application';
+import { LoadGridCatalog, SelectGridCommander, CreateGrid, PlaceGridPawn, MoveGridPawn, RemoveGridPawn, UpdateGridPawn, PreviewGridPlacement, GenerateGridDocument, SaveGrid, ListSavedGrids, RestoreGrid, DeleteSavedGrid } from '@game-data/application';
 import { GridCatalogController, GridCatalogPresenter, GridEditorController, GridEditorPresenter } from '@game-data/presentation';
 import { CryptoPlacementIdGenerator } from '../../../../src/infrastructure/browser/CryptoPlacementIdGenerator';
 import { HttpSavedGridRepository } from '../adapters/HttpSavedGridRepository';
@@ -13,7 +13,8 @@ export function gridCatalogComposition() {
   const editor = new GridEditorController({
     create: new CreateGrid(), place, move: new MoveGridPawn(), remove: new RemoveGridPawn(),
     update: new UpdateGridPawn(), preview: new PreviewGridPlacement(place),
-    saveGrid: new SaveGrid(savedRepository, new GenerateGridDocument()), listSaved: new ListSavedGrids(savedRepository), restore: new RestoreGrid(),
+    generateDocument: new GenerateGridDocument(),
+    saveGrid: new SaveGrid(savedRepository, new GenerateGridDocument()), listSaved: new ListSavedGrids(savedRepository), restore: new RestoreGrid(), deleteSaved: new DeleteSavedGrid(savedRepository),
   }, editorPresenter);
   presenter.subscribe(() => {
     const model = presenter.getViewModel();

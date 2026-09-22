@@ -18,6 +18,7 @@ export interface PlacedPawnProps {
   readonly weaponKey: string;
   readonly skills?: readonly string[];
   readonly implicitSkillParams?: Readonly<PawnImplicitSkillParams>;
+  readonly defenseLevel?: number;
 }
 
 export class PlacedPawn {
@@ -27,7 +28,8 @@ export class PlacedPawn {
   public readonly type: PawnIdentity['type'];
   public readonly displayName?: string;
   public readonly rank: GridPawnRank;
-  public readonly status: 'none' | 'attack';
+  public readonly status: 'none' | 'attack' | 'defense';
+  public readonly defenseLevel?: number;
   public readonly position: GridPosition;
   public readonly footprint: PawnFootprint;
   public readonly countPawns: number;
@@ -42,6 +44,10 @@ export class PlacedPawn {
   public constructor(props: PlacedPawnProps) {
     if (!Number.isInteger(props.power) || props.power < 1 || props.power > 200) {
       throw new GridRuleError('invalid-power', 'La puissance doit être un entier de 1 à 200.');
+    }
+    const isDefense = props.defenseLevel !== undefined;
+    if (isDefense && (!Number.isInteger(props.defenseLevel) || props.defenseLevel! < 1)) {
+      throw new GridRuleError('invalid-defense-level', 'Le niveau de défense doit être un entier positif.');
     }
     if (props.rank === 'troop' ? props.turnCount !== null
       : props.turnCount === null || !Number.isInteger(props.turnCount) || props.turnCount < 1 || props.turnCount > 9) {
@@ -64,7 +70,8 @@ export class PlacedPawn {
     this.type = props.identity.type;
     this.displayName = props.identity.displayName;
     this.rank = props.rank;
-    this.status = props.rank === 'troop' ? 'none' : 'attack';
+    this.status = props.defenseLevel !== undefined ? 'defense' : props.rank === 'troop' ? 'none' : 'attack';
+    this.defenseLevel = props.defenseLevel;
     this.position = props.position;
     this.footprint = new PawnFootprint(props.rank);
     this.countPawns = countPawns;
@@ -95,7 +102,7 @@ export class PlacedPawn {
       id: this.id, identity: new PawnIdentity(new PawnDefinitionId(this.templateId), this.color, this.type, this.displayName),
       rank: this.rank, position,
       countPawns: this.countPawns, moveCount: this.moveCount,
-      power, turnCount,
+      power, turnCount, defenseLevel: this.defenseLevel,
       visualKey: this.visualKey, weaponKey: this.weaponKey, skills: this.skills, implicitSkillParams: this.implicitSkillParams,
     });
   }

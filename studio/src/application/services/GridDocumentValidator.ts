@@ -34,7 +34,11 @@ export class GridDocumentValidator {
       throw new InvalidGridDocumentError(`Compteur invalide pour ${pawn.id}.`);
     }
     if (pawn.rank === 'troop') {
-      if (pawn.status !== 'none' || pawn.turnCount !== null) throw new InvalidGridDocumentError(`Statut ou compteur invalide pour ${pawn.id}.`);
+      const validStatus = pawn.status === 'none' || pawn.status === 'defense';
+      if (!validStatus || pawn.turnCount !== null) throw new InvalidGridDocumentError(`Statut ou compteur invalide pour ${pawn.id}.`);
+      if (pawn.status === 'defense' && (pawn.defenseLevel === undefined || !Number.isInteger(pawn.defenseLevel) || pawn.defenseLevel < 1)) {
+        throw new InvalidGridDocumentError(`Niveau de défense invalide pour ${pawn.id}.`);
+      }
       if (pawn.x >= 9 || pawn.y >= 7) throw new InvalidGridDocumentError(`Position hors limites pour ${pawn.id}.`);
       return;
     }
