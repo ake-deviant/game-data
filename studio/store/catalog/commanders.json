@@ -52,7 +52,7 @@
       "defensePowerPerLevel": 8,
       "pawnDefinitionIdByColor": {
         "red": "Aegis-soldier-melee-red",
-        "blue": "Aegis-soldier-melee-blue",
+        "blue": "Erwan_soldier_ranged_blue",
         "green": "Aegis-soldier-melee-green"
       },
       "commanderPawnDefinitionIds": [

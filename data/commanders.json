@@ -221,14 +221,15 @@
           "weaponKey": "arrow"
         },
         {
-          "id": "Aegis-soldier-melee-blue",
+          "id": "Erwan_soldier_ranged_blue",
+          "displayName": "Erwan_soldier_ranged_blue",
           "color": "blue",
-          "type": "melee",
+          "type": "ranged",
           "turnCount": 2,
-          "power": 10,
+          "power": 8,
           "nonePower": 2,
-          "visualKey": "Aegis_soldier_melee_blue",
-          "weaponKey": "short_iron_katana"
+          "visualKey": "Erwan_soldier_ranged_blue",
+          "weaponKey": "arrow"
         },
         {
           "id": "Aegis-soldier-melee-green",
