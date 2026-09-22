@@ -8,10 +8,15 @@ describe('HttpGridCatalogReader', () => {
     const pawn = { id: 'officer', displayName: 'Officier', role: 'officer', color: 'red', type: 'melee',
       power: 10, turnCount: 2, countPawns: 0, moveCount: 0, visualKey: 'v', weaponKey: 'w',
       skills: ['power-growth'], implicitSkillParams: { powerBonusPerDecrement: 0, spGrowthBonus: 2 } };
-    const fetchMock = vi.fn(async (url: string) => new Response(JSON.stringify(url.endsWith('/pawns') ? [pawn] : [])));
+    const wallVisualSets = [{ id: 'default', keyByLevel: { '1': 'default_wall_0', '2': 'default_wall_1' } }];
+    const fetchMock = vi.fn(async (url: string) => {
+      if (url.endsWith('/pawns')) return new Response(JSON.stringify([pawn]));
+      if (url.endsWith('/wall-visual-sets')) return new Response(JSON.stringify(wallVisualSets));
+      return new Response(JSON.stringify([]));
+    });
     vi.stubGlobal('fetch', fetchMock);
     expect((await new HttpGridCatalogReader().read()).pawns).toEqual([pawn]);
-    expect(fetchMock.mock.calls.map(([url]) => url)).toEqual(['/api/catalog/commanders', '/api/catalog/pawns']);
+    expect(fetchMock.mock.calls.map(([url]) => url)).toEqual(['/api/catalog/commanders', '/api/catalog/pawns', '/api/catalog/wall-visual-sets']);
   });
 
   it('rejette une réponse HTTP en échec', async () => {

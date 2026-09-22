@@ -7,9 +7,8 @@ export class WallVisualSetApiHandler {
     this.filePath = filePath;
   }
 
-  public async handle(): Promise<readonly string[]> {
+  public async handle(): Promise<readonly { id: string; keyByLevel: Record<string, string> }[]> {
     const content = await readFile(this.filePath, 'utf8');
-    const sets = JSON.parse(content) as Array<{ id: string }>;
-    return sets.map((s) => s.id);
+    return JSON.parse(content) as Array<{ id: string; keyByLevel: Record<string, string> }>;
   }
 }

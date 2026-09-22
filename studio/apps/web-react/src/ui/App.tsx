@@ -137,7 +137,7 @@ export function App() {
                     <Icon name="spark" className="size-3" /> Nouvelle
                   </button>
                   <button type="button" onClick={() => setGridView('load')} className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${gridView === 'load' ? 'border-amber-400 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}>
-                    <Icon name="upload" className="size-3" /> Charger
+                    <Icon name="upload" className="size-3" /> Gérer
                   </button>
                 </>
               )}

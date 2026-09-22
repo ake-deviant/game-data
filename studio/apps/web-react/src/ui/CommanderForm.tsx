@@ -25,7 +25,7 @@ export function CommanderForm({ controller, presenter }: Props) {
   const viewModel = useSyncExternalStore(presenter.subscribe, presenter.getViewModel);
 
   useEffect(() => { fetch('/api/catalog/pawns').then((r) => r.json()).then(setPawns); }, []);
-  useEffect(() => { fetch('/api/catalog/wall-visual-sets').then((r) => r.json()).then(setWallVisualSets); }, []);
+  useEffect(() => { fetch('/api/catalog/wall-visual-sets').then((r) => r.json()).then((data: { id: string }[]) => setWallVisualSets(data.map((s) => s.id))); }, []);
 
   const setField = <K extends keyof CommanderFormModel>(field: K, value: CommanderFormModel[K]) =>
     setForm((current) => ({ ...current, [field]: value }));
