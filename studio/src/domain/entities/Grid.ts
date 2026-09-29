@@ -27,6 +27,7 @@ export class Grid {
       pawnDefinitionIdByColor: { ...commander.pawnDefinitionIdByColor },
       officerPawnDefinitionIds: [...commander.officerPawnDefinitionIds],
       commanderPawnDefinitionIds: [...commander.commanderPawnDefinitionIds],
+      defensePawnDefinitionIds: [...(commander.defensePawnDefinitionIds ?? [])],
     };
   }
 
@@ -42,8 +43,9 @@ export class Grid {
   public assertCanPlace(pawn: PlacedPawn): void {
     if (this.placements.has(pawn.id)) throw new GridRuleError('duplicate-id', 'Cet UUID est déjà utilisé dans la grille.');
     if (!this.palettePolicy.allows(this.commander, {
-      id: pawn.templateId, color: pawn.color, role: pawn.rank === 'troop' ? 'soldier' : pawn.rank,
-    })) throw new GridRuleError('unavailable-template', 'Ce modèle de pion n’appartient pas au commandant.');
+      id: pawn.templateId, color: pawn.color,
+      role: pawn.status === 'defense' ? 'defense' : pawn.rank === 'troop' ? 'soldier' : pawn.rank,
+    })) throw new GridRuleError('unavailable-template', "Ce modèle de pion n'appartient pas au commandant.");
     if (pawn.rank !== 'troop' && this.pawns.some((placed) => placed.rank === pawn.rank && placed.templateId === pawn.templateId)) {
       throw new GridRuleError('duplicate-template', 'Un exemplaire de ce modèle est déjà placé.');
     }
@@ -78,18 +80,18 @@ export class Grid {
 
   public find(id: string): PlacedPawn {
     const pawn = this.placements.get(id);
-    if (!pawn) throw new GridRuleError('pawn-not-found', 'Ce pion n’est pas présent dans la grille.');
+    if (!pawn) throw new GridRuleError('pawn-not-found', "Ce pion n'est pas présent dans la grille.");
     return pawn;
   }
 
   private assertSpace(pawn: PlacedPawn, ignoredId?: string): void {
     const cells = pawn.occupiedCells;
     if (cells.some((cell) => cell.col >= this.cols || cell.row >= this.rows)) {
-      throw new GridRuleError('out-of-bounds', 'L’empreinte du pion dépasse les limites de la grille.');
+      throw new GridRuleError('out-of-bounds', "L'empreinte du pion dépasse les limites de la grille.");
     }
     if (this.pawns.some((placed) => placed.id !== ignoredId
       && placed.occupiedCells.some((occupied) => cells.some((cell) => cell.equals(occupied))))) {
-      throw new GridRuleError('collision', 'Une case de l’empreinte est déjà occupée.');
+      throw new GridRuleError('collision', "Une case de l'empreinte est déjà occupée.");
     }
   }
 }

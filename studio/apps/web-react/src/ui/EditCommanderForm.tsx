@@ -33,7 +33,7 @@ export function EditCommanderForm({ controller, presenter }: Props) {
   useEffect(() => {
     fetch('/api/catalog/commanders').then((r) => r.json()).then(setCommanders);
     fetch('/api/catalog/pawns').then((r) => r.json()).then(setPawns);
-    fetch('/api/catalog/wall-visual-sets').then((r) => r.json()).then(setWallVisualSets);
+    fetch('/api/catalog/wall-visual-sets').then((r) => r.json()).then((data: { id: string }[]) => setWallVisualSets(data.map((s) => s.id)));
   }, []);
 
   const selectCommander = (id: string) => {

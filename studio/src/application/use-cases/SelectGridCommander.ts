@@ -16,6 +16,6 @@ export class SelectGridCommander {
     const missing = references.filter((reference) => !pawns.some((pawn) =>
       pawn.id === reference.id && pawn.role === reference.role && (!('color' in reference) || pawn.color === reference.color)));
     if (missing.length) throw new Error(`Modèles de pions introuvables : ${missing.map((item) => item.id).join(', ')}.`);
-    return { commander, pawns };
+    return { commander, pawns: [...pawns, ...(commander.defensePawnTemplates ?? [])] };
   }
 }

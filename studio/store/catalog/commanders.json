@@ -78,5 +78,28 @@
       ],
       "freeRecruitThreshold": 21
     }
+  },
+  {
+    "id": "tutorial",
+    "name": "Warden",
+    "description": "utilisé pour les tutoriels",
+    "icon": "tuto",
+    "baseStats": {
+      "pawnMax": 20,
+      "health": 15,
+      "maxDefenseLevel": 2,
+      "wallVisualSet": "default",
+      "defensePowerPerLevel": 5,
+      "pawnDefinitionIdByColor": {
+        "red": "Aegis-soldier-melee-red",
+        "blue": "Aegis-soldier-melee-blue",
+        "green": "Aegis-soldier-melee-green"
+      },
+      "commanderPawnDefinitionIds": [],
+      "officerPawnDefinitionIds": [],
+      "movementsPerTurn": 3,
+      "skills": [],
+      "innateSkills": []
+    }
   }
 ]

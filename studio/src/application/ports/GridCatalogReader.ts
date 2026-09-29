@@ -4,12 +4,14 @@ export interface GridCommanderItem extends GridCommanderSelection {
   readonly id: string;
   readonly name: string;
   readonly pawnMax: number;
+  readonly defensePawnTemplates?: readonly GridPawnTemplate[];
 }
 
 export interface GridPawnTemplate {
   readonly id: string;
   readonly displayName: string;
-  readonly role: 'soldier' | 'officer' | 'commander';
+  readonly role: 'soldier' | 'officer' | 'commander' | 'defense';
+  readonly defenseLevel?: number;
   readonly color: PawnColor;
   readonly type: PawnType;
   readonly power: number;

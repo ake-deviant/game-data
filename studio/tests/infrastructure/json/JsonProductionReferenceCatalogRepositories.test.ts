@@ -23,6 +23,9 @@ describe('JSON production reference catalog repositories', () => {
       pawnSkillVisuals: [{
         id: 'charge-30',
         displayName: 'Charge 30%',
+        displayNameKey: 'skills.charge-30.name',
+        descriptionKey: 'skills.charge-30.description',
+        descriptionParams: { chargeBonusPercent: 'skill.chargeBonusPercent' },
         visualKey: 'charge-30',
         triggerPhase: 'attack',
         chargeBonusPercent: 30,
@@ -35,6 +38,9 @@ describe('JSON production reference catalog repositories', () => {
     expect(skills).toHaveLength(1);
     expect(skills[0]).toBeInstanceOf(PawnSkill);
     expect(skills[0].id.value).toBe('charge-30');
+    expect(skills[0].displayNameKey).toBe('skills.charge-30.name');
+    expect(skills[0].descriptionKey).toBe('skills.charge-30.description');
+    expect(skills[0].descriptionParams).toEqual({ chargeBonusPercent: 'skill.chargeBonusPercent' });
   });
 
   it('charge le catalogue des weapon keys', async () => {

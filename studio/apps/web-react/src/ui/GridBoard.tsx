@@ -5,6 +5,7 @@ const pawnColors = {
   red: 'border-rose-300/70 bg-rose-950 text-rose-100',
   blue: 'border-sky-300/70 bg-sky-950 text-sky-100',
   green: 'border-emerald-300/70 bg-emerald-950 text-emerald-100',
+  defense: 'border-slate-400/60 bg-slate-800 text-slate-200',
 };
 const rankLabels = { troop: 'Soldat', officer: 'Officier', commander: 'Commandant' };
 
@@ -49,13 +50,14 @@ export function GridBoard({ model, editor }: { model: GridEditorViewModel; edito
                     aria-label={`${pawn.displayName ?? rankLabels[pawn.rank]}, colonne ${pawn.position.col}, ligne ${pawn.position.row}, puissance ${pawn.power}`}
                     aria-pressed={model.selectedId === pawn.id}
                     title={`${pawn.displayName ?? pawn.templateId} · ${rankLabels[pawn.rank]} · ${pawn.status}`}
-                    className={`absolute z-10 flex cursor-grab flex-col items-center justify-center overflow-hidden rounded-md border-2 p-0.5 text-center active:cursor-grabbing ${pawnColors[pawn.color]} ${model.selectedId === pawn.id ? 'ring-2 ring-amber-300 ring-offset-1 ring-offset-slate-950' : ''}`}
+                    className={`absolute z-10 flex cursor-grab flex-col items-center justify-center overflow-hidden rounded-md border-2 p-0.5 text-center active:cursor-grabbing ${pawn.status === 'defense' ? pawnColors.defense : pawnColors[pawn.color]} ${model.selectedId === pawn.id ? 'ring-2 ring-amber-300 ring-offset-1 ring-offset-slate-950' : ''}`}
                     style={{ left: `calc(${pawn.position.col / model.cols * 100}% + 2px)`, top: `calc(${pawn.position.row / model.rows * 100}% + 2px)`, width: `calc(${pawn.footprint.cols / model.cols * 100}% - 4px)`, height: `calc(${pawn.footprint.rows / model.rows * 100}% - 4px)` }}
                     onClick={() => editor.selectPawn(pawn.id)}
                     onDragStart={(event) => { event.dataTransfer.setData('text/plain', pawn.id); event.dataTransfer.effectAllowed = 'move'; editor.beginMove(pawn.id); }}
                     onDragEnd={() => editor.cancel()}>
-                    <span className="max-w-full truncate text-[9px] font-semibold">{rankLabels[pawn.rank]}</span>
+                    <span className="max-w-full truncate text-[9px] font-semibold">{pawn.status === 'defense' ? `Mur` : rankLabels[pawn.rank]}</span>
                     <span className="text-sm font-bold leading-tight">{pawn.power}</span>
+                    {pawn.status === 'defense' && pawn.defenseLevel !== undefined && <span className="text-[10px]">niv. {pawn.defenseLevel}</span>}
                     {pawn.turnCount !== null && <span className="text-[10px]">{pawn.turnCount} tours</span>}
                   </button>
                 ))}

@@ -1,7 +1,7 @@
 import type { Grid, PlacedPawn } from '@game-data/domain';
 import type {
   CreateGrid, GridCommanderItem, GridPawnTemplate, GridPlacementSource, GridPlacementPreview, RestoreGrid, ListSavedGrids,
-  PlaceGridPawn, MoveGridPawn, RemoveGridPawn, UpdateGridPawn, PreviewGridPlacement,
+  PlaceGridPawn, MoveGridPawn, RemoveGridPawn, UpdateGridPawn, PreviewGridPlacement, GenerateGridDocument,
 } from '@game-data/application';
 import type { GridEditorPresenter } from '../presenters/GridEditorPresenter.ts';
 
@@ -12,9 +12,11 @@ export interface GridEditorUseCases {
   readonly remove: RemoveGridPawn;
   readonly update: UpdateGridPawn;
   readonly preview: PreviewGridPlacement;
+  readonly generateDocument?: GenerateGridDocument;
   readonly saveGrid?: import('@game-data/application').SaveGrid;
   readonly listSaved?: ListSavedGrids;
   readonly restore?: RestoreGrid;
+  readonly deleteSaved?: import('@game-data/application').DeleteSavedGrid;
 }
 
 export class GridEditorController {
@@ -150,6 +152,20 @@ export class GridEditorController {
     this.turnCountInput = '';
     this.message = 'Pion supprimé.';
     this.publish();
+  }
+
+  public async deleteSaved(id: string): Promise<void> {
+    if (!this.useCases.deleteSaved) return;
+    try {
+      await this.useCases.deleteSaved.execute(id);
+      await this.refreshSaved();
+    } catch (error) { this.message = this.errorMessage(error); this.publish(); }
+  }
+
+  public generateJson(): string | null {
+    if (!this.grid || !this.useCases.generateDocument) return null;
+    try { return JSON.stringify(this.useCases.generateDocument.execute(this.grid), null, 2); }
+    catch { return null; }
   }
 
   public editDescription(value: string): void { this.description = value; this.publish(); }

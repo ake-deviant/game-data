@@ -1,5 +1,5 @@
 export type GridRuleCode =
-  | 'invalid-position' | 'invalid-rank' | 'invalid-id' | 'invalid-capacity'
+  | 'invalid-position' | 'invalid-rank' | 'invalid-id' | 'invalid-capacity' | 'invalid-defense-level'
   | 'duplicate-id' | 'duplicate-template' | 'unavailable-template'
   | 'out-of-bounds' | 'collision' | 'capacity-exceeded' | 'pawn-not-found' | 'invalid-power' | 'invalid-turn-count';
 

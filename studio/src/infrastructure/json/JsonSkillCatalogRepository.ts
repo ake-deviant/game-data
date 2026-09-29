@@ -11,6 +11,9 @@ import { z } from 'zod';
 const skillBaseSchema = z.object({
   id: z.string().min(1),
   displayName: z.string().min(1),
+  displayNameKey: z.string().min(1),
+  descriptionKey: z.string().min(1),
+  descriptionParams: z.record(z.string().regex(/^[A-Za-z][A-Za-z0-9_]*$/), z.string().min(1)),
   visualKey: z.string().min(1),
 });
 
