@@ -109,9 +109,7 @@
           "requiredInfluencePoints": 6,
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
-            "spBonusPerLiaison": 1,
-            "liaisonBonusPercent": 10,
-            "spGrowthBonus": 1
+            "spBonusPerLiaison": 1
           }
         }
       ],
