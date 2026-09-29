@@ -9,6 +9,9 @@ export type PawnSkillTriggerPhase =
 export interface SkillProps {
   id: SkillId;
   displayName: string;
+  displayNameKey: string;
+  descriptionKey: string;
+  descriptionParams: Readonly<Record<string, string>>;
   visualKey: string;
 }
 
@@ -21,6 +24,9 @@ export abstract class Skill<TProps extends SkillProps = SkillProps> {
 
   public get id(): SkillId { return this.props.id; }
   public get displayName(): string { return this.props.displayName; }
+  public get displayNameKey(): string { return this.props.displayNameKey; }
+  public get descriptionKey(): string { return this.props.descriptionKey; }
+  public get descriptionParams(): Readonly<Record<string, string>> { return { ...this.props.descriptionParams }; }
   public get visualKey(): string { return this.props.visualKey; }
 }
 

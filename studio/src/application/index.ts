@@ -1,4 +1,5 @@
 export type { CommanderCatalogRepository } from './ports/CommanderCatalogRepository.ts';
+export { SkillLocalizationValidator } from './services/SkillLocalizationValidator.ts';
 export type { PawnDefinitionCatalogRepository } from './ports/PawnDefinitionCatalogRepository.ts';
 export type { PawnDefinitionRepository } from './ports/PawnDefinitionRepository.ts';
 export type { SoldierPawnDefinitionRepository } from './ports/SoldierPawnDefinitionRepository.ts';

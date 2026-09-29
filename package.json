@@ -10,6 +10,7 @@
   "files": [
     "data/commanders.json",
     "data/skills.json",
+    "data/locales/*.json",
     "data/weaponKeys.json",
     "data/wallVisualSets.json"
   ],

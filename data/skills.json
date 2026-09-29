@@ -1,14 +1,106 @@
 {
   "pawnSkillVisuals": [
-    { "id": "power-growth",                                "displayName": "Croissance de Puissance",   "visualKey": "power-growth",                                "triggerPhase": "decrement"  },
-    { "id": "charge-30",                                   "displayName": "Charge 30%",                 "visualKey": "charge-30",                                   "triggerPhase": "attack",    "chargeBonusPercent": 30 },
-    { "id": "charge-50",                                   "displayName": "Charge 50%",                 "visualKey": "charge-50",                                   "triggerPhase": "attack",    "chargeBonusPercent": 50 },
-    { "id": "sp-growth",                                   "displayName": "Gain de Compétence",         "visualKey": "sp-growth",                                   "triggerPhase": "decrement"  },
-    { "id": "increase-power-column-when-decrementing",     "displayName": "Puissance de Colonne",       "visualKey": "increase-power-column-when-decrementing",     "triggerPhase": "decrement"  },
-    { "id": "increase-SP-by-attack-linked-when-preparing", "displayName": "Gain SP par Liaison",        "visualKey": "increase-SP-by-attack-linked-when-preparing", "triggerPhase": "movePhase"  },
-    { "id": "increase-SP-by-attack-group-when-spawning",   "displayName": "Gain SP par Capitaine",      "visualKey": "increase-SP-by-attack-group-when-spawning",   "triggerPhase": "spawn"      },
-    { "id": "gain-FWD-on-decrement",                       "displayName": "Brèche Imminente",           "visualKey": "gain-FWD-on-decrement",                       "triggerPhase": "decrement"  },
-    { "id": "liaison-power-bonus",                         "displayName": "Synergie de Liaison",        "visualKey": "liaison-power-bonus",                         "triggerPhase": "decrement"  }
+    {
+      "id": "power-growth",
+      "displayName": "Croissance de Puissance",
+      "visualKey": "power-growth",
+      "triggerPhase": "decrement",
+      "displayNameKey": "skills.power-growth.name",
+      "descriptionKey": "skills.power-growth.description",
+      "descriptionParams": {
+        "powerBonusPerDecrement": "pawn.implicitSkillParams.powerBonusPerDecrement"
+      }
+    },
+    {
+      "id": "charge-30",
+      "displayName": "Charge 30%",
+      "visualKey": "charge-30",
+      "triggerPhase": "attack",
+      "chargeBonusPercent": 30,
+      "displayNameKey": "skills.charge-30.name",
+      "descriptionKey": "skills.charge-30.description",
+      "descriptionParams": {
+        "chargeBonusPercent": "skill.chargeBonusPercent"
+      }
+    },
+    {
+      "id": "charge-50",
+      "displayName": "Charge 50%",
+      "visualKey": "charge-50",
+      "triggerPhase": "attack",
+      "chargeBonusPercent": 50,
+      "displayNameKey": "skills.charge-50.name",
+      "descriptionKey": "skills.charge-50.description",
+      "descriptionParams": {
+        "chargeBonusPercent": "skill.chargeBonusPercent"
+      }
+    },
+    {
+      "id": "sp-growth",
+      "displayName": "Gain de Compétence",
+      "visualKey": "sp-growth",
+      "triggerPhase": "decrement",
+      "displayNameKey": "skills.sp-growth.name",
+      "descriptionKey": "skills.sp-growth.description",
+      "descriptionParams": {
+        "spGrowthBonus": "pawn.implicitSkillParams.spGrowthBonus"
+      }
+    },
+    {
+      "id": "increase-power-column-when-decrementing",
+      "displayName": "Puissance de Colonne",
+      "visualKey": "increase-power-column-when-decrementing",
+      "triggerPhase": "decrement",
+      "displayNameKey": "skills.increase-power-column-when-decrementing.name",
+      "descriptionKey": "skills.increase-power-column-when-decrementing.description",
+      "descriptionParams": {
+        "columnPowerBonusPerDecrement": "pawn.implicitSkillParams.columnPowerBonusPerDecrement"
+      }
+    },
+    {
+      "id": "increase-SP-by-attack-linked-when-preparing",
+      "displayName": "Gain SP par Liaison",
+      "visualKey": "increase-SP-by-attack-linked-when-preparing",
+      "triggerPhase": "movePhase",
+      "displayNameKey": "skills.increase-SP-by-attack-linked-when-preparing.name",
+      "descriptionKey": "skills.increase-SP-by-attack-linked-when-preparing.description",
+      "descriptionParams": {
+        "spBonusPerLiaison": "pawn.implicitSkillParams.spBonusPerLiaison"
+      }
+    },
+    {
+      "id": "increase-SP-by-attack-group-when-spawning",
+      "displayName": "Gain SP par Capitaine",
+      "visualKey": "increase-SP-by-attack-group-when-spawning",
+      "triggerPhase": "spawn",
+      "displayNameKey": "skills.increase-SP-by-attack-group-when-spawning.name",
+      "descriptionKey": "skills.increase-SP-by-attack-group-when-spawning.description",
+      "descriptionParams": {
+        "spBonusPerAttackPawn": "pawn.implicitSkillParams.spBonusPerAttackPawn"
+      }
+    },
+    {
+      "id": "gain-FWD-on-decrement",
+      "displayName": "Brèche Imminente",
+      "visualKey": "gain-FWD-on-decrement",
+      "triggerPhase": "decrement",
+      "displayNameKey": "skills.gain-FWD-on-decrement.name",
+      "descriptionKey": "skills.gain-FWD-on-decrement.description",
+      "descriptionParams": {
+        "freeWallDestructsOnDecrement": "pawn.implicitSkillParams.freeWallDestructsOnDecrement"
+      }
+    },
+    {
+      "id": "liaison-power-bonus",
+      "displayName": "Synergie de Liaison",
+      "visualKey": "liaison-power-bonus",
+      "triggerPhase": "decrement",
+      "displayNameKey": "skills.liaison-power-bonus.name",
+      "descriptionKey": "skills.liaison-power-bonus.description",
+      "descriptionParams": {
+        "liaisonBonusPercent": "pawn.implicitSkillParams.liaisonBonusPercent"
+      }
+    }
   ],
   "activablePlayerSkills": [
     {
@@ -18,7 +110,10 @@
       "skillPointCost": 15,
       "skillDelay": null,
       "delayIllimited": true,
-      "requiredInfluencePoints": 25
+      "requiredInfluencePoints": 25,
+      "displayNameKey": "skills.free-recruits.name",
+      "descriptionKey": "skills.free-recruits.description",
+      "descriptionParams": {}
     },
     {
       "id": "destroy-defense-pawns",
@@ -27,7 +122,12 @@
       "skillPointCost": 5,
       "skillDelay": 3,
       "freeWallDestructs": 4,
-      "requiredInfluencePoints": 8
+      "requiredInfluencePoints": 8,
+      "displayNameKey": "skills.destroy-defense-pawns.name",
+      "descriptionKey": "skills.destroy-defense-pawns.description",
+      "descriptionParams": {
+        "freeWallDestructs": "skill.freeWallDestructs"
+      }
     },
     {
       "id": "tactical-demolition",
@@ -37,7 +137,10 @@
       "skillDelay": null,
       "delayIllimited": true,
       "movementCost": 2,
-      "requiredInfluencePoints": 40
+      "requiredInfluencePoints": 40,
+      "displayNameKey": "skills.tactical-demolition.name",
+      "descriptionKey": "skills.tactical-demolition.description",
+      "descriptionParams": {}
     },
     {
       "id": "expand-pawn-capacity",
@@ -46,7 +149,12 @@
       "skillPointCost": 20,
       "skillDelay": 4,
       "extraPawnSlots": 4,
-      "requiredInfluencePoints": 50
+      "requiredInfluencePoints": 50,
+      "displayNameKey": "skills.expand-pawn-capacity.name",
+      "descriptionKey": "skills.expand-pawn-capacity.description",
+      "descriptionParams": {
+        "extraPawnSlots": "skill.extraPawnSlots"
+      }
     }
   ]
 }
