@@ -104,6 +104,18 @@
   ],
   "activablePlayerSkills": [
     {
+      "id": "melee-attack-fusion",
+      "displayName": "Fusion de mêlée",
+      "visualKey": "melee-attack-fusion",
+      "skillPointCost": 10,
+      "skillDelay": null,
+      "delayIllimited": true,
+      "requiredInfluencePoints": 20,
+      "displayNameKey": "skills.melee-attack-fusion.name",
+      "descriptionKey": "skills.melee-attack-fusion.description",
+      "descriptionParams": {}
+    },
+    {
       "id": "free-recruits",
       "displayName": "Renforts Gratuits",
       "visualKey": "free-recruits",

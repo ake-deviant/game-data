@@ -24,5 +24,7 @@
   "skills.tactical-demolition.name": "Démolition Tactique",
   "skills.tactical-demolition.description": "récupérez un mouvement dès le 1er match en cas de suppression de pion",
   "skills.expand-pawn-capacity.name": "Renforts Supplémentaires",
-  "skills.expand-pawn-capacity.description": "augmente de {extraPawnSlots} la taille max de votre armée"
+  "skills.expand-pawn-capacity.description": "augmente de {extraPawnSlots} la taille max de votre armée",
+  "skills.melee-attack-fusion.name": "Fusion de mêlée",
+  "skills.melee-attack-fusion.description": "permet aux attaques basiques de mêlée de couleurs différentes de fusionner dans la même colonne"
 }

@@ -31,7 +31,8 @@
       "skills": [
         "free-recruits",
         "destroy-defense-pawns",
-        "expand-pawn-capacity"
+        "expand-pawn-capacity",
+        "melee-attack-fusion"
       ],
       "innateSkills": [
         "tactical-demolition"
@@ -71,7 +72,8 @@
       "skills": [
         "free-recruits",
         "destroy-defense-pawns",
-        "expand-pawn-capacity"
+        "expand-pawn-capacity",
+        "melee-attack-fusion"
       ],
       "innateSkills": [
         "tactical-demolition"
@@ -98,7 +100,9 @@
       "commanderPawnDefinitionIds": [],
       "officerPawnDefinitionIds": [],
       "movementsPerTurn": 3,
-      "skills": [],
+      "skills": [
+        "melee-attack-fusion"
+      ],
       "innateSkills": []
     }
   }
