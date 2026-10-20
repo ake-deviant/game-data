@@ -81,7 +81,18 @@ const publishHandler = new PublishApiHandler(
 );
 const savedGridHandler = new SavedGridApiHandler(new JsonSavedGridRepository(fileURLToPath(new URL('../../store/grids.json', import.meta.url))));
 
+const gameStatsTarget = process.env['GAME_STATS_SERVER_URL'] ?? 'http://localhost:3000';
+
 export default defineConfig({
   plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler, savedGridHandler)],
-  server: { host: '127.0.0.1', port: 5174 },
+  server: {
+    host: '127.0.0.1',
+    port: 5174,
+    proxy: {
+      '/api/game-stats': {
+        target: gameStatsTarget,
+        changeOrigin: true,
+      },
+    },
+  },
 });

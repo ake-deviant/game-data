@@ -75,3 +75,18 @@ export {
   ProductionGameDataValidationError,
   ProductionGameDataValidator,
 } from './services/ProductionGameDataValidator.ts';
+export type {
+  GameMode,
+  GameStatus,
+  GameReason,
+  RecordedParticipant,
+  RecordedGame,
+  GameStatsFilters,
+  GameStatsPage,
+  BotStats,
+  BotComparisonResult,
+  GameStatsReader,
+} from './ports/GameStatsReader.ts';
+export { ListRecordedGames } from './use-cases/ListRecordedGames.ts';
+export { GetRecordedGame } from './use-cases/GetRecordedGame.ts';
+export { CompareBots } from './use-cases/CompareBots.ts';

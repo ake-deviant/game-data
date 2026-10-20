@@ -3,6 +3,7 @@ import { createCommanderComposition } from '../composition/createCommanderCompos
 import { updateCommanderComposition } from '../composition/updateCommanderComposition';
 import { createPawnComposition } from '../composition/createPawnComposition';
 import { updatePawnComposition } from '../composition/updatePawnComposition';
+import { gameStatsComposition } from '../composition/gameStatsComposition';
 import { CommanderForm } from './CommanderForm';
 import { EditCommanderForm } from './EditCommanderForm';
 import { CreatePawnForm } from './CreatePawnForm';
@@ -10,11 +11,14 @@ import { EditPawnForm } from './EditPawnForm';
 import { PawnList } from './PawnList';
 import { PublishView } from './PublishView';
 import { GridStudioView } from './GridStudioView';
+import { GameStatsView } from './GameStatsView';
+import { BotComparisonView } from './BotComparisonView';
 import { gridCatalogComposition } from '../composition/gridCatalogComposition';
 import { Icon, type IconName } from './ui-kit';
 import type { PawnRole } from '@game-data/presentation';
 
-type Module = 'commanders' | 'pawns' | 'grids';
+type Module = 'commanders' | 'pawns' | 'grids' | 'stats';
+type StatsView = 'games' | 'compare';
 type CommanderView = 'create' | 'edit' | 'publish';
 type PawnView = 'catalog' | 'create' | 'edit';
 type GridView = 'new' | 'load';
@@ -77,13 +81,15 @@ export function App() {
   const [pawnComposition] = useState(createPawnComposition);
   const [editPawnComposition] = useState(updatePawnComposition);
   const [gridComposition] = useState(gridCatalogComposition);
+  const [statsComposition] = useState(gameStatsComposition);
   const [activeModule, setActiveModule] = useState<Module>('commanders');
   const [commanderView, setCommanderView] = useState<CommanderView>('create');
   const [pawnView, setPawnView] = useState<PawnView>('catalog');
   const [pawnRole, setPawnRole] = useState<PawnRole>('soldier');
   const [gridView, setGridView] = useState<GridView>('new');
+  const [statsView, setStatsView] = useState<StatsView>('games');
 
-  const modules = [commandersModule, pawnsModule, { id: 'grids', label: 'Grilles', icon: 'grid' }] as const;
+  const modules = [commandersModule, pawnsModule, { id: 'grids', label: 'Grilles', icon: 'grid' }, { id: 'stats', label: 'Statistiques', icon: 'stats' }] as const;
   const showRoleNav = activeModule === 'pawns' && (pawnView === 'create' || pawnView === 'edit');
 
   return (
@@ -138,6 +144,16 @@ export function App() {
                   </button>
                   <button type="button" onClick={() => setGridView('load')} className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${gridView === 'load' ? 'border-amber-400 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}>
                     <Icon name="upload" className="size-3" /> Gérer
+                  </button>
+                </>
+              )}
+              {activeModule === 'stats' && (
+                <>
+                  <button type="button" onClick={() => setStatsView('games')} className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${statsView === 'games' ? 'border-amber-400 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}>
+                    <Icon name="stats" className="size-3" /> Parties
+                  </button>
+                  <button type="button" onClick={() => setStatsView('compare')} className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${statsView === 'compare' ? 'border-amber-400 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}>
+                    <Icon name="crown" className="size-3" /> Comparaison IA
                   </button>
                 </>
               )}
@@ -203,7 +219,7 @@ export function App() {
       </header>
 
       {/* Content */}
-      <main className={`px-6 py-8 ${activeModule === 'grids' ? 'w-full' : 'max-w-4xl'}`}>
+      <main className={`px-6 py-8 ${activeModule === 'grids' || activeModule === 'stats' ? 'w-full' : 'max-w-4xl'}`}>
         {activeModule === 'grids' && <GridStudioView {...gridComposition} view={gridView} />}
         {activeModule === 'commanders' && (
           <>
@@ -217,6 +233,12 @@ export function App() {
             {pawnView === 'catalog' && <PawnList />}
             {pawnView === 'create'  && <CreatePawnForm key={pawnRole} role={pawnRole} {...pawnComposition} />}
             {pawnView === 'edit'    && <EditPawnForm key={pawnRole} role={pawnRole} {...editPawnComposition} />}
+          </>
+        )}
+        {activeModule === 'stats' && (
+          <>
+            {statsView === 'games'   && <GameStatsView statsController={statsComposition.statsController} statsPresenter={statsComposition.statsPresenter} />}
+            {statsView === 'compare' && <BotComparisonView comparisonController={statsComposition.comparisonController} comparisonPresenter={statsComposition.comparisonPresenter} />}
           </>
         )}
       </main>
