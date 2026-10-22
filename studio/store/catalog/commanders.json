@@ -32,7 +32,8 @@
         "free-recruits",
         "destroy-defense-pawns",
         "expand-pawn-capacity",
-        "melee-attack-fusion"
+        "melee-attack-fusion",
+        "defense-upgrade"
       ],
       "innateSkills": [
         "tactical-demolition"
@@ -46,8 +47,8 @@
     "description": "aucune",
     "icon": "aucune",
     "baseStats": {
-      "pawnMax": 45,
-      "health": 99,
+      "pawnMax": 36,
+      "health": 100,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
       "defensePowerPerLevel": 8,
@@ -73,7 +74,8 @@
         "free-recruits",
         "destroy-defense-pawns",
         "expand-pawn-capacity",
-        "melee-attack-fusion"
+        "melee-attack-fusion",
+        "defense-upgrade"
       ],
       "innateSkills": [
         "tactical-demolition"

@@ -26,5 +26,9 @@
   "skills.expand-pawn-capacity.name": "Renforts Supplémentaires",
   "skills.expand-pawn-capacity.description": "augmente de {extraPawnSlots} la taille max de votre armée",
   "skills.melee-attack-fusion.name": "Fusion de mêlée",
-  "skills.melee-attack-fusion.description": "permet aux attaques basiques de mêlée de couleurs différentes de fusionner dans la même colonne"
+  "skills.melee-attack-fusion.description": "permet aux attaques basiques de mêlée de couleurs différentes de fusionner dans la même colonne",
+  "skills.defense-upgrade.name": "Renforcement des défenses",
+  "skills.defense-upgrade.description": "Améliore le potentiel des défenses et recalcule la grille sans augmenter leur puissance actuelle.",
+  "skills.defense-upgrade.power.description": "Augmente de {defensePowerPerLevelBonus} la puissance par niveau des défenses, sans augmenter leur puissance actuelle.",
+  "skills.defense-upgrade.level.description": "Augmente de {maxDefenseLevelBonus} le niveau maximal des défenses, sans augmenter leur puissance actuelle."
 }

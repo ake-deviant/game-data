@@ -44,7 +44,7 @@ export class PawnSkill extends Skill<PawnSkillProps> {
 
 export interface ActivablePlayerSkillProps extends SkillProps {
   activationType?: 'single' | 'progressive';
-  levels?: readonly { level: number; skillPointCost: number; requiredInfluencePoints: number; freeRecruitThresholdReduction?: number; extraPawnSlots?: number }[];
+  levels?: readonly { level: number; skillPointCost: number; requiredInfluencePoints: number; freeRecruitThresholdReduction?: number; extraPawnSlots?: number; defensePowerPerLevelBonus?: number; maxDefenseLevelBonus?: number; descriptionKey?: string; descriptionParams?: Readonly<Record<string, string>> }[];
   skillPointCost?: number;
   skillDelay?: number | null;
   requiredInfluencePoints?: number;

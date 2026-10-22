@@ -30,6 +30,10 @@ const documentSchema = z.object({
       requiredInfluencePoints: z.number().nonnegative(),
       freeRecruitThresholdReduction: z.number().nonnegative().optional(),
       extraPawnSlots: z.number().int().nonnegative().optional(),
+      defensePowerPerLevelBonus: z.number().int().nonnegative().optional(),
+      maxDefenseLevelBonus: z.number().int().nonnegative().optional(),
+      descriptionKey: z.string().min(1).optional(),
+      descriptionParams: z.record(z.string().regex(/^[A-Za-z][A-Za-z0-9_]*$/), z.string().min(1)).optional(),
     })).min(1).optional(),
     skillPointCost: z.number().nonnegative().optional(),
     skillDelay: z.number().nullable().optional(),
@@ -44,6 +48,9 @@ const documentSchema = z.object({
         ctx.addIssue({ code: 'custom', message: 'Progressive skills require levels and permanent duration, with costs on levels only' });
       }
       skill.levels?.forEach((level, index) => {
+        if (skill.id === 'defense-upgrade' && (level.defensePowerPerLevelBonus ?? 0) + (level.maxDefenseLevelBonus ?? 0) <= 0) {
+          ctx.addIssue({ code: 'custom', message: 'Defense upgrade requires a positive bonus', path: ['levels', index] });
+        }
         if (level.level !== index + 1 || (skill.id === 'free-recruits' && level.freeRecruitThresholdReduction === undefined)
           || (skill.id === 'expand-pawn-capacity' && level.extraPawnSlots === undefined)) {
           ctx.addIssue({ code: 'custom', message: 'Invalid skill level', path: ['levels', index] });
