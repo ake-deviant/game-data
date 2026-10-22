@@ -1,3 +1,4 @@
+import { PawnSkill } from '@game-data/domain';
 import type { Skill, WallVisualSet, WeaponKey } from '@game-data/domain';
 
 export interface ProductionReferenceCatalogs {
@@ -17,11 +18,13 @@ export class ProductionGameDataValidationError extends Error {
 }
 
 export class ProductionGameDataValidator {
+  private pawnSkillMaxLevels = new Map<string, number>();
   private skillIds: ReadonlySet<string> = new Set();
   private weaponKeys: ReadonlySet<string> = new Set();
   private wallVisualSetIds: ReadonlySet<string> = new Set();
 
   public validate(gameData: unknown, references: ProductionReferenceCatalogs): void {
+    this.pawnSkillMaxLevels = new Map(references.skills.filter((skill): skill is PawnSkill => skill instanceof PawnSkill && skill.activationType === 'progressive').map(skill => [skill.id.value, skill.levels.length]));
     this.skillIds = new Set(references.skills.map((skill) => skill.id.value));
     this.weaponKeys = new Set(references.weaponKeys.map((key) => key.value));
     this.wallVisualSetIds = new Set(references.wallVisualSets.map((set) => set.id));
@@ -127,7 +130,16 @@ export class ProductionGameDataValidator {
     if (pawn['requiredInfluencePoints'] !== undefined) {
       this.nonNegativeNumber(pawn['requiredInfluencePoints'], `${path}.requiredInfluencePoints`, errors);
     }
-    this.skills(pawn['skills'], `${path}.skills`, errors);
+    const skills = this.skills(pawn['skills'], `${path}.skills`, errors);
+    if (pawn['innateSkillLevels'] !== undefined) {
+      const levels = this.record(pawn['innateSkillLevels'], `${path}.innateSkillLevels`, errors);
+      for (const [id, level] of Object.entries(levels ?? {})) {
+        const maximum = this.pawnSkillMaxLevels.get(id);
+        if (!skills.includes(id) || maximum === undefined || typeof level !== 'number' || !Number.isInteger(level) || level < 0 || level > maximum) {
+          errors.push(`Invalid innate skill level '${id}' for '${path}'.`);
+        }
+      }
+    }
 
     if (soldier) {
       const nonePower = this.nonNegativeNumber(pawn['nonePower'], `${path}.nonePower`, errors);

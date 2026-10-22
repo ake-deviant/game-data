@@ -14,6 +14,7 @@ export const pawnDefinitionCatalogItemSchema = z.object({
   weaponKey: z.string().min(1),
   requiredInfluencePoints: z.number().optional(),
   skills: z.array(z.string().min(1)).optional(),
+  innateSkillLevels: z.record(z.string().min(1), z.number().int().nonnegative()).optional(),
   implicitSkillParams: z.object({
     powerBonusPerDecrement: z.number().optional(),
     columnPowerBonusPerDecrement: z.number().optional(),

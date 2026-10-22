@@ -156,6 +156,7 @@ export class GenerateProductionGameData {
         requiredInfluencePoints: pawn.requiredInfluencePoints,
       }),
       ...(pawn.skills.length > 0 && { skills: pawn.skills.map(String) }),
+      ...(pawn.innateSkillLevels && { innateSkillLevels: pawn.innateSkillLevels }),
       ...(pawn.implicitSkillParams && { implicitSkillParams: pawn.implicitSkillParams }),
     };
   }

@@ -40,6 +40,8 @@ export class UpdatePawnDefinitionController {
             moveCount: form.moveCount,
             requiredInfluencePoints: form.requiredInfluencePoints > 0 ? form.requiredInfluencePoints : undefined,
             skills: form.skills.length > 0 ? form.skills : undefined,
+            innateSkillLevels: form.innateSkillLevels
+              ? Object.fromEntries(Object.entries(form.innateSkillLevels).filter(([id]) => form.skills.includes(id))) : undefined,
             implicitSkillParams: this.toImplicitSkillParams(form),
           }),
       visualKey: form.visualKey,

@@ -17,6 +17,7 @@ export interface PawnDefinitionFormModel {
   readonly weaponKey: string;
   readonly requiredInfluencePoints: number;
   readonly skills: readonly string[];
+  readonly innateSkillLevels?: Readonly<Record<string, number>>;
   readonly implicitSkillParams: {
     readonly powerBonusPerDecrement: string;
     readonly columnPowerBonusPerDecrement: string;

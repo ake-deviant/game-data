@@ -49,6 +49,6 @@ export class UpdatePawnDefinition {
       : new PawnStats(request.turnCount, request.power, request.countPawns ?? 1, request.moveCount ?? 1);
     const visual = new PawnVisual(request.visualKey, new WeaponKey(request.weaponKey));
     const skills = request.skills?.map((s) => new SkillId(s));
-    return new PawnDefinition(identity, stats, visual, request.requiredInfluencePoints, skills, request.implicitSkillParams);
+    return new PawnDefinition(identity, stats, visual, request.requiredInfluencePoints, skills, request.implicitSkillParams, request.innateSkillLevels);
   }
 }

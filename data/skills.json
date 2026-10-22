@@ -55,7 +55,34 @@
       "descriptionKey": "skills.increase-power-column-when-decrementing.description",
       "descriptionParams": {
         "columnPowerBonusPerDecrement": "pawn.implicitSkillParams.columnPowerBonusPerDecrement"
-      }
+      },
+      "activationType": "progressive",
+      "levels": [
+        {
+          "level": 1,
+          "skillPointCost": 3,
+          "requiredInfluencePoints": 3,
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3
+          }
+        },
+        {
+          "level": 2,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 12,
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 7
+          }
+        },
+        {
+          "level": 3,
+          "skillPointCost": 15,
+          "requiredInfluencePoints": 25,
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 12
+          }
+        }
+      ]
     },
     {
       "id": "increase-SP-by-attack-linked-when-preparing",
