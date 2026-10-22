@@ -33,11 +33,15 @@ export abstract class Skill<TProps extends SkillProps = SkillProps> {
 export interface PawnSkillProps extends SkillProps {
   triggerPhase: PawnSkillTriggerPhase;
   chargeBonusPercent?: number;
+  activationType?: 'progressive';
+  levels?: readonly { level: number; skillPointCost: number; requiredInfluencePoints: number; implicitSkillParams: Readonly<Record<string, number>> }[];
 }
 
 export class PawnSkill extends Skill<PawnSkillProps> {
   public constructor(props: PawnSkillProps) { super(props); }
 
+  public get activationType(): 'progressive' | undefined { return this.props.activationType; }
+  public get levels(): NonNullable<PawnSkillProps['levels']> { return this.props.levels?.map(level => ({ ...level, implicitSkillParams: { ...level.implicitSkillParams } })) ?? []; }
   public get triggerPhase(): PawnSkillTriggerPhase { return this.props.triggerPhase; }
   public get chargeBonusPercent(): number | undefined { return this.props.chargeBonusPercent; }
 }

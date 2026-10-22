@@ -12,6 +12,7 @@ export interface ProductionPawnDocument {
   readonly weaponKey: string;
   readonly requiredInfluencePoints?: number;
   readonly skills?: readonly string[];
+  readonly innateSkillLevels?: Readonly<Record<string, number>>;
   readonly implicitSkillParams?: Record<string, number>;
 }
 

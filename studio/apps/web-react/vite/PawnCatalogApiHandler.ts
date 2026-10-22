@@ -43,6 +43,7 @@ export class PawnCatalogApiHandler {
               requiredInfluencePoints: pawn.requiredInfluencePoints,
               skills: pawn.skills.map((s) => s.value),
               implicitSkillParams: pawn.implicitSkillParams,
+              innateSkillLevels: pawn.innateSkillLevels,
             }),
       };
     }));

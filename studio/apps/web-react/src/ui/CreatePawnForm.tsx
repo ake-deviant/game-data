@@ -8,6 +8,7 @@ import {
   type PawnColor,
   type PawnType,
 } from '@game-data/presentation';
+import { PawnSkillInitialLevels } from './PawnSkillInitialLevels';
 import skillsData from '../../../../../data/skills.json';
 import { Icon, Field, inputClass, Section, SkillPicker } from './ui-kit';
 import { WeaponKeySelect } from './WeaponKeySelect';
@@ -30,7 +31,6 @@ type ImplicitKey = keyof PawnDefinitionFormModel['implicitSkillParams'];
 
 const implicitFields: { key: ImplicitKey; label: string; hint: string }[] = [
   { key: 'powerBonusPerDecrement',       label: 'Bonus puissance / décrément',        hint: 'powerBonusPerDecrement' },
-  { key: 'columnPowerBonusPerDecrement', label: 'Bonus puissance colonne / décrément', hint: 'columnPowerBonusPerDecrement' },
   { key: 'spBonusPerLiaison',            label: 'Bonus SP / liaison',                  hint: 'spBonusPerLiaison' },
   { key: 'spBonusPerAttackPawn',         label: 'Bonus SP / pion attaqué',             hint: 'spBonusPerAttackPawn' },
   { key: 'freeWallDestructsOnDecrement', label: 'Destructions mur gratuites',          hint: 'freeWallDestructsOnDecrement' },
@@ -229,14 +229,15 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
           <Section
             icon="skills"
             eyebrow="Compétences"
-            title="Skills passifs"
-            description="Compétences passives visuelles du pion (pawnSkillVisuals)."
+            title="Skills du pion"
+            description="Compétences automatiques et améliorations disponibles pendant la partie."
           >
             <SkillPicker
               skills={pawnSkills}
               selected={form.skills as string[]}
               onChange={(skills) => setField('skills', skills)}
             />
+            <PawnSkillInitialLevels selected={form.skills} levels={form.innateSkillLevels ?? {}} onChange={levels => setField('innateSkillLevels', levels)} />
           </Section>
         </>
       )}

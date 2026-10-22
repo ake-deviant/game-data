@@ -77,6 +77,12 @@
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 3,
             "freeWallDestructsOnDecrement": 1
+          },
+          "skills": [
+            "increase-power-column-when-decrementing"
+          ],
+          "innateSkillLevels": {
+            "increase-power-column-when-decrementing": 1
           }
         },
         {
@@ -161,9 +167,15 @@
           "weaponKey": "shuriken",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 6,
+            "columnPowerBonusPerDecrement": 3,
             "freeWallDestructsOnDecrement": 0,
             "liaisonBonusPercent": 10
+          },
+          "skills": [
+            "increase-power-column-when-decrementing"
+          ],
+          "innateSkillLevels": {
+            "increase-power-column-when-decrementing": 1
           }
         },
         {
@@ -276,6 +288,12 @@
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 3,
             "freeWallDestructsOnDecrement": 1
+          },
+          "skills": [
+            "increase-power-column-when-decrementing"
+          ],
+          "innateSkillLevels": {
+            "increase-power-column-when-decrementing": 1
           }
         },
         {
@@ -360,9 +378,15 @@
           "weaponKey": "shuriken",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 6,
+            "columnPowerBonusPerDecrement": 3,
             "freeWallDestructsOnDecrement": 0,
             "liaisonBonusPercent": 10
+          },
+          "skills": [
+            "increase-power-column-when-decrementing"
+          ],
+          "innateSkillLevels": {
+            "increase-power-column-when-decrementing": 1
           }
         },
         {

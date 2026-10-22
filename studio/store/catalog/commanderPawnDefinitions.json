@@ -32,6 +32,12 @@
     "implicitSkillParams": {
       "columnPowerBonusPerDecrement": 3,
       "freeWallDestructsOnDecrement": 1
+    },
+    "skills": [
+      "increase-power-column-when-decrementing"
+    ],
+    "innateSkillLevels": {
+      "increase-power-column-when-decrementing": 1
     }
   },
   {

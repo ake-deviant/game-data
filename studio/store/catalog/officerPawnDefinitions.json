@@ -65,10 +65,16 @@
     "weaponKey": "shuriken",
     "requiredInfluencePoints": 0,
     "implicitSkillParams": {
-      "columnPowerBonusPerDecrement": 5,
+      "columnPowerBonusPerDecrement": 3,
       "spBonusPerAttackPawn": 1,
       "freeWallDestructsOnDecrement": 1,
       "liaisonBonusPercent": 10
+    },
+    "skills": [
+      "increase-power-column-when-decrementing"
+    ],
+    "innateSkillLevels": {
+      "increase-power-column-when-decrementing": 1
     }
   },
   {
@@ -134,9 +140,15 @@
     "weaponKey": "shuriken",
     "requiredInfluencePoints": 10,
     "implicitSkillParams": {
-      "columnPowerBonusPerDecrement": 6,
+      "columnPowerBonusPerDecrement": 3,
       "freeWallDestructsOnDecrement": 0,
       "liaisonBonusPercent": 10
+    },
+    "skills": [
+      "increase-power-column-when-decrementing"
+    ],
+    "innateSkillLevels": {
+      "increase-power-column-when-decrementing": 1
     }
   },
   {

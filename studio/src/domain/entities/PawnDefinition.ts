@@ -23,6 +23,7 @@ export class PawnDefinition {
   public readonly stats: PawnDefinitionStats;
   public readonly visual: PawnVisual;
   public readonly requiredInfluencePoints?: number;
+  public readonly innateSkillLevels?: Readonly<Record<string, number>>;
   private readonly skillIds: readonly SkillId[];
   private readonly implicitParameters?: Readonly<PawnImplicitSkillParams>;
 
@@ -33,11 +34,13 @@ export class PawnDefinition {
     requiredInfluencePoints?: number,
     skills: readonly SkillId[] = [],
     implicitSkillParams?: Readonly<PawnImplicitSkillParams>,
+    innateSkillLevels?: Readonly<Record<string, number>>,
   ) {
     this.identity = identity;
     this.stats = stats;
     this.visual = visual;
     this.requiredInfluencePoints = requiredInfluencePoints;
+    this.innateSkillLevels = innateSkillLevels ? { ...innateSkillLevels } : undefined;
     this.skillIds = [...skills];
     this.implicitParameters = implicitSkillParams
       ? { ...implicitSkillParams }

@@ -21,6 +21,15 @@ const documentSchema = z.object({
   pawnSkillVisuals: z.array(skillBaseSchema.extend({
     triggerPhase: z.enum(['spawn', 'decrement', 'movePhase', 'attack']),
     chargeBonusPercent: z.number().optional(),
+    activationType: z.literal('progressive').optional(),
+    levels: z.array(z.object({
+      level: z.number().int().positive(), skillPointCost: z.number().nonnegative(), requiredInfluencePoints: z.number().nonnegative(),
+      implicitSkillParams: z.object({ columnPowerBonusPerDecrement: z.number().nonnegative() }).strict(),
+    })).min(1).optional(),
+  }).superRefine((skill, ctx) => {
+    if ((skill.activationType === 'progressive') !== (skill.levels !== undefined) || skill.levels?.some((level, index) => level.level !== index + 1)) {
+      ctx.addIssue({ code: 'custom', message: 'Invalid pawn skill progression' });
+    }
   })),
   activablePlayerSkills: z.array(skillBaseSchema.extend({
     activationType: z.enum(['single', 'progressive']).optional(),

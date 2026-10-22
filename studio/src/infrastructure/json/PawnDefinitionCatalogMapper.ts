@@ -36,6 +36,7 @@ export class PawnDefinitionCatalogMapper {
       document.requiredInfluencePoints,
       document.skills?.map((id) => new SkillId(id)),
       document.implicitSkillParams,
+      document.innateSkillLevels,
     );
   }
 
@@ -60,6 +61,7 @@ export class PawnDefinitionCatalogMapper {
       requiredInfluencePoints: pawn.requiredInfluencePoints,
       skills: pawn.skills.length > 0 ? pawn.skills.map(String) : undefined,
       implicitSkillParams: pawn.implicitSkillParams,
+      innateSkillLevels: pawn.innateSkillLevels,
     };
   }
 }
