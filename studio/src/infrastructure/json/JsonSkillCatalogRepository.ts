@@ -23,13 +23,33 @@ const documentSchema = z.object({
     chargeBonusPercent: z.number().optional(),
   })),
   activablePlayerSkills: z.array(skillBaseSchema.extend({
-    skillPointCost: z.number(),
-    skillDelay: z.number().nullable(),
-    requiredInfluencePoints: z.number(),
+    activationType: z.enum(['single', 'progressive']).optional(),
+    levels: z.array(z.object({
+      level: z.number().int().positive(),
+      skillPointCost: z.number().nonnegative(),
+      requiredInfluencePoints: z.number().nonnegative(),
+      freeRecruitThresholdReduction: z.number().nonnegative().optional(),
+    })).min(1).optional(),
+    skillPointCost: z.number().nonnegative().optional(),
+    skillDelay: z.number().nullable().optional(),
+    requiredInfluencePoints: z.number().nonnegative().optional(),
     delayIllimited: z.boolean().optional(),
     freeWallDestructs: z.number().optional(),
     movementCost: z.number().optional(),
     extraPawnSlots: z.number().optional(),
+  }).superRefine((skill, ctx) => {
+    if (skill.activationType === 'progressive') {
+      if (!skill.levels?.length || skill.skillPointCost !== undefined || skill.requiredInfluencePoints !== undefined || skill.delayIllimited !== true) {
+        ctx.addIssue({ code: 'custom', message: 'Progressive skills require levels and permanent duration, with costs on levels only' });
+      }
+      skill.levels?.forEach((level, index) => {
+        if (level.level !== index + 1 || (skill.id === 'free-recruits' && level.freeRecruitThresholdReduction === undefined)) {
+          ctx.addIssue({ code: 'custom', message: 'Invalid skill level', path: ['levels', index] });
+        }
+      });
+    } else if (skill.skillPointCost === undefined || skill.requiredInfluencePoints === undefined || skill.levels !== undefined) {
+      ctx.addIssue({ code: 'custom', message: 'Single skills require costs and must not define levels' });
+    }
   })),
 });
 
