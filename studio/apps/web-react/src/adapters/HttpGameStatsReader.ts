@@ -85,6 +85,9 @@ export class HttpGameStatsReader implements GameStatsReader {
     if (!response.ok || !json.success) {
       throw new Error(json.error?.message ?? 'Erreur serveur inattendue.');
     }
+    if (json.data === undefined) {
+      throw new Error('Réponse serveur invalide : champ data absent.');
+    }
     return json.data;
   }
 }

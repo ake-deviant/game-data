@@ -54,6 +54,7 @@ export class BotComparisonController {
 
   public async refresh(): Promise<void> {
     const { botA, botB, matchesPagination, matchesStatusFilter } = this.presenter.getViewModel();
+    if (botA === botB) return;
     await Promise.all([
       this.compare(botA, botB),
       this.loadMatches(matchesPagination.page, matchesStatusFilter),

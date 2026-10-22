@@ -1,4 +1,4 @@
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { Fragment, useEffect, useState, useSyncExternalStore } from 'react';
 import type { gameStatsComposition } from '../composition/gameStatsComposition';
 import type { RecordedGame, GameMode, GameStatus } from '@game-data/application';
 import { Icon, inputClass, Field } from './ui-kit';
@@ -55,7 +55,7 @@ function GameDetail({ game, onClose }: { game: RecordedGame; onClose: () => void
 
   return (
     <tr>
-      <td colSpan={6} className="bg-slate-900/80 px-6 py-5">
+      <td colSpan={7} className="bg-slate-900/80 px-6 py-5">
         <div className="flex items-start justify-between gap-4">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 flex-1">
             <div>
@@ -319,35 +319,33 @@ export function GameStatsView({ statsController, statsPresenter }: Pick<Composit
                 </thead>
                 <tbody>
                   {model.games.map((game) => (
-                    <>
+                    <Fragment key={game.gameId}>
                       <GameRow
-                        key={game.gameId}
                         game={game}
                         isSelected={selectedId === game.gameId}
                         onToggle={() => toggleDetail(game.gameId)}
                       />
                       {selectedId === game.gameId && model.detailStatus === 'loading' && (
-                        <tr key={`${game.gameId}-loading`}>
-                          <td colSpan={6} className="px-6 py-4 text-xs text-slate-500 bg-slate-900/80">
+                        <tr>
+                          <td colSpan={7} className="px-6 py-4 text-xs text-slate-500 bg-slate-900/80">
                             Chargement du détail…
                           </td>
                         </tr>
                       )}
                       {selectedId === game.gameId && model.detailStatus === 'error' && (
-                        <tr key={`${game.gameId}-error`}>
-                          <td colSpan={6} className="px-6 py-4 bg-slate-900/80">
+                        <tr>
+                          <td colSpan={7} className="px-6 py-4 bg-slate-900/80">
                             <p className="text-xs text-rose-300">{model.detailError}</p>
                           </td>
                         </tr>
                       )}
                       {selectedId === game.gameId && model.selectedGame && (
                         <GameDetail
-                          key={`${game.gameId}-detail`}
                           game={model.selectedGame}
                           onClose={() => { setSelectedId(null); statsController.clearDetail(); }}
                         />
                       )}
-                    </>
+                    </Fragment>
                   ))}
                 </tbody>
               </table>

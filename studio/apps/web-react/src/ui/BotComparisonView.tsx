@@ -115,11 +115,16 @@ export function BotComparisonView({ comparisonController, comparisonPresenter }:
   const [matchesOnlyFinished, setMatchesOnlyFinished] = useState(false);
 
   useEffect(() => {
+    setBotAInput(model.botA);
+    setBotBInput(model.botB);
+  }, [model.botA, model.botB]);
+
+  useEffect(() => {
     if (model.comparisonStatus === 'idle') {
       void comparisonController.compare(model.botA, model.botB);
-      void comparisonController.loadMatches(1);
+      void comparisonController.loadMatches(1, matchesOnlyFinished ? 'finished' : undefined);
     }
-  }, [comparisonController, model.botA, model.botB, model.comparisonStatus]);
+  }, [comparisonController, model.botA, model.botB, model.comparisonStatus, matchesOnlyFinished]);
 
   const handleCompare = () => {
     const a = botAInput.trim();
@@ -206,7 +211,7 @@ export function BotComparisonView({ comparisonController, comparisonPresenter }:
           <p className="text-sm text-rose-300">{model.comparisonError}</p>
         </div>
       )}
-      {model.comparisonStatus === 'ready' && comparison && (
+      {model.comparisonStatus === 'ready' && comparison && comparison.totalGames > 0 && (
         <div className="overflow-hidden rounded-2xl border border-white/[0.07] bg-slate-900/65 shadow-2xl shadow-black/10">
           <div className="border-b border-white/[0.06] px-6 py-4">
             <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-slate-400">
