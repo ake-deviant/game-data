@@ -181,16 +181,33 @@
       "id": "expand-pawn-capacity",
       "displayName": "Renforts Supplémentaires",
       "visualKey": "expand-pawn-capacity",
-      "skillPointCost": 20,
-      "skillDelay": 4,
-      "extraPawnSlots": 4,
-      "requiredInfluencePoints": 50,
       "displayNameKey": "skills.expand-pawn-capacity.name",
       "descriptionKey": "skills.expand-pawn-capacity.description",
       "descriptionParams": {
         "extraPawnSlots": "skill.extraPawnSlots"
       },
-      "activationType": "single"
+      "activationType": "progressive",
+      "delayIllimited": true,
+      "levels": [
+        {
+          "level": 1,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 5,
+          "extraPawnSlots": 3
+        },
+        {
+          "level": 2,
+          "skillPointCost": 10,
+          "requiredInfluencePoints": 15,
+          "extraPawnSlots": 4
+        },
+        {
+          "level": 3,
+          "skillPointCost": 15,
+          "requiredInfluencePoints": 30,
+          "extraPawnSlots": 5
+        }
+      ]
     }
   ]
 }
