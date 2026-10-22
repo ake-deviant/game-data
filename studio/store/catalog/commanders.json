@@ -3,9 +3,9 @@
     "id": "12",
     "name": "Aegis",
     "description": "aucune",
-    "icon": "aucune",
+    "icon": "Aegis-1",
     "baseStats": {
-      "pawnMax": 45,
+      "pawnMax": 37,
       "health": 99,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
