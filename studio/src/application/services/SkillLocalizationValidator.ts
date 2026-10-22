@@ -12,7 +12,7 @@ const pawnParameters = {
 
 const skillParameters = new Set([
   'chargeBonusPercent', 'skillPointCost', 'skillDelay', 'requiredInfluencePoints',
-  'freeWallDestructs', 'movementCost', 'extraPawnSlots', 'freeRecruitThresholdReduction',
+  'freeWallDestructs', 'movementCost', 'extraPawnSlots', 'freeRecruitThresholdReduction', 'defensePowerPerLevelBonus', 'maxDefenseLevelBonus',
 ]);
 
 /** Validates any locale without coupling the catalog to a language or UI. */
@@ -28,7 +28,15 @@ export class SkillLocalizationValidator {
       }
     }
 
-    for (const skill of skills) {
+    for (const definition of skills) {
+      const variants = definition instanceof ActivablePlayerSkill && definition.activationType === 'progressive'
+        ? definition.levels.map(level => ({
+          id: definition.id, displayNameKey: definition.displayNameKey,
+          descriptionKey: level.descriptionKey ?? definition.descriptionKey,
+          descriptionParams: level.descriptionParams ?? definition.descriptionParams,
+          ...level,
+        })) : [definition];
+      for (const skill of variants) {
       this.validateText(translations, skill.displayNameKey, []);
       this.validateText(translations, skill.descriptionKey, Object.keys(skill.descriptionParams));
       for (const [parameter, source] of Object.entries(skill.descriptionParams)) {
@@ -40,13 +48,14 @@ export class SkillLocalizationValidator {
           if (Object.hasOwn(pawnParameters, field)) continue;
         } else if (source.startsWith('skill.')) {
           const field = source.slice('skill.'.length);
-          const targets = skill instanceof ActivablePlayerSkill && skill.activationType === 'progressive' ? skill.levels : [skill];
+          const targets = [skill];
           if (skillParameters.has(field) && targets.length > 0 && targets.every(target => {
             const value = Reflect.get(target, field);
             return typeof value === 'number' && Number.isFinite(value);
           })) continue;
         }
         throw new Error(`Invalid source '${source}' for '${skill.id.value}.${parameter}'.`);
+      }
       }
     }
   }

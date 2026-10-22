@@ -208,6 +208,38 @@
           "extraPawnSlots": 5
         }
       ]
+    },
+    {
+      "id": "defense-upgrade",
+      "displayName": "Renforcement des défenses",
+      "visualKey": "defense-upgrade",
+      "activationType": "progressive",
+      "delayIllimited": true,
+      "displayNameKey": "skills.defense-upgrade.name",
+      "descriptionKey": "skills.defense-upgrade.description",
+      "descriptionParams": {},
+      "levels": [
+        {
+          "level": 1,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 10,
+          "defensePowerPerLevelBonus": 1,
+          "descriptionKey": "skills.defense-upgrade.power.description",
+          "descriptionParams": {
+            "defensePowerPerLevelBonus": "skill.defensePowerPerLevelBonus"
+          }
+        },
+        {
+          "level": 2,
+          "skillPointCost": 12,
+          "requiredInfluencePoints": 20,
+          "maxDefenseLevelBonus": 1,
+          "descriptionKey": "skills.defense-upgrade.level.description",
+          "descriptionParams": {
+            "maxDefenseLevelBonus": "skill.maxDefenseLevelBonus"
+          }
+        }
+      ]
     }
   ]
 }
