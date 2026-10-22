@@ -29,6 +29,7 @@ const documentSchema = z.object({
       skillPointCost: z.number().nonnegative(),
       requiredInfluencePoints: z.number().nonnegative(),
       freeRecruitThresholdReduction: z.number().nonnegative().optional(),
+      extraPawnSlots: z.number().int().nonnegative().optional(),
     })).min(1).optional(),
     skillPointCost: z.number().nonnegative().optional(),
     skillDelay: z.number().nullable().optional(),
@@ -43,7 +44,8 @@ const documentSchema = z.object({
         ctx.addIssue({ code: 'custom', message: 'Progressive skills require levels and permanent duration, with costs on levels only' });
       }
       skill.levels?.forEach((level, index) => {
-        if (level.level !== index + 1 || (skill.id === 'free-recruits' && level.freeRecruitThresholdReduction === undefined)) {
+        if (level.level !== index + 1 || (skill.id === 'free-recruits' && level.freeRecruitThresholdReduction === undefined)
+          || (skill.id === 'expand-pawn-capacity' && level.extraPawnSlots === undefined)) {
           ctx.addIssue({ code: 'custom', message: 'Invalid skill level', path: ['levels', index] });
         }
       });
