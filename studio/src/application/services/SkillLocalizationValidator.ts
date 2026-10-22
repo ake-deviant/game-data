@@ -1,4 +1,4 @@
-import type { PawnImplicitSkillParams, Skill } from '@game-data/domain';
+import { ActivablePlayerSkill, type PawnImplicitSkillParams, type Skill } from '@game-data/domain';
 
 const pawnParameters = {
   powerBonusPerDecrement: true,
@@ -12,7 +12,7 @@ const pawnParameters = {
 
 const skillParameters = new Set([
   'chargeBonusPercent', 'skillPointCost', 'skillDelay', 'requiredInfluencePoints',
-  'freeWallDestructs', 'movementCost', 'extraPawnSlots',
+  'freeWallDestructs', 'movementCost', 'extraPawnSlots', 'freeRecruitThresholdReduction',
 ]);
 
 /** Validates any locale without coupling the catalog to a language or UI. */
@@ -40,8 +40,11 @@ export class SkillLocalizationValidator {
           if (Object.hasOwn(pawnParameters, field)) continue;
         } else if (source.startsWith('skill.')) {
           const field = source.slice('skill.'.length);
-          const value = Reflect.get(skill, field);
-          if (skillParameters.has(field) && typeof value === 'number' && Number.isFinite(value)) continue;
+          const targets = skill instanceof ActivablePlayerSkill && skill.activationType === 'progressive' ? skill.levels : [skill];
+          if (skillParameters.has(field) && targets.length > 0 && targets.every(target => {
+            const value = Reflect.get(target, field);
+            return typeof value === 'number' && Number.isFinite(value);
+          })) continue;
         }
         throw new Error(`Invalid source '${source}' for '${skill.id.value}.${parameter}'.`);
       }

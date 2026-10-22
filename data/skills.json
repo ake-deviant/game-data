@@ -113,19 +113,40 @@
       "requiredInfluencePoints": 20,
       "displayNameKey": "skills.melee-attack-fusion.name",
       "descriptionKey": "skills.melee-attack-fusion.description",
-      "descriptionParams": {}
+      "descriptionParams": {},
+      "activationType": "single"
     },
     {
       "id": "free-recruits",
       "displayName": "Renforts Gratuits",
       "visualKey": "free-recruits",
-      "skillPointCost": 15,
-      "skillDelay": null,
       "delayIllimited": true,
-      "requiredInfluencePoints": 25,
       "displayNameKey": "skills.free-recruits.name",
       "descriptionKey": "skills.free-recruits.description",
-      "descriptionParams": {}
+      "descriptionParams": {
+        "freeRecruitThresholdReduction": "skill.freeRecruitThresholdReduction"
+      },
+      "activationType": "progressive",
+      "levels": [
+        {
+          "level": 1,
+          "skillPointCost": 3,
+          "requiredInfluencePoints": 4,
+          "freeRecruitThresholdReduction": 5
+        },
+        {
+          "level": 2,
+          "skillPointCost": 8,
+          "requiredInfluencePoints": 10,
+          "freeRecruitThresholdReduction": 10
+        },
+        {
+          "level": 3,
+          "skillPointCost": 12,
+          "requiredInfluencePoints": 15,
+          "freeRecruitThresholdReduction": 15
+        }
+      ]
     },
     {
       "id": "destroy-defense-pawns",
@@ -139,7 +160,8 @@
       "descriptionKey": "skills.destroy-defense-pawns.description",
       "descriptionParams": {
         "freeWallDestructs": "skill.freeWallDestructs"
-      }
+      },
+      "activationType": "single"
     },
     {
       "id": "tactical-demolition",
@@ -152,7 +174,8 @@
       "requiredInfluencePoints": 40,
       "displayNameKey": "skills.tactical-demolition.name",
       "descriptionKey": "skills.tactical-demolition.description",
-      "descriptionParams": {}
+      "descriptionParams": {},
+      "activationType": "single"
     },
     {
       "id": "expand-pawn-capacity",
@@ -166,7 +189,8 @@
       "descriptionKey": "skills.expand-pawn-capacity.description",
       "descriptionParams": {
         "extraPawnSlots": "skill.extraPawnSlots"
-      }
+      },
+      "activationType": "single"
     }
   ]
 }

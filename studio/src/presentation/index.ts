@@ -47,3 +47,9 @@ export {
   type PawnColor,
   type PawnType,
 } from './models/PawnDefinitionFormModel.ts';
+export type { GameStatsViewModel, GameStatsPagination } from './models/GameStatsViewModel.ts';
+export type { BotComparisonViewModel, BotMatchesPagination } from './models/BotComparisonViewModel.ts';
+export { GameStatsPresenter } from './presenters/GameStatsPresenter.ts';
+export { BotComparisonPresenter } from './presenters/BotComparisonPresenter.ts';
+export { GameStatsController } from './controllers/GameStatsController.ts';
+export { BotComparisonController } from './controllers/BotComparisonController.ts';

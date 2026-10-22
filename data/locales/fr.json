@@ -18,7 +18,7 @@
   "skills.liaison-power-bonus.name": "Synergie de Liaison",
   "skills.liaison-power-bonus.description": "augmente de {liaisonBonusPercent}% le coefficient de liaison de chaque couleur pour chaque phase d'attaque",
   "skills.free-recruits.name": "Renforts Gratuits",
-  "skills.free-recruits.description": "ne dépensez plus de mouvement pour appeler les renforts",
+  "skills.free-recruits.description": "R?duit le seuil de recrutement gratuit de {freeRecruitThresholdReduction}, sans descendre sous z?ro.",
   "skills.destroy-defense-pawns.name": "Destruction de Défenses",
   "skills.destroy-defense-pawns.description": "gagne {freeWallDestructs} destruction de défense à dépenser ce tour",
   "skills.tactical-demolition.name": "Démolition Tactique",

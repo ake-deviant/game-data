@@ -43,9 +43,11 @@ export class PawnSkill extends Skill<PawnSkillProps> {
 }
 
 export interface ActivablePlayerSkillProps extends SkillProps {
-  skillPointCost: number;
-  skillDelay: number | null;
-  requiredInfluencePoints: number;
+  activationType?: 'single' | 'progressive';
+  levels?: readonly { level: number; skillPointCost: number; requiredInfluencePoints: number; freeRecruitThresholdReduction?: number }[];
+  skillPointCost?: number;
+  skillDelay?: number | null;
+  requiredInfluencePoints?: number;
   delayIllimited?: boolean;
   freeWallDestructs?: number;
   movementCost?: number;
@@ -55,9 +57,11 @@ export interface ActivablePlayerSkillProps extends SkillProps {
 export class ActivablePlayerSkill extends Skill<ActivablePlayerSkillProps> {
   public constructor(props: ActivablePlayerSkillProps) { super(props); }
 
-  public get skillPointCost(): number { return this.props.skillPointCost; }
-  public get skillDelay(): number | null { return this.props.skillDelay; }
-  public get requiredInfluencePoints(): number { return this.props.requiredInfluencePoints; }
+  public get activationType(): 'single' | 'progressive' { return this.props.activationType ?? 'single'; }
+  public get levels(): NonNullable<ActivablePlayerSkillProps['levels']> { return this.props.levels?.map(level => ({ ...level })) ?? []; }
+  public get skillPointCost(): number | undefined { return this.props.skillPointCost; }
+  public get skillDelay(): number | null | undefined { return this.props.skillDelay; }
+  public get requiredInfluencePoints(): number | undefined { return this.props.requiredInfluencePoints; }
   public get delayIllimited(): boolean | undefined { return this.props.delayIllimited; }
   public get freeWallDestructs(): number | undefined { return this.props.freeWallDestructs; }
   public get movementCost(): number | undefined { return this.props.movementCost; }
