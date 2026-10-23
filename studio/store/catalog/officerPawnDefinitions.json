@@ -64,17 +64,17 @@
     "visualKey": "V2_officer_ranged_red",
     "weaponKey": "shuriken",
     "requiredInfluencePoints": 0,
-    "implicitSkillParams": {
-      "columnPowerBonusPerDecrement": 3,
-      "spBonusPerAttackPawn": 1,
-      "freeWallDestructsOnDecrement": 1,
-      "liaisonBonusPercent": 10
-    },
     "skills": [
       "increase-power-column-when-decrementing"
     ],
     "innateSkillLevels": {
       "increase-power-column-when-decrementing": 1
+    },
+    "implicitSkillParams": {
+      "columnPowerBonusPerDecrement": 3,
+      "spBonusPerAttackPawn": 1,
+      "freeWallDestructsOnDecrement": 1,
+      "liaisonBonusPercent": 10
     }
   },
   {
@@ -101,12 +101,15 @@
     "color": "blue",
     "type": "ranged",
     "turnCount": 2,
-    "power": 8,
-    "countPawns": 1,
+    "power": 6,
+    "countPawns": 2,
     "moveCount": 2,
     "visualKey": "Aegis_officer_ranged_blue",
     "weaponKey": "arrow",
     "requiredInfluencePoints": 4,
+    "skills": [
+      "increase-enemy-elite-cooldown-on-hit"
+    ],
     "implicitSkillParams": {
       "powerBonusPerDecrement": 6
     }
@@ -139,16 +142,16 @@
     "visualKey": "Aegis_officer_ranged_red",
     "weaponKey": "shuriken",
     "requiredInfluencePoints": 10,
-    "implicitSkillParams": {
-      "columnPowerBonusPerDecrement": 3,
-      "freeWallDestructsOnDecrement": 0,
-      "liaisonBonusPercent": 10
-    },
     "skills": [
       "increase-power-column-when-decrementing"
     ],
     "innateSkillLevels": {
       "increase-power-column-when-decrementing": 1
+    },
+    "implicitSkillParams": {
+      "columnPowerBonusPerDecrement": 3,
+      "freeWallDestructsOnDecrement": 0,
+      "liaisonBonusPercent": 10
     }
   },
   {
