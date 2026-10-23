@@ -1,6 +1,15 @@
 {
   "pawnSkillVisuals": [
     {
+      "id": "increase-enemy-elite-cooldown-on-hit",
+      "displayName": "Retard des renforts",
+      "visualKey": "increase-enemy-elite-cooldown-on-hit",
+      "triggerPhase": "attack",
+      "displayNameKey": "skills.increase-enemy-elite-cooldown-on-hit.name",
+      "descriptionKey": "skills.increase-enemy-elite-cooldown-on-hit.description",
+      "descriptionParams": {}
+    },
+    {
       "id": "power-growth",
       "displayName": "Croissance de Puissance",
       "visualKey": "power-growth",
