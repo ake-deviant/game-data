@@ -6,7 +6,7 @@
     "icon": "Aegis-1",
     "baseStats": {
       "pawnMax": 37,
-      "health": 99,
+      "health": 100,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
       "defensePowerPerLevel": 8,
@@ -74,15 +74,15 @@
           "visualKey": "Aegis_commander_melee_red",
           "weaponKey": "spear",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 3,
-            "freeWallDestructsOnDecrement": 1
-          },
           "skills": [
             "increase-power-column-when-decrementing"
           ],
           "innateSkillLevels": {
             "increase-power-column-when-decrementing": 1
+          },
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 1
           }
         },
         {
@@ -144,12 +144,15 @@
           "color": "blue",
           "type": "ranged",
           "turnCount": 2,
-          "power": 8,
+          "power": 6,
           "countPawns": 1,
           "moveCount": 2,
           "visualKey": "Aegis_officer_ranged_blue",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 4,
+          "skills": [
+            "increase-enemy-elite-cooldown-on-hit"
+          ],
           "implicitSkillParams": {
             "powerBonusPerDecrement": 6
           }
@@ -166,16 +169,16 @@
           "visualKey": "Aegis_officer_ranged_red",
           "weaponKey": "shuriken",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 3,
-            "freeWallDestructsOnDecrement": 0,
-            "liaisonBonusPercent": 10
-          },
           "skills": [
             "increase-power-column-when-decrementing"
           ],
           "innateSkillLevels": {
             "increase-power-column-when-decrementing": 1
+          },
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 0,
+            "liaisonBonusPercent": 10
           }
         },
         {
@@ -206,7 +209,7 @@
       "innateSkills": [
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 21
+      "freeRecruitThreshold": 20
     }
   },
   {
@@ -285,15 +288,15 @@
           "visualKey": "Aegis_commander_melee_red",
           "weaponKey": "spear",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 3,
-            "freeWallDestructsOnDecrement": 1
-          },
           "skills": [
             "increase-power-column-when-decrementing"
           ],
           "innateSkillLevels": {
             "increase-power-column-when-decrementing": 1
+          },
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 1
           }
         },
         {
@@ -355,12 +358,15 @@
           "color": "blue",
           "type": "ranged",
           "turnCount": 2,
-          "power": 8,
+          "power": 6,
           "countPawns": 1,
           "moveCount": 2,
           "visualKey": "Aegis_officer_ranged_blue",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 4,
+          "skills": [
+            "increase-enemy-elite-cooldown-on-hit"
+          ],
           "implicitSkillParams": {
             "powerBonusPerDecrement": 6
           }
@@ -377,16 +383,16 @@
           "visualKey": "Aegis_officer_ranged_red",
           "weaponKey": "shuriken",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 3,
-            "freeWallDestructsOnDecrement": 0,
-            "liaisonBonusPercent": 10
-          },
           "skills": [
             "increase-power-column-when-decrementing"
           ],
           "innateSkillLevels": {
             "increase-power-column-when-decrementing": 1
+          },
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 0,
+            "liaisonBonusPercent": 10
           }
         },
         {

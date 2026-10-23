@@ -6,7 +6,7 @@
     "icon": "Aegis-1",
     "baseStats": {
       "pawnMax": 37,
-      "health": 99,
+      "health": 100,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
       "defensePowerPerLevel": 8,
@@ -38,7 +38,7 @@
       "innateSkills": [
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 21
+      "freeRecruitThreshold": 20
     }
   },
   {
