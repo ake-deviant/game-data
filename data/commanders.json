@@ -74,15 +74,15 @@
           "visualKey": "Aegis_commander_melee_red",
           "weaponKey": "spear",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 3,
-            "freeWallDestructsOnDecrement": 1
-          },
           "skills": [
             "increase-power-column-when-decrementing"
           ],
           "innateSkillLevels": {
             "increase-power-column-when-decrementing": 1
+          },
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 1
           }
         },
         {
@@ -166,16 +166,16 @@
           "visualKey": "Aegis_officer_ranged_red",
           "weaponKey": "shuriken",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 3,
-            "freeWallDestructsOnDecrement": 0,
-            "liaisonBonusPercent": 10
-          },
           "skills": [
             "increase-power-column-when-decrementing"
           ],
           "innateSkillLevels": {
             "increase-power-column-when-decrementing": 1
+          },
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 0,
+            "liaisonBonusPercent": 10
           }
         },
         {
@@ -285,15 +285,15 @@
           "visualKey": "Aegis_commander_melee_red",
           "weaponKey": "spear",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 3,
-            "freeWallDestructsOnDecrement": 1
-          },
           "skills": [
             "increase-power-column-when-decrementing"
           ],
           "innateSkillLevels": {
             "increase-power-column-when-decrementing": 1
+          },
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 1
           }
         },
         {
@@ -377,16 +377,16 @@
           "visualKey": "Aegis_officer_ranged_red",
           "weaponKey": "shuriken",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 3,
-            "freeWallDestructsOnDecrement": 0,
-            "liaisonBonusPercent": 10
-          },
           "skills": [
             "increase-power-column-when-decrementing"
           ],
           "innateSkillLevels": {
             "increase-power-column-when-decrementing": 1
+          },
+          "implicitSkillParams": {
+            "columnPowerBonusPerDecrement": 3,
+            "freeWallDestructsOnDecrement": 0,
+            "liaisonBonusPercent": 10
           }
         },
         {
