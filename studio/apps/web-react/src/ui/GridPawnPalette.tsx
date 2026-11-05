@@ -3,15 +3,16 @@ import type { GridEditorViewModel } from '@game-data/presentation';
 import type { GridEditorController } from '@game-data/presentation';
 import type { GridCatalogViewModel } from '@game-data/presentation';
 
-const roleLabels = { soldier: 'Soldat · none', officer: 'Officier · attack', commander: 'Commandant · attack' };
+const roleLabels = { soldier: 'Soldat · none', officer: 'Officier · attack', commander: 'Commandant · attack', 'basic-attack': 'Groupe att. basique' };
 const colorLabels = { red: 'Rouge', blue: 'Bleu', green: 'Vert' };
 const colorClasses = { red: 'bg-rose-400', blue: 'bg-sky-400', green: 'bg-emerald-400' };
-type PawnFilter = 'all' | 'soldier' | 'officer' | 'commander' | 'defense';
+type PawnFilter = 'all' | 'soldier' | 'officer' | 'commander' | 'defense' | 'basic-attack';
 
 const filterButtons: { id: Exclude<PawnFilter, 'all'>; label: string }[] = [
   { id: 'soldier', label: 'Troop' },
   { id: 'officer', label: 'Officer' },
   { id: 'commander', label: 'Commander' },
+  { id: 'basic-attack', label: 'Att. basique' },
   { id: 'defense', label: 'Défense' },
 ];
 
@@ -74,11 +75,19 @@ export function GridPawnPalette({ filterId, model, editor, pawns, commander }: G
                     <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-slate-400" />
                     Niv. {pawn.defenseLevel} · {pawn.power} pts
                   </p>
+                ) : pawn.role === 'basic-attack' ? (
+                  <>
+                    <p className="mt-1.5 flex items-center gap-1.5 text-[11px] text-slate-300">
+                      <span aria-hidden="true" className={`size-1.5 shrink-0 rounded-full ${colorClasses[pawn.color as keyof typeof colorClasses]}`} />
+                      {colorLabels[pawn.color as keyof typeof colorLabels]}
+                    </p>
+                    <p className="mt-0.5 text-[11px] text-slate-400">{pawn.type === 'melee' ? 'Mêlée' : 'Distance'} · 1×3 · puissance {pawn.power}</p>
+                  </>
                 ) : (
                   <>
                     <p className="mt-1.5 flex items-center gap-1.5 text-[11px] text-slate-300">
-                      <span aria-hidden="true" className={`size-1.5 shrink-0 rounded-full ${colorClasses[pawn.color]}`} />
-                      {colorLabels[pawn.color]}
+                      <span aria-hidden="true" className={`size-1.5 shrink-0 rounded-full ${colorClasses[pawn.color as keyof typeof colorClasses]}`} />
+                      {colorLabels[pawn.color as keyof typeof colorLabels]}
                     </p>
                     <p className="mt-0.5 text-[11px] text-slate-400">{pawn.type === 'melee' ? 'Mêlée' : 'Distance'}</p>
                   </>

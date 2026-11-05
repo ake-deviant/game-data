@@ -18,10 +18,11 @@ export class PlaceGridPawn {
   public prepare(template: GridPawnTemplate, col: number, row: number): PlacedPawn {
     const isDefense = template.role === 'defense';
     const isSoldier = template.role === 'soldier';
+    const isBasicAttack = template.role === 'basic-attack';
     return new PlacedPawn({
       id: this.ids.generate(),
       identity: new PawnIdentity(new PawnDefinitionId(template.id), template.color, template.type, template.displayName),
-      rank: isSoldier || isDefense ? 'troop' : template.role,
+      rank: isSoldier || isDefense ? 'troop' : isBasicAttack ? 'basic-attack' : template.role,
       position: new GridPosition(col, row),
       countPawns: template.countPawns,
       moveCount: template.moveCount,

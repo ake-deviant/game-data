@@ -29,6 +29,18 @@ export class GridDocumentValidator {
     if (!Number.isInteger(pawn.x) || !Number.isInteger(pawn.y) || pawn.x < 0 || pawn.y < 0) {
       throw new InvalidGridDocumentError(`Position invalide pour ${pawn.id}.`);
     }
+    if (pawn.rank === 'troop' && pawn.status === 'attack') {
+      if (!pawn.pawnRole || !pawn.attackGroupId) throw new InvalidGridDocumentError(`pawnRole et attackGroupId requis pour ${pawn.id}.`);
+      if (!Number.isInteger(pawn.power) || pawn.power < 0 || pawn.power > 200) throw new InvalidGridDocumentError(`Puissance invalide pour ${pawn.id}.`);
+      if (pawn.turnCount === null || !Number.isInteger(pawn.turnCount) || pawn.turnCount < 1 || pawn.turnCount > 9) {
+        throw new InvalidGridDocumentError(`Compteur invalide pour ${pawn.id}.`);
+      }
+      if (pawn.x >= 9 || pawn.y >= 7) throw new InvalidGridDocumentError(`Position hors limites pour ${pawn.id}.`);
+      const cellKey = `${pawn.x}:${pawn.y}`;
+      if (cells.has(cellKey)) throw new InvalidGridDocumentError(`Collision dans le document sur ${cellKey}.`);
+      cells.add(cellKey);
+      return;
+    }
     if (!Number.isInteger(pawn.power) || pawn.power < 1 || pawn.power > 200) throw new InvalidGridDocumentError(`Puissance invalide pour ${pawn.id}.`);
     if (pawn.turnCount !== null && (!Number.isInteger(pawn.turnCount) || pawn.turnCount < 1 || pawn.turnCount > 9)) {
       throw new InvalidGridDocumentError(`Compteur invalide pour ${pawn.id}.`);

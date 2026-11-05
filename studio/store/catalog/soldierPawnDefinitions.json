@@ -49,5 +49,16 @@
     "nonePower": 2,
     "visualKey": "Erwan_soldier_ranged_blue",
     "weaponKey": "arrow"
+  },
+  {
+    "id": "Commander_121",
+    "displayName": "Garde d'élite",
+    "color": "red",
+    "type": "melee",
+    "turnCount": 4,
+    "power": 50,
+    "nonePower": 4,
+    "visualKey": "Commander_121",
+    "weaponKey": "spear"
   }
 ]
