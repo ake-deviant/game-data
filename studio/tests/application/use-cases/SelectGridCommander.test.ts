@@ -19,7 +19,11 @@ describe('SelectGridCommander', () => {
   it('retient uniquement les modèles associés avec le bon rôle et la bonne couleur de soldat', () => {
     const source = catalog();
     const result = new SelectGridCommander().execute(source, 'a');
-    expect(result.pawns).toEqual(source.pawns.slice(0, 5));
+    const catalogPawns = source.pawns.slice(0, 5);
+    const basicAttackIds = ['basic-attack-red-melee', 'basic-attack-red-ranged', 'basic-attack-blue-melee', 'basic-attack-blue-ranged', 'basic-attack-green-melee', 'basic-attack-green-ranged'];
+    expect(result.pawns.slice(0, 5)).toEqual(catalogPawns);
+    expect(result.pawns.slice(5).map((p) => p.id)).toEqual(basicAttackIds);
+    expect(result.pawns.every((p) => p.role !== 'basic-attack' || basicAttackIds.includes(p.id))).toBe(true);
     expect(result.commander.pawnMax).toBe(12);
     expect(source.pawns).toHaveLength(8);
   });

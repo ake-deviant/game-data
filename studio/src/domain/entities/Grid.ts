@@ -46,7 +46,7 @@ export class Grid {
       id: pawn.templateId, color: pawn.color,
       role: pawn.status === 'defense' ? 'defense' : pawn.rank === 'troop' ? 'soldier' : pawn.rank,
     })) throw new GridRuleError('unavailable-template', "Ce modèle de pion n'appartient pas au commandant.");
-    if (pawn.rank !== 'troop' && this.pawns.some((placed) => placed.rank === pawn.rank && placed.templateId === pawn.templateId)) {
+    if (pawn.rank !== 'troop' && pawn.rank !== 'basic-attack' && this.pawns.some((placed) => placed.rank === pawn.rank && placed.templateId === pawn.templateId)) {
       throw new GridRuleError('duplicate-template', 'Un exemplaire de ce modèle est déjà placé.');
     }
     this.assertSpace(pawn);

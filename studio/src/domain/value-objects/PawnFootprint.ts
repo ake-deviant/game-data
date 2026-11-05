@@ -1,7 +1,7 @@
 import { GridRuleError } from '../errors/GridRuleError.ts';
 import { GridPosition } from './GridPosition.ts';
 
-export type GridPawnRank = 'troop' | 'officer' | 'commander';
+export type GridPawnRank = 'troop' | 'officer' | 'commander' | 'basic-attack';
 
 export class PawnFootprint {
   public readonly cols: number;
@@ -12,6 +12,7 @@ export class PawnFootprint {
       case 'troop': this.cols = 1; this.rows = 1; break;
       case 'officer': this.cols = 1; this.rows = 2; break;
       case 'commander': this.cols = 2; this.rows = 2; break;
+      case 'basic-attack': this.cols = 1; this.rows = 3; break;
       default: throw new GridRuleError('invalid-rank', 'Ce rang de pion ne peut pas être placé dans la grille.');
     }
     Object.freeze(this);

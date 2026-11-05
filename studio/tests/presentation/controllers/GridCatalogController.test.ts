@@ -22,7 +22,9 @@ describe('GridCatalogController', () => {
     controller.select('a');
     expect(presenter.getViewModel().selectedCommander?.pawnMax).toBe(10);
     controller.select('b');
-    expect(presenter.getViewModel().pawns.map((p) => p.id)).toEqual(['b-red', 'b-green', 'b-blue']);
+    const paletteIds = presenter.getViewModel().pawns.map((p) => p.id);
+    expect(paletteIds.slice(0, 3)).toEqual(['b-red', 'b-green', 'b-blue']);
+    expect(paletteIds.filter((id) => id.startsWith('basic-attack-'))).toHaveLength(6);
     expect(presenter.getViewModel().selectedCommander?.pawnMax).toBe(20);
     controller.select('');
     expect(presenter.getViewModel().selectedCommander).toBeUndefined();
