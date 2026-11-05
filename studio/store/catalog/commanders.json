@@ -18,13 +18,14 @@
       "commanderPawnDefinitionIds": [
         "commander-1-1",
         "Aegis-commander-red",
-        "Aegis-commander-blue",
-        "Aegis-commander-ranged-blue"
+        "Aegis-commander-ranged-blue",
+        "Commander_101"
       ],
       "officerPawnDefinitionIds": [
         "Aegis_officer_2",
         "Aegis_officer_4",
-        "sentinel-guard-officer"
+        "sentinel-guard-officer",
+        "Officer_242"
       ],
       "movementsPerTurn": 3,
       "skills": [
