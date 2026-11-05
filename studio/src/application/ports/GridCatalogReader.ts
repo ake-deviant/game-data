@@ -10,7 +10,7 @@ export interface GridCommanderItem extends GridCommanderSelection {
 export interface GridPawnTemplate {
   readonly id: string;
   readonly displayName: string;
-  readonly role: 'soldier' | 'officer' | 'commander' | 'defense';
+  readonly role: 'soldier' | 'officer' | 'commander' | 'defense' | 'basic-attack';
   readonly defenseLevel?: number;
   readonly color: PawnColor;
   readonly type: PawnType;

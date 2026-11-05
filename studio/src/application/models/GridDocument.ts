@@ -23,6 +23,8 @@ export interface GridPawnDocument {
   readonly templateId: string;
   readonly skills?: readonly string[];
   readonly implicitSkillParams?: Readonly<Record<string, number>>;
+  readonly pawnRole?: 'captain' | 'second' | 'third';
+  readonly attackGroupId?: string;
 }
 
 export interface GridDocument {

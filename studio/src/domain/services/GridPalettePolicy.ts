@@ -14,6 +14,7 @@ export class GridPalettePolicy {
       case 'officer': return commander.officerPawnDefinitionIds.includes(pawn.id);
       case 'commander': return commander.commanderPawnDefinitionIds.includes(pawn.id);
       case 'defense': return (commander.defensePawnDefinitionIds ?? []).includes(pawn.id);
+      case 'basic-attack': return true;
       default: return false;
     }
   }

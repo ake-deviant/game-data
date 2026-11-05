@@ -7,7 +7,7 @@ const pawnColors = {
   green: 'border-emerald-300/70 bg-emerald-950 text-emerald-100',
   defense: 'border-slate-400/60 bg-slate-800 text-slate-200',
 };
-const rankLabels = { troop: 'Soldat', officer: 'Officier', commander: 'Commandant' };
+const rankLabels = { troop: 'Soldat', officer: 'Officier', commander: 'Commandant', 'basic-attack': 'Grp. att.' };
 
 export function GridBoard({ model, editor }: { model: GridEditorViewModel; editor: GridEditorController }) {
   const active = !!(model.activeTemplateKey || model.movingId);
