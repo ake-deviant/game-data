@@ -5,8 +5,8 @@
     "description": "aucune",
     "icon": "Aegis-1",
     "baseStats": {
-      "pawnMax": 37,
-      "health": 99,
+      "pawnMax": 38,
+      "health": 100,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
       "defensePowerPerLevel": 8,
@@ -84,16 +84,13 @@
           "displayName": "Knight blue",
           "color": "blue",
           "type": "melee",
-          "turnCount": 4,
-          "power": 45,
-          "countPawns": 2,
+          "turnCount": 6,
+          "power": 80,
+          "countPawns": 4,
           "moveCount": 3,
           "visualKey": "Aegis_commander_melee_blue",
           "weaponKey": "spear",
-          "requiredInfluencePoints": 8,
-          "skills": [
-            "charge-50"
-          ]
+          "requiredInfluencePoints": 10
         },
         {
           "id": "Aegis-commander-ranged-blue",
@@ -114,24 +111,6 @@
         }
       ],
       "officerPawns": [
-        {
-          "id": "Aegis_officer_1",
-          "displayName": "Porte étendart vert",
-          "color": "green",
-          "type": "melee",
-          "turnCount": 4,
-          "power": 16,
-          "countPawns": 1,
-          "moveCount": 2,
-          "visualKey": "Aegis_officer_melee_green",
-          "weaponKey": "sword",
-          "requiredInfluencePoints": 2,
-          "implicitSkillParams": {
-            "spBonusPerLiaison": 1,
-            "spBonusPerAttackPawn": 1,
-            "liaisonBonusPercent": 10
-          }
-        },
         {
           "id": "Aegis_officer_2",
           "displayName": "Archer bleu",
@@ -292,16 +271,13 @@
           "displayName": "Knight blue",
           "color": "blue",
           "type": "melee",
-          "turnCount": 4,
-          "power": 45,
-          "countPawns": 2,
+          "turnCount": 6,
+          "power": 80,
+          "countPawns": 4,
           "moveCount": 3,
           "visualKey": "Aegis_commander_melee_blue",
           "weaponKey": "spear",
-          "requiredInfluencePoints": 8,
-          "skills": [
-            "charge-50"
-          ]
+          "requiredInfluencePoints": 10
         },
         {
           "id": "arrow-red-girl",
@@ -338,25 +314,6 @@
             "spBonusPerLiaison": 1,
             "spBonusPerAttackPawn": 1,
             "liaisonBonusPercent": 10
-          }
-        },
-        {
-          "id": "Aegis_officer_2",
-          "displayName": "Archer bleu",
-          "color": "blue",
-          "type": "ranged",
-          "turnCount": 2,
-          "power": 6,
-          "countPawns": 2,
-          "moveCount": 2,
-          "visualKey": "Aegis_officer_ranged_blue",
-          "weaponKey": "arrow",
-          "requiredInfluencePoints": 4,
-          "skills": [
-            "increase-enemy-elite-cooldown-on-hit"
-          ],
-          "implicitSkillParams": {
-            "powerBonusPerDecrement": 6
           }
         },
         {
@@ -397,6 +354,25 @@
           "requiredInfluencePoints": 8,
           "implicitSkillParams": {
             "spBonusPerLiaison": 1
+          }
+        },
+        {
+          "id": "Officer_202",
+          "displayName": "Archer rapide",
+          "color": "green",
+          "type": "ranged",
+          "turnCount": 4,
+          "power": 6,
+          "countPawns": 2,
+          "moveCount": 2,
+          "visualKey": "Officer_202",
+          "weaponKey": "arrow",
+          "requiredInfluencePoints": 6,
+          "skills": [
+            "increase-enemy-elite-cooldown-on-hit"
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 6
           }
         }
       ],
