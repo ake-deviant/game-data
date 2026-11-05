@@ -80,5 +80,18 @@
       "powerBonusPerDecrement": 10,
       "spGrowthBonus": 1
     }
+  },
+  {
+    "id": "Commander_101",
+    "displayName": "Garde d'élite",
+    "color": "red",
+    "type": "melee",
+    "turnCount": 4,
+    "power": 40,
+    "countPawns": 3,
+    "moveCount": 2,
+    "visualKey": "Commander_101",
+    "weaponKey": "sword",
+    "requiredInfluencePoints": 6
   }
 ]
