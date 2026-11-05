@@ -170,5 +170,41 @@
       "powerBonusPerDecrement": 10,
       "spGrowthBonus": 1
     }
+  },
+  {
+    "id": "Officer_202",
+    "displayName": "Archer rapide",
+    "color": "green",
+    "type": "ranged",
+    "turnCount": 4,
+    "power": 6,
+    "countPawns": 2,
+    "moveCount": 2,
+    "visualKey": "Officer_202",
+    "weaponKey": "arrow",
+    "requiredInfluencePoints": 6,
+    "skills": [
+      "increase-enemy-elite-cooldown-on-hit"
+    ],
+    "implicitSkillParams": {
+      "powerBonusPerDecrement": 6
+    }
+  },
+  {
+    "id": "Officer_242",
+    "displayName": "Brad",
+    "color": "green",
+    "type": "melee",
+    "turnCount": 3,
+    "power": 14,
+    "countPawns": 1,
+    "moveCount": 2,
+    "visualKey": "Officer_242",
+    "weaponKey": "spear",
+    "requiredInfluencePoints": 2,
+    "implicitSkillParams": {
+      "spBonusPerLiaison": 1,
+      "spBonusPerAttackPawn": 1
+    }
   }
 ]
