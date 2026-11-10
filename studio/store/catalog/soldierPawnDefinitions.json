@@ -60,5 +60,16 @@
     "nonePower": 4,
     "visualKey": "Commander_121",
     "weaponKey": "spear"
+  },
+  {
+    "id": "SJ_arrow_red",
+    "displayName": "archer rouge",
+    "color": "red",
+    "type": "ranged",
+    "turnCount": 2,
+    "power": 8,
+    "nonePower": 2,
+    "visualKey": "SJ_arrow_red",
+    "weaponKey": "arrow"
   }
 ]

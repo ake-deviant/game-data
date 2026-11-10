@@ -11,7 +11,7 @@
       "wallVisualSet": "default",
       "defensePowerPerLevel": 8,
       "pawnDefinitionIdByColor": {
-        "red": "Aegis-soldier-melee-red",
+        "red": "SJ_arrow_red",
         "blue": "Aegis-soldier-melee-blue",
         "green": "Aegis-soldier-melee-green"
       },

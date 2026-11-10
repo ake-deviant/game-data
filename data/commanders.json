@@ -13,13 +13,14 @@
       "movementsPerTurn": 3,
       "soldierPawns": [
         {
-          "id": "Aegis-soldier-melee-red",
+          "id": "SJ_arrow_red",
+          "displayName": "archer rouge",
           "color": "red",
           "type": "ranged",
           "turnCount": 2,
           "power": 8,
           "nonePower": 2,
-          "visualKey": "Aegis_soldier_ranged_red",
+          "visualKey": "SJ_arrow_red",
           "weaponKey": "arrow"
         },
         {
