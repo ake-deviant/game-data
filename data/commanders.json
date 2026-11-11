@@ -188,6 +188,19 @@
             "spBonusPerLiaison": 1,
             "spBonusPerAttackPawn": 1
           }
+        },
+        {
+          "id": "Officer_421",
+          "displayName": "Knight blue",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 30,
+          "countPawns": 3,
+          "moveCount": 2,
+          "visualKey": "Officer_421",
+          "weaponKey": "spear",
+          "requiredInfluencePoints": 6
         }
       ],
       "skills": [
