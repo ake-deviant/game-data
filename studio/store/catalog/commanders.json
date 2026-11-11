@@ -25,7 +25,8 @@
         "Aegis_officer_2",
         "Aegis_officer_4",
         "sentinel-guard-officer",
-        "Officer_242"
+        "Officer_242",
+        "Officer_421"
       ],
       "movementsPerTurn": 3,
       "skills": [
