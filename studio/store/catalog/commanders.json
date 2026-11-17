@@ -108,5 +108,45 @@
       ],
       "innateSkills": []
     }
+  },
+  {
+    "id": "Safari",
+    "name": "Safari",
+    "icon": "Safari",
+    "baseStats": {
+      "pawnMax": 40,
+      "health": 100,
+      "maxDefenseLevel": 2,
+      "wallVisualSet": "default",
+      "defensePowerPerLevel": 6,
+      "pawnDefinitionIdByColor": {
+        "red": "SJ_arrow_red",
+        "blue": "SJ-melee-blue",
+        "green": "Aegis-soldier-melee-green"
+      },
+      "commanderPawnDefinitionIds": [
+        "commander-1-1",
+        "Aegis-commander-blue",
+        "Aegis-commander-red",
+        "Commander_101"
+      ],
+      "officerPawnDefinitionIds": [
+        "Aegis_officer_1",
+        "Aegis_officer_2",
+        "Officer_421",
+        "Officer_202"
+      ],
+      "movementsPerTurn": 3,
+      "skills": [
+        "melee-attack-fusion",
+        "free-recruits",
+        "expand-pawn-capacity",
+        "defense-upgrade"
+      ],
+      "innateSkills": [
+        "tactical-demolition"
+      ],
+      "freeRecruitThreshold": 21
+    }
   }
 ]

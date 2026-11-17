@@ -71,5 +71,16 @@
     "nonePower": 2,
     "visualKey": "SJ_arrow_red",
     "weaponKey": "arrow"
+  },
+  {
+    "id": "SJ-melee-blue",
+    "displayName": "lancier bleu",
+    "color": "blue",
+    "type": "melee",
+    "turnCount": 2,
+    "power": 9,
+    "nonePower": 2,
+    "visualKey": "SJ-melee-blue",
+    "weaponKey": "spear"
   }
 ]
