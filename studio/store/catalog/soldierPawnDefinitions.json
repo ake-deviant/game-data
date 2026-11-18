@@ -82,5 +82,16 @@
     "nonePower": 2,
     "visualKey": "SJ-melee-blue",
     "weaponKey": "spear"
+  },
+  {
+    "id": "SJ_melee_green",
+    "displayName": "épéiste vert",
+    "color": "green",
+    "type": "melee",
+    "turnCount": 2,
+    "power": 10,
+    "nonePower": 2,
+    "visualKey": "SJ_melee_green",
+    "weaponKey": "spear"
   }
 ]
