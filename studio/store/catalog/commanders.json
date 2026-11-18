@@ -122,7 +122,7 @@
       "pawnDefinitionIdByColor": {
         "red": "SJ_arrow_red",
         "blue": "SJ-melee-blue",
-        "green": "Aegis-soldier-melee-green"
+        "green": "SJ_melee_green"
       },
       "commanderPawnDefinitionIds": [
         "commander-1-1",
