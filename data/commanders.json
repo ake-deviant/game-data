@@ -455,14 +455,15 @@
           "weaponKey": "spear"
         },
         {
-          "id": "Aegis-soldier-melee-green",
+          "id": "SJ_melee_green",
+          "displayName": "épéiste vert",
           "color": "green",
           "type": "melee",
           "turnCount": 2,
           "power": 10,
           "nonePower": 2,
-          "visualKey": "Aegis_soldier_melee_green",
-          "weaponKey": "wooden_spiked_club"
+          "visualKey": "SJ_melee_green",
+          "weaponKey": "spear"
         }
       ],
       "commanderPawns": [
