@@ -93,5 +93,18 @@
     "visualKey": "Commander_101",
     "weaponKey": "sword",
     "requiredInfluencePoints": 6
+  },
+  {
+    "id": "Commander_DFR",
+    "displayName": "Maximus",
+    "color": "red",
+    "type": "melee",
+    "turnCount": 4,
+    "power": 50,
+    "countPawns": 3,
+    "moveCount": 3,
+    "visualKey": "Commander_DFR",
+    "weaponKey": "spear",
+    "requiredInfluencePoints": 10
   }
 ]
