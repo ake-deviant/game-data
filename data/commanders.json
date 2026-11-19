@@ -516,17 +516,17 @@
           }
         },
         {
-          "id": "Commander_101",
-          "displayName": "Garde d'élite",
+          "id": "Commander_DFR",
+          "displayName": "Maximus",
           "color": "red",
           "type": "melee",
           "turnCount": 4,
-          "power": 40,
+          "power": 50,
           "countPawns": 3,
-          "moveCount": 2,
-          "visualKey": "Commander_101",
-          "weaponKey": "sword",
-          "requiredInfluencePoints": 6
+          "moveCount": 3,
+          "visualKey": "Commander_DFR",
+          "weaponKey": "spear",
+          "requiredInfluencePoints": 10
         }
       ],
       "officerPawns": [
