@@ -112,5 +112,18 @@
     "innateSkillLevels": {
       "defense-total-frontline": 1
     }
+  },
+  {
+    "id": "SJ_Gregory",
+    "displayName": "Gregory",
+    "color": "green",
+    "type": "melee",
+    "turnCount": 6,
+    "power": 95,
+    "countPawns": 3,
+    "moveCount": 3,
+    "visualKey": "SJ_Gregory",
+    "weaponKey": "spear",
+    "requiredInfluencePoints": 10
   }
 ]
