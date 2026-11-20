@@ -1,6 +1,42 @@
 {
   "pawnSkillVisuals": [
     {
+      "id": "defense-total-frontline",
+      "displayName": "defense-total-frontline",
+      "visualKey": "icone-default",
+      "triggerPhase": "attack",
+      "displayNameKey": "skills.defense-total-frontline.name",
+      "descriptionKey": "skills.defense-total-frontline.description",
+      "descriptionParams": {},
+      "activationType": "progressive",
+      "levels": [
+        {
+          "level": 1,
+          "skillPointCost": 3,
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "frontlineDamageAbsorptionPercent": 20
+          }
+        },
+        {
+          "level": 2,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 20,
+          "implicitSkillParams": {
+            "frontlineDamageAbsorptionPercent": 40
+          }
+        },
+        {
+          "level": 3,
+          "skillPointCost": 10,
+          "requiredInfluencePoints": 30,
+          "implicitSkillParams": {
+            "frontlineDamageAbsorptionPercent": 50
+          }
+        }
+      ]
+    },
+    {
       "id": "increase-enemy-elite-cooldown-on-hit",
       "displayName": "Retard des renforts",
       "visualKey": "increase-enemy-elite-cooldown-on-hit",
