@@ -24,7 +24,10 @@ const documentSchema = z.object({
     activationType: z.literal('progressive').optional(),
     levels: z.array(z.object({
       level: z.number().int().positive(), skillPointCost: z.number().nonnegative(), requiredInfluencePoints: z.number().nonnegative(),
-      implicitSkillParams: z.object({ columnPowerBonusPerDecrement: z.number().nonnegative() }).strict(),
+      implicitSkillParams: z.union([
+        z.object({ columnPowerBonusPerDecrement: z.number().nonnegative() }).strict(),
+        z.object({ frontlineDamageAbsorptionPercent: z.number().positive().max(100) }).strict(),
+      ]),
     })).min(1).optional(),
   }).superRefine((skill, ctx) => {
     if ((skill.activationType === 'progressive') !== (skill.levels !== undefined) || skill.levels?.some((level, index) => level.level !== index + 1)) {

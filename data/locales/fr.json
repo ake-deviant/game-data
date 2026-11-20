@@ -1,4 +1,6 @@
 {
+  "skills.defense-total-frontline.name": "defense-total-frontline",
+  "skills.defense-total-frontline.description": "Absorbe une partie des d\u00e9g\u00e2ts de chaque coup re\u00e7u sur la frontline pendant une attaque de m\u00eal\u00e9e.",
   "skills.increase-enemy-elite-cooldown-on-hit.name": "Retard des renforts",
   "skills.increase-enemy-elite-cooldown-on-hit.description": "Augmente définitivement de 1 le cooldown de chaque elite ennemi auquel ce pion inflige des dégâts, une seule fois par victime et par attaque.",
   "skills.power-growth.name": "Croissance de Puissance",
