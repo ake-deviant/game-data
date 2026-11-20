@@ -105,6 +105,12 @@
     "moveCount": 3,
     "visualKey": "Commander_DFR",
     "weaponKey": "spear",
-    "requiredInfluencePoints": 10
+    "requiredInfluencePoints": 10,
+    "skills": [
+      "defense-total-frontline"
+    ],
+    "innateSkillLevels": {
+      "defense-total-frontline": 1
+    }
   }
 ]
