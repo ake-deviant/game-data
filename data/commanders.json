@@ -550,24 +550,6 @@
       ],
       "officerPawns": [
         {
-          "id": "Aegis_officer_1",
-          "displayName": "Porte étendart vert",
-          "color": "green",
-          "type": "melee",
-          "turnCount": 4,
-          "power": 16,
-          "countPawns": 1,
-          "moveCount": 2,
-          "visualKey": "Aegis_officer_melee_green",
-          "weaponKey": "sword",
-          "requiredInfluencePoints": 2,
-          "implicitSkillParams": {
-            "spBonusPerLiaison": 1,
-            "spBonusPerAttackPawn": 1,
-            "liaisonBonusPercent": 10
-          }
-        },
-        {
           "id": "Aegis_officer_2",
           "displayName": "Archer bleu",
           "color": "blue",
@@ -630,6 +612,22 @@
           "visualKey": "Officer_425",
           "weaponKey": "spear",
           "requiredInfluencePoints": 6
+        },
+        {
+          "id": "Officer_701",
+          "displayName": "Kaelan",
+          "color": "blue",
+          "type": "melee",
+          "turnCount": 4,
+          "power": 18,
+          "countPawns": 2,
+          "moveCount": 2,
+          "visualKey": "Officer_701",
+          "weaponKey": "spear",
+          "requiredInfluencePoints": 2,
+          "implicitSkillParams": {
+            "spBonusPerAttackPawn": 1
+          }
         }
       ],
       "skills": [
