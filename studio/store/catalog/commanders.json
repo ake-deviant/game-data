@@ -118,7 +118,7 @@
       "health": 100,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
-      "defensePowerPerLevel": 6,
+      "defensePowerPerLevel": 7,
       "pawnDefinitionIdByColor": {
         "red": "SJ_arrow_red",
         "blue": "SJ-melee-blue",
@@ -135,7 +135,8 @@
         "Aegis_officer_1",
         "Aegis_officer_2",
         "Officer_421",
-        "Officer_202"
+        "Officer_202",
+        "Officer_425"
       ],
       "movementsPerTurn": 3,
       "skills": [
