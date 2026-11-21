@@ -132,11 +132,11 @@
         "SJ_Gregory"
       ],
       "officerPawnDefinitionIds": [
-        "Aegis_officer_1",
         "Aegis_officer_2",
         "Officer_421",
         "Officer_202",
-        "Officer_425"
+        "Officer_425",
+        "Officer_701"
       ],
       "movementsPerTurn": 3,
       "skills": [
