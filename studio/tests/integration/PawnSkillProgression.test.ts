@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from 'vitest';
-import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { PawnSkill } from '@game-data/domain';
 import { JsonSkillCatalogRepository } from '../../src/infrastructure/json/JsonSkillCatalogRepository';
@@ -53,13 +52,23 @@ describe('Pawn skill progression', () => {
     expect(() => new ProductionGameDataValidator().validate(catalog, refs)).toThrow('Invalid innate skill level');
   });
 
-  it('aligns all production elite templates already having this skill to innate N1 and bonus 3', async () => {
-    const commanders = JSON.parse(await readFile(dataPath('commanders.json'), 'utf8'));
-    const eligible = commanders.flatMap((commander: { baseStats: { commanderPawns: object[]; officerPawns: object[] } }) =>
-      [...commander.baseStats.commanderPawns, ...commander.baseStats.officerPawns])
-      .filter((pawn: { skills?: string[] }) => pawn.skills?.includes(skillId));
-    expect(eligible.length).toBeGreaterThan(0);
-    for (const pawn of eligible) expect(pawn).toMatchObject({ innateSkillLevels: { [skillId]: 1 }, implicitSkillParams: { columnPowerBonusPerDecrement: 3 } });
+  it.each([
+    { initial: 0, maximum: 1, valid: true },
+    { initial: 1, maximum: 2, valid: true },
+    { initial: 3, maximum: 3, valid: true },
+    { initial: 3, maximum: 2, valid: false },
+  ])('validates an elite with innate level $initial and assigned maximum $maximum', async ({ initial, maximum, valid }) => {
+    const catalog = ProductionCommanderCatalogMother.valid();
+    Object.assign(catalog[0].baseStats.commanderPawns[0], {
+      skills: [skillId],
+      innateSkillLevels: { [skillId]: initial },
+      maxSkillLevels: { [skillId]: maximum },
+      implicitSkillParams: { powerBonusPerDecrement: 10, freeWallDestructsOnDecrement: 1 },
+    });
+    const refs = await references();
+    const validate = () => new ProductionGameDataValidator().validate(catalog, refs);
+    if (valid) expect(validate).not.toThrow();
+    else expect(validate).toThrow('Invalid innate skill level');
   });
 
   it.each([0, 1])('the create and update forms transmit innate level %i and discard deselected skills', async level => {

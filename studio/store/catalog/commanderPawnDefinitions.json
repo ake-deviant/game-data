@@ -145,5 +145,25 @@
       "powerBonusPerDecrement": 10,
       "spBonusPerLiaison": 1
     }
+  },
+  {
+    "id": "Commander_429",
+    "displayName": "Daryl",
+    "color": "blue",
+    "type": "melee",
+    "turnCount": 7,
+    "power": 60,
+    "countPawns": 5,
+    "moveCount": 4,
+    "visualKey": "Commander_429",
+    "weaponKey": "spear",
+    "requiredInfluencePoints": 10,
+    "skills": [
+      "increase-power-column-when-decrementing"
+    ],
+    "implicitSkillParams": {
+      "powerBonusPerDecrement": 10,
+      "freeWallDestructsOnDecrement": 1
+    }
   }
 ]
