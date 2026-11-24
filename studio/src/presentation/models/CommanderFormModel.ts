@@ -21,6 +21,8 @@ export interface CommanderFormModel {
   readonly freeRecruitThreshold?: number;
   readonly skills?: readonly string[];
   readonly innateSkills?: readonly string[];
+  readonly innateSkillLevels?: Readonly<Record<string, number>>;
+  readonly maxSkillLevels?: Readonly<Record<string, number>>;
 }
 
 export function commanderListItemToForm(item: CommanderListItem): CommanderFormModel {
@@ -41,6 +43,8 @@ export function commanderListItemToForm(item: CommanderListItem): CommanderFormM
     freeRecruitThreshold: item.freeRecruitThreshold,
     skills: item.skills ?? [],
     innateSkills: item.innateSkills ?? [],
+    innateSkillLevels: item.innateSkillLevels,
+    maxSkillLevels: item.maxSkillLevels,
   };
 }
 

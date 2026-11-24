@@ -25,6 +25,8 @@ export interface CreateCommanderRequest {
   readonly movementsPerTurn: number;
   readonly skills?: readonly string[];
   readonly innateSkills?: readonly string[];
+  readonly innateSkillLevels?: Readonly<Record<string, number>>;
+  readonly maxSkillLevels?: Readonly<Record<string, number>>;
   readonly freeRecruitThreshold?: number;
   readonly skillsByColor?: Partial<Record<'red' | 'blue' | 'green', readonly string[]>>;
   readonly powerBonusPerDecrementByColor?: Partial<Record<'red' | 'blue' | 'green', number>>;
@@ -86,6 +88,8 @@ export class CreateCommander {
         movementsPerTurn: request.movementsPerTurn,
         skills: toSkillIds(request.skills),
         innateSkills: toSkillIds(request.innateSkills),
+        innateSkillLevels: request.innateSkillLevels,
+        maxSkillLevels: request.maxSkillLevels,
         freeRecruitThreshold: request.freeRecruitThreshold,
         skillsByColor: request.skillsByColor
           ? Object.fromEntries(

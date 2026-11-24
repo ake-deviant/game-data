@@ -37,6 +37,7 @@ export class PawnDefinitionCatalogMapper {
       document.skills?.map((id) => new SkillId(id)),
       document.implicitSkillParams,
       document.innateSkillLevels,
+      document.maxSkillLevels,
     );
   }
 
@@ -62,6 +63,7 @@ export class PawnDefinitionCatalogMapper {
       skills: pawn.skills.length > 0 ? pawn.skills.map(String) : undefined,
       implicitSkillParams: pawn.implicitSkillParams,
       innateSkillLevels: pawn.innateSkillLevels,
+      maxSkillLevels: pawn.maxSkillLevels,
     };
   }
 }

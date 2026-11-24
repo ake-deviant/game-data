@@ -41,6 +41,8 @@ export class CreatePawnDefinitionController {
             skills: form.skills.length > 0 ? form.skills : undefined,
             innateSkillLevels: form.innateSkillLevels
               ? Object.fromEntries(Object.entries(form.innateSkillLevels).filter(([id]) => form.skills.includes(id))) : undefined,
+            maxSkillLevels: form.maxSkillLevels
+              ? Object.fromEntries(Object.entries(form.maxSkillLevels).filter(([id]) => form.skills.includes(id))) : undefined,
             implicitSkillParams: this.toImplicitSkillParams(form),
           }),
       visualKey: form.visualKey,

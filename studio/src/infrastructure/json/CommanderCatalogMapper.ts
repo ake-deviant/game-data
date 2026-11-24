@@ -30,6 +30,8 @@ export class CommanderCatalogMapper {
         ),
         skills: document.baseStats.skills?.map((id) => new SkillId(id)),
         innateSkills: document.baseStats.innateSkills?.map((id) => new SkillId(id)),
+        innateSkillLevels: document.baseStats.innateSkillLevels,
+        maxSkillLevels: document.baseStats.maxSkillLevels,
         skillsByColor: document.baseStats.skillsByColor
           ? Object.fromEntries(
               COLORS.flatMap((color) => {
@@ -61,6 +63,8 @@ export class CommanderCatalogMapper {
         officerPawnDefinitionIds: stats.officerPawnDefinitionIds.map(String),
         skills: stats.skills?.map(String),
         innateSkills: stats.innateSkills?.map(String),
+        innateSkillLevels: stats.innateSkillLevels,
+        maxSkillLevels: stats.maxSkillLevels,
         skillsByColor: stats.skillsByColor
           ? Object.fromEntries(
               COLORS.flatMap((color) => {

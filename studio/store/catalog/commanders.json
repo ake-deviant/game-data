@@ -34,12 +34,26 @@
         "destroy-defense-pawns",
         "expand-pawn-capacity",
         "melee-attack-fusion",
-        "defense-upgrade"
-      ],
-      "innateSkills": [
+        "defense-upgrade",
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 21
+      "freeRecruitThreshold": 21,
+      "innateSkillLevels": {
+        "free-recruits": 0,
+        "destroy-defense-pawns": 0,
+        "expand-pawn-capacity": 0,
+        "melee-attack-fusion": 0,
+        "defense-upgrade": 0,
+        "tactical-demolition": 1
+      },
+      "maxSkillLevels": {
+        "free-recruits": 3,
+        "destroy-defense-pawns": 1,
+        "expand-pawn-capacity": 3,
+        "melee-attack-fusion": 1,
+        "defense-upgrade": 2,
+        "tactical-demolition": 1
+      }
     }
   },
   {
@@ -76,12 +90,26 @@
         "destroy-defense-pawns",
         "expand-pawn-capacity",
         "melee-attack-fusion",
-        "defense-upgrade"
-      ],
-      "innateSkills": [
+        "defense-upgrade",
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 21
+      "freeRecruitThreshold": 21,
+      "innateSkillLevels": {
+        "free-recruits": 0,
+        "destroy-defense-pawns": 0,
+        "expand-pawn-capacity": 0,
+        "melee-attack-fusion": 0,
+        "defense-upgrade": 0,
+        "tactical-demolition": 1
+      },
+      "maxSkillLevels": {
+        "free-recruits": 3,
+        "destroy-defense-pawns": 1,
+        "expand-pawn-capacity": 3,
+        "melee-attack-fusion": 1,
+        "defense-upgrade": 2,
+        "tactical-demolition": 1
+      }
     }
   },
   {
@@ -106,7 +134,12 @@
       "skills": [
         "melee-attack-fusion"
       ],
-      "innateSkills": []
+      "innateSkillLevels": {
+        "melee-attack-fusion": 0
+      },
+      "maxSkillLevels": {
+        "melee-attack-fusion": 1
+      }
     }
   },
   {
@@ -142,12 +175,24 @@
         "melee-attack-fusion",
         "free-recruits",
         "expand-pawn-capacity",
-        "defense-upgrade"
-      ],
-      "innateSkills": [
+        "defense-upgrade",
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 21
+      "freeRecruitThreshold": 21,
+      "innateSkillLevels": {
+        "melee-attack-fusion": 0,
+        "free-recruits": 0,
+        "expand-pawn-capacity": 0,
+        "defense-upgrade": 0,
+        "tactical-demolition": 1
+      },
+      "maxSkillLevels": {
+        "melee-attack-fusion": 1,
+        "free-recruits": 3,
+        "expand-pawn-capacity": 3,
+        "defense-upgrade": 2,
+        "tactical-demolition": 1
+      }
     }
   }
 ]

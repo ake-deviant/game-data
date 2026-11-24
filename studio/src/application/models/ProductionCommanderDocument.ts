@@ -13,6 +13,7 @@ export interface ProductionPawnDocument {
   readonly requiredInfluencePoints?: number;
   readonly skills?: readonly string[];
   readonly innateSkillLevels?: Readonly<Record<string, number>>;
+  readonly maxSkillLevels?: Readonly<Record<string, number>>;
   readonly implicitSkillParams?: Record<string, number>;
 }
 
@@ -33,6 +34,8 @@ export interface ProductionCommanderDocument {
     readonly officerPawns: readonly ProductionPawnDocument[];
     readonly skills?: readonly string[];
     readonly innateSkills?: readonly string[];
+    readonly innateSkillLevels?: Readonly<Record<string, number>>;
+    readonly maxSkillLevels?: Readonly<Record<string, number>>;
     readonly freeRecruitThreshold?: number;
   };
 }

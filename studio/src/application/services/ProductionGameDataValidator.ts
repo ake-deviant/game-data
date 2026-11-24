@@ -1,4 +1,4 @@
-import { PawnSkill } from '@game-data/domain';
+import { ActivablePlayerSkill, PawnSkill } from '@game-data/domain';
 import type { Skill, WallVisualSet, WeaponKey } from '@game-data/domain';
 
 export interface ProductionReferenceCatalogs {
@@ -19,12 +19,14 @@ export class ProductionGameDataValidationError extends Error {
 
 export class ProductionGameDataValidator {
   private pawnSkillMaxLevels = new Map<string, number>();
+  private playerSkillMaxLevels = new Map<string, number>();
   private skillIds: ReadonlySet<string> = new Set();
   private weaponKeys: ReadonlySet<string> = new Set();
   private wallVisualSetIds: ReadonlySet<string> = new Set();
 
   public validate(gameData: unknown, references: ProductionReferenceCatalogs): void {
-    this.pawnSkillMaxLevels = new Map(references.skills.filter((skill): skill is PawnSkill => skill instanceof PawnSkill && skill.activationType === 'progressive').map(skill => [skill.id.value, skill.levels.length]));
+    this.pawnSkillMaxLevels = new Map(references.skills.filter((skill): skill is PawnSkill => skill instanceof PawnSkill).map(skill => [skill.id.value, skill.levels.length || 1]));
+    this.playerSkillMaxLevels = new Map(references.skills.filter((skill): skill is ActivablePlayerSkill => skill instanceof ActivablePlayerSkill).map(skill => [skill.id.value, skill.levels.length || 1]));
     this.skillIds = new Set(references.skills.map((skill) => skill.id.value));
     this.weaponKeys = new Set(references.weaponKeys.map((key) => key.value));
     this.wallVisualSetIds = new Set(references.wallVisualSets.map((set) => set.id));
@@ -66,6 +68,7 @@ export class ProductionGameDataValidator {
 
       const skills = this.skills(stats['skills'], `${path}.baseStats.skills`, errors);
       const innateSkills = this.skills(stats['innateSkills'], `${path}.baseStats.innateSkills`, errors);
+      this.validateSkillLevels(stats, skills, this.playerSkillMaxLevels, path + '.baseStats', errors);
       const overlap = skills.find((skill) => innateSkills.includes(skill));
       if (overlap) errors.push(`Skill '${overlap}' cannot be both activable and innate.`);
 
@@ -131,15 +134,7 @@ export class ProductionGameDataValidator {
       this.nonNegativeNumber(pawn['requiredInfluencePoints'], `${path}.requiredInfluencePoints`, errors);
     }
     const skills = this.skills(pawn['skills'], `${path}.skills`, errors);
-    if (pawn['innateSkillLevels'] !== undefined) {
-      const levels = this.record(pawn['innateSkillLevels'], `${path}.innateSkillLevels`, errors);
-      for (const [id, level] of Object.entries(levels ?? {})) {
-        const maximum = this.pawnSkillMaxLevels.get(id);
-        if (!skills.includes(id) || maximum === undefined || typeof level !== 'number' || !Number.isInteger(level) || level < 0 || level > maximum) {
-          errors.push(`Invalid innate skill level '${id}' for '${path}'.`);
-        }
-      }
-    }
+    this.validateSkillLevels(pawn, skills, this.pawnSkillMaxLevels, path, errors);
 
     if (soldier) {
       const nonePower = this.nonNegativeNumber(pawn['nonePower'], `${path}.nonePower`, errors);
@@ -152,6 +147,29 @@ export class ProductionGameDataValidator {
     }
 
     return color;
+  }
+
+  private validateSkillLevels(
+    owner: Record<string, unknown>,
+    skills: readonly string[],
+    catalog: ReadonlyMap<string, number>,
+    path: string,
+    errors: string[],
+  ): void {
+    const read = (field: string) => owner[field] === undefined ? {} : this.record(owner[field], path + '.' + field, errors) ?? {};
+    const maxima = read('maxSkillLevels');
+    const innate = read('innateSkillLevels');
+    for (const id of new Set([...Object.keys(maxima), ...Object.keys(innate)])) {
+      const catalogMax = catalog.get(id);
+      const maximum = maxima[id] ?? catalogMax;
+      const initial = innate[id] ?? 0;
+      if (!skills.includes(id) || catalogMax === undefined || typeof maximum !== 'number'
+        || !Number.isInteger(maximum) || maximum < 1 || maximum > catalogMax) {
+        errors.push("Invalid maximum skill level '" + id + "' for '" + path + "'.");
+      } else if (typeof initial !== 'number' || !Number.isInteger(initial) || initial < 0 || initial > maximum) {
+        errors.push("Invalid innate skill level '" + id + "' for '" + path + "'.");
+      }
+    }
   }
 
   private skills(value: unknown, path: string, errors: string[]): string[] {

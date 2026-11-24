@@ -105,6 +105,8 @@ export class GenerateProductionGameData {
           ),
           ...(stats.skills?.length && { skills: stats.skills.map(String) }),
           ...(stats.innateSkills?.length && { innateSkills: stats.innateSkills.map(String) }),
+          ...(stats.innateSkillLevels && { innateSkillLevels: stats.innateSkillLevels }),
+          ...(stats.maxSkillLevels && { maxSkillLevels: stats.maxSkillLevels }),
           ...(stats.freeRecruitThreshold !== undefined && {
             freeRecruitThreshold: stats.freeRecruitThreshold,
           }),
@@ -157,6 +159,7 @@ export class GenerateProductionGameData {
       }),
       ...(pawn.skills.length > 0 && { skills: pawn.skills.map(String) }),
       ...(pawn.innateSkillLevels && { innateSkillLevels: pawn.innateSkillLevels }),
+      ...(pawn.maxSkillLevels && { maxSkillLevels: pawn.maxSkillLevels }),
       ...(pawn.implicitSkillParams && { implicitSkillParams: pawn.implicitSkillParams }),
     };
   }

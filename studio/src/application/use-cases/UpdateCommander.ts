@@ -59,6 +59,8 @@ export class UpdateCommander {
         movementsPerTurn: request.movementsPerTurn,
         skills: toSkillIds(request.skills),
         innateSkills: toSkillIds(request.innateSkills),
+        innateSkillLevels: request.innateSkillLevels,
+        maxSkillLevels: request.maxSkillLevels,
         freeRecruitThreshold: request.freeRecruitThreshold,
         skillsByColor: request.skillsByColor
           ? Object.fromEntries(

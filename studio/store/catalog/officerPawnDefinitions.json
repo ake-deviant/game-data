@@ -50,6 +50,12 @@
     ],
     "implicitSkillParams": {
       "liaisonBonusPercent": 10
+    },
+    "innateSkillLevels": {
+      "charge-50": 1
+    },
+    "maxSkillLevels": {
+      "charge-50": 1
     }
   },
   {
@@ -75,6 +81,9 @@
       "spBonusPerAttackPawn": 1,
       "freeWallDestructsOnDecrement": 1,
       "liaisonBonusPercent": 10
+    },
+    "maxSkillLevels": {
+      "increase-power-column-when-decrementing": 3
     }
   },
   {
@@ -112,6 +121,12 @@
     ],
     "implicitSkillParams": {
       "powerBonusPerDecrement": 6
+    },
+    "innateSkillLevels": {
+      "increase-enemy-elite-cooldown-on-hit": 1
+    },
+    "maxSkillLevels": {
+      "increase-enemy-elite-cooldown-on-hit": 1
     }
   },
   {
@@ -152,6 +167,9 @@
       "columnPowerBonusPerDecrement": 3,
       "freeWallDestructsOnDecrement": 0,
       "liaisonBonusPercent": 10
+    },
+    "maxSkillLevels": {
+      "increase-power-column-when-decrementing": 3
     }
   },
   {
@@ -188,6 +206,12 @@
     ],
     "implicitSkillParams": {
       "powerBonusPerDecrement": 6
+    },
+    "innateSkillLevels": {
+      "increase-enemy-elite-cooldown-on-hit": 1
+    },
+    "maxSkillLevels": {
+      "increase-enemy-elite-cooldown-on-hit": 1
     }
   },
   {
