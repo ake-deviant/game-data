@@ -666,17 +666,17 @@
       "skills": [
         {
           "id": "free-recruits",
-          "initialLevel": 0,
-          "maxLevel": 3
+          "initialLevel": 1,
+          "maxLevel": 2
         },
         {
           "id": "expand-pawn-capacity",
           "initialLevel": 0,
-          "maxLevel": 3
+          "maxLevel": 2
         },
         {
           "id": "defense-upgrade",
-          "initialLevel": 0,
+          "initialLevel": 1,
           "maxLevel": 2
         },
         {
