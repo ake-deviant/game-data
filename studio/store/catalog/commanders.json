@@ -29,31 +29,39 @@
         "Officer_421"
       ],
       "movementsPerTurn": 3,
+      "freeRecruitThreshold": 21,
       "skills": [
-        "free-recruits",
-        "destroy-defense-pawns",
-        "expand-pawn-capacity",
-        "melee-attack-fusion",
-        "defense-upgrade",
-        "tactical-demolition"
-      ],
-      "innateSkillLevels": {
-        "free-recruits": 0,
-        "destroy-defense-pawns": 0,
-        "expand-pawn-capacity": 0,
-        "melee-attack-fusion": 0,
-        "defense-upgrade": 0,
-        "tactical-demolition": 1
-      },
-      "maxSkillLevels": {
-        "free-recruits": 3,
-        "destroy-defense-pawns": 1,
-        "expand-pawn-capacity": 3,
-        "melee-attack-fusion": 1,
-        "defense-upgrade": 2,
-        "tactical-demolition": 1
-      },
-      "freeRecruitThreshold": 21
+        {
+          "id": "free-recruits",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "destroy-defense-pawns",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "expand-pawn-capacity",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "melee-attack-fusion",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "defense-upgrade",
+          "initialLevel": 0,
+          "maxLevel": 2
+        },
+        {
+          "id": "tactical-demolition",
+          "initialLevel": 1,
+          "maxLevel": 1
+        }
+      ]
     }
   },
   {
@@ -85,31 +93,39 @@
         "Officer_202"
       ],
       "movementsPerTurn": 3,
+      "freeRecruitThreshold": 21,
       "skills": [
-        "free-recruits",
-        "destroy-defense-pawns",
-        "expand-pawn-capacity",
-        "melee-attack-fusion",
-        "defense-upgrade",
-        "tactical-demolition"
-      ],
-      "innateSkillLevels": {
-        "free-recruits": 0,
-        "destroy-defense-pawns": 0,
-        "expand-pawn-capacity": 0,
-        "melee-attack-fusion": 0,
-        "defense-upgrade": 0,
-        "tactical-demolition": 1
-      },
-      "maxSkillLevels": {
-        "free-recruits": 3,
-        "destroy-defense-pawns": 1,
-        "expand-pawn-capacity": 3,
-        "melee-attack-fusion": 1,
-        "defense-upgrade": 2,
-        "tactical-demolition": 1
-      },
-      "freeRecruitThreshold": 21
+        {
+          "id": "free-recruits",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "destroy-defense-pawns",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "expand-pawn-capacity",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "melee-attack-fusion",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "defense-upgrade",
+          "initialLevel": 0,
+          "maxLevel": 2
+        },
+        {
+          "id": "tactical-demolition",
+          "initialLevel": 1,
+          "maxLevel": 1
+        }
+      ]
     }
   },
   {
@@ -132,14 +148,12 @@
       "officerPawnDefinitionIds": [],
       "movementsPerTurn": 3,
       "skills": [
-        "melee-attack-fusion"
-      ],
-      "innateSkillLevels": {
-        "melee-attack-fusion": 0
-      },
-      "maxSkillLevels": {
-        "melee-attack-fusion": 1
-      }
+        {
+          "id": "melee-attack-fusion",
+          "initialLevel": 0,
+          "maxLevel": 1
+        }
+      ]
     }
   },
   {
@@ -170,15 +184,34 @@
         "Officer_701"
       ],
       "movementsPerTurn": 3,
+      "freeRecruitThreshold": 21,
       "skills": [
-        "melee-attack-fusion",
-        "free-recruits",
-        "expand-pawn-capacity",
-        "defense-upgrade",
-        "tactical-demolition"
-      ],
-      "innateSkills": [],
-      "freeRecruitThreshold": 21
+        {
+          "id": "melee-attack-fusion",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "free-recruits",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "expand-pawn-capacity",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "defense-upgrade",
+          "initialLevel": 0,
+          "maxLevel": 2
+        },
+        {
+          "id": "tactical-demolition",
+          "initialLevel": 0,
+          "maxLevel": 1
+        }
+      ]
     }
   }
 ]

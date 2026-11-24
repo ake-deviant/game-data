@@ -1,3 +1,4 @@
+import { readSkillAssignments, writeSkillAssignments } from './SkillAssignmentDocument.ts';
 import {
   PawnDefinition,
   PawnDefinitionId,
@@ -12,6 +13,7 @@ import type { PawnDefinitionCatalogItemDocument } from './PawnDefinitionCatalogD
 
 export class PawnDefinitionCatalogMapper {
   public toDomain(document: PawnDefinitionCatalogItemDocument): PawnDefinition {
+    const assignments = readSkillAssignments(document.skills, document.innateSkillLevels, document.maxSkillLevels);
     const stats = document.nonePower !== undefined
       ? new SoldierPawnStats(
           document.power,
@@ -34,10 +36,10 @@ export class PawnDefinitionCatalogMapper {
       stats,
       new PawnVisual(document.visualKey, new WeaponKey(document.weaponKey)),
       document.requiredInfluencePoints,
-      document.skills?.map((id) => new SkillId(id)),
+      assignments.ids?.map(id => new SkillId(id)),
       document.implicitSkillParams,
-      document.innateSkillLevels,
-      document.maxSkillLevels,
+      assignments.initial,
+      assignments.maximum,
     );
   }
 
@@ -60,10 +62,8 @@ export class PawnDefinitionCatalogMapper {
       visualKey: pawn.visual.visualKey,
       weaponKey: pawn.visual.weaponKey.value,
       requiredInfluencePoints: pawn.requiredInfluencePoints,
-      skills: pawn.skills.length > 0 ? pawn.skills.map(String) : undefined,
+      skills: writeSkillAssignments(pawn.skills.map(String), pawn.innateSkillLevels, pawn.maxSkillLevels),
       implicitSkillParams: pawn.implicitSkillParams,
-      innateSkillLevels: pawn.innateSkillLevels,
-      maxSkillLevels: pawn.maxSkillLevels,
     };
   }
 }

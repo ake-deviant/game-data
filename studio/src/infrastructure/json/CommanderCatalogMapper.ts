@@ -1,3 +1,4 @@
+import { readSkillAssignments, writeSkillAssignments } from './SkillAssignmentDocument.ts';
 import {
   Commander,
   PawnDefinitionId,
@@ -10,6 +11,8 @@ const COLORS: readonly PawnColor[] = ['red', 'blue', 'green'];
 
 export class CommanderCatalogMapper {
   public toDomain(document: CommanderCatalogItemDocument): Commander {
+    const { skills, innateSkillLevels, maxSkillLevels } = document.baseStats;
+    const assignments = readSkillAssignments(skills, innateSkillLevels, maxSkillLevels);
     return new Commander({
       id: document.id,
       name: document.name,
@@ -28,10 +31,10 @@ export class CommanderCatalogMapper {
         officerPawnDefinitionIds: document.baseStats.officerPawnDefinitionIds.map(
           (id) => new PawnDefinitionId(id),
         ),
-        skills: document.baseStats.skills?.map((id) => new SkillId(id)),
+        skills: assignments.ids?.map(id => new SkillId(id)),
         innateSkills: document.baseStats.innateSkills?.map((id) => new SkillId(id)),
-        innateSkillLevels: document.baseStats.innateSkillLevels,
-        maxSkillLevels: document.baseStats.maxSkillLevels,
+        innateSkillLevels: assignments.initial,
+        maxSkillLevels: assignments.maximum,
         skillsByColor: document.baseStats.skillsByColor
           ? Object.fromEntries(
               COLORS.flatMap((color) => {
@@ -45,7 +48,9 @@ export class CommanderCatalogMapper {
   }
 
   public toDocument(commander: Commander): CommanderCatalogItemDocument {
-    const stats = commander.baseStats;
+    const { skills, innateSkills, innateSkillLevels, maxSkillLevels, ...stats } = commander.baseStats;
+    const legacyLevels = Object.fromEntries((innateSkills ?? []).map(id => [String(id), 1]));
+    const ids = [...new Set([...(skills ?? []), ...(innateSkills ?? [])].map(String))];
 
     return {
       id: commander.id,
@@ -61,10 +66,7 @@ export class CommanderCatalogMapper {
         },
         commanderPawnDefinitionIds: stats.commanderPawnDefinitionIds.map(String),
         officerPawnDefinitionIds: stats.officerPawnDefinitionIds.map(String),
-        skills: stats.skills?.map(String),
-        innateSkills: stats.innateSkills?.map(String),
-        innateSkillLevels: stats.innateSkillLevels,
-        maxSkillLevels: stats.maxSkillLevels,
+        skills: writeSkillAssignments(ids, { ...legacyLevels, ...innateSkillLevels }, { ...legacyLevels, ...maxSkillLevels }),
         skillsByColor: stats.skillsByColor
           ? Object.fromEntries(
               COLORS.flatMap((color) => {

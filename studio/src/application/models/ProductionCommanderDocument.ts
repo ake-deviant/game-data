@@ -1,3 +1,9 @@
+export interface ProductionSkillAssignment {
+  readonly id: string;
+  readonly initialLevel: number;
+  readonly maxLevel: number;
+}
+
 export interface ProductionPawnDocument {
   readonly id: string;
   readonly displayName?: string;
@@ -11,7 +17,7 @@ export interface ProductionPawnDocument {
   readonly visualKey: string;
   readonly weaponKey: string;
   readonly requiredInfluencePoints?: number;
-  readonly skills?: readonly string[];
+  readonly skills?: readonly (string | ProductionSkillAssignment)[];
   readonly innateSkillLevels?: Readonly<Record<string, number>>;
   readonly maxSkillLevels?: Readonly<Record<string, number>>;
   readonly implicitSkillParams?: Record<string, number>;
@@ -32,7 +38,7 @@ export interface ProductionCommanderDocument {
     readonly soldierPawns: readonly ProductionPawnDocument[];
     readonly commanderPawns: readonly ProductionPawnDocument[];
     readonly officerPawns: readonly ProductionPawnDocument[];
-    readonly skills?: readonly string[];
+    readonly skills?: readonly (string | ProductionSkillAssignment)[];
     readonly innateSkills?: readonly string[];
     readonly innateSkillLevels?: Readonly<Record<string, number>>;
     readonly maxSkillLevels?: Readonly<Record<string, number>>;

@@ -1,15 +1,13 @@
 import { useEffect, useState, useSyncExternalStore, type FormEvent } from 'react';
 import { createEmptyCommanderForm, type CommanderFormModel, type CreateCommanderController, type CreateCommanderPresenter } from '@game-data/presentation';
-import { SkillLevels } from './PawnSkillInitialLevels';
-import skillsData from '../../../../../data/skills.json';
-import { Icon, Field, inputClass, Section, SkillPicker } from './ui-kit';
+import { SkillAssignmentPicker } from './PawnSkillInitialLevels';
+import { Icon, Field, inputClass, Section } from './ui-kit';
 
 const colors = ['red', 'blue', 'green'] as const;
 type Color = typeof colors[number];
 type Role = 'soldier' | 'officer' | 'commander';
 type Pawn = { id: string; displayName: string; color: string; role: Role };
 
-const playerSkills = skillsData.activablePlayerSkills as { id: string; displayName: string }[];
 
 const colorMeta: Record<Color, { label: string; dot: string; tint: string }> = {
   red:   { label: 'Rouge', dot: 'bg-rose-400',    tint: 'from-rose-500/10' },
@@ -113,20 +111,8 @@ export function CommanderForm({ controller, presenter }: Props) {
         <PawnMultiSelector role="officer" value={form.officerPawnDefinitionIds} pawns={pawns} onChange={(v) => setField('officerPawnDefinitionIds', v)} />
       </Section>
 
-      <Section eyebrow="Capacités" icon="skills" title="Compétences" description="Distinguez les capacités activables manuellement de celles actives dès le départ.">
-        <div className="grid grid-cols-2 gap-5">
-          <div className="rounded-2xl border border-white/[0.07] bg-slate-950/25 p-4">
-            <p className="mb-1 text-xs font-semibold text-slate-200">Compétences activables</p>
-            <p className="mb-4 text-[11px] leading-5 text-slate-500">Déclenchées manuellement contre des points de compétence.</p>
-            <SkillPicker skills={playerSkills} selected={form.skills ?? []} unavailable={form.innateSkills ?? []} onChange={(v) => setField('skills', v)} />
-            <SkillLevels kind="player" selected={form.skills ?? []} levels={form.innateSkillLevels ?? {}} maxima={form.maxSkillLevels ?? {}} onChange={levels => setField('innateSkillLevels', levels)} onMaxChange={levels => setField('maxSkillLevels', levels)} />
-          </div>
-          <div className="rounded-2xl border border-violet-400/10 bg-violet-400/[0.035] p-4">
-            <p className="mb-1 text-xs font-semibold text-violet-200">Compétences innées</p>
-            <p className="mb-4 text-[11px] leading-5 text-slate-500">Actives dès le début, impossibles à déclencher manuellement.</p>
-            <SkillPicker skills={playerSkills} selected={form.innateSkills ?? []} unavailable={form.skills ?? []} onChange={(v) => setField('innateSkills', v)} />
-          </div>
-        </div>
+      <Section eyebrow="Capacités" icon="skills" title="Compétences" description="Cochez les compétences attribuées, puis choisissez leurs niveaux initial et maximal.">
+        <SkillAssignmentPicker kind="player" onSelect={skills => setField('skills', skills)} selected={form.skills ?? []} levels={form.innateSkillLevels ?? {}} maxima={form.maxSkillLevels ?? {}} onChange={levels => setField('innateSkillLevels', levels)} onMaxChange={levels => setField('maxSkillLevels', levels)} />
       </Section>
 
       <div className="flex items-center justify-between rounded-2xl border border-amber-400/15 bg-gradient-to-r from-amber-400/[0.07] to-transparent p-5">

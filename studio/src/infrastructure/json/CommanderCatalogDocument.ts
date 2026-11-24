@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { skillAssignmentsSchema } from './SkillAssignmentDocument.ts';
 
 const pawnIdsByColorSchema = z.object({
   red: z.string().min(1),
@@ -33,7 +34,7 @@ export const commanderCatalogItemSchema = z.object({
     commanderPawnDefinitionIds: z.array(z.string().min(1)),
     officerPawnDefinitionIds: z.array(z.string().min(1)),
     movementsPerTurn: z.number(),
-    skills: z.array(z.string().min(1)).optional(),
+    skills: skillAssignmentsSchema,
     innateSkills: z.array(z.string().min(1)).optional(),
     innateSkillLevels: z.record(z.string().min(1), z.number().int().nonnegative()).optional(),
     maxSkillLevels: z.record(z.string().min(1), z.number().int().positive()).optional(),

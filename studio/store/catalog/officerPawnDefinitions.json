@@ -45,18 +45,16 @@
     "visualKey": "V2_officer_melee_red",
     "weaponKey": "sword",
     "requiredInfluencePoints": 5,
-    "skills": [
-      "charge-50"
-    ],
     "implicitSkillParams": {
       "liaisonBonusPercent": 10
     },
-    "innateSkillLevels": {
-      "charge-50": 1
-    },
-    "maxSkillLevels": {
-      "charge-50": 1
-    }
+    "skills": [
+      {
+        "id": "charge-50",
+        "initialLevel": 1,
+        "maxLevel": 1
+      }
+    ]
   },
   {
     "id": "officer-1-3",
@@ -70,21 +68,19 @@
     "visualKey": "V2_officer_ranged_red",
     "weaponKey": "shuriken",
     "requiredInfluencePoints": 0,
-    "skills": [
-      "increase-power-column-when-decrementing"
-    ],
-    "innateSkillLevels": {
-      "increase-power-column-when-decrementing": 1
-    },
     "implicitSkillParams": {
       "columnPowerBonusPerDecrement": 3,
       "spBonusPerAttackPawn": 1,
       "freeWallDestructsOnDecrement": 1,
       "liaisonBonusPercent": 10
     },
-    "maxSkillLevels": {
-      "increase-power-column-when-decrementing": 3
-    }
+    "skills": [
+      {
+        "id": "increase-power-column-when-decrementing",
+        "initialLevel": 1,
+        "maxLevel": 3
+      }
+    ]
   },
   {
     "id": "Aegis_officer_1",
@@ -116,18 +112,16 @@
     "visualKey": "Aegis_officer_ranged_blue",
     "weaponKey": "arrow",
     "requiredInfluencePoints": 4,
-    "skills": [
-      "increase-enemy-elite-cooldown-on-hit"
-    ],
     "implicitSkillParams": {
       "powerBonusPerDecrement": 6
     },
-    "innateSkillLevels": {
-      "increase-enemy-elite-cooldown-on-hit": 1
-    },
-    "maxSkillLevels": {
-      "increase-enemy-elite-cooldown-on-hit": 1
-    }
+    "skills": [
+      {
+        "id": "increase-enemy-elite-cooldown-on-hit",
+        "initialLevel": 1,
+        "maxLevel": 1
+      }
+    ]
   },
   {
     "id": "Aegis_officer_3",
@@ -157,20 +151,18 @@
     "visualKey": "Aegis_officer_ranged_red",
     "weaponKey": "shuriken",
     "requiredInfluencePoints": 10,
-    "skills": [
-      "increase-power-column-when-decrementing"
-    ],
-    "innateSkillLevels": {
-      "increase-power-column-when-decrementing": 1
-    },
     "implicitSkillParams": {
       "columnPowerBonusPerDecrement": 3,
       "freeWallDestructsOnDecrement": 0,
       "liaisonBonusPercent": 10
     },
-    "maxSkillLevels": {
-      "increase-power-column-when-decrementing": 3
-    }
+    "skills": [
+      {
+        "id": "increase-power-column-when-decrementing",
+        "initialLevel": 1,
+        "maxLevel": 3
+      }
+    ]
   },
   {
     "id": "red-arrow-girl",
@@ -201,18 +193,16 @@
     "visualKey": "Officer_202",
     "weaponKey": "arrow",
     "requiredInfluencePoints": 6,
-    "skills": [
-      "increase-enemy-elite-cooldown-on-hit"
-    ],
     "implicitSkillParams": {
       "powerBonusPerDecrement": 6
     },
-    "innateSkillLevels": {
-      "increase-enemy-elite-cooldown-on-hit": 1
-    },
-    "maxSkillLevels": {
-      "increase-enemy-elite-cooldown-on-hit": 1
-    }
+    "skills": [
+      {
+        "id": "increase-enemy-elite-cooldown-on-hit",
+        "initialLevel": 1,
+        "maxLevel": 1
+      }
+    ]
   },
   {
     "id": "Officer_242",

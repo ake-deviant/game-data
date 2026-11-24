@@ -7,13 +7,11 @@ import {
   type PawnRole,
   type PawnType,
 } from '@game-data/presentation';
-import { SkillLevels } from './PawnSkillInitialLevels';
-import skillsData from '../../../../../data/skills.json';
-import { Icon, Field, inputClass, Section, SkillPicker } from './ui-kit';
+import { SkillAssignmentPicker } from './PawnSkillInitialLevels';
+import { Icon, Field, inputClass, Section } from './ui-kit';
 import { WeaponKeySelect } from './WeaponKeySelect';
 import { weaponKeyAfterTypeChange } from './weaponKeys';
 
-const pawnSkills = skillsData.pawnSkillVisuals as { id: string; displayName: string }[];
 
 type ImplicitKey = keyof PawnDefinitionFormModel['implicitSkillParams'];
 
@@ -283,12 +281,7 @@ export function EditPawnForm({ role, controller, presenter }: Props) {
               </Section>
 
               <Section icon="skills" eyebrow="Compétences" title="Skills du pion" description="Compétences automatiques et améliorations disponibles pendant la partie.">
-                <SkillPicker
-                  skills={pawnSkills}
-                  selected={form.skills as string[]}
-                  onChange={(skills) => setField('skills', skills)}
-                />
-                <SkillLevels selected={form.skills} levels={form.innateSkillLevels ?? {}} onChange={levels => setField('innateSkillLevels', levels)} maxima={form.maxSkillLevels ?? {}} onMaxChange={levels => setField('maxSkillLevels', levels)} />
+                <SkillAssignmentPicker onSelect={skills => setField('skills', skills)} selected={form.skills} levels={form.innateSkillLevels ?? {}} onChange={levels => setField('innateSkillLevels', levels)} maxima={form.maxSkillLevels ?? {}} onMaxChange={levels => setField('maxSkillLevels', levels)} />
               </Section>
             </>
           )}

@@ -20,7 +20,6 @@ export interface CommanderFormModel {
   readonly movementsPerTurn: number;
   readonly freeRecruitThreshold?: number;
   readonly skills?: readonly string[];
-  readonly innateSkills?: readonly string[];
   readonly innateSkillLevels?: Readonly<Record<string, number>>;
   readonly maxSkillLevels?: Readonly<Record<string, number>>;
 }
@@ -41,10 +40,9 @@ export function commanderListItemToForm(item: CommanderListItem): CommanderFormM
     officerPawnDefinitionIds: item.officerPawnDefinitionIds,
     movementsPerTurn: item.movementsPerTurn,
     freeRecruitThreshold: item.freeRecruitThreshold,
-    skills: item.skills ?? [],
-    innateSkills: item.innateSkills ?? [],
-    innateSkillLevels: item.innateSkillLevels,
-    maxSkillLevels: item.maxSkillLevels,
+    skills: [...new Set([...(item.skills ?? []), ...(item.innateSkills ?? [])])],
+    innateSkillLevels: { ...Object.fromEntries((item.innateSkills ?? []).map(id => [id, 1])), ...item.innateSkillLevels },
+    maxSkillLevels: { ...Object.fromEntries((item.innateSkills ?? []).map(id => [id, 1])), ...item.maxSkillLevels },
   };
 }
 
@@ -64,6 +62,5 @@ export function createEmptyCommanderForm(): CommanderFormModel {
     officerPawnDefinitionIds: [],
     movementsPerTurn: 3,
     skills: [],
-    innateSkills: [],
   };
 }

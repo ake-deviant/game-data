@@ -124,18 +124,16 @@
           "visualKey": "Aegis_officer_ranged_blue",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 4,
-          "skills": [
-            "increase-enemy-elite-cooldown-on-hit"
-          ],
           "implicitSkillParams": {
             "powerBonusPerDecrement": 6
           },
-          "innateSkillLevels": {
-            "increase-enemy-elite-cooldown-on-hit": 1
-          },
-          "maxSkillLevels": {
-            "increase-enemy-elite-cooldown-on-hit": 1
-          }
+          "skills": [
+            {
+              "id": "increase-enemy-elite-cooldown-on-hit",
+              "initialLevel": 1,
+              "maxLevel": 1
+            }
+          ]
         },
         {
           "id": "Aegis_officer_4",
@@ -149,20 +147,18 @@
           "visualKey": "Aegis_officer_ranged_red",
           "weaponKey": "shuriken",
           "requiredInfluencePoints": 10,
-          "skills": [
-            "increase-power-column-when-decrementing"
-          ],
-          "innateSkillLevels": {
-            "increase-power-column-when-decrementing": 1
-          },
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 3,
             "freeWallDestructsOnDecrement": 0,
             "liaisonBonusPercent": 10
           },
-          "maxSkillLevels": {
-            "increase-power-column-when-decrementing": 3
-          }
+          "skills": [
+            {
+              "id": "increase-power-column-when-decrementing",
+              "initialLevel": 1,
+              "maxLevel": 3
+            }
+          ]
         },
         {
           "id": "sentinel-guard-officer",
@@ -212,31 +208,39 @@
           "requiredInfluencePoints": 6
         }
       ],
-      "skills": [
-        "free-recruits",
-        "destroy-defense-pawns",
-        "expand-pawn-capacity",
-        "melee-attack-fusion",
-        "defense-upgrade",
-        "tactical-demolition"
-      ],
       "freeRecruitThreshold": 21,
-      "innateSkillLevels": {
-        "free-recruits": 0,
-        "destroy-defense-pawns": 0,
-        "expand-pawn-capacity": 0,
-        "melee-attack-fusion": 0,
-        "defense-upgrade": 0,
-        "tactical-demolition": 1
-      },
-      "maxSkillLevels": {
-        "free-recruits": 3,
-        "destroy-defense-pawns": 1,
-        "expand-pawn-capacity": 3,
-        "melee-attack-fusion": 1,
-        "defense-upgrade": 2,
-        "tactical-demolition": 1
-      }
+      "skills": [
+        {
+          "id": "free-recruits",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "destroy-defense-pawns",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "expand-pawn-capacity",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "melee-attack-fusion",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "defense-upgrade",
+          "initialLevel": 0,
+          "maxLevel": 2
+        },
+        {
+          "id": "tactical-demolition",
+          "initialLevel": 1,
+          "maxLevel": 1
+        }
+      ]
     }
   },
   {
@@ -382,20 +386,18 @@
           "visualKey": "Aegis_officer_ranged_red",
           "weaponKey": "shuriken",
           "requiredInfluencePoints": 10,
-          "skills": [
-            "increase-power-column-when-decrementing"
-          ],
-          "innateSkillLevels": {
-            "increase-power-column-when-decrementing": 1
-          },
           "implicitSkillParams": {
             "columnPowerBonusPerDecrement": 3,
             "freeWallDestructsOnDecrement": 0,
             "liaisonBonusPercent": 10
           },
-          "maxSkillLevels": {
-            "increase-power-column-when-decrementing": 3
-          }
+          "skills": [
+            {
+              "id": "increase-power-column-when-decrementing",
+              "initialLevel": 1,
+              "maxLevel": 3
+            }
+          ]
         },
         {
           "id": "Aegis_officer_3",
@@ -425,45 +427,51 @@
           "visualKey": "Officer_202",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 6,
-          "skills": [
-            "increase-enemy-elite-cooldown-on-hit"
-          ],
           "implicitSkillParams": {
             "powerBonusPerDecrement": 6
           },
-          "innateSkillLevels": {
-            "increase-enemy-elite-cooldown-on-hit": 1
-          },
-          "maxSkillLevels": {
-            "increase-enemy-elite-cooldown-on-hit": 1
-          }
+          "skills": [
+            {
+              "id": "increase-enemy-elite-cooldown-on-hit",
+              "initialLevel": 1,
+              "maxLevel": 1
+            }
+          ]
         }
       ],
-      "skills": [
-        "free-recruits",
-        "destroy-defense-pawns",
-        "expand-pawn-capacity",
-        "melee-attack-fusion",
-        "defense-upgrade",
-        "tactical-demolition"
-      ],
       "freeRecruitThreshold": 21,
-      "innateSkillLevels": {
-        "free-recruits": 0,
-        "destroy-defense-pawns": 0,
-        "expand-pawn-capacity": 0,
-        "melee-attack-fusion": 0,
-        "defense-upgrade": 0,
-        "tactical-demolition": 1
-      },
-      "maxSkillLevels": {
-        "free-recruits": 3,
-        "destroy-defense-pawns": 1,
-        "expand-pawn-capacity": 3,
-        "melee-attack-fusion": 1,
-        "defense-upgrade": 2,
-        "tactical-demolition": 1
-      }
+      "skills": [
+        {
+          "id": "free-recruits",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "destroy-defense-pawns",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "expand-pawn-capacity",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "melee-attack-fusion",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "defense-upgrade",
+          "initialLevel": 0,
+          "maxLevel": 2
+        },
+        {
+          "id": "tactical-demolition",
+          "initialLevel": 1,
+          "maxLevel": 1
+        }
+      ]
     }
   },
   {
@@ -526,14 +534,12 @@
           "weaponKey": "spear",
           "requiredInfluencePoints": 10,
           "skills": [
-            "defense-total-frontline"
-          ],
-          "innateSkillLevels": {
-            "defense-total-frontline": 1
-          },
-          "maxSkillLevels": {
-            "defense-total-frontline": 3
-          }
+            {
+              "id": "defense-total-frontline",
+              "initialLevel": 1,
+              "maxLevel": 3
+            }
+          ]
         },
         {
           "id": "SJ_Gregory",
@@ -577,13 +583,17 @@
           "visualKey": "Commander_429",
           "weaponKey": "spear",
           "requiredInfluencePoints": 10,
-          "skills": [
-            "increase-power-column-when-decrementing"
-          ],
           "implicitSkillParams": {
             "powerBonusPerDecrement": 10,
             "freeWallDestructsOnDecrement": 1
-          }
+          },
+          "skills": [
+            {
+              "id": "increase-power-column-when-decrementing",
+              "initialLevel": 0,
+              "maxLevel": 3
+            }
+          ]
         }
       ],
       "officerPawns": [
@@ -599,18 +609,16 @@
           "visualKey": "Aegis_officer_ranged_blue",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 4,
-          "skills": [
-            "increase-enemy-elite-cooldown-on-hit"
-          ],
-          "innateSkillLevels": {
-            "increase-enemy-elite-cooldown-on-hit": 1
-          },
-          "maxSkillLevels": {
-            "increase-enemy-elite-cooldown-on-hit": 1
-          },
           "implicitSkillParams": {
             "powerBonusPerDecrement": 6
-          }
+          },
+          "skills": [
+            {
+              "id": "increase-enemy-elite-cooldown-on-hit",
+              "initialLevel": 1,
+              "maxLevel": 1
+            }
+          ]
         },
         {
           "id": "Officer_421",
@@ -655,14 +663,34 @@
           }
         }
       ],
+      "freeRecruitThreshold": 21,
       "skills": [
-        "melee-attack-fusion",
-        "free-recruits",
-        "expand-pawn-capacity",
-        "defense-upgrade",
-        "tactical-demolition"
-      ],
-      "freeRecruitThreshold": 21
+        {
+          "id": "melee-attack-fusion",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "free-recruits",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "expand-pawn-capacity",
+          "initialLevel": 0,
+          "maxLevel": 3
+        },
+        {
+          "id": "defense-upgrade",
+          "initialLevel": 0,
+          "maxLevel": 2
+        },
+        {
+          "id": "tactical-demolition",
+          "initialLevel": 0,
+          "maxLevel": 1
+        }
+      ]
     }
   }
 ]
