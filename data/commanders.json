@@ -468,37 +468,6 @@
       ],
       "commanderPawns": [
         {
-          "id": "commander-1-1",
-          "displayName": "Berseker Vert",
-          "color": "green",
-          "type": "melee",
-          "turnCount": 7,
-          "power": 40,
-          "countPawns": 5,
-          "moveCount": 4,
-          "visualKey": "Aegis_commander_melee_green",
-          "weaponKey": "wooden_spiked_club",
-          "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "powerBonusPerDecrement": 10,
-            "columnPowerBonusPerDecrement": 0,
-            "spBonusPerLiaison": 0
-          }
-        },
-        {
-          "id": "Aegis-commander-blue",
-          "displayName": "Knight blue",
-          "color": "blue",
-          "type": "melee",
-          "turnCount": 6,
-          "power": 80,
-          "countPawns": 4,
-          "moveCount": 3,
-          "visualKey": "Aegis_commander_melee_blue",
-          "weaponKey": "spear",
-          "requiredInfluencePoints": 10
-        },
-        {
           "id": "Aegis-commander-red",
           "displayName": "Elephant Red",
           "color": "red",
@@ -546,6 +515,23 @@
           "visualKey": "SJ_Gregory",
           "weaponKey": "spear",
           "requiredInfluencePoints": 10
+        },
+        {
+          "id": "Commander_755",
+          "displayName": "Safia",
+          "color": "red",
+          "type": "ranged",
+          "turnCount": 6,
+          "power": 20,
+          "countPawns": 3,
+          "moveCount": 3,
+          "visualKey": "Commander_755",
+          "weaponKey": "arrow",
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "spBonusPerLiaison": 1
+          }
         }
       ],
       "officerPawns": [

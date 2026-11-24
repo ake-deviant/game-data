@@ -125,5 +125,22 @@
     "visualKey": "SJ_Gregory",
     "weaponKey": "spear",
     "requiredInfluencePoints": 10
+  },
+  {
+    "id": "Commander_755",
+    "displayName": "Safia",
+    "color": "red",
+    "type": "ranged",
+    "turnCount": 6,
+    "power": 20,
+    "countPawns": 3,
+    "moveCount": 3,
+    "visualKey": "Commander_755",
+    "weaponKey": "arrow",
+    "requiredInfluencePoints": 10,
+    "implicitSkillParams": {
+      "powerBonusPerDecrement": 10,
+      "spBonusPerLiaison": 1
+    }
   }
 ]
