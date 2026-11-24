@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { fileURLToPath } from 'node:url';
-import { PawnSkill } from '@game-data/domain';
+import { PawnSkill, type PawnDefinition } from '@game-data/domain';
+import { PawnApiHandler } from '../../apps/web-react/vite/PawnApiHandler';
+import { PawnCatalogApiHandler } from '../../apps/web-react/vite/PawnCatalogApiHandler';
 import { JsonSkillCatalogRepository } from '../../src/infrastructure/json/JsonSkillCatalogRepository';
 import { PawnDefinitionCatalogMapper } from '../../src/infrastructure/json/PawnDefinitionCatalogMapper';
 import { pawnDefinitionCatalogItemSchema } from '../../src/infrastructure/json/PawnDefinitionCatalogDocument';
@@ -21,6 +23,34 @@ async function references() {
 }
 
 describe('Pawn skill progression', () => {
+  it('preserves the initial level and maximum when saving and listing an elite through HTTP', async () => {
+    let stored: PawnDefinition | null = null;
+    const repo = {
+      findAll: async () => stored ? [stored] : [],
+      findById: async () => stored,
+      save: async (pawn: PawnDefinition) => { stored = pawn; },
+      replace: async (_previousId: unknown, pawn: PawnDefinition) => { stored = pawn; },
+    };
+    const api = new PawnApiHandler(repo, repo, repo);
+    const catalog = new PawnCatalogApiHandler([{ role: 'commander', repository: repo }]);
+    const request = {
+      ...ProductionCommanderCatalogMother.valid()[0].baseStats.commanderPawns[0],
+      role: 'commander',
+      skills: [skillId],
+      innateSkillLevels: { [skillId]: 1 },
+      maxSkillLevels: { [skillId]: 2 },
+    };
+    expect((await api.handleCreate(request)).status).toBe(201);
+    expect(await catalog.handle()).toMatchObject([{
+      innateSkillLevels: { [skillId]: 1 }, maxSkillLevels: { [skillId]: 2 },
+    }]);
+
+    expect((await api.handleUpdate({ ...request, innateSkillLevels: { [skillId]: 0 } })).status).toBe(200);
+    expect(await catalog.handle()).toMatchObject([{
+      innateSkillLevels: { [skillId]: 0 }, maxSkillLevels: { [skillId]: 2 },
+    }]);
+  });
+
   it('defines total bonuses 3, 7, 12 and the agreed purchase requirements', async () => {
     const skill = (await references()).skills.find(s => s.id.value === skillId);
     expect(skill).toBeInstanceOf(PawnSkill);

@@ -44,6 +44,7 @@ export class PawnCatalogApiHandler {
               skills: pawn.skills.map((s) => s.value),
               implicitSkillParams: pawn.implicitSkillParams,
               innateSkillLevels: pawn.innateSkillLevels,
+              maxSkillLevels: pawn.maxSkillLevels,
             }),
       };
     }));
