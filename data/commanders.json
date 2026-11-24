@@ -479,7 +479,7 @@
     "name": "Safari",
     "icon": "Safari",
     "baseStats": {
-      "pawnMax": 40,
+      "pawnMax": 42,
       "health": 100,
       "maxDefenseLevel": 2,
       "wallVisualSet": "default",
@@ -583,17 +583,17 @@
           "visualKey": "Commander_429",
           "weaponKey": "spear",
           "requiredInfluencePoints": 10,
-          "implicitSkillParams": {
-            "powerBonusPerDecrement": 10,
-            "freeWallDestructsOnDecrement": 1
-          },
           "skills": [
             {
               "id": "increase-power-column-when-decrementing",
               "initialLevel": 0,
               "maxLevel": 3
             }
-          ]
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 10,
+            "freeWallDestructsOnDecrement": 1
+          }
         }
       ],
       "officerPawns": [
@@ -609,16 +609,16 @@
           "visualKey": "Aegis_officer_ranged_blue",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 4,
-          "implicitSkillParams": {
-            "powerBonusPerDecrement": 6
-          },
           "skills": [
             {
               "id": "increase-enemy-elite-cooldown-on-hit",
               "initialLevel": 1,
               "maxLevel": 1
             }
-          ]
+          ],
+          "implicitSkillParams": {
+            "powerBonusPerDecrement": 6
+          }
         },
         {
           "id": "Officer_421",
@@ -663,13 +663,7 @@
           }
         }
       ],
-      "freeRecruitThreshold": 21,
       "skills": [
-        {
-          "id": "melee-attack-fusion",
-          "initialLevel": 0,
-          "maxLevel": 1
-        },
         {
           "id": "free-recruits",
           "initialLevel": 0,
@@ -689,8 +683,19 @@
           "id": "tactical-demolition",
           "initialLevel": 0,
           "maxLevel": 1
+        },
+        {
+          "id": "melee-attack-fusion",
+          "initialLevel": 0,
+          "maxLevel": 1
+        },
+        {
+          "id": "destroy-defense-pawns",
+          "initialLevel": 0,
+          "maxLevel": 1
         }
-      ]
+      ],
+      "freeRecruitThreshold": 21
     }
   }
 ]
