@@ -1,4 +1,5 @@
-import { readFile } from 'node:fs/promises';
+import { randomUUID } from 'node:crypto';
+import { readFile, rename, rm, writeFile } from 'node:fs/promises';
 import type { SkillCatalogRepository } from '@game-data/application';
 import {
   ActivablePlayerSkill,
@@ -87,13 +88,77 @@ const documentSchema = z.object({
   })),
 });
 
+interface SkillLevelUpdate {
+  level: number;
+  values: Readonly<Record<string, number | null>>;
+  implicitSkillParams: Readonly<Record<string, number>>;
+}
+
 export class JsonSkillCatalogRepository implements SkillCatalogRepository {
   private readonly catalogPath: string;
+  private writeQueue: Promise<void> = Promise.resolve();
 
   public constructor(catalogPath: string) { this.catalogPath = catalogPath; }
 
+  public async readDocument(): Promise<z.infer<typeof documentSchema>> {
+    await this.writeQueue;
+    return documentSchema.parse(JSON.parse(await readFile(this.catalogPath, 'utf8')));
+  }
+
+  public updateLevels(id: string, updates: readonly SkillLevelUpdate[]): Promise<boolean> {
+    const write = this.writeQueue.then(async () => {
+      const raw = JSON.parse(await readFile(this.catalogPath, 'utf8'));
+      const document = documentSchema.parse(raw);
+      const group = document.pawnSkillVisuals.some(skill => skill.id === id)
+        ? 'pawnSkillVisuals' : 'activablePlayerSkills';
+      const index = document[group].findIndex(skill => skill.id === id);
+      if (index < 0) return false;
+      const skill = raw[group][index];
+      const levels = skill.levels as Record<string, unknown>[] | undefined;
+      if (!levels || updates.length !== levels.length) throw new Error('The skill levels have changed. Reload the catalog.');
+      const seen = new Set<number>();
+      for (const update of updates) {
+        const level = levels.find(level => level['level'] === update.level);
+        if (!level || seen.has(update.level)) throw new Error('Unknown or duplicate skill level.');
+        seen.add(update.level);
+        this.updateNumbers(level, update.values, ['skillPointCost', 'requiredInfluencePoints']);
+        if (Object.keys(update.implicitSkillParams).length) {
+          this.updateNumbers(level['implicitSkillParams'] as Record<string, unknown>, update.implicitSkillParams);
+        }
+      }
+      documentSchema.parse(raw);
+      const temporary = this.catalogPath + '.' + randomUUID() + '.tmp';
+      try {
+        await writeFile(temporary, JSON.stringify(raw, null, 2) + '\n', { encoding: 'utf8', flag: 'wx' });
+        await rename(temporary, this.catalogPath);
+      } catch (error) {
+        await rm(temporary, { force: true });
+        throw error;
+      }
+      return true;
+    });
+    this.writeQueue = write.then(() => undefined, () => undefined);
+    return write;
+  }
+
+  private updateNumbers(
+    target: Record<string, unknown> | undefined,
+    values: Readonly<Record<string, number | null>>,
+    optionalKeys: readonly string[] = [],
+  ): void {
+    for (const [key, value] of Object.entries(values)) {
+      const optional = optionalKeys.includes(key);
+      if (!target || (!optional && (key === 'level' || !Object.hasOwn(target, key) || typeof target[key] !== 'number'))) {
+        throw new Error('Unsupported skill level field: ' + key);
+      }
+      if (value === null && optional) delete target[key];
+      else if (value !== null) target[key] = value;
+      else throw new Error('Missing value for skill level field: ' + key);
+    }
+  }
+
   public async findAll(): Promise<readonly Skill[]> {
-    const document = documentSchema.parse(JSON.parse(await readFile(this.catalogPath, 'utf8')));
+    const document = await this.readDocument();
     return [
       ...document.pawnSkillVisuals.map((skill) => new PawnSkill({
         ...skill,

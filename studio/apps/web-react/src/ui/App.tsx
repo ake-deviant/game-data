@@ -10,6 +10,7 @@ import { CreatePawnForm } from './CreatePawnForm';
 import { EditPawnForm } from './EditPawnForm';
 import { PawnList } from './PawnList';
 import { PublishView } from './PublishView';
+import { SkillCatalogView } from './SkillCatalogView';
 import { GridStudioView } from './GridStudioView';
 import { GameStatsView } from './GameStatsView';
 import { BotComparisonView } from './BotComparisonView';
@@ -17,7 +18,7 @@ import { gridCatalogComposition } from '../composition/gridCatalogComposition';
 import { Icon, type IconName } from './ui-kit';
 import type { PawnRole } from '@game-data/presentation';
 
-type Module = 'commanders' | 'pawns' | 'grids' | 'stats';
+type Module = 'commanders' | 'pawns' | 'skills' | 'grids' | 'stats';
 type StatsView = 'games' | 'compare';
 type CommanderView = 'create' | 'edit' | 'publish';
 type PawnView = 'catalog' | 'create' | 'edit';
@@ -89,7 +90,7 @@ export function App() {
   const [gridView, setGridView] = useState<GridView>('new');
   const [statsView, setStatsView] = useState<StatsView>('games');
 
-  const modules = [commandersModule, pawnsModule, { id: 'grids', label: 'Grilles', icon: 'grid' }, { id: 'stats', label: 'Statistiques', icon: 'stats' }] as const;
+  const modules = [commandersModule, pawnsModule, { id: 'skills', label: 'Compétences', icon: 'skills' }, { id: 'grids', label: 'Grilles', icon: 'grid' }, { id: 'stats', label: 'Statistiques', icon: 'stats' }] as const;
   const showRoleNav = activeModule === 'pawns' && (pawnView === 'create' || pawnView === 'edit');
 
   return (
@@ -220,6 +221,7 @@ export function App() {
 
       {/* Content */}
       <main className={`px-6 py-8 ${activeModule === 'grids' || activeModule === 'stats' ? 'w-full' : 'max-w-4xl'}`}>
+        {activeModule === 'skills' && <SkillCatalogView />}
         {activeModule === 'grids' && <GridStudioView {...gridComposition} view={gridView} />}
         {activeModule === 'commanders' && (
           <>

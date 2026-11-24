@@ -29,6 +29,7 @@ import { WallVisualSetApiHandler } from './vite/WallVisualSetApiHandler.ts';
 import { PublishApiHandler } from './vite/PublishApiHandler.ts';
 import { commanderCatalogApiPlugin } from './vite/commanderCatalogApiPlugin.ts';
 import { SavedGridApiHandler } from './vite/SavedGridApiHandler.ts';
+import { SkillCatalogApiHandler } from './vite/SkillCatalogApiHandler.ts';
 
 const catalogPath = fileURLToPath(
   new URL('../../store/catalog/commanders.json', import.meta.url),
@@ -61,13 +62,14 @@ const pawnApiHandler = new PawnApiHandler(soldierRepo, officerPawnRepo, commande
 const productionCommanderCatalogPath = fileURLToPath(
   new URL('../../../data/commanders.json', import.meta.url),
 );
+const skillCatalog = new JsonSkillCatalogRepository(fileURLToPath(new URL('../../../data/skills.json', import.meta.url)));
 const generateProductionGameData = new GenerateProductionGameData(
   repository,
   soldierRepo,
   commanderPawnRepo,
   officerPawnRepo,
   new JsonProductionCommanderCatalogRepository(productionCommanderCatalogPath),
-  new JsonSkillCatalogRepository(fileURLToPath(new URL('../../../data/skills.json', import.meta.url))),
+  skillCatalog,
   new JsonWeaponKeyCatalogRepository(fileURLToPath(new URL('../../../data/weaponKeys.json', import.meta.url))),
   new JsonWallVisualSetCatalogRepository(fileURLToPath(new URL('../../../data/wallVisualSets.json', import.meta.url))),
   new ProductionGameDataValidator(),
@@ -84,7 +86,7 @@ const savedGridHandler = new SavedGridApiHandler(new JsonSavedGridRepository(fil
 const gameStatsTarget = process.env['GAME_STATS_SERVER_URL'] ?? 'http://localhost:3000';
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler, savedGridHandler)],
+  plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler, savedGridHandler, new SkillCatalogApiHandler(skillCatalog))],
   server: {
     host: '127.0.0.1',
     port: 5174,
