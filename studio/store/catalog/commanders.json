@@ -125,11 +125,10 @@
         "green": "SJ_melee_green"
       },
       "commanderPawnDefinitionIds": [
-        "commander-1-1",
-        "Aegis-commander-blue",
         "Aegis-commander-red",
         "Commander_DFR",
-        "SJ_Gregory"
+        "SJ_Gregory",
+        "Commander_755"
       ],
       "officerPawnDefinitionIds": [
         "Aegis_officer_2",
