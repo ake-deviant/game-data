@@ -15,7 +15,7 @@
           "skillPointCost": 3,
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
-            "frontlineDamageAbsorptionPercent": 20
+            "frontlineDamageAbsorptionPercent": 15
           }
         },
         {
@@ -23,7 +23,7 @@
           "skillPointCost": 5,
           "requiredInfluencePoints": 20,
           "implicitSkillParams": {
-            "frontlineDamageAbsorptionPercent": 40
+            "frontlineDamageAbsorptionPercent": 30
           }
         },
         {
@@ -46,7 +46,9 @@
       "descriptionParams": {},
       "levels": [
         {
-          "level": 1
+          "level": 1,
+          "skillPointCost": 6,
+          "requiredInfluencePoints": 15
         }
       ]
     },
@@ -138,18 +140,18 @@
         },
         {
           "level": 2,
-          "skillPointCost": 5,
+          "skillPointCost": 6,
           "requiredInfluencePoints": 12,
           "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 7
+            "columnPowerBonusPerDecrement": 5
           }
         },
         {
           "level": 3,
-          "skillPointCost": 15,
+          "skillPointCost": 10,
           "requiredInfluencePoints": 25,
           "implicitSkillParams": {
-            "columnPowerBonusPerDecrement": 12
+            "columnPowerBonusPerDecrement": 7
           }
         }
       ]
@@ -166,7 +168,9 @@
       },
       "levels": [
         {
-          "level": 1
+          "level": 1,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 15
         }
       ]
     },
@@ -214,7 +218,9 @@
       },
       "levels": [
         {
-          "level": 1
+          "level": 1,
+          "skillPointCost": 6,
+          "requiredInfluencePoints": 20
         }
       ]
     }
@@ -233,8 +239,8 @@
       "levels": [
         {
           "level": 1,
-          "skillPointCost": 10,
-          "requiredInfluencePoints": 20
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 15
         }
       ]
     },
@@ -258,14 +264,14 @@
         },
         {
           "level": 2,
-          "skillPointCost": 8,
-          "requiredInfluencePoints": 10,
+          "skillPointCost": 7,
+          "requiredInfluencePoints": 15,
           "freeRecruitThresholdReduction": 10
         },
         {
           "level": 3,
           "skillPointCost": 12,
-          "requiredInfluencePoints": 15,
+          "requiredInfluencePoints": 25,
           "freeRecruitThresholdReduction": 15
         }
       ]
@@ -284,8 +290,8 @@
       "levels": [
         {
           "level": 1,
-          "skillPointCost": 5,
-          "requiredInfluencePoints": 8,
+          "skillPointCost": 3,
+          "requiredInfluencePoints": 15,
           "freeWallDestructs": 4
         }
       ]
@@ -303,9 +309,9 @@
       "levels": [
         {
           "level": 1,
-          "skillPointCost": 25,
-          "requiredInfluencePoints": 40,
-          "movementCost": 2
+          "skillPointCost": 15,
+          "requiredInfluencePoints": 25,
+          "movementCost": 0
         }
       ]
     },
@@ -336,7 +342,7 @@
         {
           "level": 3,
           "skillPointCost": 15,
-          "requiredInfluencePoints": 30,
+          "requiredInfluencePoints": 25,
           "extraPawnSlots": 5
         }
       ]
@@ -363,7 +369,7 @@
         },
         {
           "level": 2,
-          "skillPointCost": 12,
+          "skillPointCost": 10,
           "requiredInfluencePoints": 20,
           "maxDefenseLevelBonus": 1,
           "descriptionKey": "skills.defense-upgrade.level.description",
