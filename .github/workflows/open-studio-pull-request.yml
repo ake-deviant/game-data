@@ -18,7 +18,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           HEAD_BRANCH: ${{ github.ref_name }}
+        shell: bash
         run: |
+          existing_pr=$(gh pr list --base main --head "$HEAD_BRANCH" --state open --json url,isCrossRepository --jq 'map(select(.isCrossRepository | not)) | .[0].url // empty')
+          if [[ -n "$existing_pr" ]]; then
+            printf "Pull request already open: %s\n" "$existing_pr"
+            exit 0
+          fi
+
           gh pr create \
             --base main \
             --head "$HEAD_BRANCH" \
