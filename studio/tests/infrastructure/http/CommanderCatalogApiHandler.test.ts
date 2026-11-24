@@ -15,6 +15,19 @@ describe('CommanderCatalogApiHandler', () => {
     expect(response).toEqual({ status: 201, body: { id: 'commander-1', name: 'Commander' } });
   });
 
+  it.each(['handleCreate', 'handleUpdate'] as const)('preserves skill levels through %s', async method => {
+    const execute = vi.fn().mockResolvedValue({ id: 'commander-1', name: 'Commander' });
+    const handler = new CommanderCatalogApiHandler({ execute }, { execute }, noopList);
+    const request = {
+      ...createRequest(),
+      skills: ['defense-upgrade', 'tactical-demolition'],
+      innateSkillLevels: { 'defense-upgrade': 0, 'tactical-demolition': 1 },
+      maxSkillLevels: { 'defense-upgrade': 2, 'tactical-demolition': 1 },
+    };
+    expect((await handler[method](request)).status).toBe(method === 'handleCreate' ? 201 : 200);
+    expect(execute).toHaveBeenCalledWith(request);
+  });
+
   it('refuse une entree invalide avant le cas usage', async () => {
     const execute = vi.fn();
     const handler = new CommanderCatalogApiHandler({ execute }, noopUpdate, noopList);
