@@ -186,13 +186,17 @@
       "movementsPerTurn": 3,
       "skills": [
         {
-          "id": "free-recruits"
+          "id": "free-recruits",
+          "initialLevel": 1,
+          "maxLevel": 2
         },
         {
-          "id": "expand-pawn-capacity"
+          "id": "expand-pawn-capacity",
+          "maxLevel": 2
         },
         {
-          "id": "defense-upgrade"
+          "id": "defense-upgrade",
+          "initialLevel": 1
         },
         {
           "id": "tactical-demolition"
