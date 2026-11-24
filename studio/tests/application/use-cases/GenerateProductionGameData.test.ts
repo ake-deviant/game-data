@@ -4,13 +4,12 @@ import {
   type Commander,
   type PawnDefinition,
   type PawnDefinitionId,
-  type Skill,
   type WallVisualSet,
   type WeaponKey,
 } from '@game-data/domain';
 import type { CommanderCatalogRepository } from '../../../src/application/ports/CommanderCatalogRepository';
 import type { PawnDefinitionRepository } from '../../../src/application/ports/PawnDefinitionRepository';
-import type { SkillCatalogRepository } from '../../../src/application/ports/SkillCatalogRepository';
+import { InMemorySkillCatalogRepository } from '../../fixtures/repositories/InMemorySkillCatalogRepository';
 import type { WallVisualSetCatalogRepository } from '../../../src/application/ports/WallVisualSetCatalogRepository';
 import type { WeaponKeyCatalogRepository } from '../../../src/application/ports/WeaponKeyCatalogRepository';
 import type { ProductionCommanderCatalogRepository } from '../../../src/application/ports/ProductionCommanderCatalogRepository';
@@ -164,11 +163,6 @@ class InMemoryPawnDefinitionRepository implements PawnDefinitionRepository {
 class InMemoryProductionCommanderCatalogRepository implements ProductionCommanderCatalogRepository {
   public constructor(private readonly commanders: readonly ProductionCommanderDocument[]) {}
   public async findAll(): Promise<readonly ProductionCommanderDocument[]> { return this.commanders; }
-}
-
-class InMemorySkillCatalogRepository implements SkillCatalogRepository {
-  public constructor(private readonly skills: readonly Skill[]) {}
-  public async findAll(): Promise<readonly Skill[]> { return this.skills; }
 }
 
 class InMemoryWeaponKeyCatalogRepository implements WeaponKeyCatalogRepository {

@@ -6,6 +6,7 @@ import type { PawnApiHandler } from './PawnApiHandler.ts';
 import type { WallVisualSetApiHandler } from './WallVisualSetApiHandler.ts';
 import type { PublishApiHandler } from './PublishApiHandler.ts';
 import type { SavedGridApiHandler } from './SavedGridApiHandler.ts';
+import type { SkillCatalogApiHandler } from './SkillCatalogApiHandler.ts';
 
 const ENDPOINT = '/api/catalog/commanders';
 const PAWNS_ENDPOINT = '/api/catalog/pawns';
@@ -19,12 +20,27 @@ export function commanderCatalogApiPlugin(
   wallVisualSetHandler: WallVisualSetApiHandler,
   publishHandler: PublishApiHandler,
   savedGridHandler: SavedGridApiHandler,
+  skillCatalogHandler: SkillCatalogApiHandler,
 ): Plugin {
   const middleware = async (
     request: IncomingMessage,
     response: ServerResponse,
     next: () => void,
   ) => {
+    if (request.url === '/api/catalog/skills' && (request.method === 'GET' || request.method === 'PUT')) {
+      response.setHeader('content-type', 'application/json; charset=utf-8');
+      try {
+        const result = request.method === 'GET'
+          ? await skillCatalogHandler.handleList()
+          : await skillCatalogHandler.handleUpdate(JSON.parse(await readBody(request)));
+        response.statusCode = result.status;
+        response.end(JSON.stringify(result.body));
+      } catch (error) {
+        response.statusCode = error instanceof SyntaxError && request.method === 'PUT' ? 400 : 500;
+        response.end(JSON.stringify({ error: error instanceof Error ? error.message : 'Unable to read the skill catalog.' }));
+      }
+      return;
+    }
     if (request.url === PUBLISH_ENDPOINT && request.method === 'POST') {
       try {
         const body = JSON.parse(await readBody(request));

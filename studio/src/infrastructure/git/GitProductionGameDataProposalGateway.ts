@@ -35,6 +35,9 @@ export class GitProductionGameDataProposalGateway implements ProductionGameDataP
       await mkdir(dirname(catalogPath), { recursive: true });
       await writeFile(catalogPath, `${JSON.stringify(commanders, null, 2)}\n`, 'utf8');
 
+      const skillCatalogPath = join('data', 'skills.json');
+      await cp(join(this.repositoryPath, skillCatalogPath), join(worktreePath, skillCatalogPath));
+
       const internalCatalogPath = 'studio/store/catalog';
       await cp(
         join(this.repositoryPath, internalCatalogPath),
@@ -48,6 +51,7 @@ export class GitProductionGameDataProposalGateway implements ProductionGameDataP
         'add',
         '--',
         'data/commanders.json',
+        skillCatalogPath,
         internalCatalogPath,
         'package.json',
         'package-lock.json',

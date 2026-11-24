@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
-import { fileURLToPath } from 'node:url';
-import { PawnSkill, type PawnDefinition } from '@game-data/domain';
+import type { PawnDefinition } from '@game-data/domain';
 import { PawnApiHandler } from '../../apps/web-react/vite/PawnApiHandler';
 import { PawnCatalogApiHandler } from '../../apps/web-react/vite/PawnCatalogApiHandler';
-import { JsonSkillCatalogRepository } from '../../src/infrastructure/json/JsonSkillCatalogRepository';
+import { PawnSkillMother } from '../fixtures/domain/PawnSkillMother';
+import { InMemorySkillCatalogRepository } from '../fixtures/repositories/InMemorySkillCatalogRepository';
 import { PawnDefinitionCatalogMapper } from '../../src/infrastructure/json/PawnDefinitionCatalogMapper';
 import { pawnDefinitionCatalogItemSchema } from '../../src/infrastructure/json/PawnDefinitionCatalogDocument';
 import { ProductionGameDataValidator } from '../../src/application/services/ProductionGameDataValidator';
@@ -13,13 +13,12 @@ import { CreatePawnDefinitionController } from '../../src/presentation/controlle
 import { UpdatePawnDefinitionController } from '../../src/presentation/controllers/UpdatePawnDefinitionController';
 import { createEmptyPawnDefinitionForm } from '../../src/presentation/models/PawnDefinitionFormModel';
 
-const skillId = 'increase-power-column-when-decrementing';
-const dataPath = (name: string) => fileURLToPath(new URL(`../../../data/${name}`, import.meta.url));
+const skillId = PawnSkillMother.columnPowerDocument().id;
 
 async function references() {
-  const result = ProductionReferenceCatalogsMother.valid();
-  const skill = (await new JsonSkillCatalogRepository(dataPath('skills.json')).findAll()).find(s => s.id.value === skillId)!;
-  return { ...result, skills: [...result.skills, skill] };
+  const references = ProductionReferenceCatalogsMother.valid();
+  const repository = new InMemorySkillCatalogRepository([...references.skills, PawnSkillMother.columnPower()]);
+  return { ...references, skills: await repository.findAll() };
 }
 
 describe('Pawn skill progression', () => {
@@ -49,14 +48,6 @@ describe('Pawn skill progression', () => {
     expect(await catalog.handle()).toMatchObject([{
       innateSkillLevels: { [skillId]: 0 }, maxSkillLevels: { [skillId]: 2 },
     }]);
-  });
-
-  it('defines total bonuses 3, 7, 12 and the agreed purchase requirements', async () => {
-    const skill = (await references()).skills.find(s => s.id.value === skillId);
-    expect(skill).toBeInstanceOf(PawnSkill);
-    expect((skill as PawnSkill).activationType).toBe('progressive');
-    expect((skill as PawnSkill).levels.map(level => [level.skillPointCost, level.requiredInfluencePoints, level.implicitSkillParams['columnPowerBonusPerDecrement']]))
-      .toEqual([[3, 3, 3], [5, 12, 7], [15, 25, 12]]);
   });
 
   it.each([0, 1, 2, 3])('preserves innate level %i through the JSON schema and entity mapper', level => {

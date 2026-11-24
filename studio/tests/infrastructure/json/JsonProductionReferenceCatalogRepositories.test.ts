@@ -7,6 +7,7 @@ import { JsonSkillCatalogRepository } from '../../../src/infrastructure/json/Jso
 import { JsonWallVisualSetCatalogRepository } from '../../../src/infrastructure/json/JsonWallVisualSetCatalogRepository';
 import { JsonWeaponKeyCatalogRepository } from '../../../src/infrastructure/json/JsonWeaponKeyCatalogRepository';
 import { JsonProductionCommanderCatalogRepository } from '../../../src/infrastructure/json/JsonProductionCommanderCatalogRepository';
+import { PawnSkillMother } from '../../fixtures/domain/PawnSkillMother';
 import { ProductionCommanderCatalogMother } from '../../fixtures/production/ProductionCommanderCatalogMother';
 
 const temporaryDirectories: string[] = [];
@@ -41,6 +42,21 @@ describe('JSON production reference catalog repositories', () => {
     expect(skills[0].displayNameKey).toBe('skills.charge-30.name');
     expect(skills[0].descriptionKey).toBe('skills.charge-30.description');
     expect(skills[0].descriptionParams).toEqual({ chargeBonusPercent: 'skill.chargeBonusPercent' });
+  });
+
+  it('maps costs, influence requirements and effects of a progressive pawn skill', async () => {
+    const path = await createJsonFile({
+      pawnSkillVisuals: [PawnSkillMother.columnPowerDocument()],
+      activablePlayerSkills: [],
+    });
+    const [skill] = await new JsonSkillCatalogRepository(path).findAll();
+
+    expect(skill).toBeInstanceOf(PawnSkill);
+    if (!(skill instanceof PawnSkill)) throw new Error('Expected a pawn skill');
+    expect(skill.activationType).toBe('progressive');
+    expect(skill.levels.map(level => [
+      level.skillPointCost, level.requiredInfluencePoints, level.implicitSkillParams['columnPowerBonusPerDecrement'],
+    ])).toEqual([[3, 3, 3], [5, 12, 7], [15, 25, 12]]);
   });
 
   it('charge le catalogue des weapon keys', async () => {
