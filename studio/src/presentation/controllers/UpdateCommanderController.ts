@@ -48,6 +48,10 @@ export class UpdateCommanderController {
       freeRecruitThreshold: form.freeRecruitThreshold,
       skills: form.skills,
       innateSkills: form.innateSkills,
+      innateSkillLevels: form.innateSkillLevels
+        ? Object.fromEntries(Object.entries(form.innateSkillLevels).filter(([id]) => form.skills?.includes(id))) : undefined,
+      maxSkillLevels: form.maxSkillLevels
+        ? Object.fromEntries(Object.entries(form.maxSkillLevels).filter(([id]) => form.skills?.includes(id))) : undefined,
     };
   }
 }

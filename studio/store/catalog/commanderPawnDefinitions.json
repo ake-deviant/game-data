@@ -111,6 +111,9 @@
     ],
     "innateSkillLevels": {
       "defense-total-frontline": 1
+    },
+    "maxSkillLevels": {
+      "defense-total-frontline": 3
     }
   },
   {

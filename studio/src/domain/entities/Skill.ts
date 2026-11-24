@@ -34,7 +34,7 @@ export interface PawnSkillProps extends SkillProps {
   triggerPhase: PawnSkillTriggerPhase;
   chargeBonusPercent?: number;
   activationType?: 'progressive';
-  levels?: readonly { level: number; skillPointCost: number; requiredInfluencePoints: number; implicitSkillParams: Readonly<Record<string, number>> }[];
+  levels?: readonly { level: number; skillPointCost?: number; requiredInfluencePoints?: number; implicitSkillParams: Readonly<Record<string, number>> }[];
 }
 
 export class PawnSkill extends Skill<PawnSkillProps> {
@@ -48,7 +48,7 @@ export class PawnSkill extends Skill<PawnSkillProps> {
 
 export interface ActivablePlayerSkillProps extends SkillProps {
   activationType?: 'single' | 'progressive';
-  levels?: readonly { level: number; skillPointCost: number; requiredInfluencePoints: number; freeRecruitThresholdReduction?: number; extraPawnSlots?: number; defensePowerPerLevelBonus?: number; maxDefenseLevelBonus?: number; descriptionKey?: string; descriptionParams?: Readonly<Record<string, string>> }[];
+  levels?: readonly { level: number; skillPointCost: number; requiredInfluencePoints: number; freeWallDestructs?: number; movementCost?: number; freeRecruitThresholdReduction?: number; extraPawnSlots?: number; defensePowerPerLevelBonus?: number; maxDefenseLevelBonus?: number; descriptionKey?: string; descriptionParams?: Readonly<Record<string, string>> }[];
   skillPointCost?: number;
   skillDelay?: number | null;
   requiredInfluencePoints?: number;
@@ -63,11 +63,11 @@ export class ActivablePlayerSkill extends Skill<ActivablePlayerSkillProps> {
 
   public get activationType(): 'single' | 'progressive' { return this.props.activationType ?? 'single'; }
   public get levels(): NonNullable<ActivablePlayerSkillProps['levels']> { return this.props.levels?.map(level => ({ ...level })) ?? []; }
-  public get skillPointCost(): number | undefined { return this.props.skillPointCost; }
+  public get skillPointCost(): number | undefined { return this.props.skillPointCost ?? (this.activationType === 'single' ? this.props.levels?.[0]?.skillPointCost : undefined); }
   public get skillDelay(): number | null | undefined { return this.props.skillDelay; }
-  public get requiredInfluencePoints(): number | undefined { return this.props.requiredInfluencePoints; }
+  public get requiredInfluencePoints(): number | undefined { return this.props.requiredInfluencePoints ?? (this.activationType === 'single' ? this.props.levels?.[0]?.requiredInfluencePoints : undefined); }
   public get delayIllimited(): boolean | undefined { return this.props.delayIllimited; }
-  public get freeWallDestructs(): number | undefined { return this.props.freeWallDestructs; }
-  public get movementCost(): number | undefined { return this.props.movementCost; }
+  public get freeWallDestructs(): number | undefined { return this.props.freeWallDestructs ?? (this.activationType === 'single' ? this.props.levels?.[0]?.freeWallDestructs : undefined); }
+  public get movementCost(): number | undefined { return this.props.movementCost ?? (this.activationType === 'single' ? this.props.levels?.[0]?.movementCost : undefined); }
   public get extraPawnSlots(): number | undefined { return this.props.extraPawnSlots; }
 }

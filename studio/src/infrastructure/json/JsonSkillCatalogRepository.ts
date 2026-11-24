@@ -23,14 +23,24 @@ const documentSchema = z.object({
     chargeBonusPercent: z.number().optional(),
     activationType: z.literal('progressive').optional(),
     levels: z.array(z.object({
-      level: z.number().int().positive(), skillPointCost: z.number().nonnegative(), requiredInfluencePoints: z.number().nonnegative(),
-      implicitSkillParams: z.union([
-        z.object({ columnPowerBonusPerDecrement: z.number().nonnegative() }).strict(),
-        z.object({ frontlineDamageAbsorptionPercent: z.number().positive().max(100) }).strict(),
-      ]),
+      level: z.number().int().positive(), skillPointCost: z.number().nonnegative().optional(), requiredInfluencePoints: z.number().nonnegative().optional(),
+      implicitSkillParams: z.object({
+        powerBonusPerDecrement: z.number().nonnegative().optional(),
+        columnPowerBonusPerDecrement: z.number().nonnegative().optional(),
+        spBonusPerLiaison: z.number().nonnegative().optional(),
+        spBonusPerAttackPawn: z.number().nonnegative().optional(),
+        freeWallDestructsOnDecrement: z.number().nonnegative().optional(),
+        liaisonBonusPercent: z.number().nonnegative().optional(),
+        spGrowthBonus: z.number().nonnegative().optional(),
+        frontlineDamageAbsorptionPercent: z.number().positive().max(100).optional(),
+      }).strict().optional().transform(params => params ?? {}),
     })).min(1).optional(),
   }).superRefine((skill, ctx) => {
-    if ((skill.activationType === 'progressive') !== (skill.levels !== undefined) || skill.levels?.some((level, index) => level.level !== index + 1)) {
+    if ((skill.activationType === 'progressive' && !skill.levels?.length)
+      || (skill.activationType !== 'progressive' && skill.levels !== undefined && skill.levels.length !== 1)
+      || skill.levels?.some((level, index) => level.level !== index + 1
+        || ((level.skillPointCost === undefined) !== (level.requiredInfluencePoints === undefined))
+        || (skill.activationType === 'progressive' && (level.skillPointCost === undefined || !Object.keys(level.implicitSkillParams).length)))) {
       ctx.addIssue({ code: 'custom', message: 'Invalid pawn skill progression' });
     }
   })),
@@ -42,6 +52,8 @@ const documentSchema = z.object({
       requiredInfluencePoints: z.number().nonnegative(),
       freeRecruitThresholdReduction: z.number().nonnegative().optional(),
       extraPawnSlots: z.number().int().nonnegative().optional(),
+      freeWallDestructs: z.number().int().nonnegative().optional(),
+      movementCost: z.number().int().nonnegative().optional(),
       defensePowerPerLevelBonus: z.number().int().nonnegative().optional(),
       maxDefenseLevelBonus: z.number().int().nonnegative().optional(),
       descriptionKey: z.string().min(1).optional(),
@@ -68,8 +80,9 @@ const documentSchema = z.object({
           ctx.addIssue({ code: 'custom', message: 'Invalid skill level', path: ['levels', index] });
         }
       });
-    } else if (skill.skillPointCost === undefined || skill.requiredInfluencePoints === undefined || skill.levels !== undefined) {
-      ctx.addIssue({ code: 'custom', message: 'Single skills require costs and must not define levels' });
+    } else if (skill.levels ? skill.levels.length !== 1 || skill.levels[0].level !== 1
+      : skill.skillPointCost === undefined || skill.requiredInfluencePoints === undefined) {
+      ctx.addIssue({ code: 'custom', message: 'Single skills require one level with costs' });
     }
   })),
 });

@@ -35,6 +35,8 @@ export const commanderCatalogItemSchema = z.object({
     movementsPerTurn: z.number(),
     skills: z.array(z.string().min(1)).optional(),
     innateSkills: z.array(z.string().min(1)).optional(),
+    innateSkillLevels: z.record(z.string().min(1), z.number().int().nonnegative()).optional(),
+    maxSkillLevels: z.record(z.string().min(1), z.number().int().positive()).optional(),
     freeRecruitThreshold: z.number().optional(),
     skillsByColor: optionalSkillsByColorSchema,
     powerBonusPerDecrementByColor: optionalNumbersByColorSchema,

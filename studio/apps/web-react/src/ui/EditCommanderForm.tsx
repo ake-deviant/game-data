@@ -1,6 +1,7 @@
 import { useEffect, useState, useSyncExternalStore, type FormEvent } from 'react';
 import { commanderListItemToForm, type CommanderFormModel, type UpdateCommanderController, type UpdateCommanderPresenter } from '@game-data/presentation';
 import type { CommanderListItem } from '@game-data/application';
+import { SkillLevels } from './PawnSkillInitialLevels';
 import skillsData from '../../../../../data/skills.json';
 import { Icon, Field, inputClass, Section, SkillPicker } from './ui-kit';
 
@@ -159,6 +160,7 @@ export function EditCommanderForm({ controller, presenter }: Props) {
                 <p className="mb-1 text-xs font-semibold text-slate-200">Compétences activables</p>
                 <p className="mb-4 text-[11px] leading-5 text-slate-500">Déclenchées manuellement contre des points de compétence.</p>
                 <SkillPicker skills={playerSkills} selected={form.skills ?? []} unavailable={form.innateSkills ?? []} onChange={(v) => setField('skills', v)} />
+                <SkillLevels kind="player" selected={form.skills ?? []} levels={form.innateSkillLevels ?? {}} maxima={form.maxSkillLevels ?? {}} onChange={levels => setField('innateSkillLevels', levels)} onMaxChange={levels => setField('maxSkillLevels', levels)} />
               </div>
               <div className="rounded-2xl border border-violet-400/10 bg-violet-400/[0.035] p-4">
                 <p className="mb-1 text-xs font-semibold text-violet-200">Compétences innées</p>

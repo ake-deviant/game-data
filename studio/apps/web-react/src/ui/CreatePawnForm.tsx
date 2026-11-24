@@ -8,7 +8,7 @@ import {
   type PawnColor,
   type PawnType,
 } from '@game-data/presentation';
-import { PawnSkillInitialLevels } from './PawnSkillInitialLevels';
+import { SkillLevels } from './PawnSkillInitialLevels';
 import skillsData from '../../../../../data/skills.json';
 import { Icon, Field, inputClass, Section, SkillPicker } from './ui-kit';
 import { WeaponKeySelect } from './WeaponKeySelect';
@@ -237,7 +237,7 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
               selected={form.skills as string[]}
               onChange={(skills) => setField('skills', skills)}
             />
-            <PawnSkillInitialLevels selected={form.skills} levels={form.innateSkillLevels ?? {}} onChange={levels => setField('innateSkillLevels', levels)} />
+            <SkillLevels selected={form.skills} levels={form.innateSkillLevels ?? {}} onChange={levels => setField('innateSkillLevels', levels)} maxima={form.maxSkillLevels ?? {}} onMaxChange={levels => setField('maxSkillLevels', levels)} />
           </Section>
         </>
       )}

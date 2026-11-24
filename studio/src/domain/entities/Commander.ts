@@ -14,6 +14,8 @@ export interface CommanderStats {
   movementsPerTurn: number;
   skills?: readonly SkillId[];
   innateSkills?: readonly SkillId[];
+  innateSkillLevels?: Readonly<Record<string, number>>;
+  maxSkillLevels?: Readonly<Record<string, number>>;
   freeRecruitThreshold?: number;
   skillsByColor?: Partial<Record<PawnColor, readonly SkillId[]>>;
   powerBonusPerDecrementByColor?: Partial<Record<PawnColor, number>>;

@@ -16,6 +16,8 @@ export interface CommanderListItem {
   readonly movementsPerTurn: number;
   readonly skills?: readonly string[];
   readonly innateSkills?: readonly string[];
+  readonly innateSkillLevels?: Readonly<Record<string, number>>;
+  readonly maxSkillLevels?: Readonly<Record<string, number>>;
   readonly freeRecruitThreshold?: number;
 }
 
@@ -50,6 +52,8 @@ export class ListCommanders {
         movementsPerTurn: stats.movementsPerTurn,
         skills: stats.skills?.map((id) => id.value),
         innateSkills: stats.innateSkills?.map((id) => id.value),
+        innateSkillLevels: stats.innateSkillLevels,
+        maxSkillLevels: stats.maxSkillLevels,
         freeRecruitThreshold: stats.freeRecruitThreshold,
       };
     });
