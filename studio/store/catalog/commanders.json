@@ -37,7 +37,6 @@
         "defense-upgrade",
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 21,
       "innateSkillLevels": {
         "free-recruits": 0,
         "destroy-defense-pawns": 0,
@@ -53,7 +52,8 @@
         "melee-attack-fusion": 1,
         "defense-upgrade": 2,
         "tactical-demolition": 1
-      }
+      },
+      "freeRecruitThreshold": 21
     }
   },
   {
@@ -93,7 +93,6 @@
         "defense-upgrade",
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 21,
       "innateSkillLevels": {
         "free-recruits": 0,
         "destroy-defense-pawns": 0,
@@ -109,7 +108,8 @@
         "melee-attack-fusion": 1,
         "defense-upgrade": 2,
         "tactical-demolition": 1
-      }
+      },
+      "freeRecruitThreshold": 21
     }
   },
   {
@@ -158,15 +158,14 @@
         "green": "SJ_melee_green"
       },
       "commanderPawnDefinitionIds": [
-        "Aegis-commander-red",
         "Commander_DFR",
         "SJ_Gregory",
-        "Commander_755"
+        "Commander_755",
+        "Commander_429"
       ],
       "officerPawnDefinitionIds": [
         "Aegis_officer_2",
         "Officer_421",
-        "Officer_202",
         "Officer_425",
         "Officer_701"
       ],
@@ -178,21 +177,8 @@
         "defense-upgrade",
         "tactical-demolition"
       ],
-      "freeRecruitThreshold": 21,
-      "innateSkillLevels": {
-        "melee-attack-fusion": 0,
-        "free-recruits": 0,
-        "expand-pawn-capacity": 0,
-        "defense-upgrade": 0,
-        "tactical-demolition": 1
-      },
-      "maxSkillLevels": {
-        "melee-attack-fusion": 1,
-        "free-recruits": 3,
-        "expand-pawn-capacity": 3,
-        "defense-upgrade": 2,
-        "tactical-demolition": 1
-      }
+      "innateSkills": [],
+      "freeRecruitThreshold": 21
     }
   }
 ]
