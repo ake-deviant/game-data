@@ -1,4 +1,4 @@
-import { SoldierPawnStats, type PawnDefinition } from '@game-data/domain';
+import { ActivablePlayerSkill, PawnSkill, SoldierPawnStats, type PawnDefinition, type Skill } from '@game-data/domain';
 import type { CommanderCatalogRepository } from '../ports/CommanderCatalogRepository.ts';
 import type { CommanderPawnDefinitionRepository } from '../ports/CommanderPawnDefinitionRepository.ts';
 import type { OfficerPawnDefinitionRepository } from '../ports/OfficerPawnDefinitionRepository.ts';
@@ -11,6 +11,7 @@ import type { ProductionCommanderCatalogRepository } from '../ports/ProductionCo
 import type {
   ProductionCommanderDocument,
   ProductionPawnDocument,
+  ProductionSkillAssignment,
 } from '../models/ProductionCommanderDocument.ts';
 
 export interface GenerateProductionGameDataRequest {
@@ -72,6 +73,7 @@ export class GenerateProductionGameData {
       this.weaponKeyCatalog.findAll(),
       this.wallVisualSetCatalog.findAll(),
     ]);
+    const skillsById = new Map(skills.map(skill => [skill.id.value, skill]));
     const commanderById = new Map(commanders.map((commander) => [commander.id, commander]));
     const soldierById = this.indexPawns(soldiers);
     const commanderPawnById = this.indexPawns(commanderPawns);
@@ -82,6 +84,12 @@ export class GenerateProductionGameData {
       if (!commander) throw new Error(`Commander '${commanderId}' not found.`);
 
       const stats = commander.baseStats;
+      const assignments = this.skillAssignments(
+        [...(stats.skills ?? []), ...(stats.innateSkills ?? [])].map(String),
+        { ...Object.fromEntries((stats.innateSkills ?? []).map(id => [String(id), 1])), ...stats.innateSkillLevels },
+        { ...Object.fromEntries((stats.innateSkills ?? []).map(id => [String(id), 1])), ...stats.maxSkillLevels },
+        skillsById,
+      );
       return {
         id: commander.id,
         name: commander.name,
@@ -96,17 +104,14 @@ export class GenerateProductionGameData {
           movementsPerTurn: stats.movementsPerTurn,
           soldierPawns: (['red', 'blue', 'green'] as const).map((color) =>
             this.requiredPawn(soldierById, stats.pawnDefinitionIdByColor[color].value),
-          ).map((pawn) => this.toDocument(pawn)),
+          ).map((pawn) => this.toDocument(pawn, skillsById)),
           commanderPawns: stats.commanderPawnDefinitionIds.map((id) =>
-            this.toDocument(this.requiredPawn(commanderPawnById, id.value)),
+            this.toDocument(this.requiredPawn(commanderPawnById, id.value), skillsById),
           ),
           officerPawns: stats.officerPawnDefinitionIds.map((id) =>
-            this.toDocument(this.requiredPawn(officerPawnById, id.value)),
+            this.toDocument(this.requiredPawn(officerPawnById, id.value), skillsById),
           ),
-          ...(stats.skills?.length && { skills: stats.skills.map(String) }),
-          ...(stats.innateSkills?.length && { innateSkills: stats.innateSkills.map(String) }),
-          ...(stats.innateSkillLevels && { innateSkillLevels: stats.innateSkillLevels }),
-          ...(stats.maxSkillLevels && { maxSkillLevels: stats.maxSkillLevels }),
+          ...(assignments.length > 0 && { skills: assignments }),
           ...(stats.freeRecruitThreshold !== undefined && {
             freeRecruitThreshold: stats.freeRecruitThreshold,
           }),
@@ -138,7 +143,25 @@ export class GenerateProductionGameData {
     return pawn;
   }
 
-  private toDocument(pawn: PawnDefinition): ProductionPawnDocument {
+  private skillAssignments(
+    ids: readonly string[],
+    initialLevels: Readonly<Record<string, number>> | undefined,
+    maximumLevels: Readonly<Record<string, number>> | undefined,
+    catalog: ReadonlyMap<string, Skill>,
+  ): ProductionSkillAssignment[] {
+    return [...new Set(ids)].map(id => {
+      const skill = catalog.get(id);
+      const levels = skill instanceof PawnSkill || skill instanceof ActivablePlayerSkill ? skill.levels : [];
+      return {
+        id,
+        initialLevel: initialLevels?.[id] ?? (skill instanceof PawnSkill && skill.activationType !== 'progressive' ? 1 : 0),
+        maxLevel: maximumLevels?.[id] ?? (levels.length || 1),
+      };
+    });
+  }
+
+  private toDocument(pawn: PawnDefinition, catalog: ReadonlyMap<string, Skill>): ProductionPawnDocument {
+    const assignments = this.skillAssignments(pawn.skills.map(String), pawn.innateSkillLevels, pawn.maxSkillLevels, catalog);
     const isSoldier = pawn.stats instanceof SoldierPawnStats;
     return {
       id: pawn.identity.id.value,
@@ -157,9 +180,7 @@ export class GenerateProductionGameData {
       ...(pawn.requiredInfluencePoints !== undefined && {
         requiredInfluencePoints: pawn.requiredInfluencePoints,
       }),
-      ...(pawn.skills.length > 0 && { skills: pawn.skills.map(String) }),
-      ...(pawn.innateSkillLevels && { innateSkillLevels: pawn.innateSkillLevels }),
-      ...(pawn.maxSkillLevels && { maxSkillLevels: pawn.maxSkillLevels }),
+      ...(assignments.length > 0 && { skills: assignments }),
       ...(pawn.implicitSkillParams && { implicitSkillParams: pawn.implicitSkillParams }),
     };
   }

@@ -47,7 +47,6 @@ export class UpdateCommanderController {
       movementsPerTurn: form.movementsPerTurn,
       freeRecruitThreshold: form.freeRecruitThreshold,
       skills: form.skills,
-      innateSkills: form.innateSkills,
       innateSkillLevels: form.innateSkillLevels
         ? Object.fromEntries(Object.entries(form.innateSkillLevels).filter(([id]) => form.skills?.includes(id))) : undefined,
       maxSkillLevels: form.maxSkillLevels

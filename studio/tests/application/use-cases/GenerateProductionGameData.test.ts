@@ -40,6 +40,15 @@ describe('GenerateProductionGameData', () => {
     expect(result).toEqual(output);
   });
 
+  it('exports a legacy innate Commander skill as one assignment at level 1/1', async () => {
+    const commander = CommanderMother.valid({
+      baseStats: { innateSkills: [new SkillId('tactical-demolition')] },
+    });
+    const [result] = await createUseCase(commander).execute({ commanderIds: ['commander-1'] });
+    expect(result.baseStats.skills).toEqual([{ id: 'tactical-demolition', initialLevel: 1, maxLevel: 1 }]);
+    expect(result.baseStats).not.toHaveProperty('innateSkills');
+  });
+
   it('retourne toutes les statistiques invalides du Commander', async () => {
     // Arrange
     const commander = CommanderMother.valid({

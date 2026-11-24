@@ -35,7 +35,9 @@ describe('Pawn skill progression', () => {
       skills: [skillId], innateSkillLevels: { [skillId]: level },
     });
     const mapper = new PawnDefinitionCatalogMapper();
-    expect(mapper.toDocument(mapper.toDomain(document)).innateSkillLevels).toEqual({ [skillId]: level });
+    const updated = pawnDefinitionCatalogItemSchema.parse(mapper.toDocument(mapper.toDomain(document)));
+    expect(updated.skills).toEqual([{ id: skillId, initialLevel: level }]);
+    expect(mapper.toDomain(updated).innateSkillLevels).toEqual({ [skillId]: level });
   });
 
   it.each([0, 1, 2, 3])('accepts a production pawn with innate level %i', async level => {
@@ -60,9 +62,7 @@ describe('Pawn skill progression', () => {
   ])('validates an elite with innate level $initial and assigned maximum $maximum', async ({ initial, maximum, valid }) => {
     const catalog = ProductionCommanderCatalogMother.valid();
     Object.assign(catalog[0].baseStats.commanderPawns[0], {
-      skills: [skillId],
-      innateSkillLevels: { [skillId]: initial },
-      maxSkillLevels: { [skillId]: maximum },
+      skills: [{ id: skillId, initialLevel: initial, maxLevel: maximum }],
       implicitSkillParams: { powerBonusPerDecrement: 10, freeWallDestructsOnDecrement: 1 },
     });
     const refs = await references();

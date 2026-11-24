@@ -74,11 +74,12 @@ export function Section({ id, icon, eyebrow, title, description, children }: {
   );
 }
 
-export function SkillPicker({ skills, selected, unavailable = [], onChange }: {
+export function SkillPicker({ skills, selected, unavailable = [], onChange, renderDetails }: {
   skills: readonly { id: string; displayName: string }[];
   selected: readonly string[];
   unavailable?: readonly string[];
   onChange: (skills: readonly string[]) => void;
+  renderDetails?: (id: string) => ReactNode;
 }) {
   if (skills.length === 0) {
     return <p className="text-xs text-slate-600">Aucune compétence disponible.</p>;
@@ -89,27 +90,30 @@ export function SkillPicker({ skills, selected, unavailable = [], onChange }: {
         const active = selected.includes(skill.id);
         const disabled = unavailable.includes(skill.id);
         return (
-          <button
-            className={`flex items-center gap-3 rounded-xl border px-3 py-3 text-left transition ${
-              active
-                ? 'border-amber-400/35 bg-amber-400/10 text-amber-100'
-                : disabled
-                  ? 'cursor-not-allowed border-white/[0.04] bg-slate-950/20 text-slate-600 opacity-55'
-                  : 'border-white/[0.07] bg-slate-950/45 text-slate-400 hover:border-white/[0.14] hover:text-slate-200'
-            }`}
-            disabled={disabled}
-            key={skill.id}
-            onClick={() => onChange(active ? selected.filter((id) => id !== skill.id) : [...selected, skill.id])}
-            type="button"
-          >
-            <span className={`grid size-5 shrink-0 place-items-center rounded-md border ${active ? 'border-amber-400 bg-amber-400 text-slate-950' : 'border-slate-600'}`}>
-              {active && <Icon className="size-3.5" name="check" />}
-            </span>
-            <span className="min-w-0">
-              <span className="block truncate text-sm font-medium">{skill.displayName}</span>
-              <span className="block truncate text-[11px] text-slate-500">{skill.id}</span>
-            </span>
-          </button>
+          <div key={skill.id}>
+            <button
+              className={`flex w-full items-center gap-3 rounded-xl border px-3 py-3 text-left transition ${
+                active
+                  ? 'border-amber-400/35 bg-amber-400/10 text-amber-100'
+                  : disabled
+                    ? 'cursor-not-allowed border-white/[0.04] bg-slate-950/20 text-slate-600 opacity-55'
+                    : 'border-white/[0.07] bg-slate-950/45 text-slate-400 hover:border-white/[0.14] hover:text-slate-200'
+              }`}
+              aria-pressed={active}
+              disabled={disabled}
+              onClick={() => onChange(active ? selected.filter((id) => id !== skill.id) : [...selected, skill.id])}
+              type="button"
+            >
+              <span className={`grid size-5 shrink-0 place-items-center rounded-md border ${active ? 'border-amber-400 bg-amber-400 text-slate-950' : 'border-slate-600'}`}>
+                {active && <Icon className="size-3.5" name="check" />}
+              </span>
+              <span className="min-w-0">
+                <span className="block truncate text-sm font-medium">{skill.displayName}</span>
+                <span className="block truncate text-[11px] text-slate-500">{skill.id}</span>
+              </span>
+            </button>
+            {active && renderDetails?.(skill.id)}
+          </div>
         );
       })}
     </div>

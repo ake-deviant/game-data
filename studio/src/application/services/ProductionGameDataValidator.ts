@@ -66,9 +66,8 @@ export class ProductionGameDataValidator {
         errors.push(`Unknown wall visual set '${wallVisualSet}'.`);
       }
 
-      const skills = this.skills(stats['skills'], `${path}.baseStats.skills`, errors);
+      const skills = this.validateSkillAssignments(stats, this.playerSkillMaxLevels, path + '.baseStats', errors);
       const innateSkills = this.skills(stats['innateSkills'], `${path}.baseStats.innateSkills`, errors);
-      this.validateSkillLevels(stats, skills, this.playerSkillMaxLevels, path + '.baseStats', errors);
       const overlap = skills.find((skill) => innateSkills.includes(skill));
       if (overlap) errors.push(`Skill '${overlap}' cannot be both activable and innate.`);
 
@@ -133,8 +132,7 @@ export class ProductionGameDataValidator {
     if (pawn['requiredInfluencePoints'] !== undefined) {
       this.nonNegativeNumber(pawn['requiredInfluencePoints'], `${path}.requiredInfluencePoints`, errors);
     }
-    const skills = this.skills(pawn['skills'], `${path}.skills`, errors);
-    this.validateSkillLevels(pawn, skills, this.pawnSkillMaxLevels, path, errors);
+    this.validateSkillAssignments(pawn, this.pawnSkillMaxLevels, path, errors);
 
     if (soldier) {
       const nonePower = this.nonNegativeNumber(pawn['nonePower'], `${path}.nonePower`, errors);
@@ -149,6 +147,35 @@ export class ProductionGameDataValidator {
     return color;
   }
 
+  private validateSkillAssignments(
+    owner: Record<string, unknown>,
+    catalog: ReadonlyMap<string, number>,
+    path: string,
+    errors: string[],
+  ): string[] {
+    const value = owner['skills'];
+    const assignments = Array.isArray(value) ? value : [];
+    const initialLevels: Record<string, unknown> = Object.create(null);
+    const maximumLevels: Record<string, unknown> = Object.create(null);
+    const ids = assignments.map((entry, index) => {
+      if (typeof entry === 'string') return entry;
+      const skill = this.record(entry, path + '.skills[' + index + ']', errors);
+      if (!skill || typeof skill['id'] !== 'string') return undefined;
+      const id = skill['id'];
+      initialLevels[id] = skill['initialLevel'];
+      maximumLevels[id] = skill['maxLevel'];
+      if (typeof initialLevels[id] !== 'number' || typeof maximumLevels[id] !== 'number') {
+        errors.push("Missing or invalid levels for skill '" + id + "'.");
+      }
+      return id;
+    });
+    const skills = this.skills(Array.isArray(value) ? ids : value, path + '.skills', errors);
+    if (new Set(skills).size !== skills.length) errors.push(path + '.skills contains duplicate skill ids.');
+    this.validateSkillLevels(owner, skills, catalog, path, errors);
+    this.validateSkillLevels({ innateSkillLevels: initialLevels, maxSkillLevels: maximumLevels }, skills, catalog, path, errors);
+    return skills;
+  }
+
   private validateSkillLevels(
     owner: Record<string, unknown>,
     skills: readonly string[],
@@ -160,6 +187,7 @@ export class ProductionGameDataValidator {
     const maxima = read('maxSkillLevels');
     const innate = read('innateSkillLevels');
     for (const id of new Set([...Object.keys(maxima), ...Object.keys(innate)])) {
+      if (skills.includes(id) && !this.skillIds.has(id)) continue;
       const catalogMax = catalog.get(id);
       const maximum = maxima[id] ?? catalogMax;
       const initial = innate[id] ?? 0;
