@@ -22,7 +22,7 @@ export class ProductionCommanderCatalogMother {
             color: 'red',
             type: 'melee',
             turnCount: 4,
-            power: 30,
+            power: { startPower: 30 },
             countPawns: 1,
             moveCount: 2,
             visualKey: 'commander-red',

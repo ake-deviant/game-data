@@ -223,6 +223,15 @@ function fromImplicitSkillParams(value: unknown, label: string): Pick<PawnFormSt
 function fromPawn(value: unknown, label: string): PawnFormState {
   assertRecord(value, label);
   const implicitParams = fromImplicitSkillParams(value.implicitSkillParams, `${label}.implicitSkillParams`);
+  const power = value.power;
+  let startPower: number;
+  if (typeof power === 'number') {
+    startPower = requiredNumber(power, `${label}.power`);
+  } else {
+    assertRecord(power, `${label}.power`);
+    startPower = requiredNumber(power.startPower, `${label}.power.startPower`);
+    implicitParams.powerBonusPerDecrement = optionalNumber(power.powerBonusPerDecrement, `${label}.power.powerBonusPerDecrement`);
+  }
   const skills = stringArray(value.skills, `${label}.skills`).filter(
     (skill) => !IMPLICIT_SKILL_IDS.includes(skill),
   );
@@ -234,7 +243,7 @@ function fromPawn(value: unknown, label: string): PawnFormState {
     color: enumValue(value.color, PAWN_COLORS, `${label}.color`),
     type,
     turnCount: requiredNumber(value.turnCount, `${label}.turnCount`),
-    power: requiredNumber(value.power, `${label}.power`),
+    power: startPower,
     countPawns: requiredNumber(value.countPawns, `${label}.countPawns`),
     moveCount: requiredNumber(value.moveCount, `${label}.moveCount`),
     visualKey: requiredString(value.visualKey, `${label}.visualKey`),
@@ -406,7 +415,6 @@ function optionalText(value: string): string | undefined {
 
 function toImplicitSkillParams(pawn: PawnFormState): PawnImplicitSkillParams | undefined {
   const params: PawnImplicitSkillParams = {};
-  if (pawn.powerBonusPerDecrement !== '') params.powerBonusPerDecrement = pawn.powerBonusPerDecrement;
   if (pawn.columnPowerBonusPerDecrement !== '') params.columnPowerBonusPerDecrement = pawn.columnPowerBonusPerDecrement;
   if (pawn.spBonusPerLiaison !== '') params.spBonusPerLiaison = pawn.spBonusPerLiaison;
   if (pawn.spBonusPerAttackPawn !== '') params.spBonusPerAttackPawn = pawn.spBonusPerAttackPawn;
@@ -427,7 +435,12 @@ function toPawn(pawn: PawnFormState): PawnStats {
     color: pawn.color,
     type: pawn.type,
     turnCount: pawn.turnCount,
-    power: pawn.power,
+    power: {
+      startPower: pawn.power,
+      ...(pawn.powerBonusPerDecrement !== '' && pawn.powerBonusPerDecrement > 0 && {
+        powerBonusPerDecrement: pawn.powerBonusPerDecrement,
+      }),
+    },
     countPawns: pawn.countPawns,
     moveCount: pawn.moveCount,
     visualKey: pawn.visualKey.trim(),

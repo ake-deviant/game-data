@@ -53,22 +53,6 @@
       ]
     },
     {
-      "id": "power-growth",
-      "displayName": "Croissance de Puissance",
-      "visualKey": "power-growth",
-      "triggerPhase": "decrement",
-      "displayNameKey": "skills.power-growth.name",
-      "descriptionKey": "skills.power-growth.description",
-      "descriptionParams": {
-        "powerBonusPerDecrement": "pawn.implicitSkillParams.powerBonusPerDecrement"
-      },
-      "levels": [
-        {
-          "level": 1
-        }
-      ]
-    },
-    {
       "id": "charge-30",
       "displayName": "Charge 30%",
       "visualKey": "charge-30",

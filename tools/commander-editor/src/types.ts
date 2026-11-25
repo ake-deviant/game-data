@@ -47,7 +47,7 @@ export interface PawnStats {
   color: PawnColor;
   type: PawnType;
   turnCount: number;
-  power: number;
+  power: { startPower: number; powerBonusPerDecrement?: number };
   countPawns: number;
   moveCount: number;
   visualKey: string;
