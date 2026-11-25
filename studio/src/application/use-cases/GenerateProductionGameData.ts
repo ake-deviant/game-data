@@ -161,15 +161,19 @@ export class GenerateProductionGameData {
   }
 
   private toDocument(pawn: PawnDefinition, catalog: ReadonlyMap<string, Skill>): ProductionPawnDocument {
-    const assignments = this.skillAssignments(pawn.skills.map(String), pawn.innateSkillLevels, pawn.maxSkillLevels, catalog);
+    const assignments = this.skillAssignments(pawn.skills.map(String).filter(id => id !== 'power-growth'), pawn.innateSkillLevels, pawn.maxSkillLevels, catalog);
     const isSoldier = pawn.stats instanceof SoldierPawnStats;
+    const { powerBonusPerDecrement, ...skillParams } = pawn.implicitSkillParams ?? {};
     return {
       id: pawn.identity.id.value,
       ...(pawn.identity.displayName && { displayName: pawn.identity.displayName }),
       color: pawn.identity.color,
       type: pawn.identity.type,
       turnCount: pawn.stats.turnCount,
-      power: pawn.stats.power,
+      power: isSoldier ? pawn.stats.power : {
+        startPower: pawn.stats.power,
+        ...(powerBonusPerDecrement !== undefined && powerBonusPerDecrement > 0 && { powerBonusPerDecrement }),
+      },
       ...(!isSoldier && {
         countPawns: pawn.stats.countPawns,
         moveCount: pawn.stats.moveCount,
@@ -181,7 +185,7 @@ export class GenerateProductionGameData {
         requiredInfluencePoints: pawn.requiredInfluencePoints,
       }),
       ...(assignments.length > 0 && { skills: assignments }),
-      ...(pawn.implicitSkillParams && { implicitSkillParams: pawn.implicitSkillParams }),
+      ...(Object.keys(skillParams).length > 0 && { implicitSkillParams: skillParams }),
     };
   }
 }

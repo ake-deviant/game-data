@@ -51,14 +51,16 @@
           "color": "green",
           "type": "melee",
           "turnCount": 7,
-          "power": 40,
+          "power": {
+            "startPower": 40,
+            "powerBonusPerDecrement": 10
+          },
           "countPawns": 5,
           "moveCount": 4,
           "visualKey": "Aegis_commander_melee_green",
           "weaponKey": "wooden_spiked_club",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 10,
             "columnPowerBonusPerDecrement": 0,
             "spBonusPerLiaison": 0
           }
@@ -69,7 +71,9 @@
           "color": "red",
           "type": "melee",
           "turnCount": 5,
-          "power": 70,
+          "power": {
+            "startPower": 70
+          },
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "Aegis_commander_melee_red",
@@ -86,14 +90,16 @@
           "color": "blue",
           "type": "ranged",
           "turnCount": 4,
-          "power": 10,
+          "power": {
+            "startPower": 10,
+            "powerBonusPerDecrement": 10
+          },
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "Aegis_commander_ranged_blue",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 6,
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 10,
             "spBonusPerLiaison": 1
           }
         },
@@ -103,7 +109,9 @@
           "color": "red",
           "type": "melee",
           "turnCount": 4,
-          "power": 40,
+          "power": {
+            "startPower": 40
+          },
           "countPawns": 3,
           "moveCount": 2,
           "visualKey": "Commander_101",
@@ -118,7 +126,10 @@
           "color": "blue",
           "type": "ranged",
           "turnCount": 2,
-          "power": 6,
+          "power": {
+            "startPower": 6,
+            "powerBonusPerDecrement": 6
+          },
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "Aegis_officer_ranged_blue",
@@ -130,10 +141,7 @@
               "initialLevel": 1,
               "maxLevel": 1
             }
-          ],
-          "implicitSkillParams": {
-            "powerBonusPerDecrement": 6
-          }
+          ]
         },
         {
           "id": "Aegis_officer_4",
@@ -141,7 +149,9 @@
           "color": "red",
           "type": "ranged",
           "turnCount": 3,
-          "power": 12,
+          "power": {
+            "startPower": 12
+          },
           "countPawns": 1,
           "moveCount": 2,
           "visualKey": "Aegis_officer_ranged_red",
@@ -166,14 +176,15 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 3,
-          "power": 20,
+          "power": {
+            "startPower": 20
+          },
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "V2_officer_melee_blue",
           "weaponKey": "sword",
           "requiredInfluencePoints": 4,
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 0,
             "spBonusPerLiaison": 1
           }
         },
@@ -183,7 +194,9 @@
           "color": "green",
           "type": "melee",
           "turnCount": 3,
-          "power": 14,
+          "power": {
+            "startPower": 14
+          },
           "countPawns": 1,
           "moveCount": 2,
           "visualKey": "Officer_242",
@@ -209,7 +222,9 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 4,
-          "power": 30,
+          "power": {
+            "startPower": 30
+          },
           "countPawns": 3,
           "moveCount": 2,
           "visualKey": "Officer_421",
@@ -304,14 +319,16 @@
           "color": "green",
           "type": "melee",
           "turnCount": 7,
-          "power": 40,
+          "power": {
+            "startPower": 40,
+            "powerBonusPerDecrement": 10
+          },
           "countPawns": 5,
           "moveCount": 4,
           "visualKey": "Aegis_commander_melee_green",
           "weaponKey": "wooden_spiked_club",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 10,
             "columnPowerBonusPerDecrement": 0,
             "spBonusPerLiaison": 0
           }
@@ -322,7 +339,9 @@
           "color": "red",
           "type": "melee",
           "turnCount": 5,
-          "power": 70,
+          "power": {
+            "startPower": 70
+          },
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "Aegis_commander_melee_red",
@@ -339,7 +358,9 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 6,
-          "power": 80,
+          "power": {
+            "startPower": 80
+          },
           "countPawns": 4,
           "moveCount": 3,
           "visualKey": "Aegis_commander_melee_blue",
@@ -352,14 +373,16 @@
           "color": "red",
           "type": "ranged",
           "turnCount": 5,
-          "power": 10,
+          "power": {
+            "startPower": 10,
+            "powerBonusPerDecrement": 10
+          },
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "arrow_red_girl",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 10,
             "spGrowthBonus": 1
           }
         }
@@ -371,7 +394,9 @@
           "color": "green",
           "type": "melee",
           "turnCount": 4,
-          "power": 16,
+          "power": {
+            "startPower": 16
+          },
           "countPawns": 1,
           "moveCount": 2,
           "visualKey": "Aegis_officer_melee_green",
@@ -389,7 +414,9 @@
           "color": "red",
           "type": "ranged",
           "turnCount": 3,
-          "power": 12,
+          "power": {
+            "startPower": 12
+          },
           "countPawns": 1,
           "moveCount": 2,
           "visualKey": "Aegis_officer_ranged_red",
@@ -414,7 +441,9 @@
           "color": "green",
           "type": "ranged",
           "turnCount": 3,
-          "power": 24,
+          "power": {
+            "startPower": 24
+          },
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "Aegis_officer_ranged_green",
@@ -430,7 +459,10 @@
           "color": "green",
           "type": "ranged",
           "turnCount": 4,
-          "power": 6,
+          "power": {
+            "startPower": 6,
+            "powerBonusPerDecrement": 6
+          },
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "Officer_202",
@@ -442,10 +474,7 @@
               "initialLevel": 1,
               "maxLevel": 1
             }
-          ],
-          "implicitSkillParams": {
-            "powerBonusPerDecrement": 6
-          }
+          ]
         }
       ],
       "skills": [
@@ -536,7 +565,9 @@
           "color": "red",
           "type": "melee",
           "turnCount": 4,
-          "power": 50,
+          "power": {
+            "startPower": 50
+          },
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "Commander_DFR",
@@ -566,7 +597,9 @@
           "color": "green",
           "type": "melee",
           "turnCount": 6,
-          "power": 95,
+          "power": {
+            "startPower": 95
+          },
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "SJ_Gregory",
@@ -594,14 +627,16 @@
           "color": "red",
           "type": "ranged",
           "turnCount": 6,
-          "power": 20,
+          "power": {
+            "startPower": 20,
+            "powerBonusPerDecrement": 10
+          },
           "countPawns": 3,
           "moveCount": 3,
           "visualKey": "Commander_755",
           "weaponKey": "arrow",
           "requiredInfluencePoints": 10,
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 10,
             "spBonusPerLiaison": 1
           }
         },
@@ -611,7 +646,10 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 7,
-          "power": 60,
+          "power": {
+            "startPower": 60,
+            "powerBonusPerDecrement": 10
+          },
           "countPawns": 5,
           "moveCount": 4,
           "visualKey": "Commander_429",
@@ -625,7 +663,6 @@
             }
           ],
           "implicitSkillParams": {
-            "powerBonusPerDecrement": 10,
             "freeWallDestructsOnDecrement": 1
           }
         }
@@ -637,7 +674,10 @@
           "color": "blue",
           "type": "ranged",
           "turnCount": 2,
-          "power": 6,
+          "power": {
+            "startPower": 6,
+            "powerBonusPerDecrement": 6
+          },
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "Aegis_officer_ranged_blue",
@@ -649,10 +689,7 @@
               "initialLevel": 1,
               "maxLevel": 1
             }
-          ],
-          "implicitSkillParams": {
-            "powerBonusPerDecrement": 6
-          }
+          ]
         },
         {
           "id": "Officer_421",
@@ -660,7 +697,9 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 4,
-          "power": 30,
+          "power": {
+            "startPower": 30
+          },
           "countPawns": 3,
           "moveCount": 2,
           "visualKey": "Officer_421",
@@ -673,7 +712,9 @@
           "color": "green",
           "type": "melee",
           "turnCount": 3,
-          "power": 24,
+          "power": {
+            "startPower": 24
+          },
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "Officer_425",
@@ -693,7 +734,9 @@
           "color": "blue",
           "type": "melee",
           "turnCount": 4,
-          "power": 18,
+          "power": {
+            "startPower": 18
+          },
           "countPawns": 2,
           "moveCount": 2,
           "visualKey": "Officer_701",

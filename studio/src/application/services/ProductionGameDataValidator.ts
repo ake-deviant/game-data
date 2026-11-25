@@ -128,7 +128,19 @@ export class ProductionGameDataValidator {
     }
 
     const turnCount = this.nonNegativeNumber(pawn['turnCount'], `${path}.turnCount`, errors);
-    this.nonNegativeNumber(pawn['power'], `${path}.power`, errors);
+    const power = pawn['power'];
+    if (soldier || typeof power === 'number') {
+      this.nonNegativeNumber(power, `${path}.power`, errors);
+    } else {
+      const config = this.record(power, `${path}.power`, errors);
+      if (config) {
+        this.nonNegativeNumber(config['startPower'], `${path}.power.startPower`, errors);
+        const gain = config['powerBonusPerDecrement'];
+        if (gain !== undefined && (typeof gain !== 'number' || !Number.isFinite(gain) || gain <= 0)) {
+          errors.push(`${path}.power.powerBonusPerDecrement must be positive.`);
+        }
+      }
+    }
     if (pawn['requiredInfluencePoints'] !== undefined) {
       this.nonNegativeNumber(pawn['requiredInfluencePoints'], `${path}.requiredInfluencePoints`, errors);
     }

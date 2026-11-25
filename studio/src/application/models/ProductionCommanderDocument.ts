@@ -10,7 +10,7 @@ export interface ProductionPawnDocument {
   readonly color: string;
   readonly type: string;
   readonly turnCount: number;
-  readonly power: number;
+  readonly power: number | { readonly startPower: number; readonly powerBonusPerDecrement?: number };
   readonly countPawns?: number;
   readonly moveCount?: number;
   readonly nonePower?: number;

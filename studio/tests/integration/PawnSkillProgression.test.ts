@@ -14,6 +14,8 @@ import { UpdatePawnDefinitionController } from '../../src/presentation/controlle
 import { createEmptyPawnDefinitionForm } from '../../src/presentation/models/PawnDefinitionFormModel';
 
 const skillId = PawnSkillMother.columnPowerDocument().id;
+const productionPawn = ProductionCommanderCatalogMother.valid()[0].baseStats.commanderPawns[0];
+const studioPawn = { ...productionPawn, power: productionPawn.power.startPower };
 
 async function references() {
   const references = ProductionReferenceCatalogsMother.valid();
@@ -33,7 +35,7 @@ describe('Pawn skill progression', () => {
     const api = new PawnApiHandler(repo, repo, repo);
     const catalog = new PawnCatalogApiHandler([{ role: 'commander', repository: repo }]);
     const request = {
-      ...ProductionCommanderCatalogMother.valid()[0].baseStats.commanderPawns[0],
+      ...studioPawn,
       role: 'commander',
       skills: [skillId],
       innateSkillLevels: { [skillId]: 1 },
@@ -52,7 +54,7 @@ describe('Pawn skill progression', () => {
 
   it.each([0, 1, 2, 3])('preserves innate level %i through the JSON schema and entity mapper', level => {
     const document = pawnDefinitionCatalogItemSchema.parse({
-      ...ProductionCommanderCatalogMother.valid()[0].baseStats.commanderPawns[0],
+      ...studioPawn,
       skills: [skillId], innateSkillLevels: { [skillId]: level },
     });
     const mapper = new PawnDefinitionCatalogMapper();
