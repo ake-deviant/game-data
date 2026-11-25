@@ -160,6 +160,16 @@
     "visualKey": "Commander_755",
     "weaponKey": "arrow",
     "requiredInfluencePoints": 10,
+    "skills": [
+      {
+        "id": "liaison-power-bonus",
+        "initialLevel": 0
+      },
+      {
+        "id": "increase-enemy-elite-cooldown-on-hit",
+        "initialLevel": 0
+      }
+    ],
     "implicitSkillParams": {
       "powerBonusPerDecrement": 10,
       "spBonusPerLiaison": 1

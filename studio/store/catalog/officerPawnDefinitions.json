@@ -273,6 +273,16 @@
     "visualKey": "Officer_701",
     "weaponKey": "spear",
     "requiredInfluencePoints": 2,
+    "skills": [
+      {
+        "id": "increase-SP-by-attack-linked-when-preparing",
+        "initialLevel": 0
+      },
+      {
+        "id": "liaison-power-bonus",
+        "initialLevel": 0
+      }
+    ],
     "implicitSkillParams": {
       "spBonusPerAttackPawn": 1
     }
