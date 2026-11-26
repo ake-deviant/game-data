@@ -240,7 +240,19 @@
           "moveCount": 2,
           "visualKey": "Officer_421",
           "weaponKey": "spear",
-          "requiredInfluencePoints": 6
+          "requiredInfluencePoints": 6,
+          "skills": [
+            {
+              "id": "increase-power-column-when-decrementing",
+              "initialLevel": 1,
+              "maxLevel": 3
+            },
+            {
+              "id": "liaison-power-bonus",
+              "initialLevel": 1,
+              "maxLevel": 2
+            }
+          ]
         }
       ],
       "skills": [
@@ -672,7 +684,7 @@
             {
               "id": "liaison-power-bonus",
               "initialLevel": 0,
-              "maxLevel": 1
+              "maxLevel": 3
             },
             {
               "id": "increase-enemy-elite-cooldown-on-hit",
@@ -752,7 +764,19 @@
           "moveCount": 2,
           "visualKey": "Officer_421",
           "weaponKey": "spear",
-          "requiredInfluencePoints": 6
+          "requiredInfluencePoints": 6,
+          "skills": [
+            {
+              "id": "increase-power-column-when-decrementing",
+              "initialLevel": 1,
+              "maxLevel": 3
+            },
+            {
+              "id": "liaison-power-bonus",
+              "initialLevel": 1,
+              "maxLevel": 2
+            }
+          ]
         },
         {
           "id": "Officer_425",
@@ -798,8 +822,8 @@
             },
             {
               "id": "liaison-power-bonus",
-              "initialLevel": 0,
-              "maxLevel": 1
+              "initialLevel": 1,
+              "maxLevel": 3
             },
             {
               "id": "increase-SP-by-attack-group-when-spawning",
