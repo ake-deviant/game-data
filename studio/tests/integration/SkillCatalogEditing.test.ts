@@ -37,3 +37,42 @@ it('validates and persists both purchase requirements without changing the other
     await rmdir(directory);
   }
 });
+
+it('rend Synergie de Liaison progressive et protège ses assignations', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'studio-skills-levels-'));
+  const file = join(directory, 'skills.json');
+  const fixture = {
+    ...PawnSkillMother.liaisonWithoutPurchaseDocument(),
+    id: 'liaison-power-bonus',
+    descriptionParams: { liaisonBonusPercent: 'pawn.implicitSkillParams.liaisonBonusPercent' },
+    levels: [{ level: 1, implicitSkillParams: { liaisonBonusPercent: 10 } }],
+  };
+  let assignedMaximum = 2;
+  try {
+    await writeFile(file, JSON.stringify({ pawnSkillVisuals: [fixture], activablePlayerSkills: [] }));
+    const repository = new JsonSkillCatalogRepository(file);
+    const api = new SkillCatalogApiHandler(repository, async (id, maximum) => {
+      expect(id).toBe(fixture.id);
+      if (assignedMaximum > maximum) throw new Error('Niveau encore assigné.');
+    });
+    const first = { level: 1, values: {}, implicitSkillParams: { liaisonBonusPercent: 10 } };
+    const second = { ...first, level: 2, implicitSkillParams: { liaisonBonusPercent: 20 } };
+    const addition = { id: fixture.id, expectedLevelCount: 1, levels: [first, second] };
+    expect((await api.handleUpdate(addition)).status).toBe(200);
+    expect((await api.handleUpdate(addition)).status).toBe(422);
+    const [saved] = (await repository.readDocument()).pawnSkillVisuals;
+    expect(saved.activationType).toBe('progressive');
+    expect(saved.levels).toMatchObject([first, second].map(
+      ({ level, implicitSkillParams }) => ({ level, implicitSkillParams }),
+    ));
+    const removal = { ...addition, expectedLevelCount: 2, levels: [first] };
+    expect((await api.handleUpdate(removal)).status).toBe(422);
+    expect((await repository.readDocument()).pawnSkillVisuals[0].levels).toHaveLength(2);
+    assignedMaximum = 1;
+    expect((await api.handleUpdate(removal)).status).toBe(200);
+    expect((await repository.readDocument()).pawnSkillVisuals[0].levels).toHaveLength(1);
+  } finally {
+    await rm(file, { force: true });
+    await rmdir(directory);
+  }
+});

@@ -12,9 +12,7 @@
     "weaponKey": "wooden_spiked_club",
     "requiredInfluencePoints": 10,
     "implicitSkillParams": {
-      "powerBonusPerDecrement": 10,
-      "columnPowerBonusPerDecrement": 0,
-      "spBonusPerLiaison": 0
+      "powerBonusPerDecrement": 10
     }
   },
   {
@@ -29,10 +27,18 @@
     "visualKey": "Aegis_commander_melee_red",
     "weaponKey": "spear",
     "requiredInfluencePoints": 10,
-    "implicitSkillParams": {
-      "columnPowerBonusPerDecrement": 3,
-      "freeWallDestructsOnDecrement": 1
-    }
+    "skills": [
+      {
+        "id": "gain-FWD-on-decrement",
+        "initialLevel": 1,
+        "maxLevel": 1
+      },
+      {
+        "id": "increase-power-column-when-decrementing",
+        "initialLevel": 0,
+        "maxLevel": 3
+      }
+    ]
   },
   {
     "id": "Aegis-commander-blue",
@@ -59,9 +65,15 @@
     "visualKey": "Aegis_commander_ranged_blue",
     "weaponKey": "arrow",
     "requiredInfluencePoints": 6,
+    "skills": [
+      {
+        "id": "increase-SP-by-attack-linked-when-preparing",
+        "initialLevel": 1,
+        "maxLevel": 1
+      }
+    ],
     "implicitSkillParams": {
-      "powerBonusPerDecrement": 10,
-      "spBonusPerLiaison": 1
+      "powerBonusPerDecrement": 10
     }
   },
   {
@@ -76,9 +88,15 @@
     "visualKey": "arrow_red_girl",
     "weaponKey": "arrow",
     "requiredInfluencePoints": 10,
+    "skills": [
+      {
+        "id": "sp-growth",
+        "initialLevel": 1,
+        "maxLevel": 1
+      }
+    ],
     "implicitSkillParams": {
-      "powerBonusPerDecrement": 10,
-      "spGrowthBonus": 1
+      "powerBonusPerDecrement": 10
     }
   },
   {
@@ -114,11 +132,13 @@
       },
       {
         "id": "liaison-power-bonus",
-        "initialLevel": 0
+        "initialLevel": 0,
+        "maxLevel": 1
       },
       {
         "id": "increase-SP-by-attack-linked-when-preparing",
-        "initialLevel": 0
+        "initialLevel": 0,
+        "maxLevel": 1
       }
     ]
   },
@@ -137,16 +157,15 @@
     "skills": [
       {
         "id": "increase-SP-by-attack-linked-when-preparing",
-        "initialLevel": 0
+        "initialLevel": 0,
+        "maxLevel": 1
       },
       {
         "id": "liaison-power-bonus",
-        "initialLevel": 0
+        "initialLevel": 0,
+        "maxLevel": 1
       }
-    ],
-    "implicitSkillParams": {
-      "spBonusPerLiaison": 0
-    }
+    ]
   },
   {
     "id": "Commander_755",
@@ -163,16 +182,21 @@
     "skills": [
       {
         "id": "liaison-power-bonus",
-        "initialLevel": 0
+        "initialLevel": 0,
+        "maxLevel": 3
       },
       {
         "id": "increase-enemy-elite-cooldown-on-hit",
         "initialLevel": 0
+      },
+      {
+        "id": "increase-SP-by-attack-linked-when-preparing",
+        "initialLevel": 1,
+        "maxLevel": 1
       }
     ],
     "implicitSkillParams": {
-      "powerBonusPerDecrement": 10,
-      "spBonusPerLiaison": 1
+      "powerBonusPerDecrement": 10
     }
   },
   {
@@ -192,11 +216,15 @@
         "id": "increase-power-column-when-decrementing",
         "initialLevel": 0,
         "maxLevel": 3
+      },
+      {
+        "id": "gain-FWD-on-decrement",
+        "initialLevel": 1,
+        "maxLevel": 1
       }
     ],
     "implicitSkillParams": {
-      "powerBonusPerDecrement": 10,
-      "freeWallDestructsOnDecrement": 1
+      "powerBonusPerDecrement": 10
     }
   }
 ]

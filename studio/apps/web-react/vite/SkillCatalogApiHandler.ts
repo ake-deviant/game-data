@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 const updateSchema = z.object({
   id: z.string().min(1),
+  expectedLevelCount: z.number().int().positive().optional(),
   levels: z.array(z.object({
     level: z.number().int().positive(),
     values: z.record(z.string(), z.number().nonnegative().nullable()),
@@ -11,7 +12,10 @@ const updateSchema = z.object({
 });
 
 export class SkillCatalogApiHandler {
-  public constructor(private readonly catalog: Pick<JsonSkillCatalogRepository, 'readDocument' | 'updateLevels'>) {}
+  public constructor(
+    private readonly catalog: Pick<JsonSkillCatalogRepository, 'readDocument' | 'updateLevels'>,
+    private readonly checkRemoval?: (id: string, maximum: number) => Promise<void>,
+  ) {}
 
   public async handleList() {
     return { status: 200, body: await this.catalog.readDocument() };
@@ -21,7 +25,9 @@ export class SkillCatalogApiHandler {
     const parsed = updateSchema.safeParse(input);
     if (!parsed.success) return { status: 400, body: { error: 'Invalid skill update.' } };
     try {
-      const found = await this.catalog.updateLevels(parsed.data.id, parsed.data.levels);
+      const found = await this.catalog.updateLevels(
+        parsed.data.id, parsed.data.levels, parsed.data.expectedLevelCount, this.checkRemoval,
+      );
       if (!found) return { status: 404, body: { error: 'Skill not found.' } };
       return { status: 200, body: await this.catalog.readDocument() };
     } catch (error) {

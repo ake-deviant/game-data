@@ -81,7 +81,9 @@ export function SkillCatalogView() {
 
   const pawn = catalog?.pawnSkillVisuals.find(skill => skill.id === selected);
   const skill = pawn ?? catalog?.activablePlayerSkills.find(skill => skill.id === selected);
-  const purchaseRequired = !pawn || pawn.activationType === 'progressive';
+  const purchaseRequired = !pawn;
+  const canAddLevel = skill?.activationType === 'progressive'
+    || Boolean(pawn?.levels?.[0] && Object.keys(pawn.levels[0].implicitSkillParams ?? {}).length);
 
   function select(id: string) {
     const entry = catalog?.pawnSkillVisuals.find(skill => skill.id === id)
@@ -110,6 +112,7 @@ export function SkillCatalogView() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           id: selected,
+          expectedLevelCount: skill?.levels?.length,
           levels: draft.map(level => ({
             level: level.level,
             values: {
@@ -183,22 +186,17 @@ export function SkillCatalogView() {
                   {skill.delayIllimited && <div><dt className="text-slate-400">Durée</dt><dd>Illimitée</dd></div>}
                   {skill.chargeBonusPercent !== undefined && <div><dt className="text-slate-400">Bonus de charge</dt><dd>{skill.chargeBonusPercent} %</dd></div>}
                 </dl>
-                {Object.values(skill.descriptionParams).some(source => source.startsWith('pawn.implicitSkillParams.')) && (
-                  <p className="mt-3 text-sm text-slate-400">
-                    Les paramètres propres au pion se modifient dans sa fiche.
-                  </p>
-                )}
               </>
             )}
             {skill && draft.length > 0 && (
               <form onSubmit={save} className="mt-5 space-y-4">
                 {pawn && !purchaseRequired && (
-                  <p className="text-sm text-slate-400">Renseignez le coût et le seuil pour rendre le niveau 1 achetable en partie. Laissez les deux champs vides pour une compétence disponible dès le départ.</p>
+                  <p className="text-sm text-slate-400">Renseignez le coût et le seuil pour rendre un niveau achetable en partie. Un niveau sans coût peut être attribué comme niveau de départ.</p>
                 )}
                 {draft.map((level, index) => (
                   <fieldset key={level.level} disabled={saving} className="grid gap-3 rounded-xl border border-white/10 p-4 sm:grid-cols-2">
                     <legend className="px-2 text-sm font-semibold text-slate-200">Niveau {level.level}</legend>
-                    {[...purchaseFields.map(key => [key, level[key]] as const), ...numericEffects(skill.levels?.[index] ?? level).map(([key]) => [key, level[key]] as const)].map(([key, value]) => (
+                    {[...purchaseFields.map(key => [key, level[key]] as const), ...numericEffects(skill.levels?.[index] ?? skill.levels?.at(-1) ?? level).map(([key]) => [key, level[key]] as const)].map(([key, value]) => (
                       <Field key={key} label={labels[key] ?? key}>
                         <input className={inputClass} type="number" min="0" step="any" value={typeof value === 'number' ? value : ''}
                           required={!purchaseFields.includes(key) || purchaseRequired}
@@ -213,6 +211,31 @@ export function SkillCatalogView() {
                     ))}
                   </fieldset>
                 ))}
+                {canAddLevel && (
+                  <div className="flex flex-wrap gap-2">
+                    <button type="button" disabled={saving} className="rounded-lg border border-slate-600 px-3 py-2 text-sm"
+                      onClick={() => {
+                        setDraft(levels => [...levels, { ...structuredClone(levels.at(-1)!), level: levels.length + 1 }]);
+                        setFeedback(undefined);
+                      }}>
+                      Ajouter un niveau
+                    </button>
+                    <button type="button" disabled={saving || draft.length <= 1}
+                      className="rounded-lg border border-slate-600 px-3 py-2 text-sm disabled:opacity-50"
+                      onClick={() => {
+                        setDraft(levels => levels.slice(0, -1));
+                        setFeedback(undefined);
+                      }}>
+                      Supprimer le dernier niveau
+                    </button>
+                  </div>
+                )}
+                {!canAddLevel && (
+                  <p className="text-sm text-slate-400">
+                    {pawn ? 'Cette compétence a un effet fixe. Les niveaux supplémentaires nécessitent un effet réglable par niveau.'
+                      : 'Cette compétence du joueur utilise une activation à niveau unique.'}
+                  </p>
+                )}
                 <button type="submit" disabled={saving} className="rounded-lg bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-950 disabled:opacity-50">
                   {saving ? 'Enregistrement…' : 'Enregistrer'}
                 </button>

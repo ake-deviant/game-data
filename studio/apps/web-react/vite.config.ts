@@ -35,10 +35,11 @@ const catalogPath = fileURLToPath(
   new URL('../../store/catalog/commanders.json', import.meta.url),
 );
 const repository = new JsonCommanderCatalogRepository(catalogPath);
+const listCommanders = new ListCommanders(repository);
 const handler = new CommanderCatalogApiHandler(
   new CreateCommander(repository),
   new UpdateCommander(repository),
-  new ListCommanders(repository),
+  listCommanders,
 );
 const wallVisualSetHandler = new WallVisualSetApiHandler(
   fileURLToPath(new URL('../../../data/wallVisualSets.json', import.meta.url)),
@@ -63,12 +64,32 @@ const productionCommanderCatalogPath = fileURLToPath(
   new URL('../../../data/commanders.json', import.meta.url),
 );
 const skillCatalog = new JsonSkillCatalogRepository(fileURLToPath(new URL('../../../data/skills.json', import.meta.url)));
+const productionCommanders = new JsonProductionCommanderCatalogRepository(productionCommanderCatalogPath);
+const skillCatalogHandler = new SkillCatalogApiHandler(skillCatalog, async (id, maximum) => {
+  const [pawns, commanders, production] = await Promise.all([
+    pawnHandler.handle(), listCommanders.execute(), productionCommanders.findAll(),
+  ]);
+  const owners = [
+    ...pawns.filter(pawn => 'skills' in pawn), ...commanders,
+    ...production.flatMap(({ id, baseStats }) => [
+      { id, ...baseStats }, ...(baseStats.officerPawns ?? []),
+      ...(baseStats.commanderPawns ?? []), ...(baseStats.soldierPawns ?? []),
+    ]),
+  ];
+  const blocked = owners.find(owner =>
+    (owner.innateSkillLevels?.[id] ?? 0) > maximum
+    || (owner.maxSkillLevels?.[id] ?? 0) > maximum
+    || owner.skills?.some(skill => typeof skill !== 'string' && skill.id === id
+      && Math.max(skill.initialLevel, skill.maxLevel) > maximum),
+  );
+  if (blocked) throw new Error(`Le niveau à supprimer est encore assigné à ${blocked.id}. Ajustez cette assignation avant de supprimer le niveau.`);
+});
 const generateProductionGameData = new GenerateProductionGameData(
   repository,
   soldierRepo,
   commanderPawnRepo,
   officerPawnRepo,
-  new JsonProductionCommanderCatalogRepository(productionCommanderCatalogPath),
+  productionCommanders,
   skillCatalog,
   new JsonWeaponKeyCatalogRepository(fileURLToPath(new URL('../../../data/weaponKeys.json', import.meta.url))),
   new JsonWallVisualSetCatalogRepository(fileURLToPath(new URL('../../../data/wallVisualSets.json', import.meta.url))),
@@ -86,7 +107,7 @@ const savedGridHandler = new SavedGridApiHandler(new JsonSavedGridRepository(fil
 const gameStatsTarget = process.env['GAME_STATS_SERVER_URL'] ?? 'http://localhost:3000';
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler, savedGridHandler, new SkillCatalogApiHandler(skillCatalog))],
+  plugins: [react(), tailwindcss(), commanderCatalogApiPlugin(handler, pawnHandler, pawnApiHandler, wallVisualSetHandler, publishHandler, savedGridHandler, skillCatalogHandler)],
   server: {
     host: '127.0.0.1',
     port: 5174,

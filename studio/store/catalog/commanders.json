@@ -196,16 +196,20 @@
         },
         {
           "id": "defense-upgrade",
-          "initialLevel": 1
+          "initialLevel": 1,
+          "maxLevel": 2
         },
         {
-          "id": "tactical-demolition"
+          "id": "tactical-demolition",
+          "maxLevel": 1
         },
         {
-          "id": "melee-attack-fusion"
+          "id": "melee-attack-fusion",
+          "maxLevel": 1
         },
         {
-          "id": "destroy-defense-pawns"
+          "id": "destroy-defense-pawns",
+          "maxLevel": 1
         }
       ],
       "freeRecruitThreshold": 21

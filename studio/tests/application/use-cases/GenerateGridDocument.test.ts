@@ -30,7 +30,7 @@ describe('GenerateGridDocument', () => {
     expect(document.pawns[0]).toMatchObject({ templateId: 'soldier-red', rank: 'troop', status: 'none', x: 0, y: 0, power: 2, turnCount: null, visualKey: 'soldier-visual', weaponKey: 'club' });
     expect(document.pawns[0]).not.toHaveProperty('footprint');
     expect(document.pawns[0]).not.toHaveProperty('skills');
-    expect(document.pawns[1]).toMatchObject({ id: officer.id, templateId: 'officer', rank: 'officer', status: 'attack', x: 2, y: 2, power: 20, turnCount: 3, footprint: '1x2', countPawns: 0, moveCount: 2, skills: ['charge-30', 'power-growth', 'power-growth'], implicitSkillParams: { powerBonusPerDecrement: 5, spGrowthBonus: 0 } });
+    expect(document.pawns[1]).toMatchObject({ id: officer.id, templateId: 'officer', rank: 'officer', status: 'attack', x: 2, y: 2, power: 20, turnCount: 3, footprint: '1x2', countPawns: 0, moveCount: 2, skills: ['charge-30', 'power-growth'], implicitSkillParams: { powerBonusPerDecrement: 5, spGrowthBonus: 0 } });
     expect(document.pawns[1].occupiedCells).toEqual([{ col: 2, row: 2 }, { col: 2, row: 3 }]);
     expect(document.pawns[2]).toMatchObject({ id: command.id, templateId: 'commander-pawn', footprint: '2x2', skills: ['liaison-power-bonus'] });
     expect(document.pawns[2].occupiedCells).toEqual([{ col: 6, row: 4 }, { col: 6, row: 5 }, { col: 7, row: 4 }, { col: 7, row: 5 }]);
