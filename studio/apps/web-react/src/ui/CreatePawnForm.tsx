@@ -27,14 +27,6 @@ const types: { id: PawnType; label: string }[] = [
 
 type ImplicitKey = keyof PawnDefinitionFormModel['implicitSkillParams'];
 
-const implicitFields: { key: ImplicitKey; label: string; hint: string }[] = [
-  { key: 'powerBonusPerDecrement',       label: 'Bonus puissance / décrément',        hint: 'powerBonusPerDecrement' },
-  { key: 'spBonusPerLiaison',            label: 'Bonus SP / liaison',                  hint: 'spBonusPerLiaison' },
-  { key: 'spBonusPerAttackPawn',         label: 'Bonus SP / pion attaqué',             hint: 'spBonusPerAttackPawn' },
-  { key: 'freeWallDestructsOnDecrement', label: 'Destructions mur gratuites',          hint: 'freeWallDestructsOnDecrement' },
-  { key: 'liaisonBonusPercent',          label: 'Bonus liaison (%)',                   hint: 'liaisonBonusPercent' },
-  { key: 'spGrowthBonus',               label: 'Bonus croissance SP',                 hint: 'spGrowthBonus' },
-];
 
 const toggleClass = (active: boolean) =>
   `rounded-xl border px-3 py-2 text-sm font-semibold transition ${
@@ -162,6 +154,13 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
             </>
           </div>
         )}
+        {!isSoldier && <div className="mt-4">
+          <Field label="Gain de puissance par tour">
+            <input className={inputClass} type="number" min={0}
+              value={form.implicitSkillParams.powerBonusPerDecrement}
+              onChange={(e) => setImplicit('powerBonusPerDecrement', e.target.value)} />
+          </Field>
+        </div>}
       </Section>
 
       {/* Visual */}
@@ -197,29 +196,6 @@ export function CreatePawnForm({ role, controller, presenter }: Props) {
                 <input className={inputClass} type="number" min={0} value={form.requiredInfluencePoints}
                   onChange={(e) => setField('requiredInfluencePoints', Number(e.target.value))} />
               </Field>
-            </div>
-          </Section>
-
-          {/* Implicit skill params */}
-          <Section
-            icon="stats"
-            eyebrow="Paramètres implicites"
-            title="Bonus calculés automatiquement"
-            description="Laisser vide les champs non utilisés — ils seront exclus du JSON."
-          >
-            <div className="grid grid-cols-2 gap-4">
-              {implicitFields.map(({ key, label, hint }) => (
-                <Field key={key} label={label} hint={hint}>
-                  <input
-                    className={inputClass}
-                    type="number"
-                    min={0}
-                    placeholder="—"
-                    value={form.implicitSkillParams[key]}
-                    onChange={(e) => setImplicit(key, e.target.value)}
-                  />
-                </Field>
-              ))}
             </div>
           </Section>
 

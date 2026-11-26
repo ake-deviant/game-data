@@ -98,9 +98,23 @@
       },
       "levels": [
         {
-          "level": 1
+          "level": 1,
+          "implicitSkillParams": {
+            "spGrowthBonus": 1
+          },
+          "skillPointCost": 3,
+          "requiredInfluencePoints": 5
+        },
+        {
+          "level": 2,
+          "implicitSkillParams": {
+            "spGrowthBonus": 2
+          },
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 12
         }
-      ]
+      ],
+      "activationType": "progressive"
     },
     {
       "id": "increase-power-column-when-decrementing",
@@ -154,7 +168,10 @@
         {
           "level": 1,
           "skillPointCost": 5,
-          "requiredInfluencePoints": 15
+          "requiredInfluencePoints": 15,
+          "implicitSkillParams": {
+            "spBonusPerLiaison": 1
+          }
         }
       ]
     },
@@ -170,7 +187,10 @@
       },
       "levels": [
         {
-          "level": 1
+          "level": 1,
+          "implicitSkillParams": {
+            "spBonusPerAttackPawn": 1
+          }
         }
       ]
     },
@@ -186,7 +206,10 @@
       },
       "levels": [
         {
-          "level": 1
+          "level": 1,
+          "implicitSkillParams": {
+            "freeWallDestructsOnDecrement": 1
+          }
         }
       ]
     },
@@ -203,10 +226,30 @@
       "levels": [
         {
           "level": 1,
-          "skillPointCost": 6,
-          "requiredInfluencePoints": 20
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 12,
+          "implicitSkillParams": {
+            "liaisonBonusPercent": 10
+          }
+        },
+        {
+          "level": 2,
+          "skillPointCost": 10,
+          "requiredInfluencePoints": 20,
+          "implicitSkillParams": {
+            "liaisonBonusPercent": 20
+          }
+        },
+        {
+          "level": 3,
+          "skillPointCost": 15,
+          "requiredInfluencePoints": 30,
+          "implicitSkillParams": {
+            "liaisonBonusPercent": 30
+          }
         }
-      ]
+      ],
+      "activationType": "progressive"
     }
   ],
   "activablePlayerSkills": [

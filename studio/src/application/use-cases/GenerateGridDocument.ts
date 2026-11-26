@@ -28,7 +28,7 @@ export class GenerateGridDocument {
 
   private toPawnDocument(pawn: PlacedPawn): GridPawnDocument {
     const derived = buildPawnSkillsFromParams(pawn.implicitSkillParams);
-    const skills = pawn.rank === 'troop' ? undefined : [...(pawn.skills ?? []), ...derived];
+    const skills = pawn.rank === 'troop' ? undefined : [...new Set([...(pawn.skills ?? []), ...derived])];
     const isDefense = pawn.status === 'defense';
     return {
       id: pawn.id, templateId: pawn.templateId, color: pawn.color, type: pawn.type, status: pawn.status,

@@ -41,7 +41,7 @@ const documentSchema = z.object({
       || (skill.activationType !== 'progressive' && skill.levels !== undefined && skill.levels.length !== 1)
       || skill.levels?.some((level, index) => level.level !== index + 1
         || ((level.skillPointCost === undefined) !== (level.requiredInfluencePoints === undefined))
-        || (skill.activationType === 'progressive' && (level.skillPointCost === undefined || !Object.keys(level.implicitSkillParams).length)))) {
+        || (skill.activationType === 'progressive' && !Object.keys(level.implicitSkillParams).length))) {
       ctx.addIssue({ code: 'custom', message: 'Invalid pawn skill progression' });
     }
   })),
@@ -105,7 +105,12 @@ export class JsonSkillCatalogRepository implements SkillCatalogRepository {
     return documentSchema.parse(JSON.parse(await readFile(this.catalogPath, 'utf8')));
   }
 
-  public updateLevels(id: string, updates: readonly SkillLevelUpdate[]): Promise<boolean> {
+  public updateLevels(
+    id: string,
+    updates: readonly SkillLevelUpdate[],
+    expectedLevelCount?: number,
+    checkRemoval?: (id: string, maximum: number) => Promise<void>,
+  ): Promise<boolean> {
     const write = this.writeQueue.then(async () => {
       const raw = JSON.parse(await readFile(this.catalogPath, 'utf8'));
       const document = documentSchema.parse(raw);
@@ -115,9 +120,28 @@ export class JsonSkillCatalogRepository implements SkillCatalogRepository {
       if (index < 0) return false;
       const skill = raw[group][index];
       const levels = skill.levels as Record<string, unknown>[] | undefined;
-      if (!levels || updates.length !== levels.length) throw new Error('The skill levels have changed. Reload the catalog.');
+      if (!levels || (expectedLevelCount ?? updates.length) !== levels.length) {
+        throw new Error('Les niveaux ont changé. Rechargez le catalogue.');
+      }
+      const resized = updates.length !== levels.length;
+      if (resized) {
+        const canPromote = group === 'pawnSkillVisuals' && updates.length > levels.length
+          && levels.some(level => Object.keys(level.implicitSkillParams ?? {}).length > 0);
+        if ((skill.activationType !== 'progressive' && !canPromote)
+          || updates.some((update, index) => update.level !== index + 1)) {
+          throw new Error('Les niveaux supplémentaires nécessitent une compétence progressive ou un effet réglable par niveau.');
+        }
+        if (canPromote) skill.activationType = 'progressive';
+      }
+      if (updates.length < levels.length) {
+        await checkRemoval?.(id, updates.length);
+        levels.length = updates.length;
+      }
       const seen = new Set<number>();
       for (const update of updates) {
+        if (update.level === levels.length + 1 && resized) {
+          levels.push({ ...structuredClone(levels.at(-1)), level: update.level });
+        }
         const level = levels.find(level => level['level'] === update.level);
         if (!level || seen.has(update.level)) throw new Error('Unknown or duplicate skill level.');
         seen.add(update.level);

@@ -1,4 +1,4 @@
-import { ActivablePlayerSkill, PawnSkill, SoldierPawnStats, type PawnDefinition, type Skill } from '@game-data/domain';
+import { PawnSkill, SoldierPawnStats, type PawnDefinition, type Skill } from '@game-data/domain';
 import type { CommanderCatalogRepository } from '../ports/CommanderCatalogRepository.ts';
 import type { CommanderPawnDefinitionRepository } from '../ports/CommanderPawnDefinitionRepository.ts';
 import type { OfficerPawnDefinitionRepository } from '../ports/OfficerPawnDefinitionRepository.ts';
@@ -151,11 +151,11 @@ export class GenerateProductionGameData {
   ): ProductionSkillAssignment[] {
     return [...new Set(ids)].map(id => {
       const skill = catalog.get(id);
-      const levels = skill instanceof PawnSkill || skill instanceof ActivablePlayerSkill ? skill.levels : [];
+      const initialLevel = initialLevels?.[id] ?? (skill instanceof PawnSkill && skill.activationType !== 'progressive' ? 1 : 0);
       return {
         id,
-        initialLevel: initialLevels?.[id] ?? (skill instanceof PawnSkill && skill.activationType !== 'progressive' ? 1 : 0),
-        maxLevel: maximumLevels?.[id] ?? (levels.length || 1),
+        initialLevel,
+        maxLevel: maximumLevels?.[id] ?? Math.max(1, initialLevel),
       };
     });
   }
