@@ -226,5 +226,35 @@
     "implicitSkillParams": {
       "powerBonusPerDecrement": 10
     }
+  },
+  {
+    "id": "Commander_155",
+    "displayName": "Cyprien",
+    "color": "green",
+    "type": "melee",
+    "turnCount": 6,
+    "power": 90,
+    "countPawns": 4,
+    "moveCount": 3,
+    "visualKey": "Commander_155",
+    "weaponKey": "spear",
+    "requiredInfluencePoints": 10,
+    "skills": [
+      {
+        "id": "sp-growth",
+        "initialLevel": 2,
+        "maxLevel": 2
+      },
+      {
+        "id": "increase-SP-by-attack-group-when-spawning",
+        "initialLevel": 1,
+        "maxLevel": 1
+      },
+      {
+        "id": "liaison-power-bonus",
+        "initialLevel": 1,
+        "maxLevel": 3
+      }
+    ]
   }
 ]
