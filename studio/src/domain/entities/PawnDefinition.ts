@@ -14,6 +14,8 @@ export interface PawnImplicitSkillParams {
   freeWallDestructsOnDecrement?: number;
   liaisonBonusPercent?: number;
   spGrowthBonus?: number;
+  heavyChargePercent?: number;
+  penetratingChargePercent?: number;
 }
 
 export type PawnDefinitionStats = PawnStats | SoldierPawnStats;

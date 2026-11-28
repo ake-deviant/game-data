@@ -55,7 +55,7 @@ export function SkillAssignmentPicker({
     const added = skillsById.get(ids.find(id => !selected.includes(id)) ?? '');
     if (kind === 'pawn' && added) {
       const canBuyFirst = added.levels?.[0]?.skillPointCost !== undefined;
-      onChange({ ...levels, [added.id]: added.activationType === 'progressive' && canBuyFirst ? 0 : 1 });
+      onChange({ ...levels, [added.id]: added.activationType !== undefined && canBuyFirst ? 0 : 1 });
     }
     if (added) onMaxChange({ ...maxima, [added.id]: maxima[added.id] ?? 1 });
     onSelect(ids);
@@ -65,7 +65,7 @@ export function SkillAssignmentPicker({
     const catalogMax = skill.levels?.length ?? 1;
     const canBuy = kind === 'player' || (skill.levels?.[0]?.skillPointCost !== undefined
       && skill.levels[0].requiredInfluencePoints !== undefined);
-    const defaultInitial = kind === 'pawn' && skill.activationType !== 'progressive' ? 1 : 0;
+    const defaultInitial = kind === 'pawn' && skill.activationType === undefined ? 1 : 0;
     const initial = levels[id] ?? defaultInitial;
     const maximum = maxima[id] ?? Math.max(1, initial);
     const initialOptions = Array.from({ length: maximum + 1 }, (_, level) => level)

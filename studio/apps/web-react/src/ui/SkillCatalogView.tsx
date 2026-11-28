@@ -39,6 +39,8 @@ const labels: Record<string, string> = {
   defensePowerPerLevelBonus: 'Bonus de puissance des défenses par niveau',
   maxDefenseLevelBonus: 'Bonus au niveau maximal des défenses',
   columnPowerBonusPerDecrement: 'Bonus de puissance de colonne par décrément',
+  heavyChargePercent: 'Charge lourde (%)',
+  penetratingChargePercent: 'Charge pénétrante (%)',
   frontlineDamageAbsorptionPercent: 'Absorption des dégâts de la frontline (%)',
 };
 

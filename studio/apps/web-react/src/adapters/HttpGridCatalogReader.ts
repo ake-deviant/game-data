@@ -92,7 +92,7 @@ export class HttpGridCatalogReader implements GridCatalogReader {
       const implicitSkillParams = { ...pawn.implicitSkillParams };
       for (const id of new Set([...(pawn.skills ?? []), ...buildPawnSkillsFromParams(pawn.implicitSkillParams)])) {
         const definition = skillsById.get(id);
-        const level = pawn.innateSkillLevels?.[id] ?? (definition?.activationType === 'progressive' ? 0 : 1);
+        const level = pawn.innateSkillLevels?.[id] ?? (definition?.activationType ? 0 : 1);
         for (const effect of definition?.levels ?? []) {
           for (const key of Object.keys(effect.implicitSkillParams ?? {})) {
             delete implicitSkillParams[key as keyof typeof implicitSkillParams];

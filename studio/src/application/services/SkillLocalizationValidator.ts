@@ -8,6 +8,8 @@ const pawnParameters = {
   freeWallDestructsOnDecrement: true,
   liaisonBonusPercent: true,
   spGrowthBonus: true,
+  heavyChargePercent: true,
+  penetratingChargePercent: true,
 } satisfies Record<keyof PawnImplicitSkillParams, true>;
 
 const skillParameters = new Set([

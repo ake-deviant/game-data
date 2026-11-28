@@ -151,7 +151,7 @@ export class GenerateProductionGameData {
   ): ProductionSkillAssignment[] {
     return [...new Set(ids)].map(id => {
       const skill = catalog.get(id);
-      const initialLevel = initialLevels?.[id] ?? (skill instanceof PawnSkill && skill.activationType !== 'progressive' ? 1 : 0);
+      const initialLevel = initialLevels?.[id] ?? (skill instanceof PawnSkill && skill.activationType === undefined ? 1 : 0);
       return {
         id,
         initialLevel,

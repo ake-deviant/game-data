@@ -246,14 +246,9 @@
         "maxLevel": 2
       },
       {
-        "id": "increase-SP-by-attack-group-when-spawning",
+        "id": "heavy-charge",
         "initialLevel": 1,
         "maxLevel": 1
-      },
-      {
-        "id": "liaison-power-bonus",
-        "initialLevel": 1,
-        "maxLevel": 3
       }
     ]
   }
