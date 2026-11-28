@@ -22,7 +22,8 @@ const documentSchema = z.object({
   pawnSkillVisuals: z.array(skillBaseSchema.extend({
     triggerPhase: z.enum(['spawn', 'decrement', 'movePhase', 'attack']),
     chargeBonusPercent: z.number().optional(),
-    activationType: z.literal('progressive').optional(),
+    kind: z.literal('charge').optional(),
+    activationType: z.enum(['single', 'progressive']).optional(),
     levels: z.array(z.object({
       level: z.number().int().positive(), skillPointCost: z.number().nonnegative().optional(), requiredInfluencePoints: z.number().nonnegative().optional(),
       implicitSkillParams: z.object({
@@ -32,6 +33,8 @@ const documentSchema = z.object({
         spBonusPerAttackPawn: z.number().nonnegative().optional(),
         freeWallDestructsOnDecrement: z.number().nonnegative().optional(),
         liaisonBonusPercent: z.number().nonnegative().optional(),
+        heavyChargePercent: z.number().positive().max(100).optional(),
+        penetratingChargePercent: z.number().positive().max(100).optional(),
         spGrowthBonus: z.number().nonnegative().optional(),
         frontlineDamageAbsorptionPercent: z.number().positive().max(100).optional(),
       }).strict().optional().transform(params => params ?? {}),

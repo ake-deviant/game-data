@@ -59,11 +59,6 @@
     "requiredInfluencePoints": 5,
     "skills": [
       {
-        "id": "charge-50",
-        "initialLevel": 1,
-        "maxLevel": 1
-      },
-      {
         "id": "liaison-power-bonus",
         "initialLevel": 1,
         "maxLevel": 1
@@ -268,7 +263,7 @@
         "maxLevel": 1
       },
       {
-        "id": "sp-growth",
+        "id": "penetrating-charge",
         "initialLevel": 1,
         "maxLevel": 1
       }
@@ -288,14 +283,14 @@
     "requiredInfluencePoints": 6,
     "skills": [
       {
-        "id": "increase-power-column-when-decrementing",
+        "id": "penetrating-charge",
         "initialLevel": 1,
-        "maxLevel": 3
+        "maxLevel": 1
       },
       {
-        "id": "liaison-power-bonus",
+        "id": "heavy-charge",
         "initialLevel": 1,
-        "maxLevel": 2
+        "maxLevel": 1
       }
     ]
   },

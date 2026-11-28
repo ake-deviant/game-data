@@ -53,36 +53,114 @@
       ]
     },
     {
-      "id": "charge-30",
-      "displayName": "Charge 30%",
-      "visualKey": "charge-30",
+      "id": "heavy-charge",
+      "displayName": "Charge lourde",
+      "visualKey": "icone-default",
       "triggerPhase": "attack",
-      "chargeBonusPercent": 30,
-      "displayNameKey": "skills.charge-30.name",
-      "descriptionKey": "skills.charge-30.description",
+      "displayNameKey": "skills.heavy-charge.name",
+      "descriptionKey": "skills.heavy-charge.description",
       "descriptionParams": {
-        "chargeBonusPercent": "skill.chargeBonusPercent"
+        "percent": "pawn.implicitSkillParams.heavyChargePercent"
       },
+      "activationType": "progressive",
+      "kind": "charge",
       "levels": [
         {
-          "level": 1
+          "level": 1,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 5,
+          "implicitSkillParams": {
+            "heavyChargePercent": 15
+          }
+        },
+        {
+          "level": 2,
+          "skillPointCost": 10,
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "heavyChargePercent": 30
+          }
+        },
+        {
+          "level": 3,
+          "skillPointCost": 15,
+          "requiredInfluencePoints": 15,
+          "implicitSkillParams": {
+            "heavyChargePercent": 50
+          }
         }
       ]
     },
     {
-      "id": "charge-50",
-      "displayName": "Charge 50%",
-      "visualKey": "charge-50",
+      "id": "penetrating-charge",
+      "displayName": "Charge pénétrante",
+      "visualKey": "icone-default",
       "triggerPhase": "attack",
-      "chargeBonusPercent": 50,
-      "displayNameKey": "skills.charge-50.name",
-      "descriptionKey": "skills.charge-50.description",
+      "displayNameKey": "skills.penetrating-charge.name",
+      "descriptionKey": "skills.penetrating-charge.description",
       "descriptionParams": {
-        "chargeBonusPercent": "skill.chargeBonusPercent"
+        "percent": "pawn.implicitSkillParams.penetratingChargePercent"
       },
+      "activationType": "progressive",
+      "kind": "charge",
       "levels": [
         {
-          "level": 1
+          "level": 1,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 5,
+          "implicitSkillParams": {
+            "penetratingChargePercent": 15
+          }
+        },
+        {
+          "level": 2,
+          "skillPointCost": 10,
+          "requiredInfluencePoints": 10,
+          "implicitSkillParams": {
+            "penetratingChargePercent": 30
+          }
+        },
+        {
+          "level": 3,
+          "skillPointCost": 15,
+          "requiredInfluencePoints": 15,
+          "implicitSkillParams": {
+            "penetratingChargePercent": 50
+          }
+        }
+      ]
+    },
+    {
+      "id": "anti-charge",
+      "displayName": "Anti-charge",
+      "visualKey": "icone-default",
+      "triggerPhase": "attack",
+      "displayNameKey": "skills.anti-charge.name",
+      "descriptionKey": "skills.anti-charge.description",
+      "descriptionParams": {},
+      "activationType": "single",
+      "levels": [
+        {
+          "level": 1,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 10
+        }
+      ]
+    },
+    {
+      "id": "piercing-arrows",
+      "displayName": "Flèches perçantes",
+      "visualKey": "icone-default",
+      "triggerPhase": "attack",
+      "displayNameKey": "skills.piercing-arrows.name",
+      "descriptionKey": "skills.piercing-arrows.description",
+      "descriptionParams": {},
+      "activationType": "single",
+      "levels": [
+        {
+          "level": 1,
+          "skillPointCost": 5,
+          "requiredInfluencePoints": 10
         }
       ]
     },
