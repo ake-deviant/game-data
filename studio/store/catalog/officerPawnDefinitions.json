@@ -147,6 +147,11 @@
         "id": "increase-enemy-elite-cooldown-on-hit",
         "initialLevel": 1,
         "maxLevel": 1
+      },
+      {
+        "id": "piercing-arrows",
+        "initialLevel": 1,
+        "maxLevel": 1
       }
     ],
     "implicitSkillParams": {

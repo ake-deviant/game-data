@@ -157,12 +157,12 @@
     "skills": [
       {
         "id": "increase-SP-by-attack-linked-when-preparing",
-        "initialLevel": 0,
+        "initialLevel": 1,
         "maxLevel": 1
       },
       {
-        "id": "liaison-power-bonus",
-        "initialLevel": 0,
+        "id": "anti-charge",
+        "initialLevel": 1,
         "maxLevel": 1
       }
     ]
